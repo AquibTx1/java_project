@@ -5,9 +5,9 @@ Feature: Create an account for new user
     Given Read the test data  "<TestData>" from Excel file
     When Navigate to the url
     And Search for an item
-#    And Add the item into cart
-#    Then Verify item is added to cart
-#    And Navigate to home Page
+    And Add the item into cart
+    Then Verify item is added to cart
+    And Navigate to home Page
     Examples:
       | TestData  |
       | TestData3 |
