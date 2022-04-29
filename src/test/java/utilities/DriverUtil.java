@@ -15,6 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -355,7 +356,10 @@ public class DriverUtil {
                     browser = drivers.get(browserName);
                     if (browser == null) {
                         WebDriverManager.chromedriver().setup();
-                        browser = new ChromeDriver();
+                        //running headless
+                        ChromeOptions options = new ChromeOptions();
+                        options.addArguments("--headless", "--window-size=1920,1080", "--disable-gpu");
+                        browser = new ChromeDriver(options);
                         drivers.put("Chrome", browser);
                         exeEnv = REMOTE;
                     } // End if
