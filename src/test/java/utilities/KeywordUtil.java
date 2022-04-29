@@ -58,7 +58,8 @@ public class KeywordUtil extends GlobalUtil {
 	/**
 	 * The Result folder name.
 	 */
-	static String result_FolderName = System.getProperty("user.dir") + "\\ExecutionReports\\HTMLReports";
+	//static String result_FolderName = System.getProperty("user.dir") + "\\ExecutionReports\\HTMLReports";
+	static String result_FolderName = System.getProperty("user.dir") + File.separator + "ExecutionReports" + File.separator + "HTMLReports";
 	/**
 	 * The Rt.
 	 */
@@ -90,8 +91,8 @@ public class KeywordUtil extends GlobalUtil {
 		File f = new File(htmlReportFile);
 		if (f.exists()) {
 			try {
-				rt.exec("rundll32 url.dll,FileProtocolHandler " + htmlReportFile);
-			} catch (IOException e) {
+//				rt.exec("rundll32 url.dll,FileProtocolHandler " + htmlReportFile);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -102,8 +103,8 @@ public class KeywordUtil extends GlobalUtil {
 		if (extentReport.exists()) {
 
 			try {
-				rt.exec("rundll32 url.dll,FileProtocolHandler " + htmlExtentReportFile);
-			} catch (IOException e) {
+//				rt.exec("rundll32 url.dll,FileProtocolHandler " + htmlExtentReportFile);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
