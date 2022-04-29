@@ -89,25 +89,24 @@ public class KeywordUtil extends GlobalUtil {
 		String htmlReportFile = System.getProperty("user.dir") + "\\" + ConfigReader.getValue("HtmlReportFullPath");
 		LogUtil.infoLog(KeywordUtil.class, "cucumber path is" + htmlReportFile);
 		File f = new File(htmlReportFile);
-		if (f.exists()) {
-			try {
+//		if (f.exists()) {
+//			try {
 //				rt.exec("rundll32 url.dll,FileProtocolHandler " + htmlReportFile);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 		String htmlExtentReportFile = System.getProperty("user.dir") + File.separator + "ExecutionReports"
 				+ File.separator + "HTMLReportsBackup" + File.separator + RunCukesTest.tagName + ".html";
 		LogUtil.infoLog(KeywordUtil.class, "Extent Report File path is  " + htmlExtentReportFile);
 		File extentReport = new File(htmlExtentReportFile);
-		if (extentReport.exists()) {
-
-			try {
+//		if (extentReport.exists()) {
+//			try {
 //				rt.exec("rundll32 url.dll,FileProtocolHandler " + htmlExtentReportFile);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 	}
 
 	/**

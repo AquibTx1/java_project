@@ -45,7 +45,7 @@ public class Hooks {
                 GlobalUtil.getCommonSettings().getBrowser()));
     }
 
-    @Before("")
+//    @Before("")
     public void beforeAPIMethod(Scenario scenario) {
 
         if (scenario.getName().contains("_"))
@@ -61,7 +61,7 @@ public class Hooks {
         LogUtil.infoLog(Hooks.class, "Test is started using base URL: " + GlobalUtil.getCommonSettings().getRestURL());
     }
 
-    @Before("")
+//    @Before("")
     public void beforeMobileTestMethod(Scenario scenario) throws Exception {
 
         if (scenario.getName().contains("_"))
@@ -80,7 +80,7 @@ public class Hooks {
                 "Mobile Test is executed in OS: " + GlobalUtil.getCommonSettings().getAndroidName());
     }
 
-    @After("")
+    @After("@Amazon1")
     public void afterMethodSmoke(Scenario scenario) {
 
         String testName;
@@ -172,7 +172,7 @@ public class Hooks {
         RunCukesTest.extent.endTest(RunCukesTest.logger);
     }
 
-    @After("")
+//    @After("")
     public void afterAPIMethod(Scenario scenario) {
         String testName;
 
