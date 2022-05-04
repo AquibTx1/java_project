@@ -12,25 +12,25 @@ This is a template project that you can use to start with cucumber-jvm and selen
 
 # Nginx Config
 ```sh
-    server {
-        listen       443 ssl http2 default_server;
-        ...
-		location /ExecutionReports/ {
-            autoindex on;
-            root /home/centos/project/sg-altonomy-qa;
-        }
-        location /target/ {
-            autoindex on;
-            root /home/centos/project/sg-altonomy-qa;
-        }
-        location /reports {
-            # rewrite ^/(.*)$ /ExecutionReports/ redirect;
-            return 301 /ExecutionReports/;
-        }
-        location /cucumber {
-            # rewrite ^/(.*)$ /target/ redirect;
-            return 301 /target/;
-        }
-        ...
+server {
+    listen       443 ssl http2 default_server;
+    ...
+	location /ExecutionReports/ {
+        autoindex on;
+        root /home/centos/project/sg-altonomy-qa;
     }
+    location /target/ {
+        autoindex on;
+        root /home/centos/project/sg-altonomy-qa;
+    }
+    location /reports {
+        # rewrite ^/(.*)$ /ExecutionReports/ redirect;
+        return 301 /ExecutionReports/;
+    }
+    location /cucumber {
+        # rewrite ^/(.*)$ /target/ redirect;
+        return 301 /target/;
+    }
+    ...
+}
 ```
