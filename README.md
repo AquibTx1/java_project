@@ -15,6 +15,10 @@ This is a template project that you can use to start with cucumber-jvm and selen
 server {
     listen       443 ssl http2 default_server;
     ...
+    location / {
+        autoindex on;
+        root /home/centos/project/sg-altonomy-qa/www;
+    }
     location /ExecutionReports/ {
         autoindex on;
         root /home/centos/project/sg-altonomy-qa;
