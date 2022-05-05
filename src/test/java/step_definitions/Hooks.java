@@ -80,7 +80,7 @@ public class Hooks {
                 "Mobile Test is executed in OS: " + GlobalUtil.getCommonSettings().getAndroidName());
     }
 
-    @After("@NitroX")
+    @After("")
     public void afterMethodSmoke(Scenario scenario) {
 
         String testName;
@@ -168,7 +168,7 @@ public class Hooks {
         }
 
         // close the browsers
-        //DriverUtil.closeAllDriver();
+        DriverUtil.closeAllDriver();
         RunCukesTest.extent.endTest(RunCukesTest.logger);
     }
 

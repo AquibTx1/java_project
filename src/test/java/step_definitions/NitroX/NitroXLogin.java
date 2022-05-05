@@ -52,7 +52,6 @@ public class NitroXLogin {
 
     @And("Click submit button")
     public void clickSubmitButton() {
-
         try {
             NitroXUserLogin.clickloginbtn();
         } catch (Throwable e) {
@@ -65,14 +64,28 @@ public class NitroXLogin {
 
     @Then("Verify user is able to login successfully")
     public void verifyUserIsAbleToLoginSuccessfully() {
-        KeywordUtil.waitForVisible(NitroXLoginPage.homepage);
-        System.out.println("Home Page" + KeywordUtil.getElementText(NitroXLoginPage.homepage));
-        Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage), "Home");
+        try {
+            KeywordUtil.waitForVisible(NitroXLoginPage.homepage);
+            System.out.println("Home Page" + KeywordUtil.getElementText(NitroXLoginPage.homepage));
+            Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage), "Home");
+        } catch (Throwable e) {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
     }
 
     @Then("Verify validation message is displayed")
     public void verifyValidationMessageIsDisplayed() {
-        waitForVisible(NitroXLoginPage.invalidLoginValidation);
-        Assert.assertEquals(getElementText(NitroXLoginPage.invalidLoginValidation), dataMap.get("Validation"));
+        try {
+            waitForVisible(NitroXLoginPage.invalidLoginValidation);
+            Assert.assertEquals(getElementText(NitroXLoginPage.invalidLoginValidation), dataMap.get("Validation"));
+        } catch (Throwable e) {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
     }
 }
