@@ -1,15 +1,24 @@
-Feature: Create an account for new user
+Feature: Test login feature
 
-  @Amazon1
-  Scenario Outline: 34518_Searching a product and add to cart for Valid Login Credentials
+  @NitroX
+  Scenario Outline: NitroX_001_Test login feature with valid credentials
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Navigate to the url
-    And Search for an item
-    And Add the item into cart
-    Then Verify item is added to cart
-    And Navigate to home Page
+    And Input username and password
+    And Click submit button
+    Then Verify user is able to login successfully
     Examples:
       | SheetName   | TestCaseID                  |
       | NitroXLogin | QA_TestCase_Auto_NitroX_001 |
 
-
+  @NitroX
+  Scenario Outline: NitroX_002_Test login feature with invalid credentials
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Navigate to the url
+    And Input username and password
+    And Click submit button
+    Then Verify validation message is displayed
+    Examples:
+      | SheetName   | TestCaseID                  |
+      | NitroXLogin | QA_TestCase_Auto_NitroX_002 |
+      | NitroXLogin | QA_TestCase_Auto_NitroX_003 |
