@@ -62,17 +62,17 @@ public class NitroXLogin {
             Assert.fail(e.getMessage());
         }
     }
+
     @Then("Verify user is able to login successfully")
     public void verifyUserIsAbleToLoginSuccessfully() {
-
         KeywordUtil.waitForVisible(NitroXLoginPage.homepage);
-        System.out.println("Home Page"+KeywordUtil.getElementText(NitroXLoginPage.homepage));
-        Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage),"Home");
-
+        System.out.println("Home Page" + KeywordUtil.getElementText(NitroXLoginPage.homepage));
+        Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage), "Home");
     }
+
     @Then("Verify validation message is displayed")
     public void verifyValidationMessageIsDisplayed() {
+        waitForVisible(NitroXLoginPage.invalidLoginValidation);
+        Assert.assertEquals(getElementText(NitroXLoginPage.invalidLoginValidation), dataMap.get("Validation"));
     }
-
-
 }

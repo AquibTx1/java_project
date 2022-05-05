@@ -27,8 +27,10 @@ public class NitroXUserLogin {
     {
         KeywordUtil.inputText(NitroXLoginPage.password, dataMap.get("Password"), "Enter the password");
     }
+
     public static void clickloginbtn()
     {
+
         KeywordUtil.click(NitroXLoginPage.loginbtn, "Click on Sign on Button");
     }
 
