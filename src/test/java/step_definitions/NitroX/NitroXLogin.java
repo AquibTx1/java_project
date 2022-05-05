@@ -1,14 +1,14 @@
 package step_definitions.NitroX;
 
 import NitroXPages.NitroXLoginPage;
-import io.cucumber.java.en.Given;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import modules.NitroXActions.NitoXUserLogin;
+import modules.NitroXActions.NitroXUserLogin;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
-import utilities.ExcelDataUtil;
 import utilities.GlobalUtil;
+import utilities.KeywordUtil;
 
 import java.util.HashMap;
 
@@ -18,28 +18,13 @@ public class NitroXLogin {
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
 
-    public NitroXLogin()
-    {
+    public NitroXLogin() {
         //constructor of the class to load datamap from BaseStepDefinitions
         dataMap = BaseStepDefinitions.dataMap;
     }
 
-    @Given("^Read the \"([^\"]*)\" and \"([^\"]*)\" from Excel file$")
-    public void readTheAndFromExcelFile(String Sheetname, String TestCaseID) {
-
-        try {
-            dataMap = ExcelDataUtil.getTestDataWithTestCaseID(Sheetname, TestCaseID);
-
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
-        }
-    }
-
-    @When("^Navigate to the NitroX url$")
-    public void navigateToTheNitroXUrl() {
+    @When("^Navigate to the url$")
+    public void navigateToTheUrl() {
         try {
             navigateToUrl(dataMap.get("URL"));
             //boolean  =
@@ -49,33 +34,45 @@ public class NitroXLogin {
             GlobalUtil.errorMsg = e.getMessage();
             Assert.fail(e.getMessage());
         }
-
     }
 
-    @When("^User enter the username and password$")
-    public void user_enter_the_username_and_password() {
+    @And("^Input username and password$")
+    public void inputUsernameAndPassword() {
         try {
-            NitoXUserLogin.login(dataMap);
+            NitroXUserLogin.enterusername(dataMap);
+            NitroXUserLogin.enterpassword(dataMap);
 
         } catch (Throwable e) {
             GlobalUtil.e = e;
             GlobalUtil.errorMsg = e.getMessage();
             Assert.fail(e.getMessage());
         }
+
     }
 
-    @Then("Verify user is on HomePage")
-    public void verifyUserIsOnHomePage() {
+    @And("Click submit button")
+    public void clickSubmitButton() {
+
         try {
-            boolean ele = isWebElementVisible(NitroXLoginPage.homepage, "Check the HomePage");
-            if (ele)
-                System.out.println("User is on the Page");
-            else
-                System.out.println("Invalid Credentails");
+            NitroXUserLogin.clickloginbtn();
         } catch (Throwable e) {
             GlobalUtil.e = e;
+            e.printStackTrace();
             GlobalUtil.errorMsg = e.getMessage();
             Assert.fail(e.getMessage());
         }
     }
+    @Then("Verify user is able to login successfully")
+    public void verifyUserIsAbleToLoginSuccessfully() {
+
+        KeywordUtil.waitForVisible(NitroXLoginPage.homepage);
+        System.out.println("Home Page"+KeywordUtil.getElementText(NitroXLoginPage.homepage));
+        Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage),"Home");
+
+    }
+    @Then("Verify validation message is displayed")
+    public void verifyValidationMessageIsDisplayed() {
+    }
+
+
 }
