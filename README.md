@@ -27,7 +27,7 @@ server {
         autoindex on;
         root /home/centos/project/sg-altonomy-qa;
     }
-    location /reports {
+    location /extent {
         # rewrite ^/(.*)$ /ExecutionReports/ redirect;
         return 301 /ExecutionReports/;
     }
