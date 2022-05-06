@@ -2,10 +2,12 @@ package step_definitions;
 
 import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import mantisutil.MantisReport;
 import org.apache.commons.compress.utils.IOUtils;
+import org.openqa.selenium.JavascriptExecutor;
 import testlink.api.java.client.TestLinkAPIResults;
 import utilities.*;
 
@@ -45,7 +47,7 @@ public class Hooks {
                 GlobalUtil.getCommonSettings().getBrowser()));
     }
 
-//    @Before("")
+    //    @Before("")
     public void beforeAPIMethod(Scenario scenario) {
 
         if (scenario.getName().contains("_"))
@@ -61,7 +63,7 @@ public class Hooks {
         LogUtil.infoLog(Hooks.class, "Test is started using base URL: " + GlobalUtil.getCommonSettings().getRestURL());
     }
 
-//    @Before("")
+    //    @Before("")
     public void beforeMobileTestMethod(Scenario scenario) throws Exception {
 
         if (scenario.getName().contains("_"))
@@ -80,11 +82,57 @@ public class Hooks {
                 "Mobile Test is executed in OS: " + GlobalUtil.getCommonSettings().getAndroidName());
     }
 
+    @AfterStep
+    public void afterEachStep(Scenario scenario) {
+        boolean flag = Boolean.parseBoolean(ConfigReader.getValue("ScreenshotFlag"));
+        String testName = scenario.getName().split("_")[0].trim();
+        JavascriptExecutor jse = (JavascriptExecutor) GlobalUtil.getDriver();
+
+        try {
+            if (GlobalUtil.getCommonSettings().getExecutionEnv().equalsIgnoreCase("Remote")
+                    && GlobalUtil.getCommonSettings().getCloudProvider().equalsIgnoreCase("Browserstack")) {
+                jse.executeScript(
+                        "browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\"}}");
+            }
+            String scFileName = "ScreenShot_" + System.currentTimeMillis();
+            String screenshotFilePath = ConfigReader.getValue("screenshotPath") + "\\" + scFileName + ".png";
+            imagePath = HTMLReportUtil.testFailTakeScreenshot(screenshotFilePath);
+
+            InputStream is = new FileInputStream(imagePath);
+            byte[] imageBytes = IOUtils.toByteArray(is);
+            Thread.sleep(2000);
+            String base64 = Base64.getEncoder().encodeToString(imageBytes);
+            pathForLogger = RunCukesTest.logger.addBase64ScreenShot("data:image/png;base64," + base64);
+            if (scenario.isFailed()) {
+                RunCukesTest.logger.log(LogStatus.FAIL,
+                        HTMLReportUtil.failStringRedColor("Failed at point: " + pathForLogger) + GlobalUtil.e);
+                byte[] screenshot = KeywordUtil.takeScreenshot(imagePath);
+                scenario.attach(screenshot, "image/png", "Screenshot");
+
+            } else if (flag) {
+                RunCukesTest.logger.log(LogStatus.PASS,
+                        HTMLReportUtil.passStringGreenColor("" + pathForLogger));
+
+                byte[] screenshot = KeywordUtil.takeScreenshot(imagePath);
+                scenario.attach(screenshot, "image/png", "Screenshot");
+
+            } else {
+
+//				RunCukesTest.logger.log(LogStatus.PASS,
+//						HTMLReportUtil.passStringGreenColor(scenario.getName() ));
+
+                LogUtil.infoLog(Hooks.class,
+                        "Test has ended closing browser: " + GlobalUtil.getCommonSettings().getBrowser());
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @After("")
     public void afterMethodSmoke(Scenario scenario) {
-
         String testName;
-
         if (scenario.getName().contains("_"))
             testName = scenario.getName().split("_")[0].trim();
         else
@@ -92,7 +140,8 @@ public class Hooks {
 
         if (scenario.isFailed()) {
             try {
-                String scFileName = "ScreenShot_" + System.currentTimeMillis();
+                //Taking Screenshot and putting into the report
+             /*   String scFileName = "ScreenShot_" + System.currentTimeMillis();
                 String screenshotFilePath = ConfigReader.getValue("screenshotPath") + "\\" + scFileName + ".png";
                 imagePath = HTMLReportUtil.testFailTakeScreenshot(screenshotFilePath);
 
@@ -105,7 +154,7 @@ public class Hooks {
                         HTMLReportUtil.failStringRedColor("Failed at point: " + pathForLogger) + GlobalUtil.e);
 
                 byte[] screenshot = KeywordUtil.takeScreenshot(imagePath);
-                scenario.attach(screenshot, "image/png", "Failed Screenshot");
+                scenario.attach(screenshot, "image/png", "Failed Screenshot");*/
 
                 // report the bug
                 String bugID = "Please check the Bug tool Configuration";
@@ -172,7 +221,7 @@ public class Hooks {
         RunCukesTest.extent.endTest(RunCukesTest.logger);
     }
 
-//    @After("")
+    //    @After("")
     public void afterAPIMethod(Scenario scenario) {
         String testName;
 
@@ -237,7 +286,7 @@ public class Hooks {
         RunCukesTest.extent.endTest(RunCukesTest.logger);
     }
 
-//    @After("")
+    //    @After("")
     public void afterMobileTestMethod(Scenario scenario) {
         String testName;
 

@@ -20,7 +20,6 @@ public class BaseStepDefinitions extends KeywordUtil {
         try {
             KeywordUtil.cucumberTagName = "Web";
             dataMap = ExcelDataUtil.getTestDataWithTestCaseID(sheetName, testCaseID);
-
         } catch (Throwable e) {
             GlobalUtil.e = e;
             GlobalUtil.errorMsg = e.getMessage();
