@@ -1,5 +1,8 @@
 Feature: Test buys sell features
 
+  Background: Login to application
+    Given Login to NitroX app with valid login credentials
+
   @NitroXHome
   Scenario Outline: NitroXHome-004_Verify spot mode field data entry
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file

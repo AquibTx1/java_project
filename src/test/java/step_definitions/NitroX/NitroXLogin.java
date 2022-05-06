@@ -88,4 +88,6 @@ public class NitroXLogin {
             Assert.fail(e.getMessage());
         }
     }
+
+
 }
