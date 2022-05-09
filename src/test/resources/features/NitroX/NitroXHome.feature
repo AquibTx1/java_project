@@ -30,4 +30,13 @@ Feature: Test buys sell features
     Then Validate Selected Trading Account
     Examples:
       | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_009 |
+
+  @NitroXHome
+  Scenario Outline: NitroXHome-010_Able to fill Trading Account in NitroX Page
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Select the Trading Account
+    Then Validate Selected Trading Account
+    Examples:
+      | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_010 |

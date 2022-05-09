@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
+import utilities.ConfigReader;
 import utilities.GlobalUtil;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
@@ -91,5 +92,25 @@ public class NitroXHomeSteps {
             GlobalUtil.errorMsg = e.getMessage();
             Assert.fail(e.getMessage());
         }
+    }
+
+    @When("Select the Trading Account")
+    public void selectTheTradingAccount() {
+
+        try {
+            KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
+            waitForVisible(NitroXHomePage.selecttradingaccount1);
+            if (dataMap.get("TradingAccount").equalsIgnoreCase(ConfigReader.getValue("TradingAccount1"))) {
+                KeywordUtil.click(NitroXHomePage.selecttradingaccount1, "First Trading Account selected from dropdown.");
+            } else if (dataMap.get("TradingAccount").equalsIgnoreCase(ConfigReader.getValue("TradingAccount2"))) {
+                KeywordUtil.click(NitroXHomePage.selecttradingaccount2, "Second Trading Account selected from dropdown");
+            }
+        } catch (Throwable e) {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
+
     }
 }

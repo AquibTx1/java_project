@@ -24,6 +24,7 @@ public class NitroXHomePage {
     public static By inputtradingaccount = By.id("account_pair_form_accountId");
     public static By selecttradingaccount1 = By.xpath("//div[@title='Trader01@Tinyex']");
     public static By selecttradingaccount2 = By.xpath("//div[@title='Trader02@Tinyex']");
+
     public static By varifyaccount = By.xpath("(//div[@class='ant-select-selector'])[2]/child::span[2]");
 
     //Balance
