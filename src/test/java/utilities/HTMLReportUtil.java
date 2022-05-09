@@ -51,7 +51,7 @@ public class HTMLReportUtil {
 		LogUtil.infoLog(HTMLReportUtil.class, des.toString());
 		DummyString = des.getAbsolutePath();
 		String path = DummyString;
-		String base = "TXAutomate/ExecutionReports/FailedScreenshots/";
+		String base = "TXAutomate" + File.separator+"ExecutionReports"+File.separator+"FailedScreenshots"+File.separator;
 		String relative = new File(base).toURI().relativize(new File(path).toURI()).getPath();
 
 		return relative;
