@@ -25,12 +25,14 @@ public class NitroXHomeSteps {
     @When("Choose mode value using dropdown")
     public void chooseModeValueUsingDropdown() {
         try {
+            waitForVisible(NitroXHomePage.modeTextField);
             KeywordUtil.click(NitroXHomePage.modeTextField, "Mode text field clicked.");
+            KeywordUtil.delay(2000);
             waitForVisible(NitroXHomePage.spotDropdown);
             if (dataMap.get("Mode").equalsIgnoreCase("Spot")) {
                 KeywordUtil.click(NitroXHomePage.spotDropdown, "Spot mode is clicked from dropdown.");
             } else if (dataMap.get("Mode").equalsIgnoreCase("Futures")) {
-                KeywordUtil.click(NitroXHomePage.spotDropdown, "Spot mode is clicked from dropdown.");
+                KeywordUtil.click(NitroXHomePage.FutureDropdown, "Future mode is clicked from dropdown.");
             } else {
                 System.out.println("choose a valid value");
             }
@@ -40,6 +42,14 @@ public class NitroXHomeSteps {
             GlobalUtil.errorMsg = e.getMessage();
             Assert.fail(e.getMessage());
         }
+    }
+
+    @When("Choose mode value using input text")
+    public void chooseModeValueUsingInputText()
+    {
+        waitForVisible(NitroXHomePage.spotDropdown);
+        //KeywordUtil.inputText();
+
     }
 
     @Then("Verify mode value")
@@ -52,5 +62,13 @@ public class NitroXHomeSteps {
             GlobalUtil.errorMsg = e.getMessage();
             Assert.fail(e.getMessage());
         }
+    }
+
+    @When("Select the Trading Account")
+    public void selectTheTradingAccount() {
+    }
+
+    @Then("Validate The Select Trading")
+    public void validateTheSelectTrading() {
     }
 }
