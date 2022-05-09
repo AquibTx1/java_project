@@ -100,9 +100,10 @@ public class NitroXHomeSteps {
         try {
             KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
             waitForVisible(NitroXHomePage.selecttradingaccount1);
-            if (dataMap.get("TradingAccount").equalsIgnoreCase(ConfigReader.getValue("TradingAccount1"))) {
+            if (dataMap.get("TradingAccount").equalsIgnoreCase("Trader01@Tinyex")) {
                 KeywordUtil.click(NitroXHomePage.selecttradingaccount1, "First Trading Account selected from dropdown.");
-            } else if (dataMap.get("TradingAccount").equalsIgnoreCase(ConfigReader.getValue("TradingAccount2"))) {
+            } else if (dataMap.get("TradingAccount").equalsIgnoreCase("Trader02@Tinyex"))
+            {
                 KeywordUtil.click(NitroXHomePage.selecttradingaccount2, "Second Trading Account selected from dropdown");
             }
         } catch (Throwable e) {
