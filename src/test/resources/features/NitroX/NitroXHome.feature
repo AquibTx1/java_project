@@ -24,19 +24,20 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_007 |
 
   @NitroXHome
-  Scenario Outline: NitroXHome-010_Able to fill Trading Account in NitroX Page
+  Scenario Outline: NitroXHome-009_Able to Select Trading Account in using Dropdown Option
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
-    When Enter the Trading Account
+    When Select the Trading Account
     Then Validate Selected Trading Account
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_009 |
 
   @NitroXHome
-  Scenario Outline: NitroXHome-010_Able to fill Trading Account in NitroX Page
+  Scenario Outline: NitroXHome-010_Able to fill Trading Account
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
-    When Select the Trading Account
+    When Enter the Trading Account
     Then Validate Selected Trading Account
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_010 |
+
