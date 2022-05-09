@@ -56,8 +56,8 @@ public class NitroXHomeSteps {
     @Then("Verify mode value")
     public void verifyModeValue() {
         try {
-            LogUtil.infoLog(thisClass, dataMap.get("Mode") + ": mode entered");
             Assert.assertEquals(getElementText(NitroXHomePage.modeValueAfterSelection), dataMap.get("Mode"));
+            LogUtil.infoLog(thisClass, dataMap.get("Mode") + ": mode entered");
         } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();
@@ -66,11 +66,30 @@ public class NitroXHomeSteps {
         }
     }
 
-    @When("Select the Trading Account")
-    public void selectTheTradingAccount() {
+    @When("Enter the Trading Account")
+    public void EnterTheTradingAccount() {
+        try {
+            KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
+            KeywordUtil.inputText(NitroXHomePage.inputtradingaccount, dataMap.get("TradingAccount"), "Enter the Account detail");
+            KeywordUtil.pressEnter(NitroXHomePage.inputtradingaccount);
+        } catch (Throwable e) {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
     }
 
-    @Then("Validate The Select Trading")
-    public void validateTheSelectTrading() {
+    @Then("Validate Selected Trading Account")
+    public void validateSelectedTradingAccount() {
+        try {
+            Assert.assertEquals(getElementText(NitroXHomePage.tradingAccountSibling), dataMap.get("TradingAccount"));
+            LogUtil.infoLog(thisClass, dataMap.get("TradingAccount")+": trading account entered");
+        } catch (Throwable e) {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
     }
 }
