@@ -26,15 +26,19 @@ public class NitroXHomePage {
     public static By selecttradingaccount2 = By.xpath("//div[@title='Trader02@Tinyex']");
 
     public static By varifyaccount = By.xpath("(//div[@class='ant-select-selector'])[2]/child::span[2]");
-
     //Balance
     public static By balance = By.xpath("(//*[@class='text-gray-800 text-xs'])[1]");
     public static By Basecurrency = By.id("account_pair_form_base");
     public static By Quotecurrency = By.id("account_pair_form_quote");
+
+
 
     //Position
 
     //Bots
     
     //Order Form
+    public static By inputprice = By.id("order_form_price");
+
+    //input[@id='order_form_price']
 }
