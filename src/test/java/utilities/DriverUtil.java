@@ -357,9 +357,9 @@ public class DriverUtil {
                     if (browser == null) {
                         WebDriverManager.chromedriver().setup();
                         //running headless
-                        //ChromeOptions options = new ChromeOptions();
-                        //options.addArguments("--headless", "--window-size=1920,1080", "--disable-gpu");
-                        browser = new ChromeDriver();
+                        ChromeOptions options = new ChromeOptions();
+                        options.addArguments("--headless", "--window-size=1920,1080", "--disable-gpu");
+                        browser = new ChromeDriver(options);
                         drivers.put("Chrome", browser);
                         exeEnv = REMOTE;
                     } // End if

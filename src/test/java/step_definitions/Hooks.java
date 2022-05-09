@@ -217,8 +217,11 @@ public class Hooks {
         }
 
         // close the browsers
-        DriverUtil.closeAllDriver();
-        RunCukesTest.extent.endTest(RunCukesTest.logger);
+        if (Boolean.parseBoolean(ConfigReader.getValue("closeBrowserAfterScenario"))) {
+            DriverUtil.closeAllDriver();
+            RunCukesTest.extent.endTest(RunCukesTest.logger);
+        }
+
     }
 
     //    @After("")

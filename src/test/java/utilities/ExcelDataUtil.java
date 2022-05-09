@@ -1,10 +1,7 @@
 package utilities;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
@@ -88,6 +85,7 @@ public class ExcelDataUtil {
 		boolean found = false;
 		boolean isfirstRow = false;
 		Row firstrow = null;
+		DataFormatter fm= new DataFormatter();
 		// Initialize class
 		// Get Path and Sheet Name from Property File
 		final HashMap<String, String> currentRowData = new HashMap<String, String>();
@@ -103,12 +101,12 @@ public class ExcelDataUtil {
 				if (row.getCell(columnToLookTestCaseID).getStringCellValue().equalsIgnoreCase(testCaseID)) {
 					found = true;
 					for (int i = 0; i < row.getLastCellNum(); i++) {
-						String cellValue = row.getCell(i).getStringCellValue();
+						String cellValue = fm.formatCellValue(row.getCell(i));
 						if (cellValue == null) {
 							cellValue = "";
 						}
 						cellValue = getUniqueString(cellValue);
-						currentRowData.put(firstrow.getCell(i).getStringCellValue(), cellValue);
+						currentRowData.put(fm.formatCellValue(firstrow.getCell(i)), cellValue);
 					}
 					break;
 				}
