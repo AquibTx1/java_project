@@ -27,14 +27,13 @@ public class NitroXHomeSteps {
         try {
             waitForVisible(NitroXHomePage.modeTextField);
             KeywordUtil.click(NitroXHomePage.modeTextField, "Mode text field clicked.");
-            KeywordUtil.delay(2000);
             waitForVisible(NitroXHomePage.spotDropdown);
             if (dataMap.get("Mode").equalsIgnoreCase("Spot")) {
-                KeywordUtil.click(NitroXHomePage.spotDropdown, "Spot mode is clicked from dropdown.");
+                KeywordUtil.click(NitroXHomePage.spotDropdown, "Spot mode selected from dropdown.");
             } else if (dataMap.get("Mode").equalsIgnoreCase("Futures")) {
-                KeywordUtil.click(NitroXHomePage.FutureDropdown, "Future mode is clicked from dropdown.");
+                KeywordUtil.click(NitroXHomePage.FutureDropdown, "Future mode selected from dropdown.");
             } else {
-                System.out.println("choose a valid value");
+                Assert.fail("Please provide a valid mode value in .xlsx file");
             }
         } catch (Throwable e) {
             GlobalUtil.e = e;
@@ -45,8 +44,7 @@ public class NitroXHomeSteps {
     }
 
     @When("Choose mode value using input text")
-    public void chooseModeValueUsingInputText()
-    {
+    public void chooseModeValueUsingInputText() {
         waitForVisible(NitroXHomePage.spotDropdown);
         //KeywordUtil.inputText();
 
@@ -55,7 +53,7 @@ public class NitroXHomeSteps {
     @Then("Verify mode value")
     public void verifyModeValue() {
         try {
-            Assert.assertEquals(NitroXHomePage.getModeTextFieldGeneric, dataMap.get("Mode"));
+            Assert.assertEquals(getElementText(NitroXHomePage.modeValueAfterSelection), dataMap.get("Mode"));
         } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();
