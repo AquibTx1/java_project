@@ -11,6 +11,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import testlink.api.java.client.TestLinkAPIResults;
 import utilities.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Base64;
@@ -95,7 +96,7 @@ public class Hooks {
                         "browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\"}}");
             }
             String scFileName = "ScreenShot_" + System.currentTimeMillis();
-            String screenshotFilePath = ConfigReader.getValue("screenshotPath") + "\\" + scFileName + ".png";
+            String screenshotFilePath = ConfigReader.getValue("screenshotPath") + File.separator + scFileName + ".png";
             imagePath = HTMLReportUtil.testFailTakeScreenshot(screenshotFilePath);
 
             InputStream is = new FileInputStream(imagePath);
