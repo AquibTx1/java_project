@@ -1,13 +1,13 @@
 package step_definitions.NitroX;
 
 import NitroXPages.NitroXHomePage;
-import NitroXPages.NitroXLoginPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
 import utilities.KeywordUtil;
+import utilities.LogUtil;
 
 import java.util.HashMap;
 
@@ -16,7 +16,10 @@ import static utilities.KeywordUtil.waitForVisible;
 
 public class NitroXHomeSteps {
 
+
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
+
+    static Class thisClass = NitroXHomeSteps.class;
 
     public NitroXHomeSteps() {
         dataMap = BaseStepDefinitions.dataMap;
@@ -25,7 +28,7 @@ public class NitroXHomeSteps {
     @When("Choose mode value using dropdown")
     public void chooseModeValueUsingDropdown() {
         try {
-            waitForVisible(NitroXHomePage.modeTextField);
+            waitForVisible(NitroXHomePage.modeTextbyID);
             KeywordUtil.click(NitroXHomePage.modeTextField, "Mode text field clicked.");
             waitForVisible(NitroXHomePage.spotDropdown);
             if (dataMap.get("Mode").equalsIgnoreCase("Spot")) {
@@ -45,14 +48,15 @@ public class NitroXHomeSteps {
 
     @When("Choose mode value using input text")
     public void chooseModeValueUsingInputText() {
-        waitForVisible(NitroXHomePage.spotDropdown);
-        //KeywordUtil.inputText();
-
+        waitForVisible(NitroXHomePage.modeTextbyID);
+        KeywordUtil.inputText(NitroXHomePage.modeTextbyID, dataMap.get("Mode"), "Mode value entered using send keys.");
+        KeywordUtil.pressEnter(NitroXHomePage.modeTextbyID);
     }
 
     @Then("Verify mode value")
     public void verifyModeValue() {
         try {
+            LogUtil.infoLog(thisClass, dataMap.get("Mode") + ": mode entered");
             Assert.assertEquals(getElementText(NitroXHomePage.modeValueAfterSelection), dataMap.get("Mode"));
         } catch (Throwable e) {
             GlobalUtil.e = e;
