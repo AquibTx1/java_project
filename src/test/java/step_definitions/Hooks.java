@@ -25,6 +25,7 @@ public class Hooks {
     static String testCaseDescription;
     String imagePath;
     String pathForLogger;
+    String screenshotFilePath;
 
     @Before("")
     public void beforeMethodAmazon(Scenario scenario) {
@@ -96,21 +97,33 @@ public class Hooks {
                         "browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\"}}");
             }
             String scFileName = "ScreenShot_" + System.currentTimeMillis();
-            String screenshotFilePath = ConfigReader.getValue("screenshotPath") + File.separator + scFileName + ".png";
-            imagePath = HTMLReportUtil.testFailTakeScreenshot(screenshotFilePath);
 
-            InputStream is = new FileInputStream(imagePath);
-            byte[] imageBytes = IOUtils.toByteArray(is);
-            Thread.sleep(2000);
-            String base64 = Base64.getEncoder().encodeToString(imageBytes);
-            pathForLogger = RunCukesTest.logger.addBase64ScreenShot("data:image/png;base64," + base64);
+
+
             if (scenario.isFailed()) {
+                //screenshot path in case of failure
+                screenshotFilePath = ConfigReader.getValue("screenshotPath") + File.separator + scFileName + ".png";
+                imagePath = HTMLReportUtil.testFailTakeScreenshot(screenshotFilePath);
+                InputStream is = new FileInputStream(imagePath);
+                byte[] imageBytes = IOUtils.toByteArray(is);
+                Thread.sleep(2000);
+                String base64 = Base64.getEncoder().encodeToString(imageBytes);
+                pathForLogger = RunCukesTest.logger.addBase64ScreenShot("data:image/png;base64," + base64);
+
                 RunCukesTest.logger.log(LogStatus.FAIL,
                         HTMLReportUtil.failStringRedColor("Failed at point: " + pathForLogger) + GlobalUtil.e);
                 byte[] screenshot = KeywordUtil.takeScreenshot(imagePath);
                 scenario.attach(screenshot, "image/png", "Screenshot");
 
             } else if (flag) {
+                //screenshot path after each step definition on pass
+                screenshotFilePath = ConfigReader.getValue("screenshotPathPass") + File.separator + scFileName + ".png";
+                imagePath = HTMLReportUtil.testFailTakeScreenshot(screenshotFilePath);
+                InputStream is = new FileInputStream(imagePath);
+                byte[] imageBytes = IOUtils.toByteArray(is);
+                Thread.sleep(2000);
+                String base64 = Base64.getEncoder().encodeToString(imageBytes);
+                pathForLogger = RunCukesTest.logger.addBase64ScreenShot("data:image/png;base64," + base64);
                 RunCukesTest.logger.log(LogStatus.PASS,
                         HTMLReportUtil.passStringGreenColor("" + pathForLogger));
 

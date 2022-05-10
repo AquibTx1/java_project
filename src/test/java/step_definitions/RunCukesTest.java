@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.Date;
 
 @CucumberOptions(features = "classpath:features", plugin = {"pretty", "html:target/cucumber-html-report.html",
-		"json:target/cucumber.json"}, tags = "", monochrome = true
+        "json:target/cucumber.json"}, tags = "", monochrome = true
 
 // @Amazon, @APItests,MobileTest,MobileTest4
 // MobileTest1
@@ -27,165 +27,171 @@ import java.util.Date;
 )
 public class RunCukesTest extends AbstractTestNGCucumberTests {
 
-	static ExtentReports extent;
-	public static ExtentTest logger;
-	public static String tagName = null;
+    static ExtentReports extent;
+    public static ExtentTest logger;
+    public static String tagName = null;
 
-	@BeforeSuite
-	public void directoryCleanUp() {
-		try {
+    @BeforeSuite
+    public void directoryCleanUp() {
+        try {
 
-			String filePath = System.getProperty("user.dir") + File.separator + ConfigReader.getValue("screenshotPath");
-			if (new File(filePath).exists()) {
-				FileUtils.cleanDirectory(new File(filePath));
-			} else {
-				FileUtils.forceMkdir(new File(filePath));
-			}
+            String filePath = System.getProperty("user.dir") + File.separator + ConfigReader.getValue("screenshotPath");
+            if (new File(filePath).exists()) {
+                FileUtils.cleanDirectory(new File(filePath));
+            } else {
+                FileUtils.forceMkdir(new File(filePath));
+            }
 
-			filePath = System.getProperty("user.dir") + File.separator + "Jmeter" + File.separator + "Results";
-			if (new File(filePath).exists()) {
-				FileUtils.cleanDirectory(new File(filePath));
-			} else {
-				FileUtils.forceMkdir(new File(filePath));
-			}
+            filePath = System.getProperty("user.dir") + File.separator + ConfigReader.getValue("screenshotPathPass");
+            if (new File(filePath).exists()) {
+                FileUtils.cleanDirectory(new File(filePath));
+            } else {
+                FileUtils.forceMkdir(new File(filePath));
+            }
 
-			filePath = System.getProperty("user.dir") + File.separator + "ExecutionReports" + File.separator
-					+ "HTMLReports";
-			if (new File(filePath).exists()) {
-				FileUtils.cleanDirectory(new File(filePath));
-			} else {
-				FileUtils.forceMkdir(new File(filePath));
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+            filePath = System.getProperty("user.dir") + File.separator + "Jmeter" + File.separator + "Results";
+            if (new File(filePath).exists()) {
+                FileUtils.cleanDirectory(new File(filePath));
+            } else {
+                FileUtils.forceMkdir(new File(filePath));
+            }
 
-	@BeforeTest
-	public void onStart(ITestContext context) {
-		try {
-			extent = new ExtentReports(System.getProperty("user.dir") + ConfigReader.getValue("extentReportPath"));
+            filePath = System.getProperty("user.dir") + File.separator + "ExecutionReports" + File.separator + "HTMLReports";
+            if (new File(filePath).exists()) {
+                FileUtils.cleanDirectory(new File(filePath));
+            } else {
+                FileUtils.forceMkdir(new File(filePath));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-			extent.loadConfig(new File(System.getProperty("user.dir") + ConfigReader.getValue("extentConfigPath")));
-			// Get all the common setting from excel file that are required for
-			GlobalUtil.setCommonSettings(ExcelDataUtil.getCommonSettings());
+    @BeforeTest
+    public void onStart(ITestContext context) {
+        try {
+            extent = new ExtentReports(System.getProperty("user.dir") + ConfigReader.getValue("extentReportPath"));
 
-			String browser = "";
-			browser = GlobalUtil.getCommonSettings().getBrowser();
-			LogUtil.infoLog(RunCukesTest.class, browser);
+            extent.loadConfig(new File(System.getProperty("user.dir") + ConfigReader.getValue("extentConfigPath")));
+            // Get all the common setting from excel file that are required for
+            GlobalUtil.setCommonSettings(ExcelDataUtil.getCommonSettings());
 
-			String executionEnv = "";
-			executionEnv = GlobalUtil.getCommonSettings().getExecutionEnv();
+            String browser = "";
+            browser = GlobalUtil.getCommonSettings().getBrowser();
+            LogUtil.infoLog(RunCukesTest.class, browser);
 
-			String url = "";
-			url = GlobalUtil.getCommonSettings().getUrl();
+            String executionEnv = "";
+            executionEnv = GlobalUtil.getCommonSettings().getExecutionEnv();
 
-			if (browser == null)
-				browser = ConfigReader.getValue("defaultBrowser");
+            String url = "";
+            url = GlobalUtil.getCommonSettings().getUrl();
 
-			if (executionEnv == null)
-				executionEnv = ConfigReader.getValue("defaultExecutionEnvironment");
+            if (browser == null)
+                browser = ConfigReader.getValue("defaultBrowser");
 
-			// testlink config
-			if (GlobalUtil.getCommonSettings().getManageToolName().equalsIgnoreCase("Testlink")) {
-				TestLinkUtil.DEV_KEY = GlobalUtil.getCommonSettings().getTestlinkAPIKey();
-				TestLinkUtil.SERVER_URL = "http://" + GlobalUtil.getCommonSettings().getTestLinkHostName()
-						+ "/testlink-1.9.16/lib/api/xmlrpc/v1/xmlrpc.php";
-				TestLinkUtil.projectName = GlobalUtil.getCommonSettings().getTestlinkProjectName();
-				TestLinkUtil.testPlanName = GlobalUtil.getCommonSettings().getTestlinkPlanName();
-				TestLinkUtil.buildName = GlobalUtil.getCommonSettings().getBuildNumber();
-				TestLinkUtil.needUpdate = GlobalUtil.getCommonSettings().getTestlinkTool();
-				GlobalUtil.testlinkapi = new TestLinkUtil();
-			}
+            if (executionEnv == null)
+                executionEnv = ConfigReader.getValue("defaultExecutionEnvironment");
 
-			if (GlobalUtil.getCommonSettings().getManageToolName().equalsIgnoreCase("Jira")) {
-				// Jira Test management config
-				JiraUtil.JIRA_CYCLE_ID = GlobalUtil.getCommonSettings().getJiraCycleID();
-				JiraUtil.JIRA_PROJECT_ID = GlobalUtil.getCommonSettings().getJiraProjectID();
-				JiraUtil.ZEPHYR_URL = ConfigReader.getValue("zephyr_url");
-				JiraUtil.ZAPI_ACCESS_KEY = ConfigReader.getValue("zapi_access_key");
-				JiraUtil.ZAPI_SECRET_KEY = ConfigReader.getValue("zapi_secret_key");
+            // testlink config
+            if (GlobalUtil.getCommonSettings().getManageToolName().equalsIgnoreCase("Testlink")) {
+                TestLinkUtil.DEV_KEY = GlobalUtil.getCommonSettings().getTestlinkAPIKey();
+                TestLinkUtil.SERVER_URL = "http://" + GlobalUtil.getCommonSettings().getTestLinkHostName()
+                        + "/testlink-1.9.16/lib/api/xmlrpc/v1/xmlrpc.php";
+                TestLinkUtil.projectName = GlobalUtil.getCommonSettings().getTestlinkProjectName();
+                TestLinkUtil.testPlanName = GlobalUtil.getCommonSettings().getTestlinkPlanName();
+                TestLinkUtil.buildName = GlobalUtil.getCommonSettings().getBuildNumber();
+                TestLinkUtil.needUpdate = GlobalUtil.getCommonSettings().getTestlinkTool();
+                GlobalUtil.testlinkapi = new TestLinkUtil();
+            }
 
-				// remaing details will instailized when Jira is selected a bug
-				// tracking tool
-			} else
-				GlobalUtil.getCommonSettings().setTestlinkTool("NO");
+            if (GlobalUtil.getCommonSettings().getManageToolName().equalsIgnoreCase("Jira")) {
+                // Jira Test management config
+                JiraUtil.JIRA_CYCLE_ID = GlobalUtil.getCommonSettings().getJiraCycleID();
+                JiraUtil.JIRA_PROJECT_ID = GlobalUtil.getCommonSettings().getJiraProjectID();
+                JiraUtil.ZEPHYR_URL = ConfigReader.getValue("zephyr_url");
+                JiraUtil.ZAPI_ACCESS_KEY = ConfigReader.getValue("zapi_access_key");
+                JiraUtil.ZAPI_SECRET_KEY = ConfigReader.getValue("zapi_secret_key");
 
-			// setting up of Bug tracking "MANTIS" tool configuration
-			if (GlobalUtil.getCommonSettings().getBugToolName().equalsIgnoreCase("Mantis")) {
-				ConnectMantis.MANTIS_URL = "http://" + GlobalUtil.getCommonSettings().getbugToolHostName()
-						+ "/bugTool/api/soap/bugToolconnect.php";
-				ConnectMantis.MANTIS_USER = GlobalUtil.getCommonSettings().getbugToolUserName();
-				ConnectMantis.MANTIS_PWD = GlobalUtil.getCommonSettings().getbugToolPassword();
-				ConnectMantis.MANTIS_PROJET = GlobalUtil.getCommonSettings().getbugToolProjectName();
-			}
+                // remaing details will instailized when Jira is selected a bug
+                // tracking tool
+            } else
+                GlobalUtil.getCommonSettings().setTestlinkTool("NO");
 
-			// setting up of Bug tracking "Jira" tool configuration
-			if (GlobalUtil.getCommonSettings().getBugToolName().equalsIgnoreCase("Jira")) {
-				JiraUtil.JIRA_URL = GlobalUtil.getCommonSettings().getbugToolHostName();
-				JiraUtil.USERNAME = GlobalUtil.getCommonSettings().getbugToolUserName();
-				JiraUtil.PASSWORD = GlobalUtil.getCommonSettings().getbugToolPassword();
-				JiraUtil.JIRA_PROJECT = GlobalUtil.getCommonSettings().getbugToolProjectName();
-				GlobalUtil.jiraapi = new JiraUtil();
-			} else
-				GlobalUtil.getCommonSettings().setbugTool("NO");
+            // setting up of Bug tracking "MANTIS" tool configuration
+            if (GlobalUtil.getCommonSettings().getBugToolName().equalsIgnoreCase("Mantis")) {
+                ConnectMantis.MANTIS_URL = "http://" + GlobalUtil.getCommonSettings().getbugToolHostName()
+                        + "/bugTool/api/soap/bugToolconnect.php";
+                ConnectMantis.MANTIS_USER = GlobalUtil.getCommonSettings().getbugToolUserName();
+                ConnectMantis.MANTIS_PWD = GlobalUtil.getCommonSettings().getbugToolPassword();
+                ConnectMantis.MANTIS_PROJET = GlobalUtil.getCommonSettings().getbugToolProjectName();
+            }
 
-			if (url == null) {
-				url = ConfigReader.getValue("BASE_URL");
-				GlobalUtil.getCommonSettings().setUrl(url);
-			}
-			LogUtil.infoLog(getClass(),
-					"\n\n+===========================================================================================================+");
-			LogUtil.infoLog(getClass(), " Suite started" + " at " + new Date());
-			LogUtil.infoLog(getClass(), "Suite Execution For Web application on environment : " + executionEnv);
-			LogUtil.infoLog(getClass(), "Suite Execution For Android mobile application on version: "
-					+ GlobalUtil.getCommonSettings().getAndroidVersion());
-			LogUtil.infoLog(getClass(),
-					"Suite Execution For RestAPI on URL: " + GlobalUtil.getCommonSettings().getRestURL());
-			LogUtil.infoLog(getClass(),
-					"\n\n+===========================================================================================================+");
+            // setting up of Bug tracking "Jira" tool configuration
+            if (GlobalUtil.getCommonSettings().getBugToolName().equalsIgnoreCase("Jira")) {
+                JiraUtil.JIRA_URL = GlobalUtil.getCommonSettings().getbugToolHostName();
+                JiraUtil.USERNAME = GlobalUtil.getCommonSettings().getbugToolUserName();
+                JiraUtil.PASSWORD = GlobalUtil.getCommonSettings().getbugToolPassword();
+                JiraUtil.JIRA_PROJECT = GlobalUtil.getCommonSettings().getbugToolProjectName();
+                GlobalUtil.jiraapi = new JiraUtil();
+            } else
+                GlobalUtil.getCommonSettings().setbugTool("NO");
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			LogUtil.errorLog(getClass(), "Common Settings not properly set may not run the scripts properly");
-		}
-	}
+            if (url == null) {
+                url = ConfigReader.getValue("BASE_URL");
+                GlobalUtil.getCommonSettings().setUrl(url);
+            }
+            LogUtil.infoLog(getClass(),
+                    "\n\n+===========================================================================================================+");
+            LogUtil.infoLog(getClass(), " Suite started" + " at " + new Date());
+            LogUtil.infoLog(getClass(), "Suite Execution For Web application on environment : " + executionEnv);
+            LogUtil.infoLog(getClass(), "Suite Execution For Android mobile application on version: "
+                    + GlobalUtil.getCommonSettings().getAndroidVersion());
+            LogUtil.infoLog(getClass(),
+                    "Suite Execution For RestAPI on URL: " + GlobalUtil.getCommonSettings().getRestURL());
+            LogUtil.infoLog(getClass(),
+                    "\n\n+===========================================================================================================+");
 
-	@AfterTest
-	public void onFinish() {
-		LogUtil.infoLog(getClass(), " suite finished" + " at " + new Date());
-		LogUtil.infoLog(getClass(),
-				"\n\n+===========================================================================================================+");
-		extent.flush();
-		extent.close();
-		try {
-			String filePathBackup = System.getProperty("user.dir") + File.separator + "ExecutionReports"
-					+ File.separator + "HTMLReportsBackup";
-			if (new File(filePathBackup).exists()) {
+        } catch (Exception e) {
+            e.printStackTrace();
+            LogUtil.errorLog(getClass(), "Common Settings not properly set may not run the scripts properly");
+        }
+    }
 
-			} else {
-				FileUtils.forceMkdir(new File(filePathBackup));
-			}
-			String filePath = System.getProperty("user.dir") + File.separator + "ExecutionReports" + File.separator
-					+ "HTMLReports";
-			if (new File(filePath).exists()) {
-				File[] listOfFiles = new File(filePath).listFiles();
-				if (listOfFiles.length > 0) {
-					for (int i = 0; i < listOfFiles.length; i++) {
-						if (listOfFiles[i].isFile()) {
-							Files.copy(listOfFiles[i], new File(filePathBackup + File.separator + tagName + ".html"));
-						} else if (listOfFiles[i].isDirectory()) {
-						}
-					}
-				} else {
-					LogUtil.infoLog(RunCukesTest.class,
-							"Folder present but files will be backed up after 2nd execution.");
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		KeywordUtil.onExecutionFinish();
-	}
+    @AfterTest
+    public void onFinish() {
+        LogUtil.infoLog(getClass(), " suite finished" + " at " + new Date());
+        LogUtil.infoLog(getClass(),
+                "\n\n+===========================================================================================================+");
+        extent.flush();
+        extent.close();
+        try {
+            String filePathBackup = System.getProperty("user.dir") + File.separator + "ExecutionReports"
+                    + File.separator + "HTMLReportsBackup";
+            if (new File(filePathBackup).exists()) {
+
+            } else {
+                FileUtils.forceMkdir(new File(filePathBackup));
+            }
+            String filePath = System.getProperty("user.dir") + File.separator + "ExecutionReports" + File.separator
+                    + "HTMLReports";
+            if (new File(filePath).exists()) {
+                File[] listOfFiles = new File(filePath).listFiles();
+                if (listOfFiles.length > 0) {
+                    for (int i = 0; i < listOfFiles.length; i++) {
+                        if (listOfFiles[i].isFile()) {
+                            Files.copy(listOfFiles[i], new File(filePathBackup + File.separator + tagName + ".html"));
+                        } else if (listOfFiles[i].isDirectory()) {
+                        }
+                    }
+                } else {
+                    LogUtil.infoLog(RunCukesTest.class,
+                            "Folder present but files will be backed up after 2nd execution.");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        KeywordUtil.onExecutionFinish();
+    }
 
 }
