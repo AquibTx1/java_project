@@ -9,7 +9,7 @@ Feature: Test login feature
     Then Verify user is able to login successfully
     Examples:
       | SheetName   | TestCaseID                  |
-      | NitroXLogin | QA_TestCase_Auto_NitroX_003 |
+      | NitroXLogin | QA_TestCase_Auto_NitroX_001 |
 
   @NitroX
   Scenario Outline: NitroX-002-003_Verify login feature with invalid credentials
