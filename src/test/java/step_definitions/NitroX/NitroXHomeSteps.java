@@ -1,9 +1,11 @@
 package step_definitions.NitroX;
 
 import NitroXPages.NitroXHomePage;
+import NitroXPages.NitroXLoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import javassist.compiler.ast.Keyword;
 import modules.NitroXActions.NitroXHome;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
@@ -12,6 +14,7 @@ import utilities.GlobalUtil;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
+import java.time.Clock;
 import java.util.HashMap;
 
 import static utilities.KeywordUtil.*;
@@ -109,7 +112,6 @@ public class NitroXHomeSteps {
         }
 
     }
-
     @And("Enter The Base and Quote Currency")
     public void enterTheBaseAndQuoteCurrency() {
         try {
@@ -127,5 +129,23 @@ public class NitroXHomeSteps {
     public void validateTheBaseAndQuoteCurrency() {
         Assert.assertTrue(KeywordUtil.verifyInputText(NitroXHomePage.Basecurrency, dataMap.get("Base"), "Base Currency Entered"));
         Assert.assertTrue(KeywordUtil.verifyInputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), "Quote Currency Entered"));
+    }
+
+    @And("Input the Price and Quantity")
+    public void InputThePriceAndQuanitiy()
+    {
+        NitroXHome.InputthePrice();
+        NitroXHome.InputQuantity(dataMap);
+    }
+
+    @And("Create A buy Order")
+    public void createABuyOrder() {
+
+        NitroXHome.CreatOrder();
+    }
+    @Then("Validate User do not allowed to buy")
+    public void validateUserDoNotAllowedToBuy() {
+        waitForVisible(NitroXHomePage.invalidOrder);
+
     }
 }

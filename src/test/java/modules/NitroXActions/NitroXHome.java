@@ -14,8 +14,8 @@ import static utilities.KeywordUtil.waitForVisible;
 public class NitroXHome {
 
     static Class thisClass = NitroXHome.class;
-
-    static String availableCoinBalance, frozenCoinBalance, totalCoinBalance;
+    static String availableCoinBalance, frozenCoinBalance, totalCoinBalance,firstbidprice;
+    static double quantity;
 
     public static void selectmode(HashMap<String, String> dataMap) throws Exception {
         waitForVisible(NitroXHomePage.modeTextbyID);
@@ -59,7 +59,6 @@ public class NitroXHome {
     public static void selectQuoteCurrency(HashMap<String, String> dataMap) throws Exception {
         KeywordUtil.inputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), "Enter The Quote Currency");
     }
-
     public String getBaseCurreny() {
         return getElementText(NitroXHomePage.Basecurrency);
     }
@@ -88,5 +87,39 @@ public class NitroXHome {
         LogUtil.infoLog(thisClass, coin + " balance=" + totalCoinBalance);
         return totalCoinBalance;
     }
+
+    public static String getbidprice()
+    {
+        waitForVisible(NitroXHomePage.orderBookprice);
+        firstbidprice=KeywordUtil.getElementText(NitroXHomePage.orderBookprice);
+        LogUtil.infoLog(thisClass,"Biding price"+firstbidprice);
+        return  firstbidprice;
+    }
+    public static void InputthePrice() {
+        KeywordUtil.inputText(NitroXHomePage.price,getbidprice(),"Entered the Price");
+        //System.out.println("Price Selected");
+    }
+
+    public static void submitorder(HashMap<String, String> dataMap)
+    {
+        waitForVisible(NitroXHomePage.orderBookprice);
+    }
+
+    public static void InputQuantity(HashMap<String, String> dataMap) {
+
+        quantity = Double.parseDouble(NitroXHome.getAvailableBalance(dataMap.get("Base")));
+        quantity += 100.00;
+        LogUtil.infoLog(thisClass, "bidding quantity=" + quantity);
+        KeywordUtil.inputText(NitroXHomePage.Quantity, Double.toString(quantity), "Price Entered");
+//        KeywordUtil.inputText(NitroXHomePage.Quantity,new_data,"Entered the Quantity");
+
+    }
+    public static void CreatOrder()
+    {
+        KeywordUtil.click(NitroXHomePage.Buybtn,"Buy order Clicked");
+    }
+
+
+
 
 }

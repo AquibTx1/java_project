@@ -64,3 +64,17 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_011 |
 
 
+  @NitroXHome
+  Scenario Outline: NitroXHome-012_Not Able to Create an Order
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    And Input the Price and Quantity
+    And Create A buy Order
+   Then Validate User do not allowed to buy
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_012 |
+
+
