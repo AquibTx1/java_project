@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 public class NitroXHomePage {
 
     //Orderbook
-
-
     //Account & Instrument
     public static By modeTextField = By.xpath("(//*[@class='ant-col ant-form-item-control'])[1]/child::div[1]//div[@class='ant-select-selector']");
     public static By modeTextbyID = By.id("account_pair_form_mode");
@@ -31,7 +29,7 @@ public class NitroXHomePage {
     public static By Basecurrency = By.id("account_pair_form_base");
     public static By Quotecurrency = By.id("account_pair_form_quote");
 
-
+    public static By invaliddata = By.xpath("");
 
     //Position
 
