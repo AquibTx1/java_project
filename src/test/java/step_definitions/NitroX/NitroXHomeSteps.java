@@ -41,11 +41,9 @@ public class NitroXHomeSteps {
 
     @When("Choose mode value using input text")
     public void chooseModeValueUsingInputText() {
-        try
-        {
+        try {
             NitroXHome.inputMode(dataMap);
-        }
-        catch (Throwable e) {
+        } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();
             GlobalUtil.errorMsg = e.getMessage();
@@ -66,6 +64,13 @@ public class NitroXHomeSteps {
         }
     }
 
+    @When("Input random mode")
+    public void inputRandomMode() {
+        waitForVisible(NitroXHomePage.modeTextbyID);
+        KeywordUtil.inputText(NitroXHomePage.modeTextbyID, "random", "Mode value entered using send keys.");
+        KeywordUtil.pressEnter(NitroXHomePage.modeTextbyID);
+    }
+
     @When("Enter the Trading Account")
     public void EnterTheTradingAccount() {
         try {
@@ -82,7 +87,7 @@ public class NitroXHomeSteps {
     public void validateSelectedTradingAccount() {
         try {
             Assert.assertEquals(getElementText(NitroXHomePage.tradingAccountSibling), dataMap.get("TradingAccount"));
-            LogUtil.infoLog(thisClass, dataMap.get("TradingAccount")+": trading account entered");
+            LogUtil.infoLog(thisClass, dataMap.get("TradingAccount") + ": trading account entered");
         } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();
@@ -107,27 +112,20 @@ public class NitroXHomeSteps {
 
     @And("Enter The Base and Quote Currency")
     public void enterTheBaseAndQuoteCurrency() {
-
-        try
-        {
-            //NitroXHome.selectmode(dataMap);
-            //NitroXHome.selectTradingAccount(dataMap);
+        try {
             NitroXHome.selectBaseCurrency(dataMap);
             NitroXHome.selectQuoteCurrency(dataMap);
-        }
-        catch (Throwable e)
-        {
+        } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();
             GlobalUtil.errorMsg = e.getMessage();
             Assert.fail(e.getMessage());
         }
-        
     }
+
     @Then("Validate the Base and Quote Currency")
     public void validateTheBaseAndQuoteCurrency() {
-
-        Assert.assertTrue(KeywordUtil.verifyInputText(NitroXHomePage.Basecurrency,dataMap.get("Base"),"Base Currency Entered"));
-        Assert.assertTrue(KeywordUtil.verifyInputText(NitroXHomePage.Quotecurrency,dataMap.get("Quote"),"Quote Currency Entered"));
+        Assert.assertTrue(KeywordUtil.verifyInputText(NitroXHomePage.Basecurrency, dataMap.get("Base"), "Base Currency Entered"));
+        Assert.assertTrue(KeywordUtil.verifyInputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), "Quote Currency Entered"));
     }
 }

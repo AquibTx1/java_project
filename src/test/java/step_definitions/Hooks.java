@@ -98,8 +98,6 @@ public class Hooks {
             }
             String scFileName = "ScreenShot_" + System.currentTimeMillis();
 
-
-
             if (scenario.isFailed()) {
                 //screenshot path in case of failure
                 screenshotFilePath = ConfigReader.getValue("screenshotPath") + File.separator + scFileName + ".png";
