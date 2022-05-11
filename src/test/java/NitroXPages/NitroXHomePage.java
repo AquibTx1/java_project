@@ -29,17 +29,19 @@ public class NitroXHomePage {
     public static By Quotecurrency = By.id("account_pair_form_quote");
     public static By orderBookprice = By.xpath("//span[text()='Orderbook ']/following::table[1]/tbody/tr[1]/td[2]");
     public static By BTCBalancetable = By.xpath("//span[text()='Balance']/following::table[1]/tbody/tr/td[text()='BTC']/following-sibling::td[1]");
-    public static By Quantity=By.id("order_form_quantity");
-    public static By Buybtn=By.xpath("//span[text()='Buy ']");
+    public static By Quantity = By.id("order_form_quantity");
+    public static By Buybtn = By.xpath("//span[text()='Buy ']");
     //Position
     //Bots
     //Order Form
     public static By inputprice = By.id("order_form_price");
-    public static By invalidOrder= By.xpath("//*[contains(text(),'Could not place order.')]");
-    public static By Ordertableprice=By.xpath("//span[text()='Orderbook ']/following::table[1]/tbody");
-    public static By validOrder=By.xpath("//*[contains(text(),'Order submitted successfully.')]");
+    public static By invalidOrder = By.xpath("//*[contains(text(),'Could not place order.')]");
+    public static By Ordertableprice = By.xpath("//span[text()='Orderbook ']/following::table[1]/tbody");
+    public static By validOrder = By.xpath("//*[contains(text(),'Order submitted successfully.')]");
 
-
+    //open orders
+    public static By openOrderTime_first = By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[02]/td[01]");
+    public static By orderCancelSuccessMsg = By.xpath("//div/p[contains(text(), 'Order was cancelled successfully.')]");
 
 
 }

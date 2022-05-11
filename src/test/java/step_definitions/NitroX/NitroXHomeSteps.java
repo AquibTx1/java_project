@@ -201,7 +201,7 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             //execute the step when checkSkipExecutionFlags() returns false
-            NitroXHome.CreatOrder();
+            NitroXHome.CreateOrder();
         }
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
@@ -221,16 +221,13 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+
     @And("Create A buy Order less than Market Price")
     public void createABuyOrderLessThanMarketPrice() {
-        try
-        {
+        try {
             NitroXHome.InputOpenOrderBidPrice();
             NitroXHome.InputCustomQuantity(dataMap);
-            NitroXHome.CreatOrder();
-        }
-        catch (Throwable e)
-        {
+        } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();
             GlobalUtil.errorMsg = e.getMessage();
@@ -239,9 +236,33 @@ public class NitroXHomeSteps {
     }
 
     @Then("Validate Order is in Open State")
-    public void validateOrderIsInOpenState()
-    {
+    public void validateOrderIsInOpenState() {
         waitForVisible(NitroXHomePage.validOrder);
 
     }
+
+    @And("Cancel Nth Open Order")
+    public void cancelNthOpenOrder() {
+        //wait for open order to display
+        NitroXHome.waitForOpenOrdersTable();
+        //get time of Nth open order
+        NitroXHome.getTimeofNthOpenOrder(Integer.parseInt(dataMap.get("OpenOrderNumber")));
+        //click on cancel button
+        NitroXHome.cancelNthOpenOrder(Integer.parseInt(dataMap.get("OpenOrderNumber")));
+        //verify the time of very first order changes to verify the order is cancelled
+        NitroXHome.verifyOrderCancelledBasedOnTime();
+    }
+
+    @Then("Verify Success Message")
+    public void verifySuccessMessage() {
+        //wait and verify for the success message
+        NitroXHome.getOrderCancelledSuccessMsg();
+    }
+
+    @And("Click Buy Button")
+    public void clickBuyButton() {
+        NitroXHome.CreateOrder();
+    }
+
+
 }

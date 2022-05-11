@@ -85,9 +85,20 @@ Feature: Test buys sell features
     And Select the Trading Account
     And Enter The Base and Quote Currency
     And Create A buy Order less than Market Price
+    And Click Buy Button
     Then Validate Order is in Open State
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_013 |
 
-
+  @NitroXHome
+  Scenario Outline: NitroXHome-014_Cancel An Open Order
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    And Cancel Nth Open Order
+    Then Verify Success Message
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_014 |
