@@ -111,9 +111,10 @@ Feature: Test buys sell features
     When Choose mode value using dropdown
     And Select the Trading Account
     And Enter The Base and Quote Currency
-    And Create Sell Order Equal to Market Price
-    And Click Sell Button
+    And Create Buy Order Equal to Market Price
+    And Click Buy Button
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_015 |
+      | NitroXHome | QA_TestCase_Auto_NitroX_015_01 |
