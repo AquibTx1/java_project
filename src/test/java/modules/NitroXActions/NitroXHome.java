@@ -7,14 +7,16 @@ import utilities.KeywordUtil;
 import utilities.LogUtil;
 
 import java.util.HashMap;
-
+import static utilities.KeywordUtil.*;
 import static utilities.KeywordUtil.getElementText;
 import static utilities.KeywordUtil.waitForVisible;
 
 public class NitroXHome {
 
     static Class thisClass = NitroXHome.class;
-    static String availableCoinBalance, frozenCoinBalance, totalCoinBalance,firstbidprice;
+
+    static String availableCoinBalance, frozenCoinBalance, totalCoinBalance,firstbidprice,lastbidprice;
+
     static double quantity;
 
     public static void selectmode(HashMap<String, String> dataMap) throws Exception {
@@ -38,13 +40,10 @@ public class NitroXHome {
 
     public static void selectTradingAccount(HashMap<String, String> dataMap) throws Exception {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
-        waitForVisible(NitroXHomePage.selecttradingaccount1);
-        if (dataMap.get("TradingAccount").equalsIgnoreCase("Trader01@Tinyex")) {
-            KeywordUtil.click(NitroXHomePage.selecttradingaccount1, "First Trading Account selected from dropdown.");
-        } else if (dataMap.get("TradingAccount").equalsIgnoreCase("Trader02@Tinyex")) {
-            KeywordUtil.click(NitroXHomePage.selecttradingaccount2, "Second Trading Account selected from dropdown");
-        }
+        waitForVisible(By.xpath("//div[@title='"+dataMap.get("TradingAccount")+"']"));
+        KeywordUtil.click(By.xpath("//div[@title='"+dataMap.get("TradingAccount")+"']"), "First Trading Account selected from dropdown.");
     }
+
 
     public static void inputTradingAccount(HashMap<String, String> dataMap) throws Exception {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
@@ -119,6 +118,28 @@ public class NitroXHome {
         KeywordUtil.click(NitroXHomePage.Buybtn,"Buy order Clicked");
     }
 
+
+    public static String getLowestBidPrice() {
+        waitForVisible(NitroXHomePage.Ordertableprice);
+        //List<WebElement> Tablerows = new ArrayList<WebElement>();
+        lastbidprice = getElementText(By.xpath("(//span[text()='Orderbook ']/following::table[1]/tbody//child::tr)[last()]/td[2]"));
+        lastbidprice=lastbidprice.replace(",","");
+        double a= Double.parseDouble(lastbidprice)-100.00;
+        LogUtil.infoLog(thisClass, "Biding price" + a);
+        System.out.println(a);
+        return String.valueOf(a);
+        // lastbidprice = KeywordUtil.getElementText(NitroXHomePage.Ordertableprice);
+    }
+
+    public static void InputOpenOrderBidPrice () {
+        KeywordUtil.inputText(NitroXHomePage.price, getLowestBidPrice(), "Entered the Open Bid Price");
+    }
+
+    public static void InputCustomQuantity(HashMap<String, String> dataMap)
+    {
+        KeywordUtil.inputText(NitroXHomePage.Quantity, dataMap.get("Quantity"), "Entered the Qunatity");
+
+    }
 
 
 

@@ -221,4 +221,27 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+    @And("Create A buy Order less than Market Price")
+    public void createABuyOrderLessThanMarketPrice() {
+        try
+        {
+            NitroXHome.InputOpenOrderBidPrice();
+            NitroXHome.InputCustomQuantity(dataMap);
+            NitroXHome.CreatOrder();
+        }
+        catch (Throwable e)
+        {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
+    }
+
+    @Then("Validate Order is in Open State")
+    public void validateOrderIsInOpenState()
+    {
+        waitForVisible(NitroXHomePage.validOrder);
+
+    }
 }

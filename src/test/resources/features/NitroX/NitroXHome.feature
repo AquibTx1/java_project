@@ -78,3 +78,16 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_012 |
 
 
+  @NitroXHome
+  Scenario Outline: NitroXHome-013_Create an Open Order When Price is less than Market Price
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    And Create A buy Order less than Market Price
+    Then Validate Order is in Open State
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_013 |
+
+
