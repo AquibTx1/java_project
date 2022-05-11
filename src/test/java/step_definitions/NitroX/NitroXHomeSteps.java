@@ -32,46 +32,80 @@ public class NitroXHomeSteps {
 
     @When("Choose mode value using dropdown")
     public void chooseModeValueUsingDropdown() {
-        try {
-            NitroXHome.selectmode(dataMap);
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.selectmode(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
         }
     }
 
     @When("Choose mode value using input text")
     public void chooseModeValueUsingInputText() {
-        try {
-            NitroXHome.inputMode(dataMap);
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.inputMode(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
         }
     }
 
     @Then("Verify mode value")
     public void verifyModeValue() {
-        try {
-            Assert.assertEquals(getElementText(NitroXHomePage.modeValueAfterSelection), dataMap.get("Mode"));
-            LogUtil.infoLog(thisClass, dataMap.get("Mode") + ": mode entered");
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                Assert.assertEquals(getElementText(NitroXHomePage.modeValueAfterSelection), dataMap.get("Mode"));
+                LogUtil.infoLog(thisClass, dataMap.get("Mode") + ": mode entered");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
         }
     }
 
     @When("Input random mode")
     public void inputRandomMode() {
-        waitForVisible(NitroXHomePage.modeTextbyID);
-        KeywordUtil.inputText(NitroXHomePage.modeTextbyID, "random", "Mode value entered using send keys.");
-        KeywordUtil.pressEnter(NitroXHomePage.modeTextbyID);
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            waitForVisible(NitroXHomePage.modeTextbyID);
+            KeywordUtil.inputText(NitroXHomePage.modeTextbyID, "random", "Mode value entered using send keys.");
+            KeywordUtil.pressEnter(NitroXHomePage.modeTextbyID);
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
 
     @When("Enter the Trading Account")
@@ -101,27 +135,41 @@ public class NitroXHomeSteps {
 
     @When("Select the Trading Account")
     public void selectTheTradingAccount() {
-
-        try {
-            NitroXHome.selectTradingAccount(dataMap);
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.selectTradingAccount(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
         }
 
     }
+
     @And("Enter The Base and Quote Currency")
     public void enterTheBaseAndQuoteCurrency() {
-        try {
-            NitroXHome.selectBaseCurrency(dataMap);
-            NitroXHome.selectQuoteCurrency(dataMap);
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.selectBaseCurrency(dataMap);
+                NitroXHome.selectQuoteCurrency(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
         }
     }
 
@@ -132,20 +180,45 @@ public class NitroXHomeSteps {
     }
 
     @And("Input the Price and Quantity")
-    public void InputThePriceAndQuanitiy()
-    {
-        NitroXHome.InputthePrice();
-        NitroXHome.InputQuantity(dataMap);
+    public void InputThePriceAndQuanitiy() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            NitroXHome.InputthePrice();
+            NitroXHome.InputQuantity(dataMap);
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
 
     @And("Create A buy Order")
     public void createABuyOrder() {
-
-        NitroXHome.CreatOrder();
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            NitroXHome.CreatOrder();
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
+
     @Then("Validate User do not allowed to buy")
     public void validateUserDoNotAllowedToBuy() {
-        waitForVisible(NitroXHomePage.invalidOrder);
-
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            waitForVisible(NitroXHomePage.invalidOrder);
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
 }
