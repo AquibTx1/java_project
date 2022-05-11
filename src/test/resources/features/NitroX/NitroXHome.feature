@@ -24,6 +24,17 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_007 |
 
   @NitroXHome
+  Scenario Outline: NitroXHome-008_Verify previous mode value is retained in case of invalid entry
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using input text
+    And Verify mode value
+    And Input random mode
+    Then Verify mode value
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_008 |
+
+  @NitroXHome
   Scenario Outline: NitroXHome-009_Able to Select Trading Account in using Dropdown Option
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Select the Trading Account
@@ -40,4 +51,30 @@ Feature: Test buys sell features
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_010 |
+
+  @NitroXHome
+  Scenario Outline: NitroXHome-011_Able to Enter the Base and Quote Currency
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    Then Validate the Base and Quote Currency
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_011 |
+
+
+  @NitroXHome
+  Scenario Outline: NitroXHome-012_Not Able to Create an Order
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    And Input the Price and Quantity
+    And Create A buy Order
+   Then Validate User do not allowed to buy
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_012 |
+
 
