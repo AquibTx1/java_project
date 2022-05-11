@@ -238,20 +238,25 @@ public class NitroXHomeSteps {
     @Then("Validate Order is in Open State")
     public void validateOrderIsInOpenState() {
         waitForVisible(NitroXHomePage.validOrder);
-
     }
 
     @And("Cancel Nth Open Order")
-    public void cancelNthOpenOrder() {
+    public void cancelNthOpenOrder() throws InterruptedException {
         //wait for open order to display
+        scrollingToElementofAPage(NitroXHomePage.openOrderTime_first, "Scrolled to element");
         NitroXHome.waitForOpenOrdersTable();
         //get time of Nth open order
         NitroXHome.getTimeofNthOpenOrder(Integer.parseInt(dataMap.get("OpenOrderNumber")));
         //click on cancel button
         NitroXHome.cancelNthOpenOrder(Integer.parseInt(dataMap.get("OpenOrderNumber")));
-        //verify the time of very first order changes to verify the order is cancelled
-        NitroXHome.verifyOrderCancelledBasedOnTime();
     }
+
+    @Then("Verify Order Cancelled Based-on Time")
+    public void verifyOrderCancelledBasedOnTime() {
+        //verify the time of very first order changes to verify the order is cancelled
+        NitroXHome.verifyOrderCancelledBasedOnTime(Integer.parseInt(dataMap.get("OpenOrderNumber")));
+    }
+
 
     @Then("Verify Success Message")
     public void verifySuccessMessage() {
@@ -281,4 +286,9 @@ public class NitroXHomeSteps {
         //Assert price and quantity at the time of placing order with first row of dealt orders
     }
 
+    @And("Create Buy Order Greater Than Market Price")
+    public void createBuyOrderGreaterThanMarketPrice() {
+        //pick lowest ask price and also store it in a variable to assert later
+        //input quantity and also store it in a variable to assert later
+    }
 }

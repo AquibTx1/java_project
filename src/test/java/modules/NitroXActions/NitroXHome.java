@@ -42,9 +42,8 @@ public class NitroXHome {
     public static void selectTradingAccount(HashMap<String, String> dataMap) throws Exception {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
         waitForVisible(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"));
-        KeywordUtil.click(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"), "First Trading Account selected from dropdown.");
+        KeywordUtil.click(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"), "Trading Account selected from dropdown.");
     }
-
 
     public static void inputTradingAccount(HashMap<String, String> dataMap) throws Exception {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
@@ -60,7 +59,7 @@ public class NitroXHome {
         KeywordUtil.inputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), "Enter The Quote Currency");
     }
 
-    public String getBaseCurreny() {
+    public String getBaseCurrency() {
         return getElementText(NitroXHomePage.Basecurrency);
     }
 
@@ -149,7 +148,7 @@ public class NitroXHome {
         //return time
         orderNumber += 1;
         openOrderTime = getElementText(By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[01]/span"));
-        System.out.println("order number=" + orderNumber + "openOrderTime=" + openOrderTime);
+        LogUtil.infoLog(thisClass, "order number=" + orderNumber + " || openOrderTime=" + openOrderTime);
         return openOrderTime;
     }
 
@@ -157,15 +156,19 @@ public class NitroXHome {
         //click cancel button corresponding to order number
         orderNumber += 1;
         click(By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[06]/button"), "Click cancel button");
+        waitForInVisibile(NitroXHomePage.orderCancelLoading);
     }
 
-    public static void verifyOrderCancelledBasedOnTime() {
-        Assert.assertNotEquals(getTimeofNthOpenOrder(1), openOrderTime);
+    public static void verifyOrderCancelledBasedOnTime(int orderNumber) {
+        orderNumber += 1;
+        LogUtil.infoLog(thisClass, getElementText(By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[01]/span")));
+        Assert.assertNotEquals(getElementText(By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[01]/span")), openOrderTime);
     }
 
     public static void getOrderCancelledSuccessMsg() {
         //waitForVisible("locator for success message");
         waitForVisible(NitroXHomePage.orderCancelSuccessMsg);
+        LogUtil.infoLog(thisClass, "Order cancelled success message displayed.");
     }
 
 }
