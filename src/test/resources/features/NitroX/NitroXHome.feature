@@ -102,3 +102,18 @@ Feature: Test buys sell features
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_014 |
+
+    # Buy Order is placed in Dealt when Price filled is equal or greater than the market price.
+
+  @NitroXHome
+  Scenario Outline: NitroXHome-014_Cancel An Open Order
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    And Create Sell Order Equal to Market Price
+    And Click Sell Button
+    Then Validate Order Moves to Dealt Orders
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_015 |

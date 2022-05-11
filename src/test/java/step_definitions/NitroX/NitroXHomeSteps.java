@@ -265,4 +265,20 @@ public class NitroXHomeSteps {
     }
 
 
+    @And("Create Sell Order Equal to Market Price")
+    public void createSellOrderEqualToMarketPrice() {
+        //pick highest bid price and also store it in a variable to assert later
+        //input quantity also store it in a variable to assert later
+    }
+
+    @And("Click Sell Button")
+    public void clickSellButton() {
+        //click sell button
+    }
+
+    @Then("Validate Order Moves to Dealt Orders")
+    public void validateOrderMovesToDealtOrders() {
+        //get price and quantity of the first row under dealt orders
+        //Assert price and quantity at the time of placing order with first row of dealt orders
+    }
 }
