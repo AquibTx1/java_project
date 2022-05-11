@@ -141,10 +141,10 @@ public class NitroXHome {
 
     }
 
-    public static void waitForOpenOrdersTable()
-    {
+    public static void waitForOpenOrdersTable() {
         waitForVisible(NitroXHomePage.openOrderTime_first);
     }
+
     public static String getTimeofNthOpenOrder(int orderNumber) {
         //return time
         orderNumber += 1;
@@ -155,6 +155,7 @@ public class NitroXHome {
 
     public static void cancelNthOpenOrder(int orderNumber) {
         //click cancel button corresponding to order number
+        orderNumber += 1;
         click(By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[06]/button"), "Click cancel button");
     }
 
