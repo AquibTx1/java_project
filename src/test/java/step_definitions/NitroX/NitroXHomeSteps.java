@@ -379,4 +379,18 @@ public class NitroXHomeSteps {
         //pick lowest ask price and also store it in a variable to assert later
         //input quantity and also store it in a variable to assert later
     }
+
+    @And("Create Sell Order With Selling Price > Bid Price")
+    public void createSellOrderWithSellingPriceBidPrice() {
+        //get highest bid price
+        //input quantity
+        // add some amount into highest bid price and also store it in a variable to use later
+        //put this new highest bid price into order form price
+    }
+
+    @Then("Validate Order Moves to Open Orders")
+    public void validateOrderMovesToOpenOrders() {
+        //get order price and quantity
+        //verify the order is available in open orders
+    }
 }

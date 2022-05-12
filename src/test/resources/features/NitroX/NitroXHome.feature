@@ -136,7 +136,7 @@ Feature: Test buys sell features
     When Choose Mode, Trading Account, Base and Quote Currency
     And Create Sell Order With Selling Price > Bid Price
     And Click Sell Button
-    Then Validate Order Moves to Dealt Orders
+    Then Validate Order Moves to Open Orders
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_017 |
