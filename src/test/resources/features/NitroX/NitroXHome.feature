@@ -3,15 +3,15 @@ Feature: Test buys sell features
   Background: Login to application
     Given Login to NitroX app with valid login credentials
 
-  @NitroXHome
-  Scenario Outline: NitroXHome-004-006_Verify mode field entry using dropdown option
-    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
-    When Choose mode value using dropdown
-    Then Verify mode value
-    Examples:
-      | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_004 |
-      | NitroXHome | QA_TestCase_Auto_NitroX_006 |
+#  @NitroXHome
+#  Scenario Outline: NitroXHome-004-006_Verify mode field entry using dropdown option
+#    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+#    When Choose mode value using dropdown
+#    Then Verify mode value
+#    Examples:
+#      | SheetName  | TestCaseID                  |
+#      | NitroXHome | QA_TestCase_Auto_NitroX_004 |
+#      | NitroXHome | QA_TestCase_Auto_NitroX_006 |
 
 #  @NitroXHome
 #  Scenario Outline: NitroXHome-005-007_Verify mode field entry using send keys
@@ -129,3 +129,14 @@ Feature: Test buys sell features
 #    Examples:
 #      | SheetName  | TestCaseID                  |
 #      | NitroXHome | QA_TestCase_Auto_NitroX_015_01 |
+
+  @NitroXHome
+  Scenario Outline: NitroXHome-017_Create Sell Order When Selling Price Greater Than Market Price
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Create Sell Order With Selling Price > Bid Price
+    And Click Sell Button
+    Then Validate Order Moves to Dealt Orders
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_017 |
