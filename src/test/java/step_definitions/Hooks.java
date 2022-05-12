@@ -233,6 +233,8 @@ public class Hooks {
             DriverUtil.closeAllDriver();
             RunCukesTest.extent.endTest(RunCukesTest.logger);
         }
+        //method to reset counter for skip execution at a step definition
+        BaseStepDefinitions.resetCounter();
 
     }
 

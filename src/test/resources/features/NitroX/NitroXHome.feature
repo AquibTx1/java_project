@@ -78,3 +78,54 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_012 |
 
 
+  @NitroXHome
+  Scenario Outline: NitroXHome-013_Create an Open Order When Price is less than Market Price
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    And Create A buy Order less than Market Price
+    And Click Buy Button
+    Then Validate Order is in Open State
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_013 |
+
+  @NitroXHome
+  Scenario Outline: NitroXHome-014_Cancel An Open Order
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    And Cancel Nth Open Order
+    Then Verify Order Cancelled Based-on Time
+    Then Verify Success Message
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_014 |
+
+  @NitroXHome
+  Scenario Outline: NitroXHome-015_Create A Dealt Order
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    And Create Buy Order Equal to Market Price
+    And Click Buy Button
+    Then Validate Order Moves to Dealt Orders
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_015 |
+
+  @NitroXHome
+  Scenario Outline: NitroXHome-015_Create A Dealt Order
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    And Create Buy Order Greater Than Market Price
+    And Click Buy Button
+    Then Validate Order Moves to Dealt Orders
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_015_01 |

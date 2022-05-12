@@ -141,7 +141,6 @@ public class KeywordUtil extends GlobalUtil {
 		WebElement element = GlobalUtil.getDriver().findElement(locator);
 		((JavascriptExecutor) GlobalUtil.getDriver()).executeScript("arguments[0].scrollIntoView();", element);
 		RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
 		return true;
 	}
 
