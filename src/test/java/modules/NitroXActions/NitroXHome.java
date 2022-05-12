@@ -16,8 +16,9 @@ public class NitroXHome {
 
     static Class thisClass = NitroXHome.class;
 
-    static String availableCoinBalance, frozenCoinBalance, totalCoinBalance, firstbidprice, lastbidprice, openOrderTime;
 
+    static String availableCoinBalance, frozenCoinBalance, totalCoinBalance, firstbidprice, lastbidprice,firstaskprice,
+            openOrderTime,dealtorderprice,dealtorderside,dealthorderquantity;
     static double quantity;
 
     public static void selectmode(HashMap<String, String> dataMap) throws Exception {
@@ -90,9 +91,9 @@ public class NitroXHome {
 
     public static String getbidprice() {
         waitForVisible(NitroXHomePage.orderBookprice);
-        firstbidprice = KeywordUtil.getElementText(NitroXHomePage.orderBookprice);
-        LogUtil.infoLog(thisClass, "Biding price" + firstbidprice);
-        return firstbidprice;
+        firstaskprice = KeywordUtil.getElementText(NitroXHomePage.orderBookprice);
+        LogUtil.infoLog(thisClass, "Biding price" + firstaskprice);
+        return firstaskprice;
     }
 
     public static void InputthePrice() {
@@ -152,6 +153,31 @@ public class NitroXHome {
         return openOrderTime;
     }
 
+    public static String getSide(String side) {
+        //return time
+
+        dealtorderside = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + side+ "]/td[02]/span"));
+        LogUtil.infoLog(thisClass, "order number=" + side + " || openOrderTime=" + dealtorderside);
+        return dealtorderside;
+    }
+    public static String getPrice(int price) {
+        //return time
+
+        dealtorderprice = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + price+ "]/td[03]/span"));
+        LogUtil.infoLog(thisClass, "order number=" + price + " || openOrderTime=" + dealtorderprice);
+        return dealtorderprice;
+    }
+    public static String getQuantity(int quantity) {
+        //return time
+
+        dealthorderquantity = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + quantity+ "]/td[04]/span"));
+        LogUtil.infoLog(thisClass, "order number=" + quantity + " || openOrderTime=" + dealthorderquantity);
+        return dealthorderquantity;
+    }
+
+
+
+
     public static void cancelNthOpenOrder(int orderNumber) {
         //click cancel button corresponding to order number
         orderNumber += 1;
@@ -169,6 +195,39 @@ public class NitroXHome {
         //waitForVisible("locator for success message");
         waitForVisible(NitroXHomePage.orderCancelSuccessMsg);
         LogUtil.infoLog(thisClass, "Order cancelled success message displayed.");
+    }
+
+    public static String getEqualAskPrice() {
+        waitForVisible(NitroXHomePage.Ordertableprice);
+        //List<WebElement> Tablerows = new ArrayList<WebElement>();
+        firstaskprice = KeywordUtil.getElementText(NitroXHomePage.orderBookprice);
+        firstaskprice = firstaskprice.replace(",", "");
+        double a = Double.parseDouble(firstaskprice) ;
+        LogUtil.infoLog(thisClass, "Ask price" + a);
+        return String.valueOf(a);
+
+    }
+
+    public static String getGreaterThanAskPrice() {
+        waitForVisible(NitroXHomePage.Ordertableprice);
+        //List<WebElement> Tablerows = new ArrayList<WebElement>();
+        firstaskprice = KeywordUtil.getElementText(NitroXHomePage.orderBookprice);
+        firstaskprice = firstaskprice.replace(",", "");
+        double a = Double.parseDouble(firstaskprice)+100 ;
+        LogUtil.infoLog(thisClass, "Ask price" + a);
+        return String.valueOf(a);
+
+    }
+    //Open Order Equal to Ask Price
+
+    public static void InputBuyOrderAskPrice() {
+
+        KeywordUtil.inputText(NitroXHomePage.price, getEqualAskPrice(), "Entered the Open Ask Price");
+    }
+    //Open Order More Than Ask Price
+    public static void InputBuyOrderPrice() {
+
+        KeywordUtil.inputText(NitroXHomePage.price, getGreaterThanAskPrice(), "Entered the Price More Than Ask Price");
     }
 
 }

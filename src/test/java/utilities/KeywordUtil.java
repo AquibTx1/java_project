@@ -14,6 +14,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -1197,6 +1199,12 @@ public class KeywordUtil extends GlobalUtil {
 		Thread.sleep(time);
 	}
 
+	public static String getCurrentSystemDateandTime() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		return  dtf.format(now) + " +05:30";
+	}
+
 	/**
 	 * Verify current date input boolean.
 	 *
@@ -1432,5 +1440,6 @@ class TestStepFailedException extends Exception {
 		JavascriptExecutor js = (JavascriptExecutor) GlobalUtil.getDriver();
 		js.executeScript("window.scrollBy(0,600);", Element);
 	}
+
 
 }

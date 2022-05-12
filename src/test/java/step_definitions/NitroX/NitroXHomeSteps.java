@@ -357,10 +357,25 @@ public class NitroXHomeSteps {
         }
     }
 
-    @And("Create Buy Order Equal to Market Price")
-    public void createBuyOrderEqualToMarketPrice() {
+    @And("Create Buy Order Equal to Ask Price")
+    public void createBuyOrderEqualToAskPrice() {
         //pick lowest ask price and also store it in a variable to assert later
         //input quantity and also store it in a variable to assert later
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        }else {
+            try {
+                NitroXHome.InputBuyOrderAskPrice();
+                NitroXHome.InputCustomQuantity(dataMap);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+
     }
 
     @And("Click Sell Button")
@@ -372,12 +387,31 @@ public class NitroXHomeSteps {
     public void validateOrderMovesToDealtOrders() {
         //get price and quantity of the first row under dealt orders
         //Assert price and quantity at the time of placing order with first row of dealt orders
+        waitForVisible(NitroXHomePage.validOrder);
+        KeywordUtil.click(NitroXHomePage.DealtOrderTab,"Clicked Dealt Order");
+       // Assert.assertEquals(getElementText(NitroXHomePage.recentDealtOrder),NitroXHome.getSide((dataMap.get("OpenOrderNumber"))));
+        //Assert.assertEquals(getElementText(NitroXHomePage.recentDealtOrder),NitroXHome.getPrice(Integer.parseInt(dataMap.get("Price"))));
+        //Assert.assertEquals(getElementText(NitroXHomePage.recentDealtOrder),KeywordUtil.getCurrentSystemDateandTime());
     }
 
-    @And("Create Buy Order Greater Than Market Price")
-    public void createBuyOrderGreaterThanMarketPrice() {
+    @And("Create Buy Order Greater Than Ask Price")
+    public void createBuyOrderGreaterThanAskPrice() {
         //pick lowest ask price and also store it in a variable to assert later
         //input quantity and also store it in a variable to assert later
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        }else {
+            try {
+                NitroXHome.InputBuyOrderPrice();
+                NitroXHome.InputCustomQuantity(dataMap);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
     }
 
     @And("Create Sell Order With Selling Price > Bid Price")

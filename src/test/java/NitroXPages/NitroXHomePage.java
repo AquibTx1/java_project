@@ -38,12 +38,13 @@ public class NitroXHomePage {
     public static By invalidOrder = By.xpath("//*[contains(text(),'Could not place order.')]");
     public static By Ordertableprice = By.xpath("//span[text()='Orderbook ']/following::table[1]/tbody");
     public static By validOrder = By.xpath("//*[contains(text(),'Order submitted successfully.')]");
-
     //open orders
     public static By openOrderTime_first = By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[02]/td[01]");
     public static By orderCancelSuccessMsg = By.xpath("//div/p[contains(text(), 'Order was cancelled successfully.')]");
     public static By orderCancelLoading = By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[2]/td[06]/button/span/span");
 
-
+    //Dealt Orders
+    public static By recentDealtOrder=By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[01]");
+    public static By DealtOrderTab=By.id("rc-tabs-0-tab-dealt");
 
 }
