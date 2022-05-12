@@ -110,26 +110,42 @@ public class NitroXHomeSteps {
 
     @When("Enter the Trading Account")
     public void EnterTheTradingAccount() {
-        try {
-            NitroXHome.inputTradingAccount(dataMap);
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.inputTradingAccount(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
         }
     }
 
     @Then("Validate Selected Trading Account")
     public void validateSelectedTradingAccount() {
-        try {
-            Assert.assertEquals(getElementText(NitroXHomePage.tradingAccountSibling), dataMap.get("TradingAccount"));
-            LogUtil.infoLog(thisClass, dataMap.get("TradingAccount") + ": trading account entered");
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(getElementText(NitroXHomePage.tradingAccountSibling), dataMap.get("TradingAccount"));
+                LogUtil.infoLog(thisClass, dataMap.get("TradingAccount") + ": trading account entered");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
         }
     }
 
@@ -175,8 +191,16 @@ public class NitroXHomeSteps {
 
     @Then("Validate the Base and Quote Currency")
     public void validateTheBaseAndQuoteCurrency() {
-        Assert.assertTrue(KeywordUtil.verifyInputText(NitroXHomePage.Basecurrency, dataMap.get("Base"), "Base Currency Entered"));
-        Assert.assertTrue(KeywordUtil.verifyInputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), "Quote Currency Entered"));
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            Assert.assertTrue(KeywordUtil.verifyInputText(NitroXHomePage.Basecurrency, dataMap.get("Base"), "Base Currency Entered"));
+            Assert.assertTrue(KeywordUtil.verifyInputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), "Quote Currency Entered"));
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
 
     @And("Input the Price and Quantity")
@@ -224,49 +248,98 @@ public class NitroXHomeSteps {
 
     @And("Create A buy Order less than Market Price")
     public void createABuyOrderLessThanMarketPrice() {
-        try {
-            NitroXHome.InputOpenOrderBidPrice();
-            NitroXHome.InputCustomQuantity(dataMap);
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.InputOpenOrderBidPrice();
+                NitroXHome.InputCustomQuantity(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
         }
     }
 
     @Then("Validate Order is in Open State")
     public void validateOrderIsInOpenState() {
-        waitForVisible(NitroXHomePage.validOrder);
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            waitForVisible(NitroXHomePage.validOrder);
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
     }
 
     @And("Cancel Nth Open Order")
     public void cancelNthOpenOrder() throws InterruptedException {
-        //wait for open order to display
-        scrollingToElementofAPage(NitroXHomePage.openOrderTime_first, "Scrolled to element");
-        NitroXHome.waitForOpenOrdersTable();
-        //get time of Nth open order
-        NitroXHome.getTimeofNthOpenOrder(Integer.parseInt(dataMap.get("OpenOrderNumber")));
-        //click on cancel button
-        NitroXHome.cancelNthOpenOrder(Integer.parseInt(dataMap.get("OpenOrderNumber")));
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //wait for open order to display
+            scrollingToElementofAPage(NitroXHomePage.openOrderTime_first, "Scrolled to element");
+            NitroXHome.waitForOpenOrdersTable();
+            //get time of Nth open order
+            NitroXHome.getTimeofNthOpenOrder(Integer.parseInt(dataMap.get("OpenOrderNumber")));
+            //click on cancel button
+            NitroXHome.cancelNthOpenOrder(Integer.parseInt(dataMap.get("OpenOrderNumber")));
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
 
     @Then("Verify Order Cancelled Based-on Time")
     public void verifyOrderCancelledBasedOnTime() {
-        //verify the time of very first order changes to verify the order is cancelled
-        NitroXHome.verifyOrderCancelledBasedOnTime(Integer.parseInt(dataMap.get("OpenOrderNumber")));
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //verify the time of very first order changes to verify the order is cancelled
+            NitroXHome.verifyOrderCancelledBasedOnTime(Integer.parseInt(dataMap.get("OpenOrderNumber")));
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
 
 
     @Then("Verify Success Message")
     public void verifySuccessMessage() {
-        //wait and verify for the success message
-        NitroXHome.getOrderCancelledSuccessMsg();
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //wait and verify for the success message
+            NitroXHome.getOrderCancelledSuccessMsg();
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
     }
 
     @And("Click Buy Button")
     public void clickBuyButton() {
-        NitroXHome.CreateOrder();
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            NitroXHome.CreateOrder();
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
 
     @And("Create Buy Order Equal to Market Price")

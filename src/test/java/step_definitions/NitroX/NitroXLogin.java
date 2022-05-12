@@ -25,69 +25,111 @@ public class NitroXLogin {
 
     @When("^Navigate to the url$")
     public void navigateToTheUrl() {
-        try {
-            navigateToUrl(dataMap.get("URL"));
-            //boolean  =
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                navigateToUrl(dataMap.get("URL"));
+                //boolean  =
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
         }
     }
 
     @And("^Input username and password$")
     public void inputUsernameAndPassword() {
-        try {
-            NitroXUserLogin.enterusername(dataMap);
-            NitroXUserLogin.enterpassword(dataMap);
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXUserLogin.enterusername(dataMap);
+                NitroXUserLogin.enterpassword(dataMap);
 
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
         }
-
     }
 
     @And("Click submit button")
     public void clickSubmitButton() {
-        try {
-            NitroXUserLogin.clickloginbtn();
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXUserLogin.clickloginbtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
         }
     }
 
     @Then("Verify user is able to login successfully")
     public void verifyUserIsAbleToLoginSuccessfully() {
-        try {
-            KeywordUtil.waitForVisible(NitroXLoginPage.homepage);
-            System.out.println("Home Page" + KeywordUtil.getElementText(NitroXLoginPage.homepage));
-            Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage), "Home");
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                KeywordUtil.waitForVisible(NitroXLoginPage.homepage);
+                System.out.println("Home Page" + KeywordUtil.getElementText(NitroXLoginPage.homepage));
+                Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage), "Home");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
         }
     }
 
     @Then("Verify validation message is displayed")
     public void verifyValidationMessageIsDisplayed() {
-        try {
-            waitForVisible(NitroXLoginPage.invalidLoginValidation);
-            Assert.assertEquals(getElementText(NitroXLoginPage.invalidLoginValidation), dataMap.get("Validation"));
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(NitroXLoginPage.invalidLoginValidation);
+                Assert.assertEquals(getElementText(NitroXLoginPage.invalidLoginValidation), dataMap.get("Validation"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
         }
     }
-
-
 }
