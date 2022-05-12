@@ -99,7 +99,7 @@ Feature: Test buys sell features
     And Enter The Base and Quote Currency
     And Cancel Nth Open Order
     Then Verify Order Cancelled Based-on Time
-    Then Verify Success Message
+    Then Verify Cancel Order Success Message
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_014 |
@@ -136,6 +136,7 @@ Feature: Test buys sell features
     When Choose Mode, Trading Account, Base and Quote Currency
     And Create Sell Order With Selling Price > Bid Price
     And Click Sell Button
+    Then Verify Order Submitted Success Message
     Then Validate Order Moves to Open Orders
     Examples:
       | SheetName  | TestCaseID                  |
