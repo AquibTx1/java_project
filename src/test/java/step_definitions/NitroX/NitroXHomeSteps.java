@@ -423,14 +423,13 @@ public class NitroXHomeSteps {
     }
 
     @Then("Validate Order Moves to Dealt Orders")
-    public void validateOrderMovesToDealtOrders() {
+    public void validateOrderMovesToDealtOrders() throws InterruptedException {
         //get price and quantity of the first row under dealt orders
         //Assert price and quantity at the time of placing order with first row of dealt orders
         waitForVisible(NitroXHomePage.validOrder);
+        scrollingToElementofAPage(NitroXHomePage.DealtOrderTab, "Scrolled to element");
         KeywordUtil.click(NitroXHomePage.DealtOrderTab, "Clicked Dealt Order");
-        // Assert.assertEquals(getElementText(NitroXHomePage.recentDealtOrder),NitroXHome.getSide((dataMap.get("OpenOrderNumber"))));
-        //Assert.assertEquals(getElementText(NitroXHomePage.recentDealtOrder),NitroXHome.getPrice(Integer.parseInt(dataMap.get("Price"))));
-        //Assert.assertEquals(getElementText(NitroXHomePage.recentDealtOrder),KeywordUtil.getCurrentSystemDateandTime());
+        Assert.assertEquals(getElementText(NitroXHomePage.recentDealt),dataMap.get("Side").toUpperCase());
     }
 
     @And("Create Buy Order Greater Than Ask Price")

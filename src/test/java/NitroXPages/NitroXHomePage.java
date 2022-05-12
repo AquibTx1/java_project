@@ -56,5 +56,10 @@ public class NitroXHomePage {
     //Dealt Orders
     public static By recentDealtOrder = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[01]");
     public static By DealtOrderTab = By.id("rc-tabs-0-tab-dealt");
+    public static By recentDealt=By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[2]/td[02]/span");
+
+
+
+
 
 }
