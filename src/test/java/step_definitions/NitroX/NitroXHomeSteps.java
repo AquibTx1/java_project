@@ -203,6 +203,21 @@ public class NitroXHomeSteps {
         }
     }
 
+    @When("Choose Mode, Trading Account, Base and Quote Currency")
+    public void chooseModeTradingAccountBaseAndQuoteCurrency() {
+        try {
+            NitroXHome.selectmode(dataMap);
+            NitroXHome.inputTradingAccount(dataMap);
+            NitroXHome.selectBaseCurrency(dataMap);
+            NitroXHome.selectQuoteCurrency(dataMap);
+        } catch (Throwable e) {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
+    }
+
     @And("Input the Price and Quantity")
     public void InputThePriceAndQuanitiy() {
         //check if this step needs to be skipped
