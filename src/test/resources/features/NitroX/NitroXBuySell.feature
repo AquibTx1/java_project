@@ -109,6 +109,7 @@ Feature: Test buys sell features
     And Enter The Base and Quote Currency
     And Create Buy Order Equal to Ask Price
     And Click Buy Button
+    Then Verify Order Submitted Success Message
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName  | TestCaseID                  |
@@ -122,6 +123,7 @@ Feature: Test buys sell features
     And Enter The Base and Quote Currency
     And Create Buy Order Greater Than Ask Price
     And Click Buy Button
+    Then Verify Order Submitted Success Message
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName  | TestCaseID                  |
@@ -153,13 +155,13 @@ Feature: Test buys sell features
       | NitroXBuySell | QA_TestCase_Auto_NitroX_018 |
 
   @NitroXBuySell
-  Scenario Outline: NitroXHome-017_Create Sell Order When Selling Price Greater Than Market Price
+  Scenario Outline: NitroXHome-019_Sell Order is placed in Dealt when Price filled is equal to the market price.
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Create Sell Order With Selling Price > Bid Price
+    And Create Sell Order With Selling Price Equal to Bid Price
     And Click Sell Button
     Then Verify Order Submitted Success Message
-    Then Validate Order Moves to Open Orders
+    Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_019 |

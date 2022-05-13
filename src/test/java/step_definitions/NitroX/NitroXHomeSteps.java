@@ -429,10 +429,15 @@ public class NitroXHomeSteps {
     public void validateOrderMovesToDealtOrders() throws InterruptedException {
         //get price and quantity of the first row under dealt orders
         //Assert price and quantity at the time of placing order with first row of dealt orders
-        waitForVisible(NitroXHomePage.validOrder);
-        scrollingToElementofAPage(NitroXHomePage.DealtOrderTab, "Scrolled to element");
-        KeywordUtil.click(NitroXHomePage.DealtOrderTab, "Clicked Dealt Order");
-        Assert.assertEquals(getElementText(NitroXHomePage.recentDealt), dataMap.get("Side").toUpperCase());
+//        waitForVisible(NitroXHomePage.validOrder);
+        NitroXHome.scrollToOrdersPlaced();
+        NitroXHome.waitForInvisibleOrderSubmittedMsg();
+        NitroXHome.clickDealtOrdersTab();
+//        Assert.assertEquals(getElementText(NitroXHomePage.recentDealt), dataMap.get("Side").toUpperCase());
+
+        Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
+        Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXHome.getOrderFormPrice());
+        Assert.assertEquals(NitroXHome.getQuantityofNthDealtOrder(1), NitroXHome.getOrderFormQuantity());
     }
 
     @And("Create Buy Order Greater Than Ask Price")
@@ -554,5 +559,29 @@ public class NitroXHomeSteps {
     public void verifyOrderRemovedFromOrdersList() {
         NitroXHome.waitForInvisibleOrderCancelledMsg();
         Assert.assertNotEquals(firstOpenOrderTime, NitroXHome.getTimeofNthOpenOrder(1));
+    }
+
+    @And("Create Sell Order With Selling Price Equal to Bid Price")
+    public void createSellOrderWithSellingPriceEqualToBidPrice() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                // get the highest bid price and also store it in a variable to use later
+                NitroXHome.scrollToBidPrices();
+                NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice());
+                NitroXHome.InputCustomQuantity(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
 }

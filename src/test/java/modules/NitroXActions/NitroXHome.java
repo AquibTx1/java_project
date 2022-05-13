@@ -17,7 +17,7 @@ public class NitroXHome {
     static Class thisClass = NitroXHome.class;
 
     static String availableCoinBalance, frozenCoinBalance, totalCoinBalance, firstbidprice, lastbidprice, firstaskprice,
-            openOrderTime, dealtorderprice, dealtorderside, dealthorderquantity;
+            openOrderTime, dealtOrderTime, dealtorderprice, dealtorderside, dealthorderquantity;
     static double quantity;
 
     public static void selectmode(HashMap<String, String> dataMap) throws Exception {
@@ -302,4 +302,38 @@ public class NitroXHome {
         click(NitroXHomePage.cancelFirstSellOrder, "Cancel very first sell order");
     }
 
+    public static void clickDealtOrdersTab()
+    {
+        click(NitroXHomePage.DealtOrderTab, "Clicked Dealt Order");
+    }
+
+
+    //Dealt order actions
+    public static String getTimeofNthDealtOrder(int orderNumber) {
+        orderNumber += 1;
+        dealtOrderTime = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[01]/span"));
+        LogUtil.infoLog(thisClass, "Dealt Order Time=" + dealtOrderTime);
+        return dealtOrderTime;
+    }
+
+    public static String getSideofNthDealtOrder(int orderNumber) {
+        orderNumber += 1;
+        String side = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[02]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order Side=" + side);
+        return side;
+    }
+
+    public static double getPriceofNthDealtOrder(int orderNumber) {
+        orderNumber += 1;
+        String price = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[03]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order price=" + price);
+        return Double.parseDouble(price.replace(",", ""));
+    }
+
+    public static double getQuantityofNthDealtOrder(int orderNumber) {
+        orderNumber += 1;
+        String quantity = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[04]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order quantity=" + quantity);
+        return Double.parseDouble(quantity);
+    }
 }
