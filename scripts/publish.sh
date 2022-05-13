@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set vars
-VERSION=0.0.1
+VERSION=0.0.2
 TAG=latest
 DOCKER_IMAGE_NAME=altonomy/qa-bdd
 ALT_REPO_ECR=688552931334.dkr.ecr.ap-southeast-1.amazonaws.com
