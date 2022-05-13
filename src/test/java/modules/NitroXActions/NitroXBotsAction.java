@@ -1,12 +1,22 @@
 package modules.NitroXActions;
 
 import NitroXPages.NitroXBotsPage;
+import NitroXPages.NitroXHomePage;
 import utilities.KeywordUtil;
+import utilities.LogUtil;
 
 import java.util.HashMap;
 
+import static utilities.KeywordUtil.pressEnter;
+import static utilities.KeywordUtil.waitForVisible;
+
 public class NitroXBotsAction {
-    public static void clickstartbtn(HashMap<String,String>dataMap) throws Exception
+
+    static Class thisClass = NitroXBotsAction.class;
+    static String firstbotid,firsttradingAccount;
+
+
+    public static void clickStart() throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.startbtn,  "Start Button Clicked");
     }
@@ -14,6 +24,7 @@ public class NitroXBotsAction {
     public static void inputService(HashMap<String,String>dataMap) throws Exception
     {
         KeywordUtil.inputText(NitroXBotsPage.service, dataMap.get("Service"), "Service value entered ");
+        pressEnter(NitroXBotsPage.service);
     }
 
     public static void inputMethod(HashMap<String,String>dataMap) throws Exception
@@ -71,8 +82,40 @@ public class NitroXBotsAction {
         KeywordUtil.click(NitroXBotsPage.submitbtn,  "Bot Exec Submit Button Clicked");
     }
 
-    public static void closeBot(HashMap<String,String>dataMap) throws Exception
+    public static void closeBot() throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.closebtn,  "Bot Exec close Button Clicked");
     }
+
+    public static void getTotalBots() throws Exception
+    {
+        KeywordUtil.click(NitroXBotsPage.totalfilered,  "Total Filtered Bots  Clicked");
+    }
+
+    public static void getDetailedBots()
+    {
+        KeywordUtil.switchToFrame("babda");
+    }
+
+    public static String getBotId() throws Exception
+    {
+        waitForVisible(NitroXBotsPage.botid);
+        firstbotid = KeywordUtil.getElementText(NitroXBotsPage.botid);
+        LogUtil.infoLog(thisClass, "BOT  Id Is" + firstbotid);
+        return firstbotid;
+    }
+
+    public static String getName() throws Exception
+    {
+        waitForVisible(NitroXBotsPage.botName);
+        firsttradingAccount = KeywordUtil.getElementText(NitroXBotsPage.botName);
+        LogUtil.infoLog(thisClass, "Trader  Name Is" + firsttradingAccount);
+        return firsttradingAccount;
+    }
+
+    public static void waitforBotWindow() throws Exception
+    {
+        waitForVisible(NitroXBotsPage.startnewbot);
+    }
+
 }

@@ -31,11 +31,22 @@ public class NitroXBotsPage {
     public static By dealref=By.id("bot_config_form_config_deal_ref");
     public static By submitbtn=By.xpath("//span[text()='Submit']");
     public static By closebtn=By.xpath("//button[@aria-label='Close']");
-
     //Total Filtered
     public static By totalfilered=By.xpath("//div[text()='Total (Filtered)']");
 
+   // Detailed Bots Frame
+    public static By serviceid=By.xpath("//span[text()='Detailed Bots ETH/USDT']/following::table[1]/tbody/tr[1]/td[2]");
 
-
-
+    public static By botid=By.xpath("//span[text()='Detailed Bots ETH/USDT']/following::table[1]/tbody/tr[1]/td[3]");
+    public static By botName=By.xpath("//span[text()='Detailed Bots ETH/USDT']/following::table[1]/tbody/tr[1]/td[4]");
+    public static By status=By.xpath("//span[text()='Detailed Bots ETH/USDT']/following::table[1]/tbody/tr[1]/td[5]");
+    public static By progress=By.xpath("//span[text()='Detailed Bots ETH/USDT']/following::table[1]/tbody/tr[1]/td[6]");
+    public static By editbtn=By.xpath("//span[text()='Edit']");
+    public static By resumebtn=By.xpath("//span[text()='Resume']");
+    public static By restartbtn=By.xpath("//span[text()='Restart']");
+    public static By duplicatetbtn=By.xpath("//span[text()='Duplicate']");
+    public static By stopbtn=By.xpath("//span[text()='Stop']");
+    public static By closeframebtn=By.xpath("//span[text()='Closed']");
+    public static By startnewbot=By.xpath("//div[text()='Start New Bot']");
+    //div[text()='Start New Bot']
 }
