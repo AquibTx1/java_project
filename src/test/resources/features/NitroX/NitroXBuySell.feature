@@ -10,8 +10,8 @@ Feature: Test buys sell features
     Then Verify mode value
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_004 |
-      | NitroXHome | QA_TestCase_Auto_NitroX_006 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_004 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_006 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-005-007_Verify mode field entry using send keys
@@ -20,8 +20,8 @@ Feature: Test buys sell features
     Then Verify mode value
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_005 |
-      | NitroXHome | QA_TestCase_Auto_NitroX_007 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_005 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_007 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-008_Verify previous mode value is retained in case of invalid entry
@@ -32,7 +32,7 @@ Feature: Test buys sell features
     Then Verify mode value
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_008 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_008 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-009_Able to Select Trading Account Using Dropdown Option
@@ -41,7 +41,7 @@ Feature: Test buys sell features
     Then Validate Selected Trading Account
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_009 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_009 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-010_Able to Fill Trading Account
@@ -50,7 +50,7 @@ Feature: Test buys sell features
     Then Validate Selected Trading Account
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_010 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_010 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-011_Able to Enter the Base and Quote Currency
@@ -61,7 +61,7 @@ Feature: Test buys sell features
     Then Validate the Base and Quote Currency
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_011 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_011 |
 
 
   @NitroXBuySell
@@ -75,7 +75,7 @@ Feature: Test buys sell features
    Then Validate User do not allowed to buy
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_012 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_012 |
 
 
   @NitroXBuySell
@@ -87,7 +87,7 @@ Feature: Test buys sell features
     Then Validate Order is in Open State
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_013 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_013 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-014_Cancel An Open-Buy Order
@@ -99,7 +99,7 @@ Feature: Test buys sell features
     Then Verify Cancel Order Success Message
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_014 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_014 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-015_Create A Dealt Order
@@ -112,7 +112,7 @@ Feature: Test buys sell features
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_015 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_015 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-015_Create A Dealt Order
@@ -125,7 +125,7 @@ Feature: Test buys sell features
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_015_01 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_015_01 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-017_Create Sell Order When Selling Price Greater Than Market Price
@@ -137,7 +137,7 @@ Feature: Test buys sell features
     Then Validate Order Moves to Open Orders
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_017 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_017 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-014_Cancel An Open-Sell Order
@@ -150,7 +150,7 @@ Feature: Test buys sell features
     Then Verify First Order Removed From Orders List
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_018 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_018 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-017_Create Sell Order When Selling Price Greater Than Market Price
@@ -162,4 +162,4 @@ Feature: Test buys sell features
     Then Validate Order Moves to Open Orders
     Examples:
       | SheetName  | TestCaseID                  |
-      | NitroXHome | QA_TestCase_Auto_NitroX_019 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_019 |
