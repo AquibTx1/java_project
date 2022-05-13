@@ -1,14 +1,18 @@
-#Feature: Test buys sell features
-#
-#  Background: Login to application
-#    Given Login to NitroX app with valid login credentials
+Feature: Test Bots features on NitroX HomePage
 
-#  @NitroXHome
-#  Scenario Outline: NitroXHome-004-006_Verify mode field entry using dropdown option
-#    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
-#    When Choose mode value using dropdown
-#    Then Verify mode value
-#    Examples:
-#      | SheetName  | TestCaseID                  |
-#      | NitroXHome | QA_TestCase_Auto_NitroX_004 |
-#      | NitroXHome | QA_TestCase_Auto_NitroX_006 |
+  Background: Login to application
+    Given Login to NitroX app with valid login credentials
+    When Choose Mode, Trading Account, Base and Quote Currency
+
+  @NitroXBot
+  Scenario Outline: NitroXHome-024_Verify Bot and start Buy execution
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    #When Choose Mode, Trading Account, Base and Quote Currency
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Select Buy Order and Select the MinTime and MaxTime Break
+    And Input the Time, Quantity and Submit the Order
+    Then Verify Bot Count in Total Filtered
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXBots | QA_TestCase_Auto_NitroX_024 |
+
