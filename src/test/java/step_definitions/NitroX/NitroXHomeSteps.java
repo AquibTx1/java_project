@@ -427,17 +427,24 @@ public class NitroXHomeSteps {
 
     @Then("Validate Order Moves to Dealt Orders")
     public void validateOrderMovesToDealtOrders() throws InterruptedException {
-        //get price and quantity of the first row under dealt orders
         //Assert price and quantity at the time of placing order with first row of dealt orders
-//        waitForVisible(NitroXHomePage.validOrder);
-        NitroXHome.scrollToOrdersPlaced();
-        NitroXHome.waitForInvisibleOrderSubmittedMsg();
-        NitroXHome.clickDealtOrdersTab();
-//        Assert.assertEquals(getElementText(NitroXHomePage.recentDealt), dataMap.get("Side").toUpperCase());
-
-        Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
-        Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXHome.getOrderFormPrice());
-        Assert.assertEquals(NitroXHome.getQuantityofNthDealtOrder(1), NitroXHome.getOrderFormQuantity());
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.scrollToOrdersPlaced();
+                NitroXHome.waitForInvisibleOrderSubmittedMsg();
+                NitroXHome.clickDealtOrdersTab();
+                Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
+                Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXHome.getOrderFormPrice());
+                Assert.assertEquals(NitroXHome.getQuantityofNthDealtOrder(1), NitroXHome.getOrderFormQuantity());
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
     }
 
     @And("Create Buy Order Greater Than Ask Price")
@@ -557,8 +564,23 @@ public class NitroXHomeSteps {
 
     @Then("Verify First Order Removed From Orders List")
     public void verifyOrderRemovedFromOrdersList() {
-        NitroXHome.waitForInvisibleOrderCancelledMsg();
-        Assert.assertNotEquals(firstOpenOrderTime, NitroXHome.getTimeofNthOpenOrder(1));
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.waitForInvisibleOrderCancelledMsg();
+                Assert.assertNotEquals(firstOpenOrderTime, NitroXHome.getTimeofNthOpenOrder(1));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
 
     @And("Create Sell Order With Selling Price Equal to Bid Price")
