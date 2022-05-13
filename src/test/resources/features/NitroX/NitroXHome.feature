@@ -35,7 +35,7 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_008 |
 
   @NitroXHome
-  Scenario Outline: NitroXHome-009_Able to Select Trading Account in using Dropdown Option
+  Scenario Outline: NitroXHome-009_Able to Select Trading Account Using Dropdown Option
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Select the Trading Account
     Then Validate Selected Trading Account
@@ -44,7 +44,7 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_009 |
 
   @NitroXHome
-  Scenario Outline: NitroXHome-010_Able to fill Trading Account
+  Scenario Outline: NitroXHome-010_Able to Fill Trading Account
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Enter the Trading Account
     Then Validate Selected Trading Account
@@ -79,11 +79,9 @@ Feature: Test buys sell features
 
 
   @NitroXHome
-  Scenario Outline: NitroXHome-013_Create an Open Order When Price is less than Market Price
+  Scenario Outline: NitroXHome-013_Create an Open Order When Price is Less Than Market Price
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
-    When Choose mode value using dropdown
-    And Select the Trading Account
-    And Enter The Base and Quote Currency
+    When Choose Mode, Trading Account, Base and Quote Currency
     And Create A buy Order less than Market Price
     And Click Buy Button
     Then Validate Order is in Open State
@@ -97,8 +95,7 @@ Feature: Test buys sell features
     When Choose mode value using dropdown
     And Select the Trading Account
     And Enter The Base and Quote Currency
-    And Cancel Nth Open Order
-    Then Verify Order Cancelled Based-on Time
+    And Cancel First Open Buy Order
     Then Verify Cancel Order Success Message
     Examples:
       | SheetName  | TestCaseID                  |

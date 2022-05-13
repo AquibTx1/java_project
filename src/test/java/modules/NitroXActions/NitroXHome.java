@@ -285,4 +285,13 @@ public class NitroXHome {
     public static void waitForInvisibleOrderSubmittedMsg() {
         waitForInVisibile(NitroXHomePage.orderSubmittedSuccessMsg);
     }
+
+    public static void cancelFirstBuyOrder() {
+        click(NitroXHomePage.cancelFirstBuyOrder, "Cancel very first buy order");
+    }
+
+    public static void cancelFirstSellOrder() {
+        click(NitroXHomePage.cancelFirstSellOrder, "Cancel very first sell order");
+    }
+
 }

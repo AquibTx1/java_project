@@ -429,7 +429,7 @@ public class NitroXHomeSteps {
         waitForVisible(NitroXHomePage.validOrder);
         scrollingToElementofAPage(NitroXHomePage.DealtOrderTab, "Scrolled to element");
         KeywordUtil.click(NitroXHomePage.DealtOrderTab, "Clicked Dealt Order");
-        Assert.assertEquals(getElementText(NitroXHomePage.recentDealt),dataMap.get("Side").toUpperCase());
+        Assert.assertEquals(getElementText(NitroXHomePage.recentDealt), dataMap.get("Side").toUpperCase());
     }
 
     @And("Create Buy Order Greater Than Ask Price")
@@ -502,4 +502,25 @@ public class NitroXHomeSteps {
         }
     }
 
+    @And("Cancel First Open Buy Order")
+    public void cancelFirstOpenBuyOrder() throws InterruptedException {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.scrollToOrdersPlaced();
+                NitroXHome.cancelFirstBuyOrder();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
 }
