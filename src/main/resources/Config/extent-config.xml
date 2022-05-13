@@ -37,7 +37,7 @@
       <![CDATA[
         $(document).ready(function() {
         $('.logo-container.blue.darken-2').html('TestingXperts');
-        $('.mdi-hardware-desktop-windows').html('<img src="D:/Images/Txlogo1.png"  hspace="-45" height="55" width="55"/>');
+<!--        $('.mdi-hardware-desktop-windows').html('<img src="D:/Images/Txlogo1.png"  hspace="-45" height="55" width="55"/>');-->
         });
       ]]>
 		</scripts>

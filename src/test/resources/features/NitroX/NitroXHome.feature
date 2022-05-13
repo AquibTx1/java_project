@@ -99,7 +99,7 @@ Feature: Test buys sell features
     And Enter The Base and Quote Currency
     And Cancel Nth Open Order
     Then Verify Order Cancelled Based-on Time
-    Then Verify Success Message
+    Then Verify Cancel Order Success Message
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_014 |
@@ -110,7 +110,7 @@ Feature: Test buys sell features
     When Choose mode value using dropdown
     And Select the Trading Account
     And Enter The Base and Quote Currency
-    And Create Buy Order Equal to Market Price
+    And Create Buy Order Equal to Ask Price
     And Click Buy Button
     Then Validate Order Moves to Dealt Orders
     Examples:
@@ -123,9 +123,21 @@ Feature: Test buys sell features
     When Choose mode value using dropdown
     And Select the Trading Account
     And Enter The Base and Quote Currency
-    And Create Buy Order Greater Than Market Price
+    And Create Buy Order Greater Than Ask Price
     And Click Buy Button
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_015_01 |
+
+  @NitroXHome
+  Scenario Outline: NitroXHome-017_Create Sell Order When Selling Price Greater Than Market Price
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Create Sell Order With Selling Price > Bid Price
+    And Click Sell Button
+    Then Verify Order Submitted Success Message
+    Then Validate Order Moves to Open Orders
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_017 |
