@@ -3,7 +3,7 @@ Feature: Test buys sell features
   Background: Login to application
     Given Login to NitroX app with valid login credentials
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-004-006_Verify mode field entry using dropdown option
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose mode value using dropdown
@@ -13,7 +13,7 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_004 |
       | NitroXHome | QA_TestCase_Auto_NitroX_006 |
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-005-007_Verify mode field entry using send keys
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose mode value using input text
@@ -23,7 +23,7 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_005 |
       | NitroXHome | QA_TestCase_Auto_NitroX_007 |
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-008_Verify previous mode value is retained in case of invalid entry
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose mode value using input text
@@ -34,7 +34,7 @@ Feature: Test buys sell features
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_008 |
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-009_Able to Select Trading Account Using Dropdown Option
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Select the Trading Account
@@ -43,7 +43,7 @@ Feature: Test buys sell features
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_009 |
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-010_Able to Fill Trading Account
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Enter the Trading Account
@@ -52,7 +52,7 @@ Feature: Test buys sell features
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_010 |
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-011_Able to Enter the Base and Quote Currency
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose mode value using dropdown
@@ -64,7 +64,7 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_011 |
 
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-012_Not Able to Create an Order
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose mode value using dropdown
@@ -78,7 +78,7 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_012 |
 
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-013_Create an Open Order When Price is Less Than Market Price
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose Mode, Trading Account, Base and Quote Currency
@@ -89,7 +89,7 @@ Feature: Test buys sell features
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_013 |
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-014_Cancel An Open-Buy Order
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose mode value using dropdown
@@ -101,7 +101,7 @@ Feature: Test buys sell features
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_014 |
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-015_Create A Dealt Order
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose mode value using dropdown
@@ -114,7 +114,7 @@ Feature: Test buys sell features
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_015 |
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-015_Create A Dealt Order
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose mode value using dropdown
@@ -127,7 +127,7 @@ Feature: Test buys sell features
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_015_01 |
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-017_Create Sell Order When Selling Price Greater Than Market Price
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose Mode, Trading Account, Base and Quote Currency
@@ -139,7 +139,7 @@ Feature: Test buys sell features
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_017 |
 
-  @NitroXHome
+  @NitroXBuySell
   Scenario Outline: NitroXHome-014_Cancel An Open-Sell Order
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose mode value using dropdown
@@ -151,3 +151,15 @@ Feature: Test buys sell features
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_018 |
+
+  @NitroXBuySell
+  Scenario Outline: NitroXHome-017_Create Sell Order When Selling Price Greater Than Market Price
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Create Sell Order With Selling Price > Bid Price
+    And Click Sell Button
+    Then Verify Order Submitted Success Message
+    Then Validate Order Moves to Open Orders
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_019 |
