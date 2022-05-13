@@ -90,7 +90,7 @@ Feature: Test buys sell features
       | NitroXHome | QA_TestCase_Auto_NitroX_013 |
 
   @NitroXHome
-  Scenario Outline: NitroXHome-014_Cancel An Open Order
+  Scenario Outline: NitroXHome-014_Cancel An Open-Buy Order
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose mode value using dropdown
     And Select the Trading Account
@@ -138,3 +138,15 @@ Feature: Test buys sell features
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_017 |
+
+  @NitroXHome
+  Scenario Outline: NitroXHome-014_Cancel An Open-Sell Order
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Choose mode value using dropdown
+    And Select the Trading Account
+    And Enter The Base and Quote Currency
+    And Cancel First Open Sell Order
+    Then Verify Cancel Order Success Message
+    Examples:
+      | SheetName  | TestCaseID                  |
+      | NitroXHome | QA_TestCase_Auto_NitroX_018 |

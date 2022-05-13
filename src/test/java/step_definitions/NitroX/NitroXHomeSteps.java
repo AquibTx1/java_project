@@ -209,8 +209,9 @@ public class NitroXHomeSteps {
         try {
             NitroXHome.selectmode(dataMap);
             NitroXHome.inputTradingAccount(dataMap);
-            NitroXHome.selectBaseCurrency(dataMap);
-            NitroXHome.selectQuoteCurrency(dataMap);
+            enterTheBaseAndQuoteCurrency();
+//            NitroXHome.selectBaseCurrency(dataMap);
+//            NitroXHome.selectQuoteCurrency(dataMap);
         } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();
@@ -511,6 +512,28 @@ public class NitroXHomeSteps {
             try {
                 NitroXHome.scrollToOrdersPlaced();
                 NitroXHome.cancelFirstBuyOrder();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Cancel First Open Sell Order")
+    public void cancelFirstOpenSellOrder() throws InterruptedException {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.scrollToOrdersPlaced();
+                NitroXHome.cancelFirstSellOrder();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

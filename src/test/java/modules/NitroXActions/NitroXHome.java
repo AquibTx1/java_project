@@ -42,23 +42,26 @@ public class NitroXHome {
     public static void selectTradingAccount(HashMap<String, String> dataMap) throws Exception {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
         waitForVisible(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"));
-        KeywordUtil.click(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"), "Trading Account selected from dropdown.");
+        KeywordUtil.click(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"), "Trading Account selected from dropdown");
     }
 
     public static void inputTradingAccount(HashMap<String, String> dataMap) throws Exception {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
-        KeywordUtil.inputText(NitroXHomePage.inputtradingaccount, dataMap.get("TradingAccount"), "Enter the Account detail");
+        KeywordUtil.inputText(NitroXHomePage.inputtradingaccount, dataMap.get("TradingAccount"), dataMap.get("TradingAccount") + " : Trading account");
         KeywordUtil.pressEnter(NitroXHomePage.inputtradingaccount);
     }
 
     public static void selectBaseCurrency(HashMap<String, String> dataMap) throws Exception {
-        KeywordUtil.inputText(NitroXHomePage.Basecurrency, dataMap.get("Base"), "Enter The Base Currency");
-        pressEnter(NitroXHomePage.Basecurrency);
+        delay(1000);
+        KeywordUtil.inputText(NitroXHomePage.Basecurrency, dataMap.get("Base"), dataMap.get("Base") + " : Base Currency");
+        delay(1000);
+        pressTabKey(NitroXHomePage.Basecurrency);
     }
 
     public static void selectQuoteCurrency(HashMap<String, String> dataMap) throws Exception {
-        KeywordUtil.inputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), "Enter The Quote Currency");
-        pressEnter(NitroXHomePage.Quotecurrency);
+        KeywordUtil.inputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), dataMap.get("Quote") + " : Quote Currency");
+        delay(1000);
+        pressTabKey(NitroXHomePage.Quotecurrency);
     }
 
     public String getBaseCurrency() {
@@ -133,7 +136,7 @@ public class NitroXHome {
     }
 
     public static void InputCustomQuantity(HashMap<String, String> dataMap) {
-        KeywordUtil.inputText(NitroXHomePage.Quantity, dataMap.get("Quantity"), "Entered the Qunatity");
+        KeywordUtil.inputText(NitroXHomePage.Quantity, dataMap.get("Quantity"), "Entered the Quantity");
     }
 
     public static void waitForOpenOrdersTable() {
