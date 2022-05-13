@@ -27,6 +27,8 @@ public class NitroXHomeSteps {
 
     static Class thisClass = NitroXHomeSteps.class;
 
+    static String firstOpenOrderTime;
+
     public NitroXHomeSteps() {
         dataMap = BaseStepDefinitions.dataMap;
     }
@@ -533,6 +535,7 @@ public class NitroXHomeSteps {
         } else {
             try {
                 NitroXHome.scrollToOrdersPlaced();
+                firstOpenOrderTime = NitroXHome.getTimeofNthOpenOrder(1);
                 NitroXHome.cancelFirstSellOrder();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -545,5 +548,11 @@ public class NitroXHomeSteps {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
+    }
+
+    @Then("Verify First Order Removed From Orders List")
+    public void verifyOrderRemovedFromOrdersList() {
+        NitroXHome.waitForInvisibleOrderCancelledMsg();
+        Assert.assertNotEquals(firstOpenOrderTime, NitroXHome.getTimeofNthOpenOrder(1));
     }
 }

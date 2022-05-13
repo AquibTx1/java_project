@@ -147,6 +147,7 @@ Feature: Test buys sell features
     And Enter The Base and Quote Currency
     And Cancel First Open Sell Order
     Then Verify Cancel Order Success Message
+    Then Verify First Order Removed From Orders List
     Examples:
       | SheetName  | TestCaseID                  |
       | NitroXHome | QA_TestCase_Auto_NitroX_018 |

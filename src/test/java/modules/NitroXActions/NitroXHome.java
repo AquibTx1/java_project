@@ -208,6 +208,11 @@ public class NitroXHome {
         LogUtil.infoLog(thisClass, "Order cancelled success message displayed.");
     }
 
+    public static void waitForInvisibleOrderCancelledMsg() {
+        waitForInVisibile(NitroXHomePage.orderCancelSuccessMsg);
+        LogUtil.infoLog(thisClass, "Order cancelled success message displayed.");
+    }
+
     public static void getOrderSubmittedSuccessMsg() {
         waitForVisible(NitroXHomePage.orderSubmittedSuccessMsg);
         LogUtil.infoLog(thisClass, "Order submitted successfully message displayed.");
