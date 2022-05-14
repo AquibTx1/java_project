@@ -208,6 +208,7 @@ public class NitroXHomeSteps {
 
     @When("Choose Mode, Trading Account, Base and Quote Currency")
     public void chooseModeTradingAccountBaseAndQuoteCurrency() {
+        System.out.println(dataMap);
         try {
             NitroXHome.selectmode(dataMap);
             NitroXHome.inputTradingAccount(dataMap);
@@ -391,7 +392,9 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXHome.InputBuyOrderAskPrice();
+                //NitroXHome.InputBuyOrderAskPrice();
+                NitroXHome.scrollToAskPrices();
+                NitroXHome.InputthePrice(NitroXHome.getHigeshtAskPrice());
                 NitroXHome.InputCustomQuantity(dataMap);
 
             } catch (Throwable e) {
@@ -455,7 +458,9 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXHome.InputBuyOrderPrice();
+                //NitroXHome.InputBuyOrderPrice();
+                NitroXHome.scrollToAskPrices();
+                NitroXHome.InputthePrice(NitroXHome.getHigeshtAskPrice() + 100.0);
                 NitroXHome.InputCustomQuantity(dataMap);
 
             } catch (Throwable e) {

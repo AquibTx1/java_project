@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class BaseStepDefinitions extends KeywordUtil {
 
-    public static HashMap<String, String> dataMap = new HashMap<String, String>();
+    public static HashMap<String, String> dataMap ;
 
     static Class thisClass = BaseStepDefinitions.class;
     public static int counterVar = 1;
@@ -19,6 +19,7 @@ public class BaseStepDefinitions extends KeywordUtil {
     @Given("Read test data {string} and {string} from Excel file")
     public void readTestDataAndFromExcelFile(String sheetName, String testCaseID) {
         //stop execution at a particular step based on SkipAtStepNum defined in excel sheet
+        dataMap = new HashMap<String, String>();
         try {
             KeywordUtil.cucumberTagName = "Web";
             dataMap = ExcelDataUtil.getTestDataWithTestCaseID(sheetName, testCaseID);

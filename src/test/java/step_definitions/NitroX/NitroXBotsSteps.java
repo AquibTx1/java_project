@@ -1,5 +1,6 @@
 package step_definitions.NitroX;
 
+import NitroXPages.NitroXBotsPage;
 import NitroXPages.NitroXHomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -20,11 +21,10 @@ public class NitroXBotsSteps {
 
 
 
-    public static HashMap<String, String> dataMap = new HashMap<String, String>();
+    public static HashMap<String, String> dataMap = BaseStepDefinitions.dataMap;
 
     @And("Click Start Bot ,Select the Service,Method and Input Bot Quantity")
     public void clickStartBotSelectTheServiceMethodAndInputBotQuantity() {
-
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
@@ -32,6 +32,35 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
                 NitroXBotsAction.inputService(dataMap);
+                NitroXBotsAction.inputMethod(dataMap);
+
+                NitroXBotsAction.inputBotQuantity(dataMap);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @When("Select Buy Order and Select the MinTime and MaxTime Break")
+    public void select_buy_order_and_select_the_min_time_and_max_time_break() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(NitroXBotsPage.orderdirection);
+                NitroXBotsAction.inputOrderDirection(dataMap);
+                NitroXBotsAction.inputMinTime(dataMap);
+                NitroXBotsAction.inputMaxTime(dataMap);
+                NitroXBotsAction.inputMinPrice(dataMap);
+                NitroXBotsAction.inputMaxPrice(dataMap);
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -53,7 +82,8 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -66,25 +96,6 @@ public class NitroXBotsSteps {
         }
     }
 
-    @When("Select Buy Order and Select the MinTime and MaxTime Break")
-    public void select_buy_order_and_select_the_min_time_and_max_time_break() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                System.out.println("Hello");
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                e.printStackTrace();
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-        }
-        if (BaseStepDefinitions.getSITflag()) {
-            BaseStepDefinitions.increaseCounter();
-        }
-
-    }
 
     @When("Input the Time, Quantity and Submit the Order")
     public void input_the_time_quantity_and_submit_the_order() {

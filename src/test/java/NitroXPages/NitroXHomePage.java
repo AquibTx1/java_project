@@ -8,6 +8,7 @@ public class NitroXHomePage {
     public static By highestBidPrice = By.xpath("//span[text()='Orderbook ']/following::table[2]/tbody/tr[01]/td[02]");
     public static By bidPriceHeading = By.xpath("//span[text()='Spread:']");
 
+    public static By askPriceHeading = By.xpath("//span[text()='Orderbook ']");
     //Account & Instrument
     public static By modeTextField = By.xpath("(//*[@class='ant-col ant-form-item-control'])[1]/child::div[1]//div[@class='ant-select-selector']");
     public static By modeTextbyID = By.id("account_pair_form_mode");

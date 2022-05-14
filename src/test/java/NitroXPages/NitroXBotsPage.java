@@ -13,9 +13,9 @@ public class NitroXBotsPage {
 
     //Start New Bot
     public static By service=By.id("bot_config_form_service");
-    public static By method=By.xpath("//span[@title='execution_bot']");
+    public static By method=By.id("bot_config_form_method");
     public static By botquanity=By.id("bot_config_form_quantity");
-    public static By orderdirection=By.xpath("//span[@title='BUY']");
+    public static By orderdirection=By.id("bot_config_form_config_order_direction");
     public static By mintimebreak=By.id("bot_config_form_config_min_time_break");
     public static By maxtimebreak=By.id("bot_config_form_config_max_time_break");
     public static By randomrange=By.id("bot_config_form_config_random_range");

@@ -260,6 +260,15 @@ public class NitroXHome {
         return highestBidPrice;
     }
 
+    public static double getHigeshtAskPrice()
+    {
+
+        waitForVisible(NitroXHomePage.orderBookprice);
+        double orderBookprice= Double.parseDouble((getElementText(NitroXHomePage.orderBookprice).replace(",", "")));
+        LogUtil.infoLog(thisClass, "Highest Ask price=" + orderBookprice);
+        return orderBookprice;
+    }
+
     //input the order price
     public static void InputthePrice(double price) {
         KeywordUtil.inputText(NitroXHomePage.price, Double.toString(price), "Enter the price");
@@ -283,6 +292,11 @@ public class NitroXHome {
     public static void scrollToBidPrices() throws InterruptedException {
         scrollingToElementofAPage(NitroXHomePage.bidPriceHeading, "Scroll to bid prices.");
     }
+
+    public static void scrollToAskPrices() throws InterruptedException {
+        scrollingToElementofAPage(NitroXHomePage.askPriceHeading, "Scroll to ask prices.");
+    }
+
 
     //scroll to the orders placed table displayed at the bottom
     public static void scrollToOrdersPlaced() throws InterruptedException {
