@@ -749,6 +749,12 @@ public class KeywordUtil extends GlobalUtil {
 		elm.sendKeys(Keys.TAB);
 	}
 
+	public static void pressBackSpace(By locator) {
+		WebElement elm = waitForVisible(locator);
+		elm.sendKeys(Keys.BACK_SPACE);
+
+	}
+
 	/**
 	 * Press enter.
 	 *
@@ -1128,6 +1134,8 @@ public class KeywordUtil extends GlobalUtil {
 		RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));
 		return defSelectedVal.trim().equals(data.trim());
 	}
+
+	/*
 
 	/**
 	 * Verify element size boolean.

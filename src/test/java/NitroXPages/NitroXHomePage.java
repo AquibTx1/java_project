@@ -8,6 +8,7 @@ public class NitroXHomePage {
     public static By highestBidPrice = By.xpath("//span[text()='Orderbook ']/following::table[2]/tbody/tr[01]/td[02]");
     public static By bidPriceHeading = By.xpath("//span[text()='Spread:']");
 
+    public static By askPriceHeading = By.xpath("//span[text()='Orderbook ']");
     //Account & Instrument
     public static By modeTextField = By.xpath("(//*[@class='ant-col ant-form-item-control'])[1]/child::div[1]//div[@class='ant-select-selector']");
     public static By modeTextbyID = By.id("account_pair_form_mode");
@@ -52,14 +53,13 @@ public class NitroXHomePage {
     public static By orderCancelSuccessMsg = By.xpath("//div/p[contains(text(), 'Order was cancelled successfully.')]");
     public static By orderSubmittedSuccessMsg = By.xpath("//div/p[contains(text(), 'Order submitted successfully.')]");
     public static By orderCancelLoading = By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[2]/td[06]/button/span/span");
+    public static By cancelFirstBuyOrder = By.xpath("(//span[text()='Recent Open Orders']/following::table[01]//span[text()='BUY']/../following-sibling::td[4]/button)[1]");
+    public static By cancelFirstSellOrder = By.xpath("(//span[text()='Recent Open Orders']/following::table[01]//span[text()='SELL']/../following-sibling::td[4]/button)[1]");
 
     //Dealt Orders
     public static By recentDealtOrder = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[01]");
     public static By DealtOrderTab = By.id("rc-tabs-0-tab-dealt");
-    public static By recentDealt=By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[2]/td[02]/span");
-
-
-
+    public static By recentDealt = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[2]/td[02]/span");
 
 
 }

@@ -17,7 +17,7 @@ public class NitroXHome {
     static Class thisClass = NitroXHome.class;
 
     static String availableCoinBalance, frozenCoinBalance, totalCoinBalance, firstbidprice, lastbidprice, firstaskprice,
-            openOrderTime, dealtorderprice, dealtorderside, dealthorderquantity;
+            openOrderTime, dealtOrderTime, dealtorderprice, dealtorderside, dealthorderquantity;
     static double quantity;
 
     public static void selectmode(HashMap<String, String> dataMap) throws Exception {
@@ -42,23 +42,26 @@ public class NitroXHome {
     public static void selectTradingAccount(HashMap<String, String> dataMap) throws Exception {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
         waitForVisible(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"));
-        KeywordUtil.click(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"), "Trading Account selected from dropdown.");
+        KeywordUtil.click(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"), "Trading Account selected from dropdown");
     }
 
     public static void inputTradingAccount(HashMap<String, String> dataMap) throws Exception {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
-        KeywordUtil.inputText(NitroXHomePage.inputtradingaccount, dataMap.get("TradingAccount"), "Enter the Account detail");
+        KeywordUtil.inputText(NitroXHomePage.inputtradingaccount, dataMap.get("TradingAccount"), dataMap.get("TradingAccount") + " : Trading account");
         KeywordUtil.pressEnter(NitroXHomePage.inputtradingaccount);
     }
 
     public static void selectBaseCurrency(HashMap<String, String> dataMap) throws Exception {
-        KeywordUtil.inputText(NitroXHomePage.Basecurrency, dataMap.get("Base"), "Enter The Base Currency");
-        pressEnter(NitroXHomePage.Basecurrency);
+        delay(1000);
+        KeywordUtil.inputText(NitroXHomePage.Basecurrency, dataMap.get("Base"), dataMap.get("Base") + " : Base Currency");
+        delay(1000);
+        pressTabKey(NitroXHomePage.Basecurrency);
     }
 
     public static void selectQuoteCurrency(HashMap<String, String> dataMap) throws Exception {
-        KeywordUtil.inputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), "Enter The Quote Currency");
-        pressEnter(NitroXHomePage.Quotecurrency);
+        KeywordUtil.inputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), dataMap.get("Quote") + " : Quote Currency");
+        delay(1000);
+        pressTabKey(NitroXHomePage.Quotecurrency);
     }
 
     public String getBaseCurrency() {
@@ -133,7 +136,7 @@ public class NitroXHome {
     }
 
     public static void InputCustomQuantity(HashMap<String, String> dataMap) {
-        KeywordUtil.inputText(NitroXHomePage.Quantity, dataMap.get("Quantity"), "Entered the Qunatity");
+        KeywordUtil.inputText(NitroXHomePage.Quantity, dataMap.get("Quantity"), "Entered the Quantity");
     }
 
     public static void waitForOpenOrdersTable() {
@@ -205,6 +208,11 @@ public class NitroXHome {
         LogUtil.infoLog(thisClass, "Order cancelled success message displayed.");
     }
 
+    public static void waitForInvisibleOrderCancelledMsg() {
+        waitForInVisibile(NitroXHomePage.orderCancelSuccessMsg);
+        LogUtil.infoLog(thisClass, "Order cancelled success message displayed.");
+    }
+
     public static void getOrderSubmittedSuccessMsg() {
         waitForVisible(NitroXHomePage.orderSubmittedSuccessMsg);
         LogUtil.infoLog(thisClass, "Order submitted successfully message displayed.");
@@ -252,6 +260,15 @@ public class NitroXHome {
         return highestBidPrice;
     }
 
+    public static double getHigeshtAskPrice()
+    {
+
+        waitForVisible(NitroXHomePage.orderBookprice);
+        double orderBookprice= Double.parseDouble((getElementText(NitroXHomePage.orderBookprice).replace(",", "")));
+        LogUtil.infoLog(thisClass, "Highest Ask price=" + orderBookprice);
+        return orderBookprice;
+    }
+
     //input the order price
     public static void InputthePrice(double price) {
         KeywordUtil.inputText(NitroXHomePage.price, Double.toString(price), "Enter the price");
@@ -276,6 +293,11 @@ public class NitroXHome {
         scrollingToElementofAPage(NitroXHomePage.bidPriceHeading, "Scroll to bid prices.");
     }
 
+    public static void scrollToAskPrices() throws InterruptedException {
+        scrollingToElementofAPage(NitroXHomePage.askPriceHeading, "Scroll to ask prices.");
+    }
+
+
     //scroll to the orders placed table displayed at the bottom
     public static void scrollToOrdersPlaced() throws InterruptedException {
         scrollingToElementofAPage(NitroXHomePage.openOrderHeader, "Scroll to Open and Dealt orders table");
@@ -284,5 +306,48 @@ public class NitroXHome {
     //wait for order submitted success message to disappear
     public static void waitForInvisibleOrderSubmittedMsg() {
         waitForInVisibile(NitroXHomePage.orderSubmittedSuccessMsg);
+    }
+
+    public static void cancelFirstBuyOrder() {
+        click(NitroXHomePage.cancelFirstBuyOrder, "Cancel very first buy order");
+    }
+
+    public static void cancelFirstSellOrder() {
+        click(NitroXHomePage.cancelFirstSellOrder, "Cancel very first sell order");
+    }
+
+    public static void clickDealtOrdersTab()
+    {
+        click(NitroXHomePage.DealtOrderTab, "Clicked Dealt Order");
+    }
+
+
+    //Dealt order actions
+    public static String getTimeofNthDealtOrder(int orderNumber) {
+        orderNumber += 1;
+        dealtOrderTime = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[01]/span"));
+        LogUtil.infoLog(thisClass, "Dealt Order Time=" + dealtOrderTime);
+        return dealtOrderTime;
+    }
+
+    public static String getSideofNthDealtOrder(int orderNumber) {
+        orderNumber += 1;
+        String side = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[02]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order Side=" + side);
+        return side;
+    }
+
+    public static double getPriceofNthDealtOrder(int orderNumber) {
+        orderNumber += 1;
+        String price = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[03]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order price=" + price);
+        return Double.parseDouble(price.replace(",", ""));
+    }
+
+    public static double getQuantityofNthDealtOrder(int orderNumber) {
+        orderNumber += 1;
+        String quantity = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[04]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order quantity=" + quantity);
+        return Double.parseDouble(quantity);
     }
 }

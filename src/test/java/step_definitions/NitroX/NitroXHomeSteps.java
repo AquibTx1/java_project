@@ -27,6 +27,8 @@ public class NitroXHomeSteps {
 
     static Class thisClass = NitroXHomeSteps.class;
 
+    static String firstOpenOrderTime;
+
     public NitroXHomeSteps() {
         dataMap = BaseStepDefinitions.dataMap;
     }
@@ -206,11 +208,13 @@ public class NitroXHomeSteps {
 
     @When("Choose Mode, Trading Account, Base and Quote Currency")
     public void chooseModeTradingAccountBaseAndQuoteCurrency() {
+        System.out.println(dataMap);
         try {
             NitroXHome.selectmode(dataMap);
             NitroXHome.inputTradingAccount(dataMap);
-            NitroXHome.selectBaseCurrency(dataMap);
-            NitroXHome.selectQuoteCurrency(dataMap);
+            enterTheBaseAndQuoteCurrency();
+//            NitroXHome.selectBaseCurrency(dataMap);
+//            NitroXHome.selectQuoteCurrency(dataMap);
         } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();
@@ -388,7 +392,9 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXHome.InputBuyOrderAskPrice();
+                //NitroXHome.InputBuyOrderAskPrice();
+                NitroXHome.scrollToAskPrices();
+                NitroXHome.InputthePrice(NitroXHome.getHigeshtAskPrice());
                 NitroXHome.InputCustomQuantity(dataMap);
 
             } catch (Throwable e) {
@@ -424,12 +430,24 @@ public class NitroXHomeSteps {
 
     @Then("Validate Order Moves to Dealt Orders")
     public void validateOrderMovesToDealtOrders() throws InterruptedException {
-        //get price and quantity of the first row under dealt orders
         //Assert price and quantity at the time of placing order with first row of dealt orders
-        waitForVisible(NitroXHomePage.validOrder);
-        scrollingToElementofAPage(NitroXHomePage.DealtOrderTab, "Scrolled to element");
-        KeywordUtil.click(NitroXHomePage.DealtOrderTab, "Clicked Dealt Order");
-        Assert.assertEquals(getElementText(NitroXHomePage.recentDealt),dataMap.get("Side").toUpperCase());
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.scrollToOrdersPlaced();
+                NitroXHome.waitForInvisibleOrderSubmittedMsg();
+                NitroXHome.clickDealtOrdersTab();
+                Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
+                Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXHome.getOrderFormPrice());
+                Assert.assertEquals(NitroXHome.getQuantityofNthDealtOrder(1), NitroXHome.getOrderFormQuantity());
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
     }
 
     @And("Create Buy Order Greater Than Ask Price")
@@ -440,7 +458,9 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXHome.InputBuyOrderPrice();
+                //NitroXHome.InputBuyOrderPrice();
+                NitroXHome.scrollToAskPrices();
+                NitroXHome.InputthePrice(NitroXHome.getHigeshtAskPrice() + 100.0);
                 NitroXHome.InputCustomQuantity(dataMap);
 
             } catch (Throwable e) {
@@ -502,4 +522,93 @@ public class NitroXHomeSteps {
         }
     }
 
+    @And("Cancel First Open Buy Order")
+    public void cancelFirstOpenBuyOrder() throws InterruptedException {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.scrollToOrdersPlaced();
+                NitroXHome.cancelFirstBuyOrder();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Cancel First Open Sell Order")
+    public void cancelFirstOpenSellOrder() throws InterruptedException {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.scrollToOrdersPlaced();
+                firstOpenOrderTime = NitroXHome.getTimeofNthOpenOrder(1);
+                NitroXHome.cancelFirstSellOrder();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @Then("Verify First Order Removed From Orders List")
+    public void verifyOrderRemovedFromOrdersList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.waitForInvisibleOrderCancelledMsg();
+                Assert.assertNotEquals(firstOpenOrderTime, NitroXHome.getTimeofNthOpenOrder(1));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Create Sell Order With Selling Price Equal to Bid Price")
+    public void createSellOrderWithSellingPriceEqualToBidPrice() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                // get the highest bid price and also store it in a variable to use later
+                NitroXHome.scrollToBidPrices();
+                NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice());
+                NitroXHome.InputCustomQuantity(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
 }

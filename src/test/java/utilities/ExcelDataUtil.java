@@ -88,7 +88,7 @@ public class ExcelDataUtil {
 		DataFormatter fm= new DataFormatter();
 		// Initialize class
 		// Get Path and Sheet Name from Property File
-		final HashMap<String, String> currentRowData = new HashMap<String, String>();
+		HashMap<String, String> currentRowData = new HashMap<String, String>();
 		init(testDatafilePath, sheetName);
 		Iterator<Row> rowIterator = sheet.iterator();
 		try {
@@ -120,7 +120,6 @@ public class ExcelDataUtil {
 		}
 		if (!found)
 			LogUtil.infoLog(ExcelDataUtil.class, "No data found with given key-> " + testCaseID);
-
 		return currentRowData;
 
 	}
