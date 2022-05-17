@@ -27,7 +27,7 @@ public class NitroXBotsPage {
     public static By maxprice=By.id("bot_config_form_config_max_price");
     public static By updatingbreak=By.id("bot_config_form_config_updating_break");
     public static By depthlevl=By.id("bot_config_form_config_depth_level");
-    public static By ordertype=By.xpath("//span[@title='LIMIT']");
+    public static By ordertype=By.id("bot_config_form_config_order_type");
     public static By dealref=By.id("bot_config_form_config_deal_ref");
     public static By submitbtn=By.xpath("//span[text()='Submit']");
     public static By closebtn=By.xpath("//button[@aria-label='Close']");

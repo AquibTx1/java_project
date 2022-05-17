@@ -15,8 +15,7 @@ import utilities.KeywordUtil;
 import java.util.HashMap;
 
 import static modules.NitroXActions.NitroXBotsAction.totalfiltered;
-import static utilities.KeywordUtil.waitForInVisibile;
-import static utilities.KeywordUtil.waitForVisible;
+import static utilities.KeywordUtil.*;
 
 public class NitroXBotsSteps {
 
@@ -96,6 +95,28 @@ public class NitroXBotsSteps {
         }
 
     }
+    @When("Input the Time, Quantity and Submit the Order")
+    public void input_the_time_quantity_and_submit_the_order() {
+        // Write code here that turns the phrase above into concrete actions
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.inputOrderAmount(dataMap);
+                NitroXBotsAction.inputOrderType(dataMap);
+                NitroXBotsAction.clickSubmit();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
     @Then("Verify Bot Count in Total Filtered")
     public void verifyBotCountInTotalFiltered() {
 
@@ -105,9 +126,8 @@ public class NitroXBotsSteps {
             try {
 
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                //finalbotvalue=NitroXBotsAction.getBotafterBuyorSell();
+                delay(4000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
-                //Assert.assertNotEquals(NitroXBotsAction.CountTotalFiltered());
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -120,24 +140,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
-    @When("Input the Time, Quantity and Submit the Order")
-    public void input_the_time_quantity_and_submit_the_order() {
-        // Write code here that turns the phrase above into concrete actions
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
 
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                e.printStackTrace();
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-        }
-        if (BaseStepDefinitions.getSITflag()) {
-            BaseStepDefinitions.increaseCounter();
-        }
-    }
 
 }
