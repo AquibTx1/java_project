@@ -49,6 +49,15 @@ public class NitroXBotsPage {
     public static By stopbtn=By.xpath("//span[text()='Stop']");
     public static By closeframebtn=By.xpath("//span[text()='Closed']");
     public static By startnewbot=By.xpath("//div[text()='Start New Bot']");
-    public static By botsuccessMsg=By.xpath("//div[text()='Start New Bot']");
+    public static By botsuccessMsg=By.xpath("//div[text()='1 Bot(s) were suceessfully started.']");
+
     //div[text()='Start New Bot']
+    /*****
+     *
+     * SNIPER METHOD****************************************?
+
+     */
+    public static By totalamount=By.id("bot_config_form_config_totalAmount");
+    public static By side=By.id("bot_config_form_config_side");
+
 }

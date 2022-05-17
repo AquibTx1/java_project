@@ -31,8 +31,8 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                totalbotbefore=NitroXBotsAction.getCurrentBotbeforeBuyorSell();
-
+                totalbotbefore=NitroXBotsAction.getTotalFilteredBots();
+                System.out.println("Total Bots Befoe Buying"+totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -104,12 +104,9 @@ public class NitroXBotsSteps {
         } else {
             try {
 
-                finalbotvalue=NitroXBotsAction.getBotafterBuyorSell();
-                if(totalbotbefore==finalbotvalue+1)
-                {
-                   // Assert.assertTrue();
-                }
-
+                NitroXBotsAction.getBotSubmitSuccessMsg();
+                //finalbotvalue=NitroXBotsAction.getBotafterBuyorSell();
+                Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
                 //Assert.assertNotEquals(NitroXBotsAction.CountTotalFiltered());
 
             } catch (Throwable e) {

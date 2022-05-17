@@ -752,7 +752,6 @@ public class KeywordUtil extends GlobalUtil {
 	public static void pressBackSpace(By locator) {
 		WebElement elm = waitForVisible(locator);
 		elm.sendKeys(Keys.BACK_SPACE);
-
 	}
 
 	/**

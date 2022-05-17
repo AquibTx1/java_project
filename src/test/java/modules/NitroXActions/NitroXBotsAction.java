@@ -70,15 +70,14 @@ public class NitroXBotsAction {
     public static void inputMinPrice(HashMap<String,String>dataMap) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.minprice,"Min Price  Values Click");
-        KeywordUtil.pressBackSpace(NitroXBotsPage.minprice);
+      //  KeywordUtil.clearInput(NitroXBotsPage.minprice);
         KeywordUtil.inputText(NitroXBotsPage.minprice, dataMap.get("Min Price"), "Min Amount value entered ");
     }
 
     public static void inputMaxPrice(HashMap<String,String>dataMap) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.maxprice,"Max Price Values Click");
-        KeywordUtil.pressBackSpace(NitroXBotsPage.maxprice);
-
+        KeywordUtil.clearInput(NitroXBotsPage.maxprice);
         KeywordUtil.inputText(NitroXBotsPage.maxprice, dataMap.get("Max Price"), "Max Amount value entered ");
     }
 
@@ -133,14 +132,14 @@ public class NitroXBotsAction {
         waitForVisible(NitroXBotsPage.startnewbot);
     }
 
-    public static int CountTotalFiltered() throws Exception
-    {
-       // int totalbots=KeywordUtil.verifyElementSize(NitroXBotsPage.botName,);
-        //return
-        String totalBots = getElementText(NitroXBotsPage.totalfilered);
-        LogUtil.infoLog(thisClass, "Total Bots Count=" + totalBots);
-        return Integer.parseInt(totalBots);
-    }
+//    public static int CountTotalFiltered() throws Exception
+//    {
+//       // int totalbots=KeywordUtil.verifyElementSize(NitroXBotsPage.botName,);
+//        //return
+//        String totalBots = getElementText(NitroXBotsPage.totalfilered);
+//        LogUtil.infoLog(thisClass, "Total Bots Count=" + totalBots);
+//        return Integer.parseInt(totalBots);
+//    }
 
     public static void getBotSubmitSuccessMsg() throws Exception
     {
@@ -157,7 +156,7 @@ public class NitroXBotsAction {
         return time;
     }
 
-    public static int getCurrentBotbeforeBuyorSell()
+    public static int getTotalFilteredBots()
     {
         String getTotal=getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
         totalfiltered= Integer.parseInt(getTotal);

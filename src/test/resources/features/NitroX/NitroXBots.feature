@@ -12,7 +12,7 @@ Feature: Test Bots features on NitroX HomePage
     And Verify Bots Before Buying or Selling
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
-    And Input the Time, Quantity and Submit the Order
+   And Input the Time, Quantity and Submit the Order
     Then Verify Bot Count in Total Filtered
     Examples:
       | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
