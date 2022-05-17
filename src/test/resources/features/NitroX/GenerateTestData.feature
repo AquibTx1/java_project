@@ -20,4 +20,4 @@ Feature: Test buys sell features
     And Create "<Number>" buy Order less than Market Price
     Examples:
       | SheetName     | TestCaseID                  | Number |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_013 | 4      |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_013 | 2      |

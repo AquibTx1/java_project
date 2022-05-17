@@ -392,7 +392,7 @@ public class NitroXHomeSteps {
             try {
                 //NitroXHome.InputBuyOrderAskPrice();
                 NitroXHome.scrollToAskPrices();
-                NitroXHome.InputthePrice(NitroXHome.getHigeshtAskPrice());
+                NitroXHome.InputthePrice(NitroXHome.getHighestAskPrice());
                 NitroXHome.InputCustomQuantity(dataMap);
 
             } catch (Throwable e) {
@@ -458,7 +458,7 @@ public class NitroXHomeSteps {
             try {
                 //NitroXHome.InputBuyOrderPrice();
                 NitroXHome.scrollToAskPrices();
-                NitroXHome.InputthePrice(NitroXHome.getHigeshtAskPrice() + generateRandomNumber20to40());
+                NitroXHome.InputthePrice(NitroXHome.getHighestAskPrice() + generateRandomNumber20to40());
                 NitroXHome.InputCustomQuantity(dataMap);
 
             } catch (Throwable e) {
@@ -655,19 +655,21 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXHome.InputOpenOrderBidPrice();
-                NitroXHome.InputCustomQuantity(dataMap);
-                NitroXHome.ClickBuyButton();
+                for (int i = 0; i < Integer.parseInt(arg0); i++) {
+                    NitroXHome.InputthePrice(NitroXHome.getLowestAskPrice() - generateRandomNumber20to40());
+                    NitroXHome.InputCustomQuantity(dataMap);
+                    NitroXHome.ClickBuyButton();
 
-                //Verify Order Submitted Success Message
-                NitroXHome.getOrderSubmittedSuccessMsg();
+                    //Verify Order Submitted Success Message
+                    NitroXHome.getOrderSubmittedSuccessMsg();
 
-                //verify order moves to open state
-                NitroXHome.scrollToOrdersPlaced();
-                NitroXHome.waitForInvisibleOrderSubmittedMsg();
-                Assert.assertEquals(NitroXHome.getSideofNthOpenOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
-                Assert.assertEquals(NitroXHome.getPriceofNthOpenOrder(1), NitroXHome.getOrderFormPrice());
-                Assert.assertEquals(NitroXHome.getQuantityofNthOpenOrder(1), NitroXHome.getOrderFormQuantity());
+                    //verify order moves to open state
+                    NitroXHome.scrollToOrdersPlaced();
+                    NitroXHome.waitForInvisibleOrderSubmittedMsg();
+                    Assert.assertEquals(NitroXHome.getSideofNthOpenOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
+                    Assert.assertEquals(NitroXHome.getPriceofNthOpenOrder(1), NitroXHome.getOrderFormPrice());
+                    Assert.assertEquals(NitroXHome.getQuantityofNthOpenOrder(1), NitroXHome.getOrderFormQuantity());
+                }
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

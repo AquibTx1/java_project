@@ -258,19 +258,20 @@ public class NitroXHome {
     public static double getHighestBidPrice() throws InterruptedException {
         //wait for bid prices table to appear
         waitForVisible(NitroXHomePage.highestBidPrice);
-
-//        String price = getElementText(NitroXHomePage.highestBidPrice);
-//        //replace comma in bid price
-//        price = price.replace(",", "");
-
         double highestBidPrice = Double.parseDouble(getElementText(NitroXHomePage.highestBidPrice).replace(",", ""));
         LogUtil.infoLog(thisClass, "Highest bid price=" + highestBidPrice);
         return highestBidPrice;
     }
 
-    public static double getHigeshtAskPrice()
-    {
+    public static double getLowestAskPrice() {
+        waitForVisible(NitroXHomePage.lowestAskPrice);
+        double lowestAskPrice = Double.parseDouble(getElementText(NitroXHomePage.lowestAskPrice).replace(",", ""));
+        LogUtil.infoLog(thisClass, "Lowest ask price=" + lowestAskPrice);
+        return lowestAskPrice;
+    }
 
+    public static double getHighestAskPrice()
+    {
         waitForVisible(NitroXHomePage.orderBookprice);
         double orderBookprice= Double.parseDouble((getElementText(NitroXHomePage.orderBookprice).replace(",", "")));
         LogUtil.infoLog(thisClass, "Highest Ask price=" + orderBookprice);
