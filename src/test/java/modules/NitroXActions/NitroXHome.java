@@ -61,7 +61,7 @@ public class NitroXHome {
     public static void selectQuoteCurrency(HashMap<String, String> dataMap) throws Exception {
         KeywordUtil.inputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), dataMap.get("Quote") + " : Quote Currency");
         delay(1000);
-        pressTabKey(NitroXHomePage.Quotecurrency);
+        pressEnter(NitroXHomePage.Quotecurrency);
     }
 
     public String getBaseCurrency() {
@@ -116,8 +116,12 @@ public class NitroXHome {
         KeywordUtil.inputText(NitroXHomePage.Quantity, Double.toString(quantity), "Price Entered");
     }
 
-    public static void CreateOrder() {
+    public static void ClickBuyButton() {
         KeywordUtil.click(NitroXHomePage.Buybtn, "Buy order Clicked");
+    }
+
+    public static void ClickSellButton() {
+        KeywordUtil.click(NitroXHomePage.sellbtn, "Buy order Clicked");
     }
 
 
@@ -137,6 +141,10 @@ public class NitroXHome {
 
     public static void InputCustomQuantity(HashMap<String, String> dataMap) {
         KeywordUtil.inputText(NitroXHomePage.Quantity, dataMap.get("Quantity"), "Entered the Quantity");
+    }
+
+    public static void ClearOrderQuantity() {
+        KeywordUtil.clearInputUsingKeys(NitroXHomePage.Quantity);
     }
 
     public static void waitForOpenOrdersTable() {
@@ -267,6 +275,11 @@ public class NitroXHome {
         double orderBookprice= Double.parseDouble((getElementText(NitroXHomePage.orderBookprice).replace(",", "")));
         LogUtil.infoLog(thisClass, "Highest Ask price=" + orderBookprice);
         return orderBookprice;
+    }
+
+    //input the order price
+    public static void ClearInputPrice() {
+        KeywordUtil.clearInputUsingKeys(NitroXHomePage.price);
     }
 
     //input the order price
