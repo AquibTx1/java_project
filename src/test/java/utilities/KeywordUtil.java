@@ -33,6 +33,7 @@ public class KeywordUtil extends GlobalUtil {
 	 */
 	public static String cucumberTagName;
 	private static final int DEFAULT_WAIT_SECONDS = 15;
+    public static String os = System.getProperty("os.name").toLowerCase();
 	/**
 	 * The constant FAIL.
 	 */
@@ -829,6 +830,22 @@ public class KeywordUtil extends GlobalUtil {
 		element = waitForVisible(locator);
 		return element.getAttribute(VALUE).isEmpty();
 	}
+
+    /**
+     * Clear input using keyboard keys.
+     *
+     * @param locator the locator
+     * @return boolean
+     */
+    public static void clearInputUsingKeys(By locator) {
+        WebElement elm = waitForVisible(locator);
+        if (os.contains("Mac")) {
+            elm.sendKeys(Keys.chord(Keys.COMMAND, "a"));
+        } else {
+            elm.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        }
+        elm.sendKeys(Keys.DELETE);
+    }
 
 	/**
 	 * Verify css property boolean.
