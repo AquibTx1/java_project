@@ -1,15 +1,17 @@
 FROM amd64/maven:3.5.4-jdk-8
-# FROM maven:3.5.4-jdk-8
 
 ENV SENARIO=
 
 WORKDIR /code
 COPY . .
 
-RUN apt-get update
-RUN apt-get install libglib2.0-0
+RUN apt update
+RUN apt install libglib2.0-0
+
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN apt install -y ./google-chrome-stable_current_amd64.deb
 
 RUN mvn compile
 
-# CMD ["sh", "-c", "/code/scripts/test.sh ${SENARIO}"]
-CMD ["bash"]
+CMD ["sh", "-c", "/code/scripts/test.sh ${SENARIO}"]
+# CMD ["bash"]
