@@ -14,14 +14,37 @@ import utilities.KeywordUtil;
 
 import java.util.HashMap;
 
+import static modules.NitroXActions.NitroXBotsAction.totalfiltered;
 import static utilities.KeywordUtil.waitForInVisibile;
 import static utilities.KeywordUtil.waitForVisible;
 
 public class NitroXBotsSteps {
 
 
-
+    public static  int totalbotbefore,finalbotvalue;
     public static HashMap<String, String> dataMap = BaseStepDefinitions.dataMap;
+
+    @And("Verify Bots Before Buying or Selling")
+    public void verifyCountNumberOfBotsBeforeBuyingSelling() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                totalbotbefore=NitroXBotsAction.getCurrentBotbeforeBuyorSell();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
 
     @And("Click Start Bot ,Select the Service,Method and Input Bot Quantity")
     public void clickStartBotSelectTheServiceMethodAndInputBotQuantity() {
@@ -33,7 +56,6 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.waitforBotWindow();
                 NitroXBotsAction.inputService(dataMap);
                 NitroXBotsAction.inputMethod(dataMap);
-
                 NitroXBotsAction.inputBotQuantity(dataMap);
 
             } catch (Throwable e) {
@@ -74,7 +96,6 @@ public class NitroXBotsSteps {
         }
 
     }
-
     @Then("Verify Bot Count in Total Filtered")
     public void verifyBotCountInTotalFiltered() {
 
@@ -83,6 +104,13 @@ public class NitroXBotsSteps {
         } else {
             try {
 
+                finalbotvalue=NitroXBotsAction.getBotafterBuyorSell();
+                if(totalbotbefore==finalbotvalue+1)
+                {
+                   // Assert.assertTrue();
+                }
+
+                //Assert.assertNotEquals(NitroXBotsAction.CountTotalFiltered());
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -95,8 +123,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
-
-
     @When("Input the Time, Quantity and Submit the Order")
     public void input_the_time_quantity_and_submit_the_order() {
         // Write code here that turns the phrase above into concrete actions
@@ -104,7 +130,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                System.out.println("Hello");
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -116,6 +142,5 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
-
 
 }

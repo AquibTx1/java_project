@@ -2,19 +2,20 @@ package modules.NitroXActions;
 
 import NitroXPages.NitroXBotsPage;
 import NitroXPages.NitroXHomePage;
+import org.openqa.selenium.By;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
 import java.util.HashMap;
 
-import static utilities.KeywordUtil.pressEnter;
-import static utilities.KeywordUtil.waitForVisible;
+import static utilities.KeywordUtil.*;
 
 public class NitroXBotsAction {
 
     static Class thisClass = NitroXBotsAction.class;
-    static String firstbotid,firsttradingAccount;
+    static String getTotal, firstbotid,firsttradingAccount;
 
+   public static int totalfiltered = 0;
 
     public static void clickStart() throws Exception
     {
@@ -132,10 +133,40 @@ public class NitroXBotsAction {
         waitForVisible(NitroXBotsPage.startnewbot);
     }
 
-    public static void CountTotalFiltered(int total)
+    public static int CountTotalFiltered() throws Exception
     {
-        //int totalbots=KeywordUtil.verifyElementSize(NitroXBotsPage.botName,);
+       // int totalbots=KeywordUtil.verifyElementSize(NitroXBotsPage.botName,);
         //return
+        String totalBots = getElementText(NitroXBotsPage.totalfilered);
+        LogUtil.infoLog(thisClass, "Total Bots Count=" + totalBots);
+        return Integer.parseInt(totalBots);
+    }
+
+    public static void getBotSubmitSuccessMsg() throws Exception
+    {
+        waitForVisible(NitroXBotsPage.botsuccessMsg);
+        LogUtil.infoLog(thisClass, "Bot successfully Submitted message displayed.");
+
+    }
+
+    public static String getBotStartTime() throws Exception
+    {
+        waitForVisible(NitroXBotsPage.starttime);
+        String time=getElementText(By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[7]"));
+        System.out.println(time);
+        return time;
+    }
+
+    public static int getCurrentBotbeforeBuyorSell()
+    {
+        String getTotal=getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
+        totalfiltered= Integer.parseInt(getTotal);
+        return  totalfiltered;
+    }
+
+    public static int getBotafterBuyorSell(){
+         getTotal=getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
+        return  Integer.parseInt(getTotal);
     }
 
 }
