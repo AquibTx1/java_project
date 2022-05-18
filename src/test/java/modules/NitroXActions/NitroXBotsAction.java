@@ -48,6 +48,7 @@ public class NitroXBotsAction {
     {
         KeywordUtil.inputText(NitroXBotsPage.orderdirection, dataMap.get("Order Direction"), "BUY or Sell Order field selected ");
         pressEnter(NitroXBotsPage.orderdirection);
+        delay(2000);
     }
 
     public static void inputMinTime(HashMap<String,String>dataMap) throws Exception
@@ -137,15 +138,6 @@ public class NitroXBotsAction {
         waitForVisible(NitroXBotsPage.startnewbot);
     }
 
-//    public static int CountTotalFiltered() throws Exception
-//    {
-//       // int totalbots=KeywordUtil.verifyElementSize(NitroXBotsPage.botName,);
-//        //return
-//        String totalBots = getElementText(NitroXBotsPage.totalfilered);
-//        LogUtil.infoLog(thisClass, "Total Bots Count=" + totalBots);
-//        return Integer.parseInt(totalBots);
-//    }
-
     public static void getBotSubmitSuccessMsg() throws Exception
     {
         waitForVisible(NitroXBotsPage.botsuccessMsg);
@@ -174,26 +166,31 @@ public class NitroXBotsAction {
         KeywordUtil.click(NitroXBotsPage.clickstarttime,"Sorted Based on Start Time");
         delay(2000);
         KeywordUtil.click(NitroXBotsPage.clickstarttime,"Sorted Based on Start Time");
+        LogUtil.infoLog(thisClass, "sorted the Start Time to get Latest Bot Created");
     }
     public static void inputTrigerCondtion()
     {
         trrigervalue=KeywordUtil.generateRandomNumber();
-        KeywordUtil.inputText(NitroXBotsPage.trrigercond,trrigervalue,"Entered ");
+        KeywordUtil.inputText(NitroXBotsPage.trrigercond,trrigervalue,"Entered Trigger ");
+        LogUtil.infoLog(thisClass, "Entered the Triggered");
     }
     public static void selectLatestBotName()
     {
         KeywordUtil.click(NitroXBotsPage.botName,  "Total Filtered Bots  Clicked");
+        LogUtil.infoLog(thisClass, "Clicked the Latest Bot Created");
     }
     public static void selectConfig()
     {
 
         KeywordUtil.click(NitroXBotsPage.config,  "Total Filtered Bots  Clicked");
+
+        LogUtil.infoLog(thisClass, "Clicked the config");
         //waitForVisible(NitroXBotsPage.trigger);
     }
     public static String getTrigerConditionvalue() {
 
         tvalue= KeywordUtil.getElementText(NitroXBotsPage.trrigger);
-        LogUtil.infoLog(thisClass, "Ask price" + tvalue);
+        LogUtil.infoLog(thisClass, "Trigger value is" + tvalue);
         return tvalue;
     }
 }
