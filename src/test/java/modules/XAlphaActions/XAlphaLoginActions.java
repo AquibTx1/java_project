@@ -24,7 +24,16 @@ public class XAlphaLoginActions extends KeywordUtil {
         waitForVisible(XAlphaLoginPage.logoutbtn);
     }
 
+    public static void waitForLoginMsg() {
+        waitForVisible(XAlphaLoginPage.loginMsg);
+    }
+
     public static String getLoginMsg() {
         return getElementText(XAlphaLoginPage.loginMsg);
     }
+
+    public static void waitForInvisibleLoginMsg() {
+        waitForInVisibile(XAlphaLoginPage.loginMsg);
+    }
+
 }
