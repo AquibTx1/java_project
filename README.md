@@ -38,3 +38,23 @@ server {
     ...
 }
 ```
+
+# Docker Commands
+```sh
+# pull latest image
+docker pull ecr.altono.app/altonomy/qa-bdd
+
+# Run all tests
+docker run -it --name <TEST_NAME> ecr.altono.app/altonomy/qa-bdd
+
+# Run with specific test scenario
+docker run -it --name <TEST_NAME> -e SCENARIO=<SCENARIO_NAME> ecr.altono.app/altonomy/qa-bdd
+
+# Run with test scenario and export report
+docker run -it --name <TEST_NAME> -e SCENARIO=<SCENARIO_NAME> -v <LOCAL_PATH>:/code/ExecutionReports ecr.altono.app/altonomy/qa-bdd
+
+# Example: run all tests
+docker run -it --name test_all -e SCENARIO= -v ~/0_all_scenarios/ExecutionReports:/code/ExecutionReports -v ~/0_all_scenarios/target:/code/target ecr.altono.app/altonomy/qa-bdd
+
+# gracefully detach: ctrl + p + q
+```
