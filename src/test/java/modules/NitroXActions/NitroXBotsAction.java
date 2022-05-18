@@ -3,18 +3,20 @@ package modules.NitroXActions;
 import NitroXPages.NitroXBotsPage;
 import NitroXPages.NitroXHomePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static utilities.KeywordUtil.*;
 
 public class NitroXBotsAction {
 
     static Class thisClass = NitroXBotsAction.class;
-    static String getTotal, firstbotid,firsttradingAccount;
-
+    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue;
    public static int totalfiltered = 0;
 
     public static void clickStart() throws Exception
@@ -104,7 +106,7 @@ public class NitroXBotsAction {
         KeywordUtil.click(NitroXBotsPage.closebtn,  "Bot Exec close Button Clicked");
     }
 
-    public static void getTotalBots() throws Exception
+    public static void selecttotalBots() throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.totalfilered,  "Total Filtered Bots  Clicked");
     }
@@ -164,10 +166,34 @@ public class NitroXBotsAction {
         totalfiltered= Integer.parseInt(getTotal);
         return  totalfiltered;
     }
-
     public static int getBotafterBuyorSell(){
         getTotal=getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
         return  Integer.parseInt(getTotal);
     }
+    public static void sortStartTime() throws InterruptedException {
+        KeywordUtil.click(NitroXBotsPage.clickstarttime,"Sorted Based on Start Time");
+        delay(2000);
+        KeywordUtil.click(NitroXBotsPage.clickstarttime,"Sorted Based on Start Time");
+    }
+    public static void inputTrigerCondtion()
+    {
+        trrigervalue=KeywordUtil.generateRandomNumber();
+        KeywordUtil.inputText(NitroXBotsPage.trrigercond,trrigervalue,"Entered ");
+    }
+    public static void selectLatestBotName()
+    {
+        KeywordUtil.click(NitroXBotsPage.botName,  "Total Filtered Bots  Clicked");
+    }
+    public static void selectConfig()
+    {
 
+        KeywordUtil.click(NitroXBotsPage.config,  "Total Filtered Bots  Clicked");
+        //waitForVisible(NitroXBotsPage.trigger);
+    }
+    public static String getTrigerConditionvalue() {
+
+        tvalue= KeywordUtil.getElementText(NitroXBotsPage.trrigger);
+        LogUtil.infoLog(thisClass, "Ask price" + tvalue);
+        return tvalue;
+    }
 }

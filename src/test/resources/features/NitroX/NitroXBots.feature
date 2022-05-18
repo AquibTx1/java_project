@@ -11,9 +11,12 @@ Feature: Test Bots features on NitroX HomePage
     And Read test data "<SheetName2>" and "<TestCaseID2>" from Excel file
     And Verify Bots Before Buying or Selling
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
-    And Select Buy Order and Select the MinTime and MaxTime Break
-   And Input the Time, Quantity and Submit the Order
+#    And Select Buy Order and Select the MinTime and MaxTime Break
+#   And Input the Time, Quantity and Submit the Order
     Then Verify Bot Count in Total Filtered
+    And Click total filtered bots and click the detail bot
+    Then Verify new Bot in detail and config
+
     Examples:
       | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_024 |

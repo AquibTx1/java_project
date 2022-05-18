@@ -51,11 +51,22 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
                 NitroXBotsAction.inputService(dataMap);
                 NitroXBotsAction.inputMethod(dataMap);
                 NitroXBotsAction.inputBotQuantity(dataMap);
+                waitForVisible(NitroXBotsPage.orderdirection);
+                NitroXBotsAction.inputOrderDirection(dataMap);
+                NitroXBotsAction.inputMinTime(dataMap);
+                NitroXBotsAction.inputMaxTime(dataMap);
+                NitroXBotsAction.inputMinPrice(dataMap);
+                NitroXBotsAction.inputMaxPrice(dataMap);
+                NitroXBotsAction.inputOrderAmount(dataMap);
+                NitroXBotsAction.inputOrderType(dataMap);
+                NitroXBotsAction.inputTrigerCondtion();
+                NitroXBotsAction.clickSubmit();
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -126,9 +137,9 @@ public class NitroXBotsSteps {
             try {
 
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(4000);
+                delay(2000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
-
+                System.out.println("Total Bots now "+totalfiltered);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -142,4 +153,51 @@ public class NitroXBotsSteps {
     }
 
 
+    @And("Click total filtered bots and click the detail bot")
+    public void clickTotalFilteredBotsAndClickTheDetailBot() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+               NitroXBotsAction.selecttotalBots();
+               NitroXBotsAction.sortStartTime();
+               NitroXBotsAction.selectLatestBotName();
+               NitroXBotsAction.selectConfig();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @Then("Verify new Bot in detail and config")
+    public void verifyNewBotInDetaiilAndConfig() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(NitroXBotsPage.trrigger);
+                Assert.assertEquals(NitroXBotsAction.getTrigerConditionvalue(),NitroXBotsAction.trrigervalue);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+
+    }
 }
