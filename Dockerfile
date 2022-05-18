@@ -1,6 +1,6 @@
 FROM amd64/maven:3.5.4-jdk-8
 
-ENV SENARIO=
+ENV SCENARIO=
 
 WORKDIR /code
 COPY . .
@@ -13,5 +13,5 @@ RUN apt install -y ./google-chrome-stable_current_amd64.deb
 
 RUN mvn compile
 
-CMD ["sh", "-c", "/code/scripts/test.sh ${SENARIO}"]
+CMD ["sh", "-c", "/code/scripts/test.sh ${SCENARIO}"]
 # CMD ["bash"]
