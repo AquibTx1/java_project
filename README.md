@@ -54,7 +54,7 @@ docker run -it --name <TEST_NAME> -e SCENARIO=<SCENARIO_NAME> ecr.altono.app/alt
 docker run -it --name <TEST_NAME> -e SCENARIO=<SCENARIO_NAME> -v <LOCAL_PATH>:/code/ExecutionReports ecr.altono.app/altonomy/qa-bdd
 
 # Example: run all tests
-docker run -it --name test_all -e SCENARIO= -v ~/All_Scenario/ExecutionReports:/code/ExecutionReports -v ~/All_Scenario/target:/code/target ecr.altono.app/altonomy/qa-bdd
+docker run -it --name test_all -e SCENARIO= -v ~/0_all_scenarios/ExecutionReports:/code/ExecutionReports -v ~/0_all_scenarios/target:/code/target ecr.altono.app/altonomy/qa-bdd
 
 # gracefully detach: ctrl + p + q
 ```
