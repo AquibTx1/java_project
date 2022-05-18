@@ -1,6 +1,6 @@
 Feature: Test login feature
 
-  @NitroX
+  @NitroXLogin
   Scenario Outline: NitroX-001_Verify login feature with valid credentials
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Navigate to the url
@@ -11,7 +11,7 @@ Feature: Test login feature
       | SheetName   | TestCaseID                  |
       | NitroXLogin | QA_TestCase_Auto_NitroX_001 |
 
-  @NitroX
+  @NitroXLogin
   Scenario Outline: NitroX-002-003_Verify login feature with invalid credentials
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Navigate to the url
