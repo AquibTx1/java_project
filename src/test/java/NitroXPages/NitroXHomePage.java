@@ -6,6 +6,7 @@ public class NitroXHomePage {
 
     //Orderbook
     public static By highestBidPrice = By.xpath("//span[text()='Orderbook ']/following::table[2]/tbody/tr[01]/td[02]");
+    public static By lowestAskPrice = By.xpath("(//span[text()='Orderbook ']/following::table[1]/tbody)//child::tr[last()]/td[02]");
     public static By bidPriceHeading = By.xpath("//span[text()='Spread:']");
 
     public static By askPriceHeading = By.xpath("//span[text()='Orderbook ']");

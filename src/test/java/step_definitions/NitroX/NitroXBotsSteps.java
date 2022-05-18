@@ -14,14 +14,36 @@ import utilities.KeywordUtil;
 
 import java.util.HashMap;
 
-import static utilities.KeywordUtil.waitForInVisibile;
-import static utilities.KeywordUtil.waitForVisible;
+import static modules.NitroXActions.NitroXBotsAction.totalfiltered;
+import static utilities.KeywordUtil.*;
 
 public class NitroXBotsSteps {
 
 
-
+    public static  int totalbotbefore,finalbotvalue;
     public static HashMap<String, String> dataMap = BaseStepDefinitions.dataMap;
+
+    @And("Verify Bots Before Buying or Selling")
+    public void verifyCountNumberOfBotsBeforeBuyingSelling() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                totalbotbefore=NitroXBotsAction.getTotalFilteredBots();
+                System.out.println("Total Bots Befoe Buying"+totalbotbefore);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
 
     @And("Click Start Bot ,Select the Service,Method and Input Bot Quantity")
     public void clickStartBotSelectTheServiceMethodAndInputBotQuantity() {
@@ -33,7 +55,6 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.waitforBotWindow();
                 NitroXBotsAction.inputService(dataMap);
                 NitroXBotsAction.inputMethod(dataMap);
-
                 NitroXBotsAction.inputBotQuantity(dataMap);
 
             } catch (Throwable e) {
@@ -74,15 +95,16 @@ public class NitroXBotsSteps {
         }
 
     }
-
-    @Then("Verify Bot Count in Total Filtered")
-    public void verifyBotCountInTotalFiltered() {
-
+    @When("Input the Time, Quantity and Submit the Order")
+    public void input_the_time_quantity_and_submit_the_order() {
+        // Write code here that turns the phrase above into concrete actions
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
+                NitroXBotsAction.inputOrderAmount(dataMap);
+                NitroXBotsAction.inputOrderType(dataMap);
+                NitroXBotsAction.clickSubmit();
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -95,16 +117,18 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+    @Then("Verify Bot Count in Total Filtered")
+    public void verifyBotCountInTotalFiltered() {
 
-
-    @When("Input the Time, Quantity and Submit the Order")
-    public void input_the_time_quantity_and_submit_the_order() {
-        // Write code here that turns the phrase above into concrete actions
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                System.out.println("Hello");
+
+                NitroXBotsAction.getBotSubmitSuccessMsg();
+                delay(4000);
+                Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
