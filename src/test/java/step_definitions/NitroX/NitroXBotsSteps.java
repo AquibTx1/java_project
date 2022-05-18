@@ -137,11 +137,10 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(1000);
+                delay(3000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
-                System.out.println("Total Bots now "+totalfiltered);
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

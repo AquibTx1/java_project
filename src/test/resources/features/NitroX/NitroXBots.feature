@@ -2,10 +2,10 @@ Feature: Test Bots features on NitroX HomePage
 
   Background: Login to application
     Given Login to NitroX app with valid login credentials
-    #When Choose Mode, Trading Account, Base and Quote Currency
+
 
   @NitroXBot
-  Scenario Outline: NitroXHome-024_Verify Bot and start Buy execution
+  Scenario Outline: NitroXHome-024_Verify Bot and start New Buy Execution Bot
     Given Read test data "<SheetName1>" and "<TestCaseID1>" from Excel file
     When Choose Mode, Trading Account, Base and Quote Currency
     And Read test data "<SheetName2>" and "<TestCaseID2>" from Excel file
@@ -22,7 +22,7 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_024 |
 
   @NitroXBot
-  Scenario Outline: NitroXHome-025_Verify Bot and start Sell Execution
+  Scenario Outline: NitroXHome-025_Verify Bot and Start new Sell Execution Bot
     Given Read test data "<SheetName1>" and "<TestCaseID1>" from Excel file
     When Choose Mode, Trading Account, Base and Quote Currency
     And Read test data "<SheetName2>" and "<TestCaseID2>" from Excel file
@@ -36,3 +36,4 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_025|
+

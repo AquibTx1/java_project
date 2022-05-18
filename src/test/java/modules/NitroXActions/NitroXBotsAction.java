@@ -46,9 +46,11 @@ public class NitroXBotsAction {
 
     public static void inputOrderDirection(HashMap<String,String>dataMap) throws Exception
     {
+        KeywordUtil.clearInputUsingKeys(NitroXBotsPage.orderdirection);
+        delay(2000);
         KeywordUtil.inputText(NitroXBotsPage.orderdirection, dataMap.get("Order Direction"), "BUY or Sell Order field selected ");
         pressEnter(NitroXBotsPage.orderdirection);
-        delay(2000);
+
     }
 
     public static void inputMinTime(HashMap<String,String>dataMap) throws Exception
@@ -183,7 +185,6 @@ public class NitroXBotsAction {
     {
 
         KeywordUtil.click(NitroXBotsPage.config,  "Total Filtered Bots  Clicked");
-
         LogUtil.infoLog(thisClass, "Clicked the config");
         //waitForVisible(NitroXBotsPage.trigger);
     }
