@@ -1241,6 +1241,12 @@ public class KeywordUtil extends GlobalUtil {
         return dtf.format(now) + " +05:30";
     }
 
+    public static String generateRandomNumber() {
+        long a=Math.round(Math.random()*100000000l);
+        return Long.toString(a);
+
+    }
+
     /**
      * Verify current date input boolean.
      *
@@ -1486,5 +1492,6 @@ class TestStepFailedException extends Exception {
         JavascriptExecutor js = (JavascriptExecutor) GlobalUtil.getDriver();
         js.executeScript("window.scrollBy(0,600);", Element);
     }
+    
 
 }
