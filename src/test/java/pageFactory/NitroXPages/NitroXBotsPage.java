@@ -57,6 +57,14 @@ public class NitroXBotsPage {
     public static By startnewbot=By.xpath("//div[text()='Start New Bot']");
     public static By botsuccessMsg=By.xpath("//div[text()='1 Bot(s) were suceessfully started.']");
 
+    public static By closeconfigbtn=By.xpath("(//button[@class='ant-modal-close'])[2]");
+
+    public static By closebotdetailbtn=By.xpath("(//button[@class='ant-modal-close'])[1]");
+
+    public static By DealtOrderTab = By.id("rc-tabs-0-tab-dealt");
+
+
+
     //div[text()='Start New Bot']
     /*****
      *
@@ -65,5 +73,7 @@ public class NitroXBotsPage {
      */
     public static By totalamount=By.id("bot_config_form_config_totalAmount");
     public static By side=By.id("bot_config_form_config_side");
-
+    public static By minprice_sniper=By.id("bot_config_form_config_minPrice");
+    public static By maxprice_sniper=By.id("bot_config_form_config_minPrice");
+    public static By maxSlippageThreshold_sniper=By.id("bot_config_form_config_maxSlippageThreshold");
 }
