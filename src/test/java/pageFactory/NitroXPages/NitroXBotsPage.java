@@ -1,4 +1,4 @@
-package NitroXPages;
+package pageFactory.NitroXPages;
 
 import org.openqa.selenium.By;
 
@@ -37,13 +37,13 @@ public class NitroXBotsPage {
     public static By totalfilered=By.xpath("//div[text()='Total (Filtered)']");
 
    // Detailed Bots Frame
-    public static By serviceid=By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[2]");
+    public static By serviceid=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[2]");
 
-    public static By botid=By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[3]");
-    public static By botName=By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[4]");
-    public static By status=By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[5]");
-    public static By progress=By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[6]");
-    public static By starttime=By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[7]");
+    public static By botid=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[3]");
+    public static By botName=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[4]");
+    public static By status=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[5]");
+    public static By progress=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[6]");
+    public static By starttime=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[7]");
     public static By config=By.xpath("//div[text()='Config']");
     public static By trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[7]/td[3]");
     public static By clickstarttime=By.xpath(" //span[text()='Start Time']");

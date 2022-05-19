@@ -27,7 +27,7 @@ Feature: Test Bots features on NitroX HomePage
     When Choose Mode, Trading Account, Base and Quote Currency
     And Read test data "<SheetName2>" and "<TestCaseID2>" from Excel file
     And Verify total Bots Before starting Sell execution
-    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Sell Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
     Then Verify Bot Count in Total Filtered
@@ -35,5 +35,5 @@ Feature: Test Bots features on NitroX HomePage
     Then Verify new Bot in detail and config
     Examples:
       | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_025|
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_025 |
 

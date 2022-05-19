@@ -1,6 +1,6 @@
 package modules.NitroXActions;
 
-import NitroXPages.NitroXHomePage;
+import pageFactory.NitroXPages.NitroXHomePage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import utilities.KeywordUtil;

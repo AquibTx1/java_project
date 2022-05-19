@@ -1,20 +1,16 @@
 package step_definitions.NitroX;
 
-import NitroXPages.NitroXHomePage;
-import NitroXPages.NitroXLoginPage;
+import pageFactory.NitroXPages.NitroXHomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import javassist.compiler.ast.Keyword;
 import modules.NitroXActions.NitroXHome;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
-import utilities.ConfigReader;
 import utilities.GlobalUtil;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
-import java.time.Clock;
 import java.util.HashMap;
 import java.util.Locale;
 

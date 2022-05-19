@@ -1,6 +1,6 @@
 package step_definitions;
 
-import NitroXPages.NitroXLoginPage;
+import pageFactory.NitroXPages.NitroXLoginPage;
 import io.cucumber.java.en.Given;
 import org.testng.Assert;
 import utilities.*;

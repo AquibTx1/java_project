@@ -1,15 +1,11 @@
 package modules.NitroXActions;
 
-import NitroXPages.NitroXBotsPage;
-import NitroXPages.NitroXHomePage;
+import pageFactory.NitroXPages.NitroXBotsPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
 import java.util.HashMap;
-import java.util.List;
 
 import static utilities.KeywordUtil.*;
 

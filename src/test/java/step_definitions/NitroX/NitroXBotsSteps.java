@@ -1,20 +1,16 @@
 package step_definitions.NitroX;
 
-import NitroXPages.NitroXBotsPage;
-import NitroXPages.NitroXHomePage;
+import pageFactory.NitroXPages.NitroXBotsPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import modules.NitroXActions.NitroXBotsAction;
-import modules.NitroXActions.NitroXHome;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
-import utilities.KeywordUtil;
 
 import java.util.HashMap;
 
-import static modules.NitroXActions.NitroXBotsAction.totalfiltered;
 import static utilities.KeywordUtil.*;
 
 public class NitroXBotsSteps {
@@ -192,9 +188,7 @@ public class NitroXBotsSteps {
                 GlobalUtil.errorMsg = e.getMessage();
                 Assert.fail(e.getMessage());
             }
-//            finally {
-//                System.out.println("New Bot Added"+NitroXBotsAction.trrigervalue);
-//            }
+
         }
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
@@ -213,7 +207,6 @@ public class NitroXBotsSteps {
             try {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn,"Scrolled to Total Bot Before");
                 totalbotbefore=NitroXBotsAction.getTotalFilteredBots();
-                System.out.println("Total Bots Befoe Buying"+totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -252,5 +245,32 @@ public class NitroXBotsSteps {
         }
 
     }
+
+    @And("Start Bot ,Select the Service,Method and Input Bot Quantity")
+    public void clickStartBotSelectServiceAndInputBotQuantity() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+                NitroXBotsAction.clickStart();
+                NitroXBotsAction.waitforBotWindow();
+                NitroXBotsAction.inputService(dataMap);
+                NitroXBotsAction.inputMethod(dataMap);
+                NitroXBotsAction.inputBotQuantity(dataMap);
+                waitForVisible(NitroXBotsPage.orderdirection);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
 
 }

@@ -1,6 +1,6 @@
 package step_definitions.NitroX;
 
-import NitroXPages.NitroXLoginPage;
+import pageFactory.NitroXPages.NitroXLoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
