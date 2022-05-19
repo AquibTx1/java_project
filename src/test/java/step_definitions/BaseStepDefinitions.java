@@ -1,8 +1,9 @@
 package step_definitions;
 
-import NitroXPages.NitroXLoginPage;
+import pageFactory.NitroXPages.NitroXLoginPage;
 import io.cucumber.java.en.Given;
 import org.testng.Assert;
+import pageFactory.XAlphaPages.XAlphaLoginPage;
 import utilities.*;
 
 import java.util.HashMap;
@@ -80,5 +81,22 @@ public class BaseStepDefinitions extends KeywordUtil {
     public static void resetCounter() {
         counterVar = 1;
         LogUtil.infoLog(thisClass, "counterVar reset to 1");
+    }
+
+    @Given("Login to XAlpha with valid login credentials")
+    public void loginToXAlphaWithValidLoginCredentials() {
+        try {
+            navigateToUrl(ConfigReader.getValue("XAlpha"));
+            inputText(XAlphaLoginPage.username, ConfigReader.getValue("XAlphaUsername"), "Enter the username");
+            inputText(XAlphaLoginPage.password, ConfigReader.getValue("XAlphaPassword"), "Enter the password");
+            click(XAlphaLoginPage.loginBtn, "Click Login Button");
+            waitForVisible(XAlphaLoginPage.logoutbtn);
+            Assert.assertEquals(KeywordUtil.getElementText(XAlphaLoginPage.logoutbtn), "Logout");
+        } catch (Throwable e) {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
     }
 }

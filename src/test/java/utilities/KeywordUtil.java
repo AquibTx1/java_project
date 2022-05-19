@@ -551,6 +551,19 @@ public class KeywordUtil extends GlobalUtil {
     }
 
     /**
+     * Gets element Value.
+     *
+     * @param locator the locator
+     * @return element text
+     */
+    public static String getElementValueWithVisibility(By locator) {
+        KeywordUtil.lastAction = "Get Element value: " + locator.toString();
+        LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
+        WebElement elm = waitForVisible(locator);
+        return elm.getAttribute(VALUE);
+    }
+
+    /**
      * Gets image title.
      *
      * @param locator the locator

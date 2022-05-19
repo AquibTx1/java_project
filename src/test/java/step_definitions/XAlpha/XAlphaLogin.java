@@ -2,7 +2,6 @@ package step_definitions.XAlpha;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import modules.NitroXActions.NitroXUserLogin;
 import modules.XAlphaActions.XAlphaLoginActions;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
@@ -100,4 +99,5 @@ public class XAlphaLogin {
             }
         }
     }
+
 }

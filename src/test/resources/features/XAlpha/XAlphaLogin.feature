@@ -9,7 +9,7 @@ Feature: Test login feature
     Then Verify User is Able to Login to XAlpha Successfully
     Examples:
       | SheetName   | TestCaseID                  |
-      | XAlphaLogin | QA_TestCase_Auto_XAlpha_001 |
+      | XAlphaLogin | QA_TestCase_Auto_X-Alpha_001 |
 
   @XAplhaLogin
   Scenario Outline: XAlphaX-002-003_Verify login feature with invalid credentials
@@ -20,5 +20,5 @@ Feature: Test login feature
     Then Verify XAlpha validation message is displayed
     Examples:
       | SheetName   | TestCaseID                  |
-      | XAlphaLogin | QA_TestCase_Auto_XAlpha_002 |
-      | XAlphaLogin | QA_TestCase_Auto_XAlpha_003 |
+      | XAlphaLogin | QA_TestCase_Auto_X-Alpha_002 |
+      | XAlphaLogin | QA_TestCase_Auto_X-Alpha_003 |

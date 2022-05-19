@@ -1,15 +1,12 @@
 package modules.NitroXActions;
 
-import NitroXPages.NitroXBotsPage;
-import NitroXPages.NitroXHomePage;
+import pageFactory.NitroXPages.NitroXBotsPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+import pageFactory.NitroXPages.NitroXHomePage;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
 import java.util.HashMap;
-import java.util.List;
 
 import static utilities.KeywordUtil.*;
 
@@ -193,5 +190,22 @@ public class NitroXBotsAction {
         tvalue= KeywordUtil.getElementText(NitroXBotsPage.trrigger);
         LogUtil.infoLog(thisClass, "Trigger value is" + tvalue);
         return tvalue;
+    }
+
+    public static void CloseConfigTab()
+    {
+        KeywordUtil.click(NitroXBotsPage.closeconfigbtn,  " Closed Clicked");
+        LogUtil.infoLog(thisClass, "Closed  the config Tab");
+    }
+
+    public static void CloseBotDetail() {
+        KeywordUtil.click(NitroXBotsPage.closebotdetailbtn,  " BOT Detail Closed");
+        LogUtil.infoLog(thisClass, "Closed  the Bot Detail");
+    }
+
+
+    public static void clickDealtOrdersTab()
+    {
+        click(NitroXBotsPage.DealtOrderTab, "Clicked Dealt Order");
     }
 }

@@ -1,6 +1,5 @@
 package modules.XAlphaActions;
 
-import NitroXPages.NitroXLoginPage;
 import pageFactory.XAlphaPages.XAlphaLoginPage;
 import utilities.KeywordUtil;
 

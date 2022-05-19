@@ -1,4 +1,4 @@
-package NitroXPages;
+package pageFactory.NitroXPages;
 import org.openqa.selenium.By;
 
 public class NitroXLoginPage {
