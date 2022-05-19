@@ -31,6 +31,8 @@ public class NitroXBotsPage {
     public static By dealref=By.id("bot_config_form_config_deal_ref");
     public static By submitbtn=By.xpath("//span[text()='Submit']");
     public static By closebtn=By.xpath("//button[@aria-label='Close']");
+
+    public static By trrigercond=By.id("bot_config_form_config_trigger_condition");
     //Total Filtered
     public static By totalfilered=By.xpath("//div[text()='Total (Filtered)']");
 
@@ -42,6 +44,10 @@ public class NitroXBotsPage {
     public static By status=By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[5]");
     public static By progress=By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[6]");
     public static By starttime=By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[7]");
+    public static By config=By.xpath("//div[text()='Config']");
+    public static By trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[7]/td[3]");
+    public static By clickstarttime=By.xpath(" //span[text()='Start Time']");
+    //span[text()='Start Time']
     public static By editbtn=By.xpath("//span[text()='Edit']");
     public static By resumebtn=By.xpath("//span[text()='Resume']");
     public static By restartbtn=By.xpath("//span[text()='Restart']");
