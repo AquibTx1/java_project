@@ -41,7 +41,12 @@ public class NitroXBotsPage {
 
     public static By botid=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[3]");
     public static By botName=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[4]");
+    public static By allbots=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table/thead/tr/th[1]");
     public static By status=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[5]");
+
+    public static By stopbots=By.xpath("//span[text()='Stop all']");
+
+    public static By nodata=By.xpath("//div[text()='No Data']");
     public static By progress=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[6]");
     public static By starttime=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[7]");
     public static By config=By.xpath("//div[text()='Config']");

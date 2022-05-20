@@ -209,6 +209,20 @@ public class NitroXBotsAction {
         click(NitroXBotsPage.DealtOrderTab, "Clicked Dealt Order");
     }
 
+    public static void stopAllBots()
+    {
+        click(NitroXBotsPage.totalfilered,"Clicked Total Filtered");
+        waitForVisible(NitroXBotsPage.allbots);
+        click(NitroXBotsPage.allbots,"Selected All Bots");
+        try {
+            scrollingToElementofAPage(NitroXBotsPage.stopbots,"Scrolled to Stop All Bots ");
+            click(NitroXBotsPage.stopbots,"Stopped all Bots");
+            waitForVisible(NitroXBotsPage.nodata);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+    }
 
     public static double getPrice() {
         waitForVisible(NitroXHomePage.Ordertableprice);

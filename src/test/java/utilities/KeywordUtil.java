@@ -140,7 +140,7 @@ public class KeywordUtil extends GlobalUtil {
      * @throws InterruptedException the interrupted exception
      */
     public static boolean scrollingToElementofAPage(By locator, String logStep) throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         WebElement element = GlobalUtil.getDriver().findElement(locator);
         ((JavascriptExecutor) GlobalUtil.getDriver()).executeScript("arguments[0].scrollIntoView();", element);
         RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));
