@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -1256,7 +1257,7 @@ public class KeywordUtil extends GlobalUtil {
     }
 
     public static String generateRandomNumber() {
-        long a=Math.round(Math.random()*100000000l);
+        long a = Math.round(Math.random() * 100000000l);
         return Long.toString(a);
 
     }
@@ -1481,6 +1482,26 @@ public class KeywordUtil extends GlobalUtil {
         return result;
     }
 
+    public static String generateRandomNumberDecimal0to1() {
+        double rangeMin = 0.0f;
+        double rangeMax = 1.0f;
+        Random r = new Random();
+        double createdRanNum = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(4);
+        createdRanNum = Double.parseDouble(df.format(createdRanNum));
+        LogUtil.infoLog(KeywordUtil.class, "generateRandomNumberDecimal0to1=" + createdRanNum);
+        return Double.toString(createdRanNum);
+    }
+
+    public static String formatDecimalToStr(String str) {
+        double num = Double.parseDouble(str);
+        DecimalFormat df = new DecimalFormat();
+        df.setMinimumFractionDigits(4);
+        String newNum = df.format(num);
+        return newNum;
+    }
+
 }// End class
 
 /**
@@ -1506,6 +1527,6 @@ class TestStepFailedException extends Exception {
         JavascriptExecutor js = (JavascriptExecutor) GlobalUtil.getDriver();
         js.executeScript("window.scrollBy(0,600);", Element);
     }
-    
+
 
 }

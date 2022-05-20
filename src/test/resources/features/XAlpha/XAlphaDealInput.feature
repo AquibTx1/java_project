@@ -6,7 +6,7 @@ Feature: Test login feature
   @XAplhaDealInput
   Scenario Outline: QA-TestCase-Auto-X-Alpha-004_Able to Create FX-Spot Buy Deal via Deal Input Page with "Confirmed" Status
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
-    When Moveto X-Alpha page
+    When Move to X-Alpha page
     And Navigate to deal input tab
     And Choose FX Spot
     And Provide deal input details
