@@ -74,6 +74,8 @@ public class NitroXBotsPage {
     public static By totalamount=By.id("bot_config_form_config_totalAmount");
     public static By side=By.id("bot_config_form_config_side");
     public static By minprice_sniper=By.id("bot_config_form_config_minPrice");
-    public static By maxprice_sniper=By.id("bot_config_form_config_minPrice");
+    public static By maxprice_sniper=By.id("bot_config_form_config_maxPrice");
     public static By maxSlippageThreshold_sniper=By.id("bot_config_form_config_maxSlippageThreshold");
+
+    public static By s_trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[4]/td[3]");
 }
