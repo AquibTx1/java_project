@@ -849,13 +849,14 @@ public class KeywordUtil extends GlobalUtil {
      * @param locator the locator
      * @return boolean
      */
-    public static void clearInputUsingKeys(By locator) {
+    public static void clearInputUsingKeys(By locator) throws InterruptedException {
         WebElement elm = waitForVisible(locator);
         if (os.contains("Mac")) {
             elm.sendKeys(Keys.chord(Keys.COMMAND, "a"));
         } else {
             elm.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         }
+        delay(1000); //wait for key actions to happen
         elm.sendKeys(Keys.DELETE);
     }
 

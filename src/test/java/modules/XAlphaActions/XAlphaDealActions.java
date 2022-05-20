@@ -72,7 +72,7 @@ public class XAlphaDealActions extends KeywordUtil {
         pressEnter(XAlphaDealsPage.dealInput_FeeAsset);
     }
 
-    public static void dealInput_FeeAmount(HashMap<String, String> dataMap) {
+    public static void dealInput_FeeAmount(HashMap<String, String> dataMap) throws InterruptedException {
         clearInputUsingKeys(XAlphaDealsPage.dealInput_FeeAmount);
         inputText(XAlphaDealsPage.dealInput_FeeAmount, dataMap.get("FeeAmount"), "Select deal input Fee Amount");
     }
