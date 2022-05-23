@@ -1,5 +1,6 @@
 package step_definitions.NitroX;
 
+import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import modules.NitroXActions.NitroXHome;
 import pageFactory.NitroXPages.NitroXBotsPage;
 import io.cucumber.java.en.And;
@@ -24,6 +25,7 @@ public class NitroXBotsSteps {
     }
     @And("Verify total Bots Before staring the Buy execution")
     public void verifyCountNumberOfBotsBeforeBuyingSelling() {
+            // Count the Total Bots before Starting Bot Execution
 
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -47,6 +49,7 @@ public class NitroXBotsSteps {
 
     @And("Click Start Bot ,Select the Service,Method and Input Bot Quantity")
     public void clickStartBotSelectTheServiceMethodAndInputBotQuantity() {
+        // Start the Bot Execution for Buy Order
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
@@ -73,6 +76,7 @@ public class NitroXBotsSteps {
 
     @When("Select Buy Order and Select the MinTime and MaxTime Break")
     public void select_buy_order_and_select_the_min_time_and_max_time_break() {
+        //input Max Price and Min Price
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
@@ -98,7 +102,7 @@ public class NitroXBotsSteps {
     }
     @When("Input the Time, Quantity and Submit the Order")
     public void input_the_time_quantity_and_submit_the_order() {
-        // Write code here that turns the phrase above into concrete actions
+
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
@@ -328,7 +332,7 @@ public class NitroXBotsSteps {
 /****************************************SNIPER BOT****************************************************************/
 
 
-@And("Verify total Bots Before starting the Sniper Bot Buy execution")
+@And("Verify total Bots before starting the Sniper Bot execution")
 public void CountNumberOfBotsBeforeBuyingSelling() {
 
     if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -350,7 +354,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
     }
 
 }
-    @And("Click Start Bot and Select the Service,Method and Input Bot Quantity")
+    @And("Click Start Bot and select the Service,Method and Input Bot Quantity")
     public void StartBotSelectTheServiceMethodAndInputBotQuantity() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -405,8 +409,10 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
     }
 
 
-    @And("Enter Quantity and Submit the Order")
+    @And("Enter Quantity and submit the order")
     public void enterQuantityAndSubmitTheOrder() {
+    //Snipper Sell Order
+
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
@@ -427,7 +433,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
     }
 
 
-    @Then("Verify Bots in Total Filtered on homePage")
+    @Then("Verify Bots in Total Filtered on HomePage")
     public void verifyBotCountTotalFiltered() {
 
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -450,7 +456,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         }
     }
 
-    @And("Click total filtered bots and Check the Bot in Detail and Config")
+    @And("Click Total Filtered Bots and check the Bot in Detail and Config")
     public void clickTotalFilteredBotsValidatetheBot() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -586,4 +592,145 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
 
     }
 
+    /***************************************Pair Trading BOT*************************************
+     *
+     * ****/
+
+
+    @And("Verify total Bots before starting the Pair_Trading Bot execution")
+    public void CountNumberOfBotsBeforeBuyingSellingPairTrading() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn,"Scrolled to Total Bot Filtered");
+                totalbotbefore=NitroXBotsAction.getTotalFilteredBots();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+    @And("Click start Bot and select the Service,Method and Choose Bot Quantity")
+    public void startBotSelectServiceMethodandInputBotQuantityTradingBot() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+                NitroXBotsAction.clickStart();
+                NitroXBotsAction.waitforBotWindow();
+                NitroXBotsAction.inputService(dataMap);
+                NitroXBotsAction.inputMethod(dataMap);
+                NitroXBotsAction.inputBotQuantity(dataMap);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @And("Choose Side,Quantity,and Slice_Size")
+    public void chooseSideQuantityAndSlice_Size() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.selectMainPairTradingSide(dataMap);
+                NitroXBotsAction.inputPairBotQuantity(dataMap);
+                NitroXBotsAction.inputSliceSize(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+
+    @And("Choose AccountId,Base,Quote and Side in Pair leg and submit")
+    public void chooseAccountIdBaseQuoteAndSideInPairLegAndSubmit() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.selectmode(dataMap);
+                NitroXBotsAction.inputTradingAccount(dataMap);
+                NitroXBotsAction.inputBaseCurrency(dataMap);
+                NitroXBotsAction.inputQuoteCurrency(dataMap);
+                NitroXBotsAction.selectSubPairSide(dataMap);
+                scrollingToElementofAPage(NitroXBotsPage.submitbtn,"Scrolled to Submit Button");
+                delay(3000);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+
+
+
+    @Then("Verify Pair_Trading Bot in Total Filtered on homePage")
+    public void verifyPairTradingBotCountTotalFiltered() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.getBotSubmitSuccessMsg();
+                delay(2000);
+                Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @Then("Verify Pair_Trading new Bot in Detail and Config")
+    public void verifyPair_TradingNewBotInDetailAndConfig() {
+
+
+    }
+
+
+    @Then("Verify the Order in Dealt Order for same Bot")
+    public void verifyTheOrderInDealtOrderForSameBot() {
+    }
 }
+

@@ -83,4 +83,24 @@ public class NitroXBotsPage {
     public static By maxSlippageThreshold_sniper=By.id("bot_config_form_config_maxSlippageThreshold");
 
     public static By s_trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[4]/td[3]");
+
+    /*********************************PAIR TRADING BOT************************************************/
+
+    public static By quantity= By.id("bot_config_form_config_quantity");
+
+    public static By slicesize= By.id("bot_config_form_config_slice_size");
+
+    public static By instrumenttype=By.id("bot_config_form_config_pair_leg_instrument_type");
+
+    public static By accountid=By.id("bot_config_form_config_pair_leg_account_id");
+
+    public static By basecurrency=By.id("bot_config_form_config_pair_leg_base");
+
+    public static By quotecurrency=By.id("bot_config_form_config_pair_leg_quote");
+
+    public static By pairlegSide=By.id("bot_config_form_config_pair_leg_side");
+
+    public static By distancetotob=By.id("bot_config_form_config_pair_leg_distance_to_tob");
+
+
 }
