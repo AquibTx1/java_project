@@ -70,8 +70,8 @@ public class XAlphaDealSteps {
         Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "Deal has created");
     }
 
-    @Then("Verify processed deal is not created")
-    public void verifyProcessedDealIsNotCreated() {
+    @Then("Verify deal is not created")
+    public void verifyDealIsNotCreated() {
         XAlphaDealActions.waitForDealSubmittedMsg();
         Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "processing status should be 'pending' or 'confirmed'");
     }

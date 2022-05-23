@@ -16,7 +16,7 @@ Feature: Test login feature
     Then Verify the deal is created
 
     Examples:
-      | SheetName   | TestCaseID                   |
+      | SheetName   | TestCaseID                  |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_004 |
 
   @XAlphaDealInput
@@ -32,7 +32,7 @@ Feature: Test login feature
     Then Verify the deal is created
 
     Examples:
-      | SheetName   | TestCaseID                   |
+      | SheetName   | TestCaseID                  |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_005 |
 
   @XAlphaDealInput
@@ -43,10 +43,10 @@ Feature: Test login feature
     And Choose FX Spot
     And Provide deal input details
     And Click create deal button
-    Then Verify processed deal is not created
+    Then Verify deal is not created
 
     Examples:
-      | SheetName   | TestCaseID                   |
+      | SheetName   | TestCaseID                  |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_006 |
 
   @XAlphaDealInput
@@ -60,5 +60,21 @@ Feature: Test login feature
     Then Verify settled deal is not created
 
     Examples:
-      | SheetName   | TestCaseID                   |
+      | SheetName   | TestCaseID                  |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_007 |
+
+  @XAlphaDealInput_debug
+  Scenario Outline: QA-TestCase-Auto-X-Alpha-009_Able to Create FX-Spot Sell Deal via Deal Input Page with "Confirmed" Status
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal input tab
+    And Choose FX Spot
+    And Provide deal input details
+    And Click create deal button
+    Then Verify the deal success message
+    And Navigate to deal enquiry tab
+    Then Verify the deal is created
+
+    Examples:
+      | SheetName   | TestCaseID                  |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_009 |
