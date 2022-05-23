@@ -31,6 +31,20 @@ public class BaseStepDefinitions extends KeywordUtil {
         }
     }
 
+    @Given("Read {string} and {string} and {string} from test data")
+    public void readAndAndFromTestData(String fileName, String sheetName, String testCaseID) {
+        //stop execution at a particular step based on SkipAtStepNum defined in excel sheet
+        dataMap = new HashMap<String, String>();
+        try {
+            KeywordUtil.cucumberTagName = "Web";
+            dataMap = ExcelDataUtil.getTestDataWithTestCaseID(fileName, sheetName, testCaseID);
+        } catch (Throwable e) {
+            GlobalUtil.e = e;
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
+    }
+
     @Given("Login to NitroX app with valid login credentials")
     public void loginToNitroXAppWithValidLoginCredentials() {
         try {
@@ -99,4 +113,5 @@ public class BaseStepDefinitions extends KeywordUtil {
             Assert.fail(e.getMessage());
         }
     }
+
 }

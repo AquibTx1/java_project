@@ -5,7 +5,7 @@ Feature: Test login feature
 
   @XAlphaDealInput
   Scenario Outline: QA-TestCase-Auto-X-Alpha-004_Able to Create FX-Spot Buy Deal via Deal Input Page with "Confirmed" Status
-    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal input tab
     And Choose FX Spot
@@ -21,7 +21,7 @@ Feature: Test login feature
 
   @XAlphaDealInput
   Scenario Outline: QA-TestCase-Auto-X-Alpha-005_Able to Create FX-Spot Buy Deal via Deal Input Page with "Pending" Status
-    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal input tab
     And Choose FX Spot
@@ -37,7 +37,7 @@ Feature: Test login feature
 
   @XAlphaDealInput
   Scenario Outline: QA-TestCase-Auto-X-Alpha-006_Not Able to Create FX-Spot Buy Deal via Deal Input Page with "Processed" Status
-    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal input tab
     And Choose FX Spot
