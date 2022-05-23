@@ -1,5 +1,6 @@
 package step_definitions;
 
+import io.cucumber.java.en.When;
 import pageFactory.NitroXPages.NitroXLoginPage;
 import io.cucumber.java.en.Given;
 import org.testng.Assert;
@@ -11,7 +12,7 @@ import java.util.Objects;
 
 public class BaseStepDefinitions extends KeywordUtil {
 
-    public static HashMap<String, String> dataMap ;
+    public static HashMap<String, String> dataMap;
 
     static Class thisClass = BaseStepDefinitions.class;
     public static int counterVar = 1;
@@ -38,10 +39,32 @@ public class BaseStepDefinitions extends KeywordUtil {
         try {
             KeywordUtil.cucumberTagName = "Web";
             dataMap = ExcelDataUtil.getTestDataWithTestCaseID(fileName, sheetName, testCaseID);
+            System.out.println("URL=" + dataMap.get("URL"));
         } catch (Throwable e) {
             GlobalUtil.e = e;
             GlobalUtil.errorMsg = e.getMessage();
             Assert.fail(e.getMessage());
+        }
+    }
+
+    @When("^Navigate to the url$")
+    public void navigateToTheUrl() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                navigateToUrl(dataMap.get("URL"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
         }
     }
 

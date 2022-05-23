@@ -17,7 +17,7 @@ Feature: Test login feature
 
     Examples:
       | SheetName   | TestCaseID                   |
-      | XAlphaDeals | QA_TestCase_Auto_X-Alpha_004 |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_004 |
 
   @XAlphaDealInput
   Scenario Outline: QA-TestCase-Auto-X-Alpha-005_Able to Create FX-Spot Buy Deal via Deal Input Page with "Pending" Status
@@ -33,7 +33,7 @@ Feature: Test login feature
 
     Examples:
       | SheetName   | TestCaseID                   |
-      | XAlphaDeals | QA_TestCase_Auto_X-Alpha_005 |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_005 |
 
   @XAlphaDealInput
   Scenario Outline: QA-TestCase-Auto-X-Alpha-006_Not Able to Create FX-Spot Buy Deal via Deal Input Page with "Processed" Status
@@ -47,4 +47,4 @@ Feature: Test login feature
 
     Examples:
       | SheetName   | TestCaseID                   |
-      | XAlphaDeals | QA_TestCase_Auto_X-Alpha_006 |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_006 |
