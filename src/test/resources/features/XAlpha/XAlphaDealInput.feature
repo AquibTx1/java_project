@@ -17,5 +17,6 @@ Feature: Test login feature
 
     Examples:
       | SheetName   | TestCaseID                   |
-      | XAlphaDeals | QA_TestCase_Auto_X-Alpha_004 |
+#      | XAlphaDeals | QA_TestCase_Auto_X-Alpha_004 |
+      | XAlphaDeals | QA_TestCase_Auto_X-Alpha_005 |
 

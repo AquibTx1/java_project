@@ -69,35 +69,4 @@ public class XAlphaDealSteps {
         Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "Deal has created");
     }
 
-    @And("Navigate to deal enquiry tab")
-    public void navigateToDealEnquiryTab() {
-        XAlphaDealActions.clickDealEnquiryTab();
-        XAlphaDealActions.waitFordealEnquiry_navbar();
-    }
-
-    @Then("Verify the deal is created")
-    public void verifyTheDealIsCreated() {
-        XAlphaDealActions.getDealRefwrtQuoteAssetAmt(quoteAssetAmount);
-
-        String unitPriceDealEnquiry = XAlphaDealActions.getUnitPricewrtQuoteAssetAmt(quoteAssetAmount);
-        String feeDealEnquiry = XAlphaDealActions.getFeewrtQuoteAssetAmt(quoteAssetAmount);
-        String referencePriceDealEnquiry = XAlphaDealActions.getReferencePricewrtQuoteAssetAmt(quoteAssetAmount);
-        String dealTypeDealEnquiry = XAlphaDealActions.getDealTypewrtQuoteAssetAmt(quoteAssetAmount).toLowerCase();
-        String processingStatusDealEnquiry = XAlphaDealActions.getProcessingStatuswrtQuoteAssetAmt(quoteAssetAmount).toLowerCase();
-        String directionDealEnquiry = XAlphaDealActions.getDirectionwrtQuoteAssetAmt(quoteAssetAmount).toLowerCase();
-
-        //convert deal input field values to be matched
-        unitPrice = KeywordUtil.formatDecimalToStr(unitPrice);
-        feeAmount = KeywordUtil.formatDecimalToStr(feeAmount);
-        referencePrice = KeywordUtil.formatDecimalToStr(referencePrice);
-
-        //assert the values
-        Assert.assertEquals(unitPriceDealEnquiry, unitPrice);
-        Assert.assertEquals(feeDealEnquiry, feeAmount);
-        Assert.assertEquals(referencePriceDealEnquiry, referencePrice);
-        Assert.assertEquals(dealTypeDealEnquiry, dataMap.get("DealType").toLowerCase());
-        Assert.assertEquals(processingStatusDealEnquiry, dataMap.get("ProcessingStatus").toLowerCase());
-        Assert.assertEquals(directionDealEnquiry, dataMap.get("Direction").toLowerCase());
-    }
-
 }
