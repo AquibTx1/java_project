@@ -4,14 +4,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import modules.XAlphaActions.XAlphaDealActions;
-import modules.XAlphaActions.XAlphaLoginActions;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
-import utilities.KeywordUtil;
 
 import java.util.HashMap;
 
 public class XAlphaDealSteps {
+
+    static Class thisClass = XAlphaDealSteps.class;
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
 
@@ -66,7 +66,13 @@ public class XAlphaDealSteps {
 
     @Then("Verify the deal success message")
     public void verifyTheDealSuccessMessage() {
+        XAlphaDealActions.waitForDealSubmittedMsg();
         Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "Deal has created");
     }
 
+    @Then("Verify the deal is not created")
+    public void verifyTheDealIsNotCreated() {
+        XAlphaDealActions.waitForDealSubmittedMsg();
+        Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "processing status should be 'pending' or 'confirmed'");
+    }
 }

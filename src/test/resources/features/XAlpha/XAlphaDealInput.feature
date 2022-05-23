@@ -34,3 +34,17 @@ Feature: Test login feature
     Examples:
       | SheetName   | TestCaseID                   |
       | XAlphaDeals | QA_TestCase_Auto_X-Alpha_005 |
+
+  @XAlphaDealInput
+  Scenario Outline: QA-TestCase-Auto-X-Alpha-006_Not Able to Create FX-Spot Buy Deal via Deal Input Page with "Processed" Status
+    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+    When Move to X-Alpha page
+    And Navigate to deal input tab
+    And Choose FX Spot
+    And Provide deal input details
+    And Click create deal button
+    Then Verify the deal is not created
+
+    Examples:
+      | SheetName   | TestCaseID                   |
+      | XAlphaDeals | QA_TestCase_Auto_X-Alpha_006 |

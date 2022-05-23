@@ -118,6 +118,10 @@ public class XAlphaDealActions extends KeywordUtil {
         click(XAlphaDealsPage.dealInput_CreateBtn, "Click deal input Create Button");
     }
 
+    public static void waitForDealSubmittedMsg() {
+        waitForVisible(XAlphaDealsPage.dealInput_validationMsg);
+    }
+
     public static String dealInput_SubmitMessage() {
         String msg = getElementText(XAlphaDealsPage.dealInput_validationMsg);
         LogUtil.infoLog(thisClass, "deal message=" + msg);
