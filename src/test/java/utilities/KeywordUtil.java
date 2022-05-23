@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -140,7 +141,7 @@ public class KeywordUtil extends GlobalUtil {
      * @throws InterruptedException the interrupted exception
      */
     public static boolean scrollingToElementofAPage(By locator, String logStep) throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         WebElement element = GlobalUtil.getDriver().findElement(locator);
         ((JavascriptExecutor) GlobalUtil.getDriver()).executeScript("arguments[0].scrollIntoView();", element);
         RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));
@@ -849,13 +850,14 @@ public class KeywordUtil extends GlobalUtil {
      * @param locator the locator
      * @return boolean
      */
-    public static void clearInputUsingKeys(By locator) {
+    public static void clearInputUsingKeys(By locator) throws InterruptedException {
         WebElement elm = waitForVisible(locator);
         if (os.contains("Mac")) {
             elm.sendKeys(Keys.chord(Keys.COMMAND, "a"));
         } else {
             elm.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         }
+        delay(1000); //wait for key actions to happen
         elm.sendKeys(Keys.DELETE);
     }
 
@@ -1255,7 +1257,7 @@ public class KeywordUtil extends GlobalUtil {
     }
 
     public static String generateRandomNumber() {
-        long a=Math.round(Math.random()*100000000l);
+        long a = Math.round(Math.random() * 100000000l);
         return Long.toString(a);
 
     }
@@ -1480,6 +1482,26 @@ public class KeywordUtil extends GlobalUtil {
         return result;
     }
 
+    public static String generateRandomNumberDecimal0to1() {
+        double rangeMin = 0.0f;
+        double rangeMax = 1.0f;
+        Random r = new Random();
+        double createdRanNum = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(4);
+        createdRanNum = Double.parseDouble(df.format(createdRanNum));
+        LogUtil.infoLog(KeywordUtil.class, "generateRandomNumberDecimal0to1=" + createdRanNum);
+        return Double.toString(createdRanNum);
+    }
+
+    public static String formatDecimalToStr(String str) {
+        double num = Double.parseDouble(str);
+        DecimalFormat df = new DecimalFormat();
+        df.setMinimumFractionDigits(4);
+        String newNum = df.format(num);
+        return newNum;
+    }
+
 }// End class
 
 /**
@@ -1505,6 +1527,6 @@ class TestStepFailedException extends Exception {
         JavascriptExecutor js = (JavascriptExecutor) GlobalUtil.getDriver();
         js.executeScript("window.scrollBy(0,600);", Element);
     }
-    
+
 
 }

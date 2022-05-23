@@ -1,5 +1,6 @@
 package modules.XAlphaActions;
 
+import org.openqa.selenium.By;
 import pageFactory.XAlphaPages.XAlphaDealsPage;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
@@ -63,8 +64,18 @@ public class XAlphaDealActions extends KeywordUtil {
         inputText(XAlphaDealsPage.dealInput_UnitPrice, arg0, "Select deal input unit price");
     }
 
+    public static String get_dealInput_UnitPrice() {
+        String dealInput_UnitPrice;
+        dealInput_UnitPrice = getElementValue(XAlphaDealsPage.dealInput_UnitPrice);
+        LogUtil.infoLog(XAlphaDealActions.class, "dealInput_UnitPrice" + dealInput_UnitPrice);
+        return dealInput_UnitPrice;
+    }
+
     public static String get_dealInput_QuoteAssetAmount() {
-        return getElementValue(XAlphaDealsPage.dealInput_QuoteAssetAmount);
+        String dealInput_QuoteAssetAmount;
+        dealInput_QuoteAssetAmount = getElementValue(XAlphaDealsPage.dealInput_QuoteAssetAmount);
+        LogUtil.infoLog(XAlphaDealActions.class, "dealInput_QuoteAssetAmount" + dealInput_QuoteAssetAmount);
+        return dealInput_QuoteAssetAmount;
     }
 
     public static void dealInput_FeeAsset(HashMap<String, String> dataMap) {
@@ -72,9 +83,16 @@ public class XAlphaDealActions extends KeywordUtil {
         pressEnter(XAlphaDealsPage.dealInput_FeeAsset);
     }
 
-    public static void dealInput_FeeAmount(HashMap<String, String> dataMap) {
+    public static void dealInput_FeeAmount(HashMap<String, String> dataMap) throws InterruptedException {
         clearInputUsingKeys(XAlphaDealsPage.dealInput_FeeAmount);
         inputText(XAlphaDealsPage.dealInput_FeeAmount, dataMap.get("FeeAmount"), "Select deal input Fee Amount");
+    }
+
+    public static String get_dealInput_FeeAmount() throws InterruptedException {
+        delay(1000);
+        String feeAmount = getElementValueWithVisibility(XAlphaDealsPage.dealInput_FeeAmount);
+        LogUtil.infoLog(XAlphaDealActions.class, "Fee Amount=" + feeAmount);
+        return feeAmount;
     }
 
     public static void dealInput_CounterpartyName(HashMap<String, String> dataMap) {
@@ -116,17 +134,73 @@ public class XAlphaDealActions extends KeywordUtil {
         return dealRef;
     }
 
-    public static String getFirstSummary(){
+    public static String getFirstSummary() {
         String summary = getElementText(XAlphaDealsPage.dealEnquiry_firstSummary);
         LogUtil.infoLog(XAlphaDealActions.class, "Summary in the first row=" + summary);
         return summary;
     }
 
-    public static String getFirstUnitPrice(){
+    public static String getFirstUnitPrice() {
         String unitPrice = getElementText(XAlphaDealsPage.dealEnquiry_firstUnitPrice);
         unitPrice = unitPrice.replace(",", "");
         LogUtil.infoLog(XAlphaDealActions.class, "Unit price in the first row=" + unitPrice);
         return unitPrice;
     }
+
+    public static String getFirstFeeAmount() {
+        String feeAmount = getElementText(XAlphaDealsPage.dealEnquiry_firstFeeAmount);
+        LogUtil.infoLog(XAlphaDealActions.class, "Fee Amount in the first row=" + feeAmount);
+        return feeAmount;
+    }
+
+    public static String getDealRefwrtQuoteAssetAmt(String QuotePrice) {
+        QuotePrice = formatDecimalToStr(QuotePrice);
+        String dealRef = KeywordUtil.getElementText(By.xpath("(//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[4]"));
+        LogUtil.infoLog(XAlphaDealActions.class, "dealRef=" + dealRef);
+        return dealRef;
+    }
+
+    public static String getDealTypewrtQuoteAssetAmt(String QuotePrice) {
+        QuotePrice = formatDecimalToStr(QuotePrice);
+        String dealType = KeywordUtil.getElementText(By.xpath("(//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[5]/span"));
+        LogUtil.infoLog(XAlphaDealActions.class, "dealType=" + dealType);
+        return dealType;
+    }
+
+    public static String getProcessingStatuswrtQuoteAssetAmt(String QuotePrice) {
+        QuotePrice = formatDecimalToStr(QuotePrice);
+        String processingStatus = KeywordUtil.getElementText(By.xpath("(//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[6]/span"));
+        LogUtil.infoLog(XAlphaDealActions.class, "processingStatus=" + processingStatus);
+        return processingStatus;
+    }
+
+    public static String getCounterPartywrtQuoteAssetAmt(String QuotePrice) {
+        QuotePrice = formatDecimalToStr(QuotePrice);
+        String counterPartyName = KeywordUtil.getElementText(By.xpath("(//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[8]/div"));
+        LogUtil.infoLog(XAlphaDealActions.class, "counterPartyName=" + counterPartyName);
+        return counterPartyName;
+    }
+
+    public static String getUnitPricewrtQuoteAssetAmt(String QuotePrice) {
+        QuotePrice = formatDecimalToStr(QuotePrice);
+        String unitPrice = KeywordUtil.getElementText(By.xpath("((//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[10])/div/div[4]/div[2]/span"));
+        LogUtil.infoLog(XAlphaDealActions.class, "unitPrice=" + unitPrice);
+        return unitPrice;
+    }
+
+    public static String getFeewrtQuoteAssetAmt(String QuotePrice) {
+        QuotePrice = formatDecimalToStr(QuotePrice);
+        String fee = KeywordUtil.getElementText(By.xpath("((//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[10])/div/div[5]/div[2]/span"));
+        LogUtil.infoLog(XAlphaDealActions.class, "fee=" + fee);
+        return fee;
+    }
+
+    public static String getReferencePricewrtQuoteAssetAmt(String QuotePrice) {
+        QuotePrice = formatDecimalToStr(QuotePrice);
+        String referencePrice = KeywordUtil.getElementText(By.xpath("((//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[10])/div/div[6]/div[2]/span"));
+        LogUtil.infoLog(XAlphaDealActions.class, "referencePrice=" + referencePrice);
+        return referencePrice;
+    }
+
 
 }

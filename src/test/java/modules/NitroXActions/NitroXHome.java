@@ -20,7 +20,7 @@ public class NitroXHome {
             openOrderTime, dealtOrderTime, dealtorderprice, dealtorderside, dealthorderquantity;
     static double quantity;
 
-    public static void selectmode(HashMap<String, String> dataMap) throws Exception {
+    public static void selectmode(HashMap<String, String> dataMap) {
         waitForVisible(NitroXHomePage.modeTextbyID);
         KeywordUtil.click(NitroXHomePage.modeTextField, "Mode text field clicked.");
         waitForVisible(NitroXHomePage.spotDropdown);
@@ -33,19 +33,19 @@ public class NitroXHome {
         }
     }
 
-    public static void inputMode(HashMap<String, String> dataMap) throws Exception {
+    public static void inputMode(HashMap<String, String> dataMap) {
         waitForVisible(NitroXHomePage.modeTextbyID);
         KeywordUtil.inputText(NitroXHomePage.modeTextbyID, dataMap.get("Mode"), "Mode value entered using send keys.");
         KeywordUtil.pressEnter(NitroXHomePage.modeTextbyID);
     }
 
-    public static void selectTradingAccount(HashMap<String, String> dataMap) throws Exception {
+    public static void selectTradingAccount(HashMap<String, String> dataMap) {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
         waitForVisible(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"));
         KeywordUtil.click(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"), "Trading Account selected from dropdown");
     }
 
-    public static void inputTradingAccount(HashMap<String, String> dataMap) throws Exception {
+    public static void inputTradingAccount(HashMap<String, String> dataMap) {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
         KeywordUtil.inputText(NitroXHomePage.inputtradingaccount, dataMap.get("TradingAccount"), dataMap.get("TradingAccount") + " : Trading account");
         KeywordUtil.pressEnter(NitroXHomePage.inputtradingaccount);
@@ -143,7 +143,7 @@ public class NitroXHome {
         KeywordUtil.inputText(NitroXHomePage.Quantity, dataMap.get("Quantity"), "Entered the Quantity");
     }
 
-    public static void ClearOrderQuantity() {
+    public static void ClearOrderQuantity() throws InterruptedException {
         KeywordUtil.clearInputUsingKeys(NitroXHomePage.Quantity);
     }
 
@@ -279,7 +279,7 @@ public class NitroXHome {
     }
 
     //input the order price
-    public static void ClearInputPrice() {
+    public static void ClearInputPrice() throws InterruptedException {
         KeywordUtil.clearInputUsingKeys(NitroXHomePage.price);
     }
 

@@ -171,7 +171,7 @@ public class NitroXBotsAction {
     {
         trrigervalue=KeywordUtil.generateRandomNumber();
         KeywordUtil.inputText(NitroXBotsPage.trrigercond,trrigervalue,"Entered Trigger ");
-        LogUtil.infoLog(thisClass, "Entered the Triggered");
+        LogUtil.infoLog(thisClass, "Actual Trigger value :" +trrigervalue);
     }
     public static void selectLatestBotName()
     {
@@ -208,4 +208,89 @@ public class NitroXBotsAction {
     {
         click(NitroXBotsPage.DealtOrderTab, "Clicked Dealt Order");
     }
+
+    public static void stopAllBots()
+    {
+        click(NitroXBotsPage.totalfilered,"Clicked Total Filtered");
+        waitForVisible(NitroXBotsPage.allbots);
+        click(NitroXBotsPage.allbots,"Selected All Bots");
+        try {
+            scrollingToElementofAPage(NitroXBotsPage.stopbots,"Scrolled to Stop All Bots ");
+            click(NitroXBotsPage.stopbots,"Stopped all Bots");
+            waitForVisible(NitroXBotsPage.nodata);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+    }
+
+    public static double getPrice() {
+        waitForVisible(NitroXHomePage.Ordertableprice);
+        String lastaskprice = getElementText(By.xpath("(//span[text()='Orderbook ']/following::table[1]/tbody//child::tr)[last()]/td[2]"));
+        lastaskprice = lastaskprice.replace(",", "");
+        LogUtil.infoLog(thisClass, "Biding price" + lastaskprice);
+        return Double.parseDouble(lastaskprice);
+    }
+
+    public static double getBidPrice() {
+        waitForVisible(By.xpath("//span[text()='Spread:']/following::table[1]/tbody/tr"));
+        String firstbidprice = getElementText(By.xpath("(//span[text()='Spread:']/following::table[1]/tbody//child::tr)[1]/td[2]"));
+        firstbidprice = firstbidprice.replace(",", "");
+        LogUtil.infoLog(thisClass, "Biding price" + firstbidprice);
+        return Double.parseDouble(firstbidprice.replace(",",""));
+    }
+
+    public static double getDealtOrderPrice()
+    {
+        String price = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[03]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order price=" + price);
+        return Double.parseDouble(price.replace(",", ""));
+    }
+
+
+    /*********************************SNIPER BOT********************************************/
+
+    public static void selectSide(HashMap<String,String>dataMap) throws InterruptedException {
+        KeywordUtil.clearInputUsingKeys(NitroXBotsPage.side);
+        delay(1000);
+        KeywordUtil.inputText(NitroXBotsPage.side, dataMap.get("Side"), "BUY or Sell Order field selected ");
+        pressEnter(NitroXBotsPage.side);
+    }
+
+    public static void inputTotalAmount(HashMap<String,String>dataMap) throws InterruptedException {
+
+        KeywordUtil.inputText(NitroXBotsPage.totalamount, dataMap.get("TotalAmount"), "Amount vale entered ");
+        //pressEnter(NitroXBotsPage.totalamount);
+    }
+
+
+    public static void inputMinPriceforSniper(HashMap<String,String>dataMap) throws InterruptedException {
+
+        KeywordUtil.click(NitroXBotsPage.minprice_sniper,"Min Price  Values Entered");
+        KeywordUtil.clearInputUsingKeys(NitroXBotsPage.minprice_sniper);
+        KeywordUtil.inputText(NitroXBotsPage.minprice_sniper, dataMap.get("MinPrice"), "Min Amount value entered ");
+
+    }
+
+    public static void inputMaxPriceforSniper(HashMap<String,String>dataMap) throws InterruptedException {
+
+        KeywordUtil.click(NitroXBotsPage.maxprice_sniper,"Max Price  Values Entered");
+        KeywordUtil.clearInputUsingKeys(NitroXBotsPage.maxprice_sniper);
+        KeywordUtil.inputText(NitroXBotsPage.maxprice_sniper, dataMap.get("MaxPrice"), "Max Amount value entered ");
+    }
+
+    public static void inputMaxThreshold(HashMap<String,String>dataMap) throws InterruptedException {
+
+        KeywordUtil.click(NitroXBotsPage.maxSlippageThreshold_sniper,"Threshold  Values Entered");
+        KeywordUtil.clearInputUsingKeys(NitroXBotsPage.maxSlippageThreshold_sniper);
+        KeywordUtil.inputText(NitroXBotsPage.maxSlippageThreshold_sniper, dataMap.get("MaxSlippageThreshold"), "Threshold  Values Entered");
+    }
+
+    public static String getTrigerConditionvalue_Sniper() {
+
+        String tvalue_sniper = getElementText(NitroXBotsPage.s_trrigger);
+        LogUtil.infoLog(thisClass, "Trigger  value in Config Tab : " + tvalue_sniper);
+        return tvalue_sniper;
+    }
+
 }

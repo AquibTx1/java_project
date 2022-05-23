@@ -267,7 +267,9 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                NitroXHome.ClearInputPrice();
                 NitroXHome.InputOpenOrderBidPrice();
+                NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -388,9 +390,10 @@ public class NitroXHomeSteps {
             try {
                 //NitroXHome.InputBuyOrderAskPrice();
                 NitroXHome.scrollToAskPrices();
+                NitroXHome.ClearInputPrice();
                 NitroXHome.InputthePrice(NitroXHome.getHighestAskPrice());
+                NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -423,7 +426,7 @@ public class NitroXHomeSteps {
     }
 
     @Then("Validate Order Moves to Dealt Orders")
-    public void validateOrderMovesToDealtOrders() throws InterruptedException {
+    public void validateOrderMovesToDealtOrders() {
         //Assert price and quantity at the time of placing order with first row of dealt orders
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -454,9 +457,10 @@ public class NitroXHomeSteps {
             try {
                 //NitroXHome.InputBuyOrderPrice();
                 NitroXHome.scrollToAskPrices();
+                NitroXHome.ClearInputPrice();
                 NitroXHome.InputthePrice(NitroXHome.getHighestAskPrice() + generateRandomNumber20to40());
+                NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -467,7 +471,7 @@ public class NitroXHomeSteps {
     }
 
     @And("Create Sell Order With Selling Price > Bid Price")
-    public void createSellOrderWithSellingPriceBidPrice() throws InterruptedException {
+    public void createSellOrderWithSellingPriceBidPrice() {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -475,7 +479,9 @@ public class NitroXHomeSteps {
             try {
                 // get the highest bid price add some amount into the highest bid price and also store it in a variable to use later
                 NitroXHome.scrollToBidPrices();
+                NitroXHome.ClearInputPrice();
                 NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice() + generateRandomNumber20to40());
+                NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -517,7 +523,7 @@ public class NitroXHomeSteps {
     }
 
     @And("Cancel First Open Buy Order")
-    public void cancelFirstOpenBuyOrder() throws InterruptedException {
+    public void cancelFirstOpenBuyOrder() {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -539,7 +545,7 @@ public class NitroXHomeSteps {
     }
 
     @And("Cancel First Open Sell Order")
-    public void cancelFirstOpenSellOrder() throws InterruptedException {
+    public void cancelFirstOpenSellOrder() {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -591,7 +597,9 @@ public class NitroXHomeSteps {
             try {
                 // get the highest bid price and also store it in a variable to use later
                 NitroXHome.scrollToBidPrices();
+                NitroXHome.ClearInputPrice();
                 NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice());
+                NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -618,7 +626,6 @@ public class NitroXHomeSteps {
                     NitroXHome.ClearInputPrice();
                     NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice() + generateRandomNumber20to40());
                     NitroXHome.ClearOrderQuantity();
-
                     NitroXHome.InputCustomQuantity(dataMap);
                     NitroXHome.ClickSellButton();
                     //verify success message
@@ -627,7 +634,7 @@ public class NitroXHomeSteps {
                     //verify order moves to open orders
                     NitroXHome.scrollToOrdersPlaced();
                     NitroXHome.waitForInvisibleOrderSubmittedMsg();
-                    Assert.assertEquals(NitroXHome.getSideofNthOpenOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
+                    Assert.assertEquals(NitroXHome.getSideofNthOpenOrder(1), "SELL");
                     Assert.assertEquals(NitroXHome.getPriceofNthOpenOrder(1), NitroXHome.getOrderFormPrice());
                     Assert.assertEquals(NitroXHome.getQuantityofNthOpenOrder(1), NitroXHome.getOrderFormQuantity());
                 }
@@ -652,7 +659,9 @@ public class NitroXHomeSteps {
         } else {
             try {
                 for (int i = 0; i < Integer.parseInt(arg0); i++) {
+                    NitroXHome.ClearInputPrice();
                     NitroXHome.InputthePrice(NitroXHome.getLowestAskPrice() - generateRandomNumber20to40());
+                    NitroXHome.ClearOrderQuantity();
                     NitroXHome.InputCustomQuantity(dataMap);
                     NitroXHome.ClickBuyButton();
 

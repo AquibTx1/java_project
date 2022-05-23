@@ -41,7 +41,12 @@ public class NitroXBotsPage {
 
     public static By botid=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[3]");
     public static By botName=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[4]");
+    public static By allbots=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table/thead/tr/th[1]");
     public static By status=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[5]");
+
+    public static By stopbots=By.xpath("//span[text()='Stop all']");
+
+    public static By nodata=By.xpath("//div[text()='No Data']");
     public static By progress=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[6]");
     public static By starttime=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[7]");
     public static By config=By.xpath("//div[text()='Config']");
@@ -74,6 +79,8 @@ public class NitroXBotsPage {
     public static By totalamount=By.id("bot_config_form_config_totalAmount");
     public static By side=By.id("bot_config_form_config_side");
     public static By minprice_sniper=By.id("bot_config_form_config_minPrice");
-    public static By maxprice_sniper=By.id("bot_config_form_config_minPrice");
+    public static By maxprice_sniper=By.id("bot_config_form_config_maxPrice");
     public static By maxSlippageThreshold_sniper=By.id("bot_config_form_config_maxSlippageThreshold");
+
+    public static By s_trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[4]/td[3]");
 }
