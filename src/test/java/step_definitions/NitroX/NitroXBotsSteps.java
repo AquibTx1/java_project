@@ -683,7 +683,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 NitroXBotsAction.selectSubPairSide(dataMap);
                 scrollingToElementofAPage(NitroXBotsPage.submitbtn,"Scrolled to Submit Button");
                 delay(3000);
-
+                NitroXBotsAction.clickSubmit();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
