@@ -107,9 +107,11 @@ public class XAlphaDealActions extends KeywordUtil {
         pressEnter(XAlphaDealsPage.dealInput_PortfolioNumber);
     }
 
-    public static void dealInput_ProcessingStatus(HashMap<String, String> dataMap) {
-        inputText(XAlphaDealsPage.dealInput_ProcessingStatus, dataMap.get("ProcessingStatus"), "Select deal input ProcessingStatus");
-        pressEnter(XAlphaDealsPage.dealInput_ProcessingStatus);
+    public static void dealInput_ProcessingStatus(HashMap<String, String> dataMap) throws InterruptedException {
+        String processingStatus = dataMap.get("ProcessingStatus").toLowerCase();
+        inputText(XAlphaDealsPage.dealInput_ProcessingStatus, processingStatus, "Select deal input ProcessingStatus");
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + processingStatus + "']"));
+        click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + processingStatus + "']"), "processingStatus=" + processingStatus);
     }
 
     public static void dealInput_CreateBtn() {
