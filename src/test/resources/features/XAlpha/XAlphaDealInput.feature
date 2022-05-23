@@ -3,7 +3,7 @@ Feature: Test login feature
   Background: Login to XAlpha
     Given Login to XAlpha with valid login credentials
 
-  @XAplhaDealInput
+  @XAlphaDealInput
   Scenario Outline: QA-TestCase-Auto-X-Alpha-004_Able to Create FX-Spot Buy Deal via Deal Input Page with "Confirmed" Status
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Move to X-Alpha page

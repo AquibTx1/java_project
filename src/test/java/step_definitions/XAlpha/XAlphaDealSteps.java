@@ -84,6 +84,7 @@ public class XAlphaDealSteps {
         String referencePriceDealEnquiry = XAlphaDealActions.getReferencePricewrtQuoteAssetAmt(quoteAssetAmount);
         String dealTypeDealEnquiry = XAlphaDealActions.getDealTypewrtQuoteAssetAmt(quoteAssetAmount).toLowerCase();
         String processingStatusDealEnquiry = XAlphaDealActions.getProcessingStatuswrtQuoteAssetAmt(quoteAssetAmount).toLowerCase();
+        String directionDealEnquiry = XAlphaDealActions.getDirectionwrtQuoteAssetAmt(quoteAssetAmount).toLowerCase();
 
         //convert deal input field values to be matched
         unitPrice = KeywordUtil.formatDecimalToStr(unitPrice);
@@ -96,6 +97,7 @@ public class XAlphaDealSteps {
         Assert.assertEquals(referencePriceDealEnquiry, referencePrice);
         Assert.assertEquals(dealTypeDealEnquiry, dataMap.get("DealType").toLowerCase());
         Assert.assertEquals(processingStatusDealEnquiry, dataMap.get("ProcessingStatus").toLowerCase());
+        Assert.assertEquals(directionDealEnquiry, dataMap.get("Direction").toLowerCase());
     }
 
 }

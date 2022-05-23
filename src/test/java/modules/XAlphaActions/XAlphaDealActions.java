@@ -167,6 +167,13 @@ public class XAlphaDealActions extends KeywordUtil {
         return dealType;
     }
 
+    public static String getDirectionwrtQuoteAssetAmt(String QuotePrice) {
+        QuotePrice = formatDecimalToStr(QuotePrice);
+        String summary_aka_direction = KeywordUtil.getElementText(By.xpath("((//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[10])/div/div/div/span"));
+        LogUtil.infoLog(XAlphaDealActions.class, "summary_aka_direction=" + summary_aka_direction);
+        return summary_aka_direction;
+    }
+
     public static String getProcessingStatuswrtQuoteAssetAmt(String QuotePrice) {
         QuotePrice = formatDecimalToStr(QuotePrice);
         String processingStatus = KeywordUtil.getElementText(By.xpath("(//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[6]/span"));
@@ -201,6 +208,5 @@ public class XAlphaDealActions extends KeywordUtil {
         LogUtil.infoLog(XAlphaDealActions.class, "referencePrice=" + referencePrice);
         return referencePrice;
     }
-
 
 }

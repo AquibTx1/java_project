@@ -1,6 +1,6 @@
 Feature: Test login feature
 
-  @XAplhaLogin
+  @XAlphaLogin
   Scenario Outline: XAlphaX-001_Verify login feature with valid credentials
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Navigate to the url
@@ -11,7 +11,7 @@ Feature: Test login feature
       | SheetName   | TestCaseID                  |
       | XAlphaLogin | QA_TestCase_Auto_X-Alpha_001 |
 
-  @XAplhaLogin
+  @XAlphaLogin
   Scenario Outline: XAlphaX-002-003_Verify login feature with invalid credentials
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Navigate to the url
