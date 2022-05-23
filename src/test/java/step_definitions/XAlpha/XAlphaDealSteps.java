@@ -70,9 +70,15 @@ public class XAlphaDealSteps {
         Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "Deal has created");
     }
 
-    @Then("Verify the deal is not created")
-    public void verifyTheDealIsNotCreated() {
+    @Then("Verify deal is not created")
+    public void verifyDealIsNotCreated() {
         XAlphaDealActions.waitForDealSubmittedMsg();
         Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "processing status should be 'pending' or 'confirmed'");
+    }
+
+    @Then("Verify settled deal is not created")
+    public void verifySettledDealIsNotCreated() {
+        XAlphaDealActions.waitForDealSubmittedMsg();
+        Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "FX Spot deal is settled, but base is not settled");
     }
 }
