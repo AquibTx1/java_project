@@ -3,7 +3,7 @@
 # exit when any command fails
 set -e
 
-docker run \ 
+docker run \
     --name tc_test_all \
     -e SCENARIO= \
     -v ~/0_all_scenarios/ExecutionReports:/code/ExecutionReports \
