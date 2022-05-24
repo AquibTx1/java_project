@@ -1,4 +1,4 @@
-Feature: Test login feature
+Feature: Test deals creation feature
 
   Background: Login to XAlpha
     Given Login to XAlpha with valid login credentials
@@ -63,7 +63,7 @@ Feature: Test login feature
       | SheetName   | TestCaseID                  |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_007 |
 
-  @XAlphaDealInput_debug
+  @XAlphaDealInput
   Scenario Outline: QA-TestCase-Auto-X-Alpha-009_Able to Create FX-Spot Sell Deal via Deal Input Page with "Confirmed" Status
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
