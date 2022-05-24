@@ -90,6 +90,9 @@ public class NitroXBotsPage {
 
     public static By slicesize= By.id("bot_config_form_config_slice_size");
 
+    public static By duration=By.id("bot_config_form_config_duration");
+
+    public static By DealRef=By.id("bot_config_form_config_deal_ref");
     public static By instrumenttype=By.id("bot_config_form_config_pair_leg_instrument_type");
 
     public static By accountid=By.id("bot_config_form_config_pair_leg_account_id");

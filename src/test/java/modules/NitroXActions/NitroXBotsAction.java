@@ -14,7 +14,7 @@ import static utilities.KeywordUtil.*;
 public class NitroXBotsAction {
 
     static Class thisClass = NitroXBotsAction.class;
-    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue;
+    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref;
    public static int totalfiltered = 0;
 
     public static void clickStart() throws Exception
@@ -255,7 +255,7 @@ public class NitroXBotsAction {
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.side);
         delay(1000);
         KeywordUtil.inputText(NitroXBotsPage.side, dataMap.get("Side"), "BUY or Sell Order field selected ");
-       pressEnter(NitroXBotsPage.side);
+        pressEnter(NitroXBotsPage.side);
     }
 
     public static void inputTotalAmount(HashMap<String,String>dataMap) throws InterruptedException {
@@ -385,6 +385,21 @@ public class NitroXBotsAction {
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
+    }
 
+    public static void inputDuration(HashMap<String, String> dataMap) {
+        try {
+            KeywordUtil.clearInputUsingKeys(NitroXBotsPage.duration);
+            KeywordUtil.inputText(NitroXBotsPage.duration, dataMap.get("Duration"), "Duration of Bot entered");
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+    }
+    public static void inputDealRef()
+    {
+        dealref=KeywordUtil.generateRandomNumber();
+        KeywordUtil.inputText(NitroXBotsPage.dealref,dealref,"Entered Deal Ref. ");
+        LogUtil.infoLog(thisClass, "Actual Trigger value :" +dealref);
     }
 }

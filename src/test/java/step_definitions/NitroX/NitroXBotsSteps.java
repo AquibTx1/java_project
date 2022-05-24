@@ -592,6 +592,140 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
 
     }
 
+
+    /************
+     *
+     * TWAP Bot
+     */
+
+
+    @And("Verify total Bots before starting the Twap_Bot execution")
+    public void CountNumberOfBotsBeforeBuyingSellingTwap() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn,"Scrolled to Total Bot Filtered");
+                totalbotbefore=NitroXBotsAction.getTotalFilteredBots();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @And("Choose Side,Quantity,and Duration")
+    public void chooseSideQuantityAndDuration()
+
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.selectSide(dataMap);
+                NitroXBotsAction.inputPairBotQuantity(dataMap);
+                NitroXBotsAction.inputDuration(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+
+    @And("Provide Deal Ref and submit")
+    public void provideDealRefAndSubmit()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /***************************************Pair Trading BOT*************************************
      *
      * ****/
@@ -732,5 +866,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
     @Then("Verify the Order in Dealt Order for same Bot")
     public void verifyTheOrderInDealtOrderForSameBot() {
     }
+
 }
 
