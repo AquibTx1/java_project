@@ -4,11 +4,11 @@
 set -e
 
 echo Branch name is: '%teamcity.build.branch%'
-if [ '%teamcity.build.branch%' == 'master' ] || [ '%teamcity.build.branch%' == 'refs/heads/master' ]; then
+if [ '%teamcity.build.branch%' == 'main' ] || [ '%teamcity.build.branch%' == 'refs/heads/main' ]; then
   ENVIRONMENT='prod'
   HELM_CHART_VERSION_TAG=''
   DOCKER_IMAGE_TAG='latest'
-elif [ '%teamcity.build.branch%' == 'test_master' ] || [ '%teamcity.build.branch%' == 'refs/heads/test_master' ]; then
+elif [ '%teamcity.build.branch%' == 'test_main' ] || [ '%teamcity.build.branch%' == 'refs/heads/test_main' ]; then
   ENVIRONMENT='test'
   HELM_CHART_VERSION_TAG='-test'
   DOCKER_IMAGE_TAG='test'
