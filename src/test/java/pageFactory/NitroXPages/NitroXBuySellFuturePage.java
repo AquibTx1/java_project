@@ -12,6 +12,11 @@ public class NitroXBuySellFuturePage {
     //Account & Instrument
 
     public static By instrumentype=By.id("account_pair_form_instrument");
+    public static By positionmode=By.id("futures_config_form_position_mode");
+
+    public static By leverage=By.id("futures_config_form_leverage");
+
+    public static By margintype=By.id("futures_config_form_margin_type");
     public static By modeTextField = By.xpath("(//*[@class='ant-col ant-form-item-control'])[1]/child::div[1]//div[@class='ant-select-selector']");
     public static By modeTextbyID = By.id("account_pair_form_mode");
     public static By spotDropdown = By.xpath("(//div[@class='rc-virtual-list-holder-inner'])/div[1]/div");
@@ -49,6 +54,7 @@ public class NitroXBuySellFuturePage {
     public static By Ordertableprice = By.xpath("//span[text()='Orderbook ']/following::table[1]/tbody");
     public static By validOrder = By.xpath("//*[contains(text(),'Order submitted successfully.')]");
 
+
     //open orders
     public static By openOrderHeader = By.xpath("//span[text()='Open Orders']");
     public static By openOrderTime_first = By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[02]/td[01]");
@@ -61,6 +67,7 @@ public class NitroXBuySellFuturePage {
     //Dealt Orders
     public static By recentDealtOrder = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[01]");
     public static By DealtOrderTab = By.id("rc-tabs-0-tab-dealt");
+    public static By openOrderTab = By.xpath("//span[text()='Open Orders']");
     public static By recentDealt = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[2]/td[02]/span");
 
 
