@@ -1,9 +1,12 @@
 package modules.XAlphaActions;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
+
+import java.util.List;
 
 public class XAlphaDealEnquiryActions extends KeywordUtil {
 
@@ -17,7 +20,11 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         waitForVisible(XAlphaDealEnquiryPage.dealEnquiry_navbar);
     }
 
-    public static String getFirstDealReference() {
+    public static void openFirstDeal() {
+        click(XAlphaDealEnquiryPage.dealEnquiry_firstDetailLink, "Open first deal");
+    }
+
+    public static String getFirstDealReferenceId() {
         String dealRef = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstDealRef);
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Deal reference in the first row=" + dealRef);
         return dealRef;
@@ -96,5 +103,60 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         String referencePrice = KeywordUtil.getElementText(By.xpath("((//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[10])/div/div[6]/div[2]/span"));
         LogUtil.infoLog(thisClass, "referencePrice=" + referencePrice);
         return referencePrice;
+    }
+
+    //clear existing processing statuses from the filter
+    public static void clearProcessingStatuses() {
+        List<WebElement> statuses = getListElements(XAlphaDealEnquiryPage.dealEnquiry_processingStatuses, "Clearing processing statuses.");
+        for (WebElement element : statuses) {
+            element.click();
+        }
+    }
+
+    //input processing status
+    public static void inputProcessingStatus(String processingStatus) {
+        click(XAlphaDealEnquiryPage.dealEnquiry_processingStatusClick, "");
+        inputText(XAlphaDealEnquiryPage.dealEnquiry_processingStatusInput, processingStatus, "input processing status");
+        waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, processingStatus)));
+        click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, processingStatus)), "Click processing status from dropdown");
+    }
+
+    public static void clickLoadDealBtn() {
+        click(XAlphaDealEnquiryPage.dealEnquiry_LoadDealBtn, "Click load deal button");
+    }
+
+    public static void waitForSuccessMsgToAppear() {
+        waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg);
+    }
+
+    public static void waitForSuccessMsgToDisappear() {
+        waitForInVisibile(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg);
+    }
+
+    public static void waitForDealDetailsPage() {
+        waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_UpdateBtn);
+    }
+
+    public static void clickUpdateDealBtn() {
+        click(XAlphaDealEnquiryPage.dealEnquiry_UpdateBtn, "Click update deal button");
+    }
+
+    //enter deal reference
+    public static void inputDealRef(String dealRef) throws InterruptedException {
+        System.out.println("inputDealRef=" + dealRef);
+        inputText(XAlphaDealEnquiryPage.dealEnquiry_DealRefInput, dealRef, "Input deal reference.");
+        waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_DealRefInputSuggestion, dealRef)));
+        click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_DealRefInputSuggestion, dealRef)), "Choose deal reference from dropdown suggestion");
+    }
+
+    //get entered deal reference
+    public static String getDealReferenceFromDealDetails() {
+        String dealRef = getElementValueWithVisibility(XAlphaDealEnquiryPage.dealDetail_dealRef);
+        LogUtil.infoLog(thisClass, "dealRef on deal details page="+dealRef);
+        return dealRef;
+    }
+
+    public static String getFirstDealProcessingStatus() {
+        return getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstProcessingStatus);
     }
 }

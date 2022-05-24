@@ -1,14 +1,20 @@
 package step_definitions.NitroX;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import modules.NitroXActions.NitroXBuySellFutureAction;
 import modules.NitroXActions.NitroXHome;
 import org.testng.Assert;
+import pageFactory.NitroXPages.NitroXBuySellFuturePage;
+import pageFactory.NitroXPages.NitroXHomePage;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
 
 import java.util.HashMap;
+import java.util.Locale;
+
+import static utilities.KeywordUtil.*;
 
 public class NitroXBuySellFutureSteps {
 
@@ -20,8 +26,8 @@ public class NitroXBuySellFutureSteps {
 
 
     @When("Choose Mode, Trading Account and Instrument")
-    public void chooseModeTradingAccountAndInstrumentType() {
-
+    public void chooseModeTradingAccountAndInstrumentType()
+    {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -41,6 +47,31 @@ public class NitroXBuySellFutureSteps {
             }
         }
     }
+
+
+    @And("Choose Position Mode,Leverage and Margin Type")
+    public void choosePositionModeLeverageAndMarginType()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(NitroXBuySellFuturePage.lowestAskPrice);
+                NitroXBuySellFutureAction.inputPositionMode(dataMap);
+                NitroXBuySellFutureAction.inputLeverage(dataMap);
+                NitroXBuySellFutureAction.selectMarginType(dataMap);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
     @And("Create A buy Order less than Market Price for Future Mode")
     public void createABuyOrderLessThanMarketPriceFutureMode() {
         //check if this step needs to be skipped
@@ -49,11 +80,11 @@ public class NitroXBuySellFutureSteps {
         } else {
             try {
 
-                System.out.println("Hello");
-//                NitroXHome.ClearInputPrice();
-//                NitroXHome.InputOpenOrderBidPrice();
-//                NitroXHome.ClearOrderQuantity();
-//                NitroXHome.InputCustomQuantity(dataMap);
+                //added the Same Method of Spot
+                NitroXHome.ClearInputPrice();
+                NitroXBuySellFutureAction.InputOpenOrderAskPrice();
+                NitroXHome.ClearOrderQuantity();
+                NitroXHome.InputCustomQuantity(dataMap);
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -76,7 +107,7 @@ public class NitroXBuySellFutureSteps {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
-           // NitroXBuySellFutureAction.ClickBuyButton();
+           NitroXBuySellFutureAction.ClickBuyButton();
         }
         //increase the step counter by 1
         if (BaseStepDefinitions.getSITflag()) {
@@ -84,4 +115,49 @@ public class NitroXBuySellFutureSteps {
         }
     }
 
+    @Then("Validate order is in Open State for Future Mode")
+    public void validateOrderIsInOpenState() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+
+            waitForVisible(NitroXBuySellFuturePage.validOrder);
+            NitroXBuySellFutureAction.clickOpenState();
+            Assert.assertEquals(NitroXHome.getSideofNthOpenOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
+            Assert.assertEquals(NitroXHome.getPriceofNthOpenOrder(1), NitroXHome.getOrderFormPrice());
+
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+
+    @And("Go to Open Order & Cancel First Open Buy Order")
+    public void goToOpenOrderCancelFirstOpenBuyOrder() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXBuySellFuturePage.openOrderTab,"Scrolled To Open Order");
+                NitroXBuySellFutureAction.clickOpenState();
+                NitroXBuySellFutureAction.cancelFirstBuyOrderforFutureMode();
+                delay(4000);
+               // NitroXBuySellFutureAction.
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
 }
