@@ -63,11 +63,9 @@ public class XAlphaDealEnquirySteps {
         //wait for success message to appear and disappear
         XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
         XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
-        dealRefId = XAlphaDealEnquiryActions.getFirstDealReferenceId(); //to be used later
 
-        //open first deal
-        XAlphaDealEnquiryActions.openFirstDeal();
-        XAlphaDealEnquiryActions.waitForDealDetailsPage();
+        //make sure the first deal have the correct processing status
+        Assert.assertEquals(XAlphaDealEnquiryActions.getFirstDealProcessingStatus(), dataMap.get("ProcessingStatus"));
     }
 
     @And("Change processing status")
@@ -96,5 +94,14 @@ public class XAlphaDealEnquirySteps {
     @Then("Verify the processing type")
     public void verifyTheProcessingType() {
         Assert.assertEquals(XAlphaDealEnquiryActions.getFirstDealProcessingStatus().toLowerCase(), dataMap.get("ProcessingStatus_new").toLowerCase());
+    }
+
+    @And("Open first deal in the row")
+    public void openFirstDealInTheRow() {
+        //open first deal
+        dealRefId = XAlphaDealEnquiryActions.getFirstDealReferenceId(); //to be used later
+        XAlphaDealEnquiryActions.openFirstDeal();
+        XAlphaDealEnquiryActions.waitForDealDetailsPage();
+        Assert.assertEquals(XAlphaDealEnquiryActions.getDealReferenceFromDealDetails(), dealRefId);
     }
 }

@@ -149,6 +149,13 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_DealRefInputSuggestion, dealRef)), "Choose deal reference from dropdown suggestion");
     }
 
+    //get entered deal reference
+    public static String getDealReferenceFromDealDetails() {
+        String dealRef = getElementValueWithVisibility(XAlphaDealEnquiryPage.dealDetail_dealRef);
+        LogUtil.infoLog(thisClass, "dealRef on deal details page="+dealRef);
+        return dealRef;
+    }
+
     public static String getFirstDealProcessingStatus() {
         return getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstProcessingStatus);
     }
