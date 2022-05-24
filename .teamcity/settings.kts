@@ -95,7 +95,7 @@ fun makeBuild(
 
         script {
             name = "Docker clean "
-            executionMode = BuildStep.ExecutionMode.DEFAULT
+            executionMode = BuildStep.ExecutionMode.ALWAYS
             scriptContent = loadScriptFromFile("scripts/docker-clean.sh")
         }
 
