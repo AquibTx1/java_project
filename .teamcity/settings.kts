@@ -39,6 +39,7 @@ project {
         param("env.DOCKER_IMAGE_NAME", "altonomy/qa-bdd")
         param("env.PACKAGE_NAME", "altonomy-qa-bdd")
         param("env.HELM_CHART_PATH", "helm")
+        param("env.RUNDECK_JOB_ID","355fbccf-275d-4c44-bec2-28285d1465a7")
     }
 }
 
