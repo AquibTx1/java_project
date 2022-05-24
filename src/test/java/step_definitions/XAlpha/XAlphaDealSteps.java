@@ -4,14 +4,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import modules.XAlphaActions.XAlphaDealActions;
-import modules.XAlphaActions.XAlphaLoginActions;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
-import utilities.KeywordUtil;
 
 import java.util.HashMap;
 
 public class XAlphaDealSteps {
+
+    static Class thisClass = XAlphaDealSteps.class;
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
 
@@ -66,36 +66,19 @@ public class XAlphaDealSteps {
 
     @Then("Verify the deal success message")
     public void verifyTheDealSuccessMessage() {
+        XAlphaDealActions.waitForDealSubmittedMsg();
         Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "Deal has created");
     }
 
-    @And("Navigate to deal enquiry tab")
-    public void navigateToDealEnquiryTab() {
-        XAlphaDealActions.clickDealEnquiryTab();
-        XAlphaDealActions.waitFordealEnquiry_navbar();
+    @Then("Verify deal is not created")
+    public void verifyDealIsNotCreated() {
+        XAlphaDealActions.waitForDealSubmittedMsg();
+        Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "processing status should be 'pending' or 'confirmed'");
     }
 
-    @Then("Verify the deal is created")
-    public void verifyTheDealIsCreated() {
-        XAlphaDealActions.getDealRefwrtQuoteAssetAmt(quoteAssetAmount);
-
-        String unitPriceDealEnquiry = XAlphaDealActions.getUnitPricewrtQuoteAssetAmt(quoteAssetAmount);
-        String feeDealEnquiry = XAlphaDealActions.getFeewrtQuoteAssetAmt(quoteAssetAmount);
-        String referencePriceDealEnquiry = XAlphaDealActions.getReferencePricewrtQuoteAssetAmt(quoteAssetAmount);
-        String dealTypeDealEnquiry = XAlphaDealActions.getDealTypewrtQuoteAssetAmt(quoteAssetAmount).toLowerCase();
-        String processingStatusDealEnquiry = XAlphaDealActions.getProcessingStatuswrtQuoteAssetAmt(quoteAssetAmount).toLowerCase();
-
-        //convert deal input field values to be matched
-        unitPrice = KeywordUtil.formatDecimalToStr(unitPrice);
-        feeAmount = KeywordUtil.formatDecimalToStr(feeAmount);
-        referencePrice = KeywordUtil.formatDecimalToStr(referencePrice);
-
-        //assert the values
-        Assert.assertEquals(unitPriceDealEnquiry, unitPrice);
-        Assert.assertEquals(feeDealEnquiry, feeAmount);
-        Assert.assertEquals(referencePriceDealEnquiry, referencePrice);
-        Assert.assertEquals(dealTypeDealEnquiry, dataMap.get("DealType").toLowerCase());
-        Assert.assertEquals(processingStatusDealEnquiry, dataMap.get("ProcessingStatus").toLowerCase());
+    @Then("Verify settled deal is not created")
+    public void verifySettledDealIsNotCreated() {
+        XAlphaDealActions.waitForDealSubmittedMsg();
+        Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "FX Spot deal is settled, but base is not settled");
     }
-
 }

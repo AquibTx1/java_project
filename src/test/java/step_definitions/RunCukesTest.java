@@ -20,10 +20,6 @@ import java.util.Date;
 
 @CucumberOptions(features = "classpath:features", plugin = {"pretty", "html:target/cucumber-html-report.html",
         "json:target/cucumber.json"}, tags = "", monochrome = true
-
-// @Amazon, @APItests,MobileTest,MobileTest4
-// MobileTest1
-
 )
 public class RunCukesTest extends AbstractTestNGCucumberTests {
 

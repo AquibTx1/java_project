@@ -1,5 +1,6 @@
 package modules.NitroXActions;
 
+import org.testng.Assert;
 import pageFactory.NitroXPages.NitroXBotsPage;
 import org.openqa.selenium.By;
 import pageFactory.NitroXPages.NitroXHomePage;
@@ -254,7 +255,7 @@ public class NitroXBotsAction {
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.side);
         delay(1000);
         KeywordUtil.inputText(NitroXBotsPage.side, dataMap.get("Side"), "BUY or Sell Order field selected ");
-        pressEnter(NitroXBotsPage.side);
+       pressEnter(NitroXBotsPage.side);
     }
 
     public static void inputTotalAmount(HashMap<String,String>dataMap) throws InterruptedException {
@@ -293,4 +294,97 @@ public class NitroXBotsAction {
         return tvalue_sniper;
     }
 
+
+    public static void inputPairBotQuantity(HashMap<String, String> dataMap) {
+
+        try {
+            KeywordUtil.clearInputUsingKeys(NitroXBotsPage.quantity);
+            KeywordUtil.inputText(NitroXBotsPage.quantity, dataMap.get("Quantity"), "Quantity entered");
+           // pressEnter(NitroXBotsPage.quantity);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+
+    public static void inputSliceSize(HashMap<String, String> dataMap) {
+
+        try {
+            KeywordUtil.clearInputUsingKeys(NitroXBotsPage.slicesize);
+            KeywordUtil.inputText(NitroXBotsPage.slicesize, dataMap.get("SliceSize"), "SliceSize value entered");
+           // pressEnter(NitroXBotsPage.slicesize);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static void selectmode(HashMap<String, String> dataMap) {
+        try {
+            waitForVisible(NitroXBotsPage.instrumenttype);
+            inputText(NitroXBotsPage.instrumenttype,dataMap.get("Mode"),"Mode Selected");
+            //pressEnter(NitroXBotsPage.instrumenttype);
+        }
+        catch (Throwable ex) {
+            throw new RuntimeException(ex);
+        }
+
+    }
+
+    public static void inputTradingAccount(HashMap<String, String> dataMap) {
+        try {
+            click(NitroXBotsPage.accountid, "Trading Account text field clicked.");
+            inputText(NitroXBotsPage.accountid, dataMap.get("TradingAccount"), "Trading Account Selected");
+            pressEnter(NitroXBotsPage.accountid);
+        }
+        catch(Throwable ex)
+        {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static void inputBaseCurrency(HashMap<String, String> dataMap) {
+
+        try {
+            click(NitroXBotsPage.basecurrency, "Base text field clicked.");
+            inputText(NitroXBotsPage.basecurrency, dataMap.get("Base"), "Base Currency Entered");
+           // pressEnter(NitroXBotsPage.basecurrency);
+        }
+        catch(Throwable ex)
+        {
+            throw new RuntimeException(ex);
+        }
+    }
+
+
+    public static void inputQuoteCurrency(HashMap<String, String> dataMap) {
+
+        try {
+            click(NitroXBotsPage.quotecurrency, "Quote text field clicked.");
+            inputText(NitroXBotsPage.quotecurrency, dataMap.get("Quote"), "Quote Currency Entered");
+
+        }
+        catch(Throwable ex)
+        {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static void selectMainPairTradingSide(HashMap<String,String>dataMap) throws InterruptedException {
+        KeywordUtil.clearInputUsingKeys(NitroXBotsPage.side);
+        delay(1000);
+        KeywordUtil.inputText(NitroXBotsPage.side, dataMap.get("Side"), "BUY or Sell Order field selected ");
+        pressEnter(NitroXBotsPage.side);
+    }
+
+    public static void selectSubPairSide(HashMap<String, String> dataMap) {
+
+        try {
+            KeywordUtil.clearInputUsingKeys(NitroXBotsPage.pairlegSide);
+            KeywordUtil.inputText(NitroXBotsPage.pairlegSide, dataMap.get("Side"), "BUY or Sell Order field selected ");
+            pressEnter(NitroXBotsPage.pairlegSide);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+    }
 }

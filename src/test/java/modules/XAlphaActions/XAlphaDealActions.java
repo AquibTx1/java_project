@@ -1,6 +1,7 @@
 package modules.XAlphaActions;
 
 import org.openqa.selenium.By;
+import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import pageFactory.XAlphaPages.XAlphaDealsPage;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 
 public class XAlphaDealActions extends KeywordUtil {
 
+    static Class thisClass = XAlphaLoginActions.class;
 
     public static void clickXAlphaHeader() {
         click(XAlphaDealsPage.xAlphaHeader, "Click X-Alpha Tab");
@@ -105,102 +107,25 @@ public class XAlphaDealActions extends KeywordUtil {
         pressEnter(XAlphaDealsPage.dealInput_PortfolioNumber);
     }
 
-    public static void dealInput_ProcessingStatus(HashMap<String, String> dataMap) {
-        inputText(XAlphaDealsPage.dealInput_ProcessingStatus, dataMap.get("ProcessingStatus"), "Select deal input ProcessingStatus");
-        pressEnter(XAlphaDealsPage.dealInput_ProcessingStatus);
+    public static void dealInput_ProcessingStatus(HashMap<String, String> dataMap) throws InterruptedException {
+        String processingStatus = dataMap.get("ProcessingStatus").toLowerCase();
+        inputText(XAlphaDealsPage.dealInput_ProcessingStatus, processingStatus, "Select deal input ProcessingStatus");
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + processingStatus + "']"));
+        click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + processingStatus + "']"), "processingStatus=" + processingStatus);
     }
 
     public static void dealInput_CreateBtn() {
         click(XAlphaDealsPage.dealInput_CreateBtn, "Click deal input Create Button");
     }
 
+    public static void waitForDealSubmittedMsg() {
+        waitForVisible(XAlphaDealsPage.dealInput_validationMsg);
+    }
+
     public static String dealInput_SubmitMessage() {
         String msg = getElementText(XAlphaDealsPage.dealInput_validationMsg);
-        LogUtil.infoLog(XAlphaLoginActions.class, "deal message=" + msg);
+        LogUtil.infoLog(thisClass, "deal message=" + msg);
         return msg;
     }
-
-    public static void clickDealEnquiryTab() {
-        click(XAlphaDealsPage.dealEnquiryTab, "Click deal enquiry tab");
-    }
-
-    public static void waitFordealEnquiry_navbar() {
-        waitForVisible(XAlphaDealsPage.dealEnquiry_navbar);
-    }
-
-    public static String getFirstDealReference() {
-        String dealRef = getElementText(XAlphaDealsPage.dealEnquiry_firstDealRef);
-        LogUtil.infoLog(XAlphaDealActions.class, "Deal reference in the first row=" + dealRef);
-        return dealRef;
-    }
-
-    public static String getFirstSummary() {
-        String summary = getElementText(XAlphaDealsPage.dealEnquiry_firstSummary);
-        LogUtil.infoLog(XAlphaDealActions.class, "Summary in the first row=" + summary);
-        return summary;
-    }
-
-    public static String getFirstUnitPrice() {
-        String unitPrice = getElementText(XAlphaDealsPage.dealEnquiry_firstUnitPrice);
-        unitPrice = unitPrice.replace(",", "");
-        LogUtil.infoLog(XAlphaDealActions.class, "Unit price in the first row=" + unitPrice);
-        return unitPrice;
-    }
-
-    public static String getFirstFeeAmount() {
-        String feeAmount = getElementText(XAlphaDealsPage.dealEnquiry_firstFeeAmount);
-        LogUtil.infoLog(XAlphaDealActions.class, "Fee Amount in the first row=" + feeAmount);
-        return feeAmount;
-    }
-
-    public static String getDealRefwrtQuoteAssetAmt(String QuotePrice) {
-        QuotePrice = formatDecimalToStr(QuotePrice);
-        String dealRef = KeywordUtil.getElementText(By.xpath("(//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[4]"));
-        LogUtil.infoLog(XAlphaDealActions.class, "dealRef=" + dealRef);
-        return dealRef;
-    }
-
-    public static String getDealTypewrtQuoteAssetAmt(String QuotePrice) {
-        QuotePrice = formatDecimalToStr(QuotePrice);
-        String dealType = KeywordUtil.getElementText(By.xpath("(//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[5]/span"));
-        LogUtil.infoLog(XAlphaDealActions.class, "dealType=" + dealType);
-        return dealType;
-    }
-
-    public static String getProcessingStatuswrtQuoteAssetAmt(String QuotePrice) {
-        QuotePrice = formatDecimalToStr(QuotePrice);
-        String processingStatus = KeywordUtil.getElementText(By.xpath("(//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[6]/span"));
-        LogUtil.infoLog(XAlphaDealActions.class, "processingStatus=" + processingStatus);
-        return processingStatus;
-    }
-
-    public static String getCounterPartywrtQuoteAssetAmt(String QuotePrice) {
-        QuotePrice = formatDecimalToStr(QuotePrice);
-        String counterPartyName = KeywordUtil.getElementText(By.xpath("(//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[8]/div"));
-        LogUtil.infoLog(XAlphaDealActions.class, "counterPartyName=" + counterPartyName);
-        return counterPartyName;
-    }
-
-    public static String getUnitPricewrtQuoteAssetAmt(String QuotePrice) {
-        QuotePrice = formatDecimalToStr(QuotePrice);
-        String unitPrice = KeywordUtil.getElementText(By.xpath("((//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[10])/div/div[4]/div[2]/span"));
-        LogUtil.infoLog(XAlphaDealActions.class, "unitPrice=" + unitPrice);
-        return unitPrice;
-    }
-
-    public static String getFeewrtQuoteAssetAmt(String QuotePrice) {
-        QuotePrice = formatDecimalToStr(QuotePrice);
-        String fee = KeywordUtil.getElementText(By.xpath("((//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[10])/div/div[5]/div[2]/span"));
-        LogUtil.infoLog(XAlphaDealActions.class, "fee=" + fee);
-        return fee;
-    }
-
-    public static String getReferencePricewrtQuoteAssetAmt(String QuotePrice) {
-        QuotePrice = formatDecimalToStr(QuotePrice);
-        String referencePrice = KeywordUtil.getElementText(By.xpath("((//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[10])/div/div[6]/div[2]/span"));
-        LogUtil.infoLog(XAlphaDealActions.class, "referencePrice=" + referencePrice);
-        return referencePrice;
-    }
-
 
 }
