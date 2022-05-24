@@ -78,6 +78,26 @@ fun makeBuild(
             scriptContent = loadScriptFromFile("scripts/publish.sh")
         }
         
+        script {
+            name = "Docker Pull via Rundeck"
+            executionMode = BuildStep.ExecutionMode.DEFAULT
+            scriptContent = loadScriptFromFile("scripts/docker-pull.sh")
+        }
+
+
+        script {
+            name = "Docker Test Run"
+            executionMode = BuildStep.ExecutionMode.DEFAULT
+            scriptContent = loadScriptFromFile("scripts/docker-test.sh")
+        }
+        
+
+        script {
+            name = "Docker clean "
+            executionMode = BuildStep.ExecutionMode.DEFAULT
+            scriptContent = loadScriptFromFile("scripts/docker-clean.sh")
+        }
+
     }
 
     triggers {
