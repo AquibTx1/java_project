@@ -14,7 +14,7 @@ import utilities.GlobalUtil;
 import java.util.HashMap;
 import java.util.Locale;
 
-import static utilities.KeywordUtil.waitForVisible;
+import static utilities.KeywordUtil.*;
 
 public class NitroXBuySellFutureSteps {
 
@@ -26,8 +26,8 @@ public class NitroXBuySellFutureSteps {
 
 
     @When("Choose Mode, Trading Account and Instrument")
-    public void chooseModeTradingAccountAndInstrumentType() {
-
+    public void chooseModeTradingAccountAndInstrumentType()
+    {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -134,5 +134,30 @@ public class NitroXBuySellFutureSteps {
     }
 
 
+    @And("Go to Open Order & Cancel First Open Buy Order")
+    public void goToOpenOrderCancelFirstOpenBuyOrder() {
 
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXBuySellFuturePage.openOrderTab,"Scrolled To Open Order");
+                NitroXBuySellFutureAction.clickOpenState();
+                NitroXBuySellFutureAction.cancelFirstBuyOrderforFutureMode();
+                delay(4000);
+               // NitroXBuySellFutureAction.
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
 }

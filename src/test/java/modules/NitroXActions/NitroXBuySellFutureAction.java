@@ -74,26 +74,44 @@ public class NitroXBuySellFutureAction {
 
     public static void inputLeverage(HashMap<String, String> dataMap) {
 
-        inputText(NitroXBuySellFuturePage.leverage, dataMap.get("Leverage"), dataMap.get("Leverage") + " : Leverage Mode");
-        //click(By.xpath("//div[text()='"+dataMap.get("Leverage")+"']"),"Entered the Leverage Type");
-        pressEnter(NitroXBuySellFuturePage.leverage);
+        try {
+            inputText(NitroXBuySellFuturePage.leverage, dataMap.get("Leverage"), dataMap.get("Leverage") + " : Leverage Mode");
+            //click(By.xpath("//div[text()='"+dataMap.get("Leverage")+"']"),"Entered the Leverage Type");
+            pressEnter(NitroXBuySellFuturePage.leverage);
+        }
+        catch (Throwable e)
+        {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
+
     }
 
     public static void selectMarginType(HashMap<String, String> dataMap)
     {
-        inputText(NitroXBuySellFuturePage.margintype, dataMap.get("Margin Type"), dataMap.get("Margin Type") + " : Margin Type");
-        pressEnter(NitroXBuySellFuturePage.margintype);
-        //click(By.xpath("//div[text()='"+dataMap.get("Margin Type")+"']"),"Entered the Margin");
+        try {
+            inputText(NitroXBuySellFuturePage.margintype, dataMap.get("Margin Type"), dataMap.get("Margin Type") + " : Margin Type");
+            pressEnter(NitroXBuySellFuturePage.margintype);
+            //click(By.xpath("//div[text()='"+dataMap.get("Margin Type")+"']"),"Entered the Margin");}
+        }
+        catch (Throwable e)
+        {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
     }
 
-
-    public static String getLowestAskPrice() {
+    public static String getLowestAskPrice()
+    {
         waitForVisible(NitroXHomePage.Ordertableprice);
         lastaskprice = getElementText(By.xpath("(//span[text()='Orderbook ']/following::table[1]/tbody//child::tr)[last()]/td[2]"));
         lastaskprice = lastaskprice.replace(",", "");
         double a = Double.parseDouble(lastaskprice) - 10.00;
-        LogUtil.infoLog(thisClass, "Biding price" + a);
-        System.out.println(a);
+        LogUtil.infoLog(thisClass, "Ask price" + a);
         return String.valueOf(a);
     }
 
@@ -101,10 +119,34 @@ public class NitroXBuySellFutureAction {
         KeywordUtil.inputText(NitroXHomePage.price, getLowestAskPrice(), "Entered the Open Bid Price");
     }
 
-    public static void clickOpenState() {
-
-        click(NitroXBuySellFuturePage.openOrderTab,"clicked the Open Order");
+    public static void clickOpenState()
+    {
+        try {
+            click(NitroXBuySellFuturePage.openOrderTab, "clicked the Open Order");
+            LogUtil.infoLog(thisClass, "Cancelled The Buy Order");
+        }
+           catch (Throwable e)
+        {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
     }
 
+    public static void cancelFirstBuyOrderforFutureMode()
+    {
+        try {
+            click(NitroXBuySellFuturePage.cancelFirstBuyOrder, "Cancel very first buy order");
+            LogUtil.infoLog(thisClass, "Cancelled The Buy Order");
+        }
+        catch (Throwable e)
+        {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
+    }
 
 }
