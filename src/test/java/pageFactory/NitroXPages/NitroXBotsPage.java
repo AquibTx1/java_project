@@ -90,6 +90,9 @@ public class NitroXBotsPage {
 
     public static By slicesize= By.id("bot_config_form_config_slice_size");
 
+    public static By dealrefrow=By.xpath("//*[text()='Bot Details']/following::table[2]/tbody/tr[1]/td[1]");
+
+    public static By quantity_twap=By.xpath("//*[text()='Bot Details']/following::table[2]/tbody/tr[2]/td[3]");
     public static By duration=By.id("bot_config_form_config_duration");
 
     public static By DealRef=By.id("bot_config_form_config_deal_ref");

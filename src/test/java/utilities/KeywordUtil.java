@@ -226,6 +226,15 @@ public class KeywordUtil extends GlobalUtil {
     }
 
     /**
+     * Page Refresh
+     *
+     * @refresh the Page
+     */
+    public static void pageRefresh() {
+        getDriver().navigate().refresh();
+    }
+
+    /**
      * Wait for clickable mobile web element.
      *
      * @param locator the locator
