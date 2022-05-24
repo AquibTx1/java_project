@@ -1,7 +1,7 @@
 #!/bin/bash
 
+# exit when any command fails
+set -e
 
-docker run \ 
---name tc_test_all \
--e SCENARIO= -v ~/0_all_scenarios/ExecutionReports:/code/ExecutionReports \
--v ~/0_all_scenarios/target:/code/target ecr.altono.app/altonomy/qa-bdd
+
+/usr/bin/curl -X POST https://rundeck.altono.app/rundeck/api/21/job/355fbccf-275d-4c44-bec2-28285d1465a7/run?authtoken=46jwWrWo1AAJp8XyfHJp1jspFqHgSswm
