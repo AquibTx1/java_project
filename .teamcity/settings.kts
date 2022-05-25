@@ -85,19 +85,27 @@ fun makeBuild(
             scriptContent = loadScriptFromFile("scripts/docker-pull.sh")
         }
 
-
-        script {
+        sshExec {
             name = "Docker Test Run"
+            commands= loadScriptFromFile("scripts/docker-test.sh")
+            targetUrl = "qa.altono.app"
             executionMode = BuildStep.ExecutionMode.DEFAULT
-            scriptContent = loadScriptFromFile("scripts/docker-test.sh")
+            authMethod = defaultPrivateKey {
+                username = "centos"
+            }
         }
-        
 
-        script {
-            name = "Docker clean "
+         sshExec {
+            name = "Docker Clean"
+            commands = loadScriptFromFile("scripts/docker-clean.sh")
+            targetUrl = "qa.altono.app"
             executionMode = BuildStep.ExecutionMode.ALWAYS
-            scriptContent = loadScriptFromFile("scripts/docker-clean.sh")
+            authMethod = defaultPrivateKey {
+                username = "centos"
+            }
         }
+       
+
 
     }
 
