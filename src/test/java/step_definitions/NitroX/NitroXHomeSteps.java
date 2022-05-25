@@ -204,7 +204,7 @@ public class NitroXHomeSteps {
 
     @When("Choose Mode, Trading Account, Base and Quote Currency")
     public void chooseModeTradingAccountBaseAndQuoteCurrency() {
-        System.out.println(dataMap);
+
         try {
             NitroXHome.selectmode(dataMap);
             NitroXHome.inputTradingAccount(dataMap);

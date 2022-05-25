@@ -210,9 +210,9 @@ public class NitroXBotsAction {
         click(NitroXBotsPage.DealtOrderTab, "Clicked Dealt Order");
     }
 
-    public static void stopAllBots()
-    {
+    public static void stopAllBots() throws InterruptedException {
         click(NitroXBotsPage.totalfilered,"Clicked Total Filtered");
+        delay(2000);
         waitForVisible(NitroXBotsPage.allbots);
         click(NitroXBotsPage.allbots,"Selected All Bots");
         try {
@@ -222,9 +222,7 @@ public class NitroXBotsAction {
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
-
     }
-
     public static double getPrice() {
         waitForVisible(NitroXHomePage.Ordertableprice);
         String lastaskprice = getElementText(By.xpath("(//span[text()='Orderbook ']/following::table[1]/tbody//child::tr)[last()]/td[2]"));
@@ -396,10 +394,32 @@ public class NitroXBotsAction {
         }
 
     }
-    public static void inputDealRef()
+    public static void inputDealRefNumber()
     {
         dealref=KeywordUtil.generateRandomNumber();
         KeywordUtil.inputText(NitroXBotsPage.dealref,dealref,"Entered Deal Ref. ");
         LogUtil.infoLog(thisClass, "Actual Trigger value :" +dealref);
     }
+
+    public static String getDealRef() {
+
+        String dealref = getElementText(NitroXBotsPage.dealrefrow);
+        LogUtil.infoLog(thisClass, "Deal Reference in get deal is : " + dealref);
+        return dealref;
+    }
+
+    public static String getQuantity() {
+        String quantity = getElementText(NitroXBotsPage.quantity_twap);
+        LogUtil.infoLog(thisClass, "Deal Reference in Quantity : " + quantity);
+        return quantity;
+    }
+
+    public static void selectSideTwapBot(HashMap<String,String>dataMap) throws InterruptedException {
+
+        KeywordUtil.inputText(NitroXBotsPage.side, dataMap.get("TSIDE"), "BUY or Sell Order field selected ");
+        pressEnter(NitroXBotsPage.side);
+    }
+
+
+
 }
