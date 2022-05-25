@@ -52,7 +52,7 @@ Feature: Test Bots features on NitroX HomePage
     Then Verify Bots in Total Filtered on HomePage
     And Click Total Filtered Bots and check the Bot in Detail and Config
     Then Verify new Bot in detail and config for Snipper Bot
-    Then Verify the Order in Dealt Order for Sniper Bot
+     Then Verify the Order in Dealt Order for Sniper Bot
 
     Examples:
       | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
@@ -71,13 +71,12 @@ Feature: Test Bots features on NitroX HomePage
     And Click Total Filtered Bots and check the Bot in Detail and Config
     Then Verify new Bot in detail and config for Snipper Bot
     Then Verify the Order in Dealt Order for Sniper Bot Sell Order
-
     Examples:
       | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_027 |
 
   @NitroXBot
-  Scenario Outline: NitroXHome-028_Start New Twap_BOT For Buy Order
+  Scenario Outline: NitroXHome-028_Start New Twap_BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName1>" and "<TestCaseID1>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
     And Read "NitroX" and "<SheetName2>" and "<TestCaseID2>" from test data
@@ -86,13 +85,13 @@ Feature: Test Bots features on NitroX HomePage
     And Choose Side,Quantity,and Duration
     And Provide Deal Ref and submit
     Then Verify Bots in Total Filtered on HomePage
-    And Click Total Filtered Bots and check the Bot in Detail and Config
+    And Click Total Filtered Bots tab & check the Bot in Detail and Config for Twap Bot
     Then Verify new Bot in detail and config for Twap_Bot
-#    Then Verify the Order in Dealt Order for Sniper Bot Sell Order
 
     Examples:
       | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_028 |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_029 |
 
 #  @NitroXBot
 #  Scenario Outline: NitroXHome-030_Start New Pair_Trading BOT For Buy Order
