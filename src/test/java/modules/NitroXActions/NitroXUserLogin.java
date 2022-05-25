@@ -1,6 +1,6 @@
 package modules.NitroXActions;
 
-import NitroXPages.NitroXLoginPage;
+import pageFactory.NitroXPages.NitroXLoginPage;
 import utilities.KeywordUtil;
 
 import java.util.HashMap;

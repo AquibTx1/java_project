@@ -231,11 +231,11 @@ public class Hooks {
         // close the browsers
         if (Boolean.parseBoolean(ConfigReader.getValue("closeBrowserAfterScenario"))) {
             DriverUtil.closeAllDriver();
-            RunCukesTest.extent.endTest(RunCukesTest.logger);
         }
         //method to reset counter for skip execution at a step definition
         BaseStepDefinitions.resetCounter();
-
+        RunCukesTest.extent.endTest(RunCukesTest.logger);
+        RunCukesTest.extent.flush();
     }
 
     //    @After("")
