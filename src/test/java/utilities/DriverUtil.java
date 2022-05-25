@@ -358,7 +358,7 @@ public class DriverUtil {
                         WebDriverManager.chromedriver().setup();
                         //running headless
                         ChromeOptions options = new ChromeOptions();
-                        options.addArguments("--headless", "--window-size=1920,1080", "--disable-gpu", "--no-sandbox", "--remote-debugging-port=9222");
+                        options.addArguments("--headless", "--window-size=1920,1080", "--disable-gpu", "--no-sandbox", "--remote-debugging-port=9222", "--disable-infobars", "--disable-dev-shm-usage", "--disable-browser-side-navigation", "--disable-features=VizDisplayCompositor");
                         browser = new ChromeDriver(options);
                         drivers.put("Chrome", browser);
                         exeEnv = REMOTE;

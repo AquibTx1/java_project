@@ -5,7 +5,7 @@ Feature: Test buys sell features
 
 
   @CreateAskPrices
-  Scenario Outline: NitroXHome-017_Create Sell Order When Selling Price Greater Than Market Price
+  Scenario Outline: NitroXHome-017_Create Bid Prices
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose Mode, Trading Account, Base and Quote Currency
     And Create "<Number>" Sell Order With Selling Price > Bid Price
@@ -14,7 +14,7 @@ Feature: Test buys sell features
       | NitroXBuySell | QA_TestCase_Auto_NitroX_017 | 4      |
 
   @CreateBidPrices
-  Scenario Outline: NitroXHome-013_Create an Open Order When Price is Less Than Market Price
+  Scenario Outline: NitroXHome-013_Create Ask Prices
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
     When Choose Mode, Trading Account, Base and Quote Currency
     And Create "<Number>" buy Order less than Market Price
