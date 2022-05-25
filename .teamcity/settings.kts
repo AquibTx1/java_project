@@ -87,7 +87,7 @@ fun makeBuild(
 
         sshExec {
             name = "Docker Test Run"
-            commands= loadScriptFromFile("scripts/docker-test.sh")
+            commands= "docker run --name tc_test_all -e SCENARIO= -v ~/0_all_scenarios/ExecutionReports:/code/ExecutionReports -v ~/0_all_scenarios/target:/code/target ecr.altono.app/altonomy/qa-bdd"
             targetUrl = "qa.altono.app"
             executionMode = BuildStep.ExecutionMode.DEFAULT
             authMethod = defaultPrivateKey {
@@ -97,7 +97,7 @@ fun makeBuild(
 
          sshExec {
             name = "Docker Clean"
-            commands = loadScriptFromFile("scripts/docker-clean.sh")
+            commands = "docker rm tc_test_all"
             targetUrl = "qa.altono.app"
             executionMode = BuildStep.ExecutionMode.ALWAYS
             authMethod = defaultPrivateKey {
