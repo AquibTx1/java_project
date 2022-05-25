@@ -30,9 +30,9 @@ public class Hooks {
     @Before("")
     public void beforeMethodAmazon(Scenario scenario) {
 
-        if (scenario.getName().contains("_"))
-            testCaseDescription = scenario.getName().split("_")[1].trim();
-        else
+//        if (scenario.getName().contains("_"))
+//            testCaseDescription = scenario.getName().split("_")[1].trim();
+//        else
             testCaseDescription = scenario.getName();
 
         RunCukesTest.logger = RunCukesTest.extent.startTest(testCaseDescription);
@@ -52,9 +52,9 @@ public class Hooks {
     //    @Before("")
     public void beforeAPIMethod(Scenario scenario) {
 
-        if (scenario.getName().contains("_"))
-            testCaseDescription = scenario.getName().split("_")[1];
-        else
+//        if (scenario.getName().contains("_"))
+//            testCaseDescription = scenario.getName().split("_")[1];
+//        else
             testCaseDescription = scenario.getName();
 
         RunCukesTest.logger = RunCukesTest.extent.startTest(testCaseDescription);
@@ -68,9 +68,9 @@ public class Hooks {
     //    @Before("")
     public void beforeMobileTestMethod(Scenario scenario) throws Exception {
 
-        if (scenario.getName().contains("_"))
-            testCaseDescription = scenario.getName().split("_")[1].trim();
-        else
+//        if (scenario.getName().contains("_"))
+//            testCaseDescription = scenario.getName().split("_")[1].trim();
+//        else
             testCaseDescription = scenario.getName();
 
         RunCukesTest.logger = RunCukesTest.extent.startTest(testCaseDescription);
@@ -87,7 +87,7 @@ public class Hooks {
     @AfterStep
     public void afterEachStep(Scenario scenario) {
         boolean flag = Boolean.parseBoolean(ConfigReader.getValue("ScreenshotFlag"));
-        String testName = scenario.getName().split("_")[0].trim();
+        String testName = scenario.getName();//.split("_")[0].trim();
         JavascriptExecutor jse = (JavascriptExecutor) GlobalUtil.getDriver();
 
         try {
@@ -145,9 +145,9 @@ public class Hooks {
     @After("")
     public void afterMethodSmoke(Scenario scenario) {
         String testName;
-        if (scenario.getName().contains("_"))
-            testName = scenario.getName().split("_")[0].trim();
-        else
+//        if (scenario.getName().contains("_"))
+//            testName = scenario.getName().split("_")[0].trim();
+//        else
             testName = scenario.getName();
 
         if (scenario.isFailed()) {
@@ -242,9 +242,9 @@ public class Hooks {
     public void afterAPIMethod(Scenario scenario) {
         String testName;
 
-        if (scenario.getName().contains("_"))
-            testName = scenario.getName().split("_")[0].trim();
-        else
+//        if (scenario.getName().contains("_"))
+//            testName = scenario.getName().split("_")[0].trim();
+//        else
             testName = scenario.getName();
 
         if (scenario.isFailed()) {
@@ -307,9 +307,9 @@ public class Hooks {
     public void afterMobileTestMethod(Scenario scenario) {
         String testName;
 
-        if (scenario.getName().contains("_"))
-            testName = scenario.getName().split("_")[0].trim();
-        else
+//        if (scenario.getName().contains("_"))
+//            testName = scenario.getName().split("_")[0].trim();
+//        else
             testName = scenario.getName();
 
         if (scenario.isFailed()) {
