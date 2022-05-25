@@ -1,5 +1,6 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.sshExec
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import java.io.BufferedReader
 import java.io.File
@@ -87,7 +88,7 @@ fun makeBuild(
 
         sshExec {
             name = "Docker Test Run"
-            commands= "docker run --name tc_test_all -e SCENARIO= -v ~/0_all_scenarios/ExecutionReports:/code/ExecutionReports -v ~/0_all_scenarios/target:/code/target ecr.altono.app/altonomy/qa-bdd"
+            commands = loadScriptFromFile("scripts/docker-test.sh")
             targetUrl = "qa.altono.app"
             executionMode = BuildStep.ExecutionMode.DEFAULT
             authMethod = defaultPrivateKey {
@@ -95,17 +96,15 @@ fun makeBuild(
             }
         }
 
-         sshExec {
+        sshExec {
             name = "Docker Clean"
-            commands = "docker rm tc_test_all"
+            commands = loadScriptFromFile("scripts/docker-clean.sh")
             targetUrl = "qa.altono.app"
             executionMode = BuildStep.ExecutionMode.ALWAYS
             authMethod = defaultPrivateKey {
                 username = "centos"
             }
         }
-       
-
 
     }
 
