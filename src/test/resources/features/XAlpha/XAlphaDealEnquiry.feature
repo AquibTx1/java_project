@@ -4,7 +4,7 @@ Feature: Test deal enquiry feature
     Given Login to XAlpha with valid login credentials
 
   @XAlphaDealEnquiry_debug
-  Scenario Outline: QA-TestCase-Auto-X-Alpha-014_Able to Edit Status to Processed of an Existing FX-Spot Deal in Deal Inquiry
+  Scenario Outline: "<TestCaseID>" Able to Edit Status to "<Status>" of an Existing FX-Spot Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal enquiry tab
@@ -17,6 +17,7 @@ Feature: Test deal enquiry feature
     Then Verify the processing type
 
     Examples:
-      | SheetName   | TestCaseID                  |
-      | XAlphaDeals | QA_TestCase_Auto_XAlpha_014 |
-
+      | SheetName   | TestCaseID                  | Status    |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_014 | Processed |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_016 | Pending   |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_017 | Settled   |

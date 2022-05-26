@@ -43,7 +43,7 @@ public class NitroXBotsPage {
     public static By botName=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[4]");
     public static By allbots=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table/thead/tr/th[1]");
     public static By status=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[5]");
-
+    public static By currentbot=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table/tbody/tr[1]/td[1]");
     public static By stopbots=By.xpath("//span[text()='Stop all']");
 
     public static By nodata=By.xpath("//div[text()='No Data']");
@@ -77,6 +77,8 @@ public class NitroXBotsPage {
 
      */
     public static By totalamount=By.id("bot_config_form_config_totalAmount");
+
+    public static By botdetail_snipper=By.xpath("(//*[text()='Bot Details']/following::table)[3]/tbody/tr[2]/td[1]");
     public static By side=By.id("bot_config_form_config_side");
     public static By minprice_sniper=By.id("bot_config_form_config_minPrice");
     public static By maxprice_sniper=By.id("bot_config_form_config_maxPrice");
@@ -93,6 +95,11 @@ public class NitroXBotsPage {
     public static By dealrefrow=By.xpath("//*[text()='Bot Details']/following::table[2]/tbody/tr[1]/td[1]");
 
     public static By quantity_twap=By.xpath("//*[text()='Bot Details']/following::table[2]/tbody/tr[2]/td[3]");
+
+    public static By side_twap=By.xpath("//*[text()='Bot Details']/following::table[2]/tbody/tr[2]/td[3]");
+
+    //*[text()='Bot Details']/following::table[2]/tbody/tr[2]/td[3]
+
     public static By duration=By.id("bot_config_form_config_duration");
 
     public static By DealRef=By.id("bot_config_form_config_deal_ref");
