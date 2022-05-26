@@ -115,10 +115,26 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     //input processing status
     public static void inputProcessingStatus(String processingStatus) {
-        click(XAlphaDealEnquiryPage.dealEnquiry_processingStatusClick, "");
+        click(XAlphaDealEnquiryPage.dealEnquiry_processingStatusClick, "Click processing status input filter box");
         inputText(XAlphaDealEnquiryPage.dealEnquiry_processingStatusInput, processingStatus, "input processing status");
         waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, processingStatus)));
-        click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, processingStatus)), "Click processing status from dropdown");
+        click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, processingStatus)), "Choose processing status from dropdown");
+    }
+
+    //clear existing deal types(if any)
+    public static void clearDealTypes() {
+        List<WebElement> dealTypes = getListElements(XAlphaDealEnquiryPage.dealEnquiry_DealTypesXicon, 4, "Clearing deal types");
+        for (WebElement element : dealTypes) {
+            element.click();
+        }
+    }
+
+    //input deal types
+    public static void inputDealType(String dealType) {
+        click(XAlphaDealEnquiryPage.dealEnquiry_DealTypesClick, "Click deal types input filter box");
+        inputText(XAlphaDealEnquiryPage.dealEnquiry_DealTypesInput, dealType, "input processing status");
+        waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, dealType)));
+        click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, dealType)), "Choose deal type from dropdown");
     }
 
     public static void clickLoadDealBtn() {
@@ -156,7 +172,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     //get entered deal reference
     public static String getDealReferenceFromDealDetails() {
         String dealRef = getElementValueWithVisibility(XAlphaDealEnquiryPage.dealDetail_dealRef);
-        LogUtil.infoLog(thisClass, "dealRef on deal details page="+dealRef);
+        LogUtil.infoLog(thisClass, "dealRef on deal details page=" + dealRef);
         return dealRef;
     }
 

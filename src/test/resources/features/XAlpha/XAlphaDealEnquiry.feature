@@ -8,7 +8,7 @@ Feature: Test deal enquiry feature
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal enquiry tab
-    And Load a deal wrt processing type
+    And Load a deal wrt processing type and deal type
     And Open first deal in the row
     And Change processing status
     Then Verify the deal updated success message
@@ -26,7 +26,7 @@ Feature: Test deal enquiry feature
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal enquiry tab
-    And Load a deal wrt processing type
+    And Load a deal wrt processing type and deal type
     And Open first deal in the row
     And Change processing status
     Then Verify the deal forwarded to MO for approval

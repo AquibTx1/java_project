@@ -24,6 +24,12 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_processingStatusInput = By.id("filter_form_processing_status");
     public static By dealEnquiry_processingStatuses = By.xpath("//div[@ph_label='Processing Status']//div[@class='ant-select-selection-overflow-item']/span/span[2]");
     public static String dealEnquiry_processingStatusChoice = "//div[@class='ant-select-item-option-content' and text()='%s']";
+
+    public static By dealEnquiry_DealTypesClick = By.xpath("//div[@ph_label='Processing Status']");
+    public static By dealEnquiry_DealTypesInput = By.id("filter_form_deal_type");
+    public static By dealEnquiry_DealTypesXicon = By.xpath("//div[@ph_label='Deal Type']//div[@class='ant-select-selection-overflow-item']/span/span[2]");
+    public static String dealEnquiry_DealTypesChoice = "//div[@class='ant-select-item-option-content' and text()='%s']";
+
     public static By dealEnquiry_LoadDealBtn = By.xpath("//button[@type='submit']/span[text()='Load Deal']");
     public static By dealEnquiry_LoadDealSuccessMsg = By.xpath("//div[@class='ant-notification-notice-message' and text()='Success!']");
     public static By dealEnquiry_LoadDealSuccessMsg_MO = By.xpath("//div[@class='ant-notification-notice-description' and text()='Deal update has to be approved by MO. A task has created.']");
