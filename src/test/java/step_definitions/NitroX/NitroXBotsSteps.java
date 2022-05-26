@@ -205,8 +205,9 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.CloseBotDetail();
                 delay(2000);
                 NitroXBotsAction.clickDealtOrdersTab();
+                delay(2000);
                 Assert.assertEquals(NitroXBotsAction.getDealtOrderPrice(), NitroXBotsAction.getPrice());
-                NitroXBotsAction.stopAllBots();
+                NitroXBotsAction.stopCurrentBot();
                 NitroXBotsAction.CloseBotDetail();
 
 
@@ -312,9 +313,8 @@ public class NitroXBotsSteps {
                 delay(2000);
                 NitroXBotsAction.clickDealtOrdersTab();
                 Assert.assertEquals(NitroXBotsAction.getDealtOrderPrice(), NitroXBotsAction.getBidPrice());
-                NitroXBotsAction.stopAllBots();
+                NitroXBotsAction.stopCurrentBot();
                 NitroXBotsAction.CloseBotDetail();
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -572,7 +572,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 delay(1000);
                 NitroXBotsAction.clickDealtOrdersTab();
                 Assert.assertEquals(NitroXBotsAction.getDealtOrderPrice(), NitroXBotsAction.getBidPrice());
-               // NitroXBotsAction.stopAllBots();
+                NitroXBotsAction.stopCurrentBot();
                 //NitroXBotsAction.CloseBotDetail();
 
 
