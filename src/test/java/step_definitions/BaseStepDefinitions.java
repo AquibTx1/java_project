@@ -39,7 +39,6 @@ public class BaseStepDefinitions extends KeywordUtil {
         try {
             KeywordUtil.cucumberTagName = "Web";
             dataMap = ExcelDataUtil.getTestDataWithTestCaseID(fileName, sheetName, testCaseID);
-            System.out.println("URL=" + dataMap.get("URL"));
         } catch (Throwable e) {
             GlobalUtil.e = e;
             GlobalUtil.errorMsg = e.getMessage();

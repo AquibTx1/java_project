@@ -26,6 +26,7 @@ public class XAlphaDealEnquiryPage {
     public static String dealEnquiry_processingStatusChoice = "//div[@class='ant-select-item-option-content' and text()='%s']";
     public static By dealEnquiry_LoadDealBtn = By.xpath("//button[@type='submit']/span[text()='Load Deal']");
     public static By dealEnquiry_LoadDealSuccessMsg = By.xpath("//div[@class='ant-notification-notice-message' and text()='Success!']");
+    public static By dealEnquiry_LoadDealSuccessMsg_MO = By.xpath("//div[@class='ant-notification-notice-description' and text()='Deal update has to be approved by MO. A task has created.']");
     public static By dealEnquiry_DealRefInput = By.id("filter_form_deal_ref");
     public static String dealEnquiry_DealRefInputSuggestion = "//div[@class='ant-select-item-option-content' and text()='%s']";
     public static By dealEnquiry_UpdateBtn = By.xpath("//button[@type='submit']/span[text()='Update']");

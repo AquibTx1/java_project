@@ -129,6 +129,10 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg);
     }
 
+    public static void waitForSuccessMsgToAppear_MO() {
+        waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg_MO);
+    }
+
     public static void waitForSuccessMsgToDisappear() {
         waitForInVisibile(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg);
     }

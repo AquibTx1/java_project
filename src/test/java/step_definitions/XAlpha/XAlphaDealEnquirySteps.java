@@ -81,6 +81,12 @@ public class XAlphaDealEnquirySteps {
         XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
     }
 
+    @Then("Verify the deal forwarded to MO for approval")
+    public void verifyTheDealForwardedToMOForApproval() {
+        XAlphaDealEnquiryActions.waitForSuccessMsgToAppear_MO();
+        XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+    }
+
     @And("Load a deal wrt deal reference id")
     public void loadADealWrtDealReferenceId() throws InterruptedException {
         //verify processing status is updated
