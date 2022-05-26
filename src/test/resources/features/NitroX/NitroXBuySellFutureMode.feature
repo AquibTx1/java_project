@@ -29,7 +29,7 @@ Feature: Test buys sell features using Future Mode
   Scenario Outline: QA_TestCase_Auto_NitroX_036_Create A Dealt Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account and Instrument
-    And Validate No previous postion
+    And Validate No previous position
     And Choose Position Mode,Leverage and Margin Type
     And Create Buy Order Equal to Ask Price for Future Mode
     Then Verify Order Submitted Success Message-Future Mode

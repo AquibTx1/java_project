@@ -74,9 +74,16 @@ public class NitroXBuySellFutureAction {
         try {
             inputText(NitroXBuySellFuturePage.leverage, dataMap.get("Leverage"), "Leaverage Selected");
             delay(2000);
-            click(By.xpath("//div[text()='x"+dataMap.get("Leverage")+"']"),"Entered");
+            click(By.xpath("//div[text()='x" + dataMap.get("Leverage") + "']"), "Entered");
+//            if(dataMap.get("Leverage").isEmpty()){
+//                System.out.println("data");
+//            }
+//            else {
+//
+//            }
             //click(By.xpath("//div[text()='"+dataMap.get("Leverage")+"']"),"Entered the Leverage Type");
         }
+
         catch (Throwable e)
         {
             GlobalUtil.e = e;
@@ -161,14 +168,16 @@ public class NitroXBuySellFutureAction {
         boolean flag=false;
         for(int i=1;i<=s;i++)
         {
-           String value= getDriver().findElement(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr["+i+"]/td[1]")).getText();
-            if(value.equals(S3))
-            {
-                flag=true;
-                click(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr["+i+"]/td[12]//span[text()='Market']"),"Clicked The Postion");
+            String value = getDriver().findElement(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[1]")).getText();
+            System.out.println(value);
+            System.out.println(S3);
+            if (value.equals(S3)) {
+                flag = true;
+                click(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[12]//span[text()='Market']"), "Clicked The Postion");
                 delay(60000);
+                break;
             }
-            break;
+
         }
     }
 

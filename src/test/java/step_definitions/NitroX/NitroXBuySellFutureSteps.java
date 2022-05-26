@@ -51,7 +51,7 @@ public class NitroXBuySellFutureSteps {
     }
 
 
-    @And("Validate No previous postion")
+    @And("Validate No previous position")
     public void validateNoPreviousPostion() {
         //Assert price and quantity at the time of placing order with first row of dealt orders
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {

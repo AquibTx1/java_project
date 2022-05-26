@@ -194,7 +194,7 @@ public class NitroXBotsSteps {
                 delay(2000);
                 Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Order Direction"));
                 Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getPrice());
-                NitroXBotsAction.stopCurrentBot();
+                NitroXBotsAction.stopAllBots();
                 NitroXBotsAction.CloseBotDetail();
 
             } catch (Throwable e) {
