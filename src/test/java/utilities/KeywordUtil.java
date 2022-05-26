@@ -664,6 +664,27 @@ public class KeywordUtil extends GlobalUtil {
     }
 
     /**
+     * Gets list elements.
+     *
+     * @param locator the locator
+     * @param wait_seconds for the locator
+     * @param logStep the log step
+     * @return list elements
+     */
+    public static List<WebElement> getListElements(By locator, int wait_seconds, String logStep) {
+        KeywordUtil.lastAction = "Get List of Elements: " + locator.toString();
+        LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
+
+        try {
+            findWithFluintWait(locator, wait_seconds, 300);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));
+        return getDriver().findElements(locator);
+    }
+
+    /**
      * Is web element present boolean.
      *
      * @param locator the locator
