@@ -72,6 +72,7 @@ public class XAlphaDealEnquirySteps {
     public void changeProcessingStatus() {
         //update processing status
         XAlphaDealActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
+        XAlphaDealActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new")); //intentional due to existing bug
         XAlphaDealEnquiryActions.clickUpdateDealBtn();
     }
 
