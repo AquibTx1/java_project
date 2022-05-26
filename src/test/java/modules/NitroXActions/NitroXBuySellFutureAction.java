@@ -2,6 +2,7 @@ package modules.NitroXActions;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import pageFactory.NitroXPages.NitroXBotsPage;
 import pageFactory.NitroXPages.NitroXBuySellFuturePage;
 import pageFactory.NitroXPages.NitroXHomePage;
 import utilities.GlobalUtil;
@@ -147,6 +148,18 @@ public class NitroXBuySellFutureAction {
             GlobalUtil.errorMsg = e.getMessage();
             Assert.fail(e.getMessage());
         }
+    }
+
+    public static void clickDealtOrdersTab()
+    {
+        click(NitroXBotsPage.DealtOrderTab, "Clicked Dealt Order");
+    }
+
+    public static double getQuantityofNthDealtOrder(int orderNumber) {
+        orderNumber += 1;
+        String quantity = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[" + orderNumber + "]/td[05]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order quantity=" + quantity);
+        return Double.parseDouble(quantity);
     }
 
 }
