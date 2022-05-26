@@ -655,14 +655,12 @@ public class KeywordUtil extends GlobalUtil {
         LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
 
         try {
-            findWithFluintWait(locator, 60, 300);
+            findWithFluintWait(locator, DEFAULT_WAIT_SECONDS, 300);
         } catch (Exception e) {
             e.printStackTrace();
         }
         RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
         return getDriver().findElements(locator);
-
     }
 
     /**
