@@ -48,5 +48,7 @@ Feature: Test deal enquiry feature
     Then Verify the processing type
 
     Examples:
-      | FromStatus | ToStatus  | SheetName   | TestCaseID                  | loginCredentials |
-      | Settled    | Processed | XAlphaDeals | QA_TestCase_Auto_XAlpha_016 | MO_User          |
+      | FromStatus | ToStatus  | SheetName   | TestCaseID                  | loginCredentials  |
+      | Settled    | Processed | XAlphaDeals | QA_TestCase_Auto_XAlpha_016 | MO_CheckerAccount |
+      | Processed  | Confirmed | XAlphaDeals | QA_TestCase_Auto_XAlpha_017 | MO_CheckerAccount |
+      | Settled    | Confirmed | XAlphaDeals | QA_TestCase_Auto_XAlpha_018 | MO_CheckerAccount |
