@@ -104,7 +104,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.inputOrderAmount(dataMap);
-                NitroXBotsAction.inputOrderType(dataMap);
+                //NitroXBotsAction.inputOrderType(dataMap);
                 NitroXBotsAction.inputTrigerCondtion();
                 NitroXBotsAction.clickSubmit();
             } catch (Throwable e) {
@@ -126,7 +126,8 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(30000);
+                NitroXBotsAction.refreshPage();
+                delay(70000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
 
             } catch (Throwable e) {
@@ -303,6 +304,7 @@ public class NitroXBotsSteps {
                 Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getBidPrice());
                 NitroXBotsAction.stopCurrentBot();
                 NitroXBotsAction.CloseBotDetail();
+                NitroXBotsAction.refreshPage();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -420,7 +422,8 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(30000);
+                NitroXBotsAction.refreshPage();
+                delay(70000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -440,9 +443,12 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                NitroXBotsAction.refreshPage();
+                delay(30000);
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
                 NitroXBotsAction.sortStartTime();
+
                 NitroXBotsAction.selectLatestBotName();
 
             } catch (Throwable e) {
@@ -464,6 +470,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+
                 waitForVisible(NitroXBotsPage.botdetail_snipper);
                 delay(5000);
                 Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(),dataMap.get("TotalAmount"));
