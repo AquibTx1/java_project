@@ -12,6 +12,7 @@ import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 import static utilities.KeywordUtil.*;
 
@@ -33,7 +34,6 @@ public class NitroXBotsSteps {
             try {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn,"Scrolled to Total Bot Bot Filtered");
                 totalbotbefore=NitroXBotsAction.getTotalFilteredBots();
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -44,9 +44,7 @@ public class NitroXBotsSteps {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
-
     }
-
     @And("Click Start Bot ,Select the Service,Method and Input Bot Quantity")
     public void clickStartBotSelectTheServiceMethodAndInputBotQuantity() {
         // Start the Bot Execution for Buy Order
@@ -73,7 +71,6 @@ public class NitroXBotsSteps {
         }
 
     }
-
     @When("Select Buy Order and Select the MinTime and MaxTime Break")
     public void select_buy_order_and_select_the_min_time_and_max_time_break() {
         //input Max Price and Min Price
@@ -98,7 +95,6 @@ public class NitroXBotsSteps {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
-
     }
     @When("Input the Time, Quantity and Submit the Order")
     public void input_the_time_quantity_and_submit_the_order() {
@@ -111,7 +107,6 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.inputOrderType(dataMap);
                 NitroXBotsAction.inputTrigerCondtion();
                 NitroXBotsAction.clickSubmit();
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -145,7 +140,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
-
     @And("Click total filtered bots and click the detail bot")
     public void clickTotalFilteredBotsAndClickTheDetailBot() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -157,7 +151,6 @@ public class NitroXBotsSteps {
                NitroXBotsAction.sortStartTime();
                NitroXBotsAction.selectLatestBotName();
                NitroXBotsAction.selectConfig();
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -168,7 +161,6 @@ public class NitroXBotsSteps {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
-
     }
     @Then("Verify new Bot in detail and config")
     public void verifyNewBotInDetaiilAndConfig() {
@@ -176,7 +168,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
                 waitForVisible(NitroXBotsPage.trrigger);
                 Assert.assertEquals(NitroXBotsAction.getTrigerConditionvalue(),NitroXBotsAction.trrigervalue);
                // Assert.assertEquals();
@@ -186,15 +177,11 @@ public class NitroXBotsSteps {
                 GlobalUtil.errorMsg = e.getMessage();
                 Assert.fail(e.getMessage());
             }
-
         }
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
-        //dataMap=null;
-
     }
-
     @And("Verify the Buy Order in Dealt Order")
     public void CloseConfigTabandVerifyOrderinDealttoBuy() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -203,12 +190,12 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.CloseConfigTab();
                 NitroXBotsAction.CloseBotDetail();
-                delay(2000);
                 NitroXBotsAction.clickDealtOrdersTab();
-                Assert.assertEquals(NitroXBotsAction.getDealtOrderPrice(), NitroXBotsAction.getPrice());
+                delay(2000);
+                Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Order Direction"));
+                Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getPrice());
                 NitroXBotsAction.stopAllBots();
                 NitroXBotsAction.CloseBotDetail();
-
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -311,10 +298,11 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.CloseBotDetail();
                 delay(2000);
                 NitroXBotsAction.clickDealtOrdersTab();
-                Assert.assertEquals(NitroXBotsAction.getDealtOrderPrice(), NitroXBotsAction.getBidPrice());
-                NitroXBotsAction.stopAllBots();
-                NitroXBotsAction.CloseBotDetail();
 
+                Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Order Direction"));
+                Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getBidPrice());
+                NitroXBotsAction.stopCurrentBot();
+                NitroXBotsAction.CloseBotDetail();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -331,7 +319,6 @@ public class NitroXBotsSteps {
 
 /****************************************SNIPER BOT****************************************************************/
 
-
 @And("Verify total Bots before starting the Sniper Bot execution")
 public void CountNumberOfBotsBeforeBuyingSelling() {
 
@@ -341,7 +328,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         try {
             scrollingToElementofAPage(NitroXBotsPage.startbtn,"Scrolled to Total Bot Filtered");
             totalbotbefore=NitroXBotsAction.getTotalFilteredBots();
-
         } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();
@@ -352,7 +338,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
     if (BaseStepDefinitions.getSITflag()) {
         BaseStepDefinitions.increaseCounter();
     }
-
 }
     @And("Click Start Bot and select the Service,Method and Input Bot Quantity")
     public void StartBotSelectTheServiceMethodAndInputBotQuantity() {
@@ -379,8 +364,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         }
 
     }
-
-
     @When("Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold")
     public void selectSideMinPriceandMaxPrice() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -407,8 +390,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         }
 
     }
-
-
     @And("Enter Quantity and submit the order")
     public void enterQuantityAndSubmitTheOrder() {
     //Snipper Sell Order
@@ -501,9 +482,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
-
     }
-
     @And("Verify the Order in Dealt Order for Sniper Bot")
     public void CloseConfigTabandVerifyOrderinDealtOrderSniper() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -528,12 +507,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
             BaseStepDefinitions.increaseCounter();
         }
     }
-        /***
-         *
-         * Snipper Sell order
-         */
-
-
+        /***SNiper Sell Order**************************************/
     @When("Select Sell Order ,Side and Min,Max Price and MaxSlippageThreashold")
     public void selectSideMinPriceandMaxPriceforSellOrder() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -546,8 +520,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 NitroXBotsAction.inputMinPriceforSniper(dataMap);
                 NitroXBotsAction.inputMaxPriceforSniper(dataMap);
                 NitroXBotsAction.inputMaxThreshold(dataMap);
-
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -558,9 +530,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
-
     }
-
     @And("Verify the Order in Dealt Order for Sniper Bot Sell Order")
     public void CloseConfigTabandVerifyOrderinDealtOrderSniperSell() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -572,7 +542,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 delay(1000);
                 NitroXBotsAction.clickDealtOrdersTab();
                 Assert.assertEquals(NitroXBotsAction.getDealtOrderPrice(), NitroXBotsAction.getBidPrice());
-               // NitroXBotsAction.stopAllBots();
+                NitroXBotsAction.stopCurrentBot();
                 //NitroXBotsAction.CloseBotDetail();
 
 
@@ -590,11 +560,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
     }
 
 
-    /************
-     *
-     * TWAP Bot
-     */
-
+    /************TWAP BOT*************************************************/
 
     @And("Verify total Bots before starting the Twap_Bot execution")
     public void CountNumberOfBotsBeforeBuyingSellingTwap() {
@@ -845,10 +811,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
             BaseStepDefinitions.increaseCounter();
         }
     }
-
-
-
-
     @Then("Verify Pair_Trading Bot in Total Filtered on homePage")
     public void verifyPairTradingBotCountTotalFiltered() {
 
@@ -878,8 +840,5 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
     @Then("Verify the Order in Dealt Order for same Bot")
     public void verifyTheOrderInDealtOrderForSameBot() {
     }
-
-
-
 }
 

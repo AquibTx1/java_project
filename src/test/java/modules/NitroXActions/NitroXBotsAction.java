@@ -463,7 +463,7 @@ public class NitroXBotsAction {
                     count = getDriver().findElements(By.xpath("//span[text()='STRATEGY COMPLETED']")).size();
                     if (count < 1) {
                         KeywordUtil.pageRefresh();
-                        waitForVisible(NitroXBotsPage.totalfilered);
+                        delay(2000);
                         NitroXBotsAction.selecttotalBots();
                         NitroXBotsAction.sortStartTime();
                         NitroXBotsAction.selectLatestBotName();

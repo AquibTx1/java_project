@@ -7,6 +7,9 @@ import java.util.HashMap;
 
 public class XAlphaLoginActions extends KeywordUtil {
 
+    public static void waitForUsernameTextBox(){
+        waitForPresent(XAlphaLoginPage.username);
+    }
     public static void enterUsername(HashMap<String, String> dataMap) {
         inputText(XAlphaLoginPage.username, dataMap.get("Username"), "Enter the username");
     }
@@ -33,6 +36,12 @@ public class XAlphaLoginActions extends KeywordUtil {
 
     public static void waitForInvisibleLoginMsg() {
         waitForInVisibile(XAlphaLoginPage.loginMsg);
+    }
+
+    public static void logoutFromXAlpha() throws InterruptedException {
+        click(XAlphaLoginPage.logoutbtn, "Logout from XAlpha app");
+        delay(1000);
+        click(XAlphaLoginPage.logoutbtn, "Logout from XAlpha app");
     }
 
 }

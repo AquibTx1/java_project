@@ -14,6 +14,8 @@ public class NitroXBuySellFuturePage {
     public static By instrumentype=By.id("account_pair_form_instrument");
     public static By positionmode=By.id("futures_config_form_position_mode");
 
+
+
     public static By leverage=By.id("futures_config_form_leverage");
 
     public static By margintype=By.id("futures_config_form_margin_type");
@@ -44,6 +46,9 @@ public class NitroXBuySellFuturePage {
     public static By Buybtn = By.xpath("//span[text()='Buy ']");
 
     //Position
+    public static By symbolrow=By.xpath("//div[text()='Positions']/following::table/tbody/tr/td[1]");
+    public static By market=By.xpath("//div[text()='Positions']/following::table/tbody/tr//span[text()='Market']");
+
 
     //Bots
 
