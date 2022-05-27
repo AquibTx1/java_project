@@ -26,7 +26,7 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_024 | Confirmed  | Settled   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_025 | Processed  | Settled   |
 
-  @XAlphaDealEnquiry_debug
+  @XAlphaDealEnquiry
   Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing FX-Spot Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
