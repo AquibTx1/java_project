@@ -5,10 +5,9 @@ Feature: Test Bots features on NitroX HomePage
 
 
   @NitroXBot
-  Scenario Outline: NitroXHome-024_Start Execution_Bot for Buy Order
-    Given Read test data "<SheetName1>" and "<TestCaseID1>" from Excel file
-    When Choose Mode, Trading Account, Base and Quote Currency
-    And Read test data "<SheetName2>" and "<TestCaseID2>" from Excel file
+  Scenario Outline: <TestCaseID>_Start Execution_Bot for Buy Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency for execution_bot
     And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
@@ -19,14 +18,13 @@ Feature: Test Bots features on NitroX HomePage
     Then Verify the Buy Order in Dealt Order
 
     Examples:
-      | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_024 |
+       | SheetName  |  TestCaseID                  |
+       | NitroXBots  | QA_TestCase_Auto_NitroX_024 |
 
   @NitroXBot
-  Scenario Outline: NitroXHome-025_Start Execution_Bot for Sell Order
-    Given Read test data "<BuySellSheet>" and "<TestCaseID1>" from Excel file
+  Scenario Outline: <TestCaseID>_Start Execution_Bot for Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Read test data "<BotSheet>" and "<TestCaseID2>" from Excel file
     And Verify total Bots Before starting Sell execution
     And Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Sell Order and Select the MinTime and MaxTime Break
@@ -37,14 +35,13 @@ Feature: Test Bots features on NitroX HomePage
     Then Verify the Sell Order in Dealt Order
 
     Examples:
-      | BuySellSheet  | TestCaseID1                 | BotSheet   |  TestCaseID2               |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_025 |
+      | SheetName   |  TestCaseID               |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_025 |
 
   @NitroXBot
-  Scenario Outline: NitroXHome-026_Start New SNIPER_BOT for Buy Order
-    Given Read test data "<SheetName1>" and "<TestCaseID1>" from Excel file
+  Scenario Outline: <TestCaseID>_Start New SNIPER_BOT for Buy Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Read test data "<SheetName2>" and "<TestCaseID2>" from Excel file
     And Verify total Bots before starting the Sniper Bot execution
     And Click Start Bot and select the Service,Method and Input Bot Quantity
     And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
@@ -55,14 +52,13 @@ Feature: Test Bots features on NitroX HomePage
      Then Verify the Order in Dealt Order for Sniper Bot
 
     Examples:
-      | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_026 |
+      | SheetName  |  TestCaseID               |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_026 |
 
   @NitroXBot
-  Scenario Outline: NitroXHome-027_Start New SNIPER_BOT for Sell Order
-    Given Read test data "<SheetName1>" and "<TestCaseID1>" from Excel file
+  Scenario Outline: <TestCaseID>_Start New SNIPER_BOT for Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Read test data "<SheetName2>" and "<TestCaseID2>" from Excel file
     And Verify total Bots before starting the Sniper Bot execution
     And Click Start Bot and select the Service,Method and Input Bot Quantity
     And Select Sell Order ,Side and Min,Max Price and MaxSlippageThreashold
@@ -72,14 +68,13 @@ Feature: Test Bots features on NitroX HomePage
     Then Verify new Bot in detail and config for Snipper Bot
     Then Verify the Order in Dealt Order for Sniper Bot Sell Order
     Examples:
-      | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_027 |
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_027 |
 
   @NitroXBot
-  Scenario Outline: NitroXHome-028_Start New Twap_BOT For Buy and Sell Order
-    Given Read "NitroX" and "<SheetName1>" and "<TestCaseID1>" from test data
+  Scenario Outline: <TestCaseID>_Start New Twap_BOT For Buy and Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Read "NitroX" and "<SheetName2>" and "<TestCaseID2>" from test data
     And Verify total Bots before starting the Twap_Bot execution
     And Click start Bot and select the Service,Method and Choose Bot Quantity
     And Choose Side,Quantity,and Duration
@@ -89,9 +84,9 @@ Feature: Test Bots features on NitroX HomePage
     Then Verify new Bot in detail and config for Twap_Bot
 
     Examples:
-      | SheetName1  | TestCaseID1                  | SheetName2  |  TestCaseID2               |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_028 |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_012| NitroXBots  | QA_TestCase_Auto_NitroX_029 |
+      | SheetName  |  TestCaseID               |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_028 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_029 |
 
 #  @NitroXBot
 #  Scenario Outline: NitroXHome-030_Start New Pair_Trading BOT For Buy Order
