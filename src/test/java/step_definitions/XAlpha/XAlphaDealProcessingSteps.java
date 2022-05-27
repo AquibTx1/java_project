@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import modules.XAlphaActions.XAlphaDealActions;
 import modules.XAlphaActions.XAlphaDealProcessingActions;
+import modules.XAlphaActions.XAlphaLoginActions;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
@@ -68,6 +69,8 @@ public class XAlphaDealProcessingSteps {
                 XAlphaDealProcessingActions.waitForConfirmMsgV2();
                 XAlphaDealProcessingActions.clickYesBtn();
                 XAlphaDealProcessingActions.waitForApprovedNotif();
+                //wait for all notifications to disappear for smooth logout
+                XAlphaDealProcessingActions.waitForNotificationsToDisappear();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

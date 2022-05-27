@@ -20,8 +20,13 @@ Feature: Test deal enquiry feature
       | SheetName   | TestCaseID                  | FromStatus | ToStatus  |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_014 | Confirmed  | Processed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_015 | Pending    | Processed |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_019 | Pending    | Confirmed |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_020 | Confirmed  | Pending   |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_023 | Pending    | Settled   |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_024 | Confirmed  | Settled   |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_025 | Processed  | Settled   |
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiry_debug
   Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing FX-Spot Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -48,7 +53,10 @@ Feature: Test deal enquiry feature
     Then Verify the processing type
 
     Examples:
-      | FromStatus | ToStatus  | SheetName   | TestCaseID                  | loginCredentials  |
-      | Settled    | Processed | XAlphaDeals | QA_TestCase_Auto_XAlpha_016 | MO_CheckerAccount |
-      | Processed  | Confirmed | XAlphaDeals | QA_TestCase_Auto_XAlpha_017 | MO_CheckerAccount |
-      | Settled    | Confirmed | XAlphaDeals | QA_TestCase_Auto_XAlpha_018 | MO_CheckerAccount |
+      | SheetName   | TestCaseID                  | loginCredentials  | FromStatus | ToStatus  |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_016 | MO_CheckerAccount | Settled    | Processed |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_017 | MO_CheckerAccount | Processed  | Confirmed |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_018 | MO_CheckerAccount | Settled    | Confirmed |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_021 | MO_CheckerAccount | Processed  | Pending   |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_022 | MO_CheckerAccount | Settled    | Pending   |
+

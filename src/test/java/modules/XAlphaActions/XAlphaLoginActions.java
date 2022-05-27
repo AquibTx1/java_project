@@ -40,8 +40,6 @@ public class XAlphaLoginActions extends KeywordUtil {
 
     public static void logoutFromXAlpha() throws InterruptedException {
         click(XAlphaLoginPage.logoutbtn, "Logout from XAlpha app");
-        delay(1000);
-        click(XAlphaLoginPage.logoutbtn, "Logout from XAlpha app");
     }
 
 }
