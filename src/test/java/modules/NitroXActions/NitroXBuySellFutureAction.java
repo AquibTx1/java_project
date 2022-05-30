@@ -1,3 +1,4 @@
+
 package modules.NitroXActions;
 
 import org.openqa.selenium.By;
@@ -18,8 +19,7 @@ public class NitroXBuySellFutureAction {
 
     static Class thisClass = NitroXBuySellFutureAction.class;
     public static String lastaskprice;
-
-    public static int preorderAmount;
+    public static double preamount,postamount,defaultamount;
 
 
     public static void selectmode(HashMap<String, String> dataMap) {
@@ -161,27 +161,23 @@ public class NitroXBuySellFutureAction {
             String value = getDriver().findElement(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[1]")).getText();
             if (value.equals(S3)) {
                 flag = true;
-
                 click(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[12]//span[text()='Market']"), "Clicked The Postion");
-                delay(30000);
+                delay(40000);
                 break;
             }
-
         }
     }
-
     public static boolean validateAmount(HashMap<String, String> dataMap) throws InterruptedException {
-
-
         String S1 = dataMap.get("Instrument").toString();
         String[] S2 = S1.split(" ");
         String S3 = S2[0].replace("/", "");
+        postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+        LogUtil.infoLog(thisClass, "Post Amount After Buy order=" + postamount);
+        defaultamount=Double.parseDouble(dataMap.get("Quantity"));
 
-        String postamount=getDriver().findElement(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")).getText();
-        int postam=Integer.parseInt(postamount);
-        int p=Integer.parseInt(dataMap.get("Quantity"));
-        if(preorderAmount+p==postam)
+        if(preamount+defaultamount==postamount)
         {
+            //Check the Post and Pre Amount
             return true;
         }
         else
@@ -190,14 +186,20 @@ public class NitroXBuySellFutureAction {
         }
     }
 
-    public static void getPreorderAmount(HashMap<String, String> dataMap) {
+    public static String getOrderSubmittedSuccessMsg() {
+        waitForInVisibile(NitroXHomePage.orderSubmittedSuccessMsg);
+        String msg = getElementText(NitroXHomePage.orderSubmittedSuccessMsg);
+        LogUtil.infoLog(thisClass, "Order submitted message=" + msg);
+        return msg;
+    }
+
+    public static double getPreorderAmount(HashMap<String, String> dataMap) {
 
         String S1 = dataMap.get("Instrument").toString();
         String[] S2 = S1.split(" ");
         String S3 = S2[0].replace("/", "");
-
-        String preamount=getDriver().findElement(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")).getText();
-         preorderAmount=Integer.parseInt(preamount);
-        System.out.println(preorderAmount);
+        preamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+        LogUtil.infoLog(thisClass, "Pre Amount before Buy order=" + preamount);
+        return preamount;
     }
 }

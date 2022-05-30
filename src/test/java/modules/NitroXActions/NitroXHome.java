@@ -228,6 +228,7 @@ public class NitroXHome {
     }
 
     public static String getOrderSubmittedSuccessMsg() {
+        waitForInVisibile(NitroXHomePage.orderSubmittedSuccessMsg);
         String msg = getElementText(NitroXHomePage.orderSubmittedSuccessMsg);
         LogUtil.infoLog(thisClass, "Order submitted message=" + msg);
         return msg;

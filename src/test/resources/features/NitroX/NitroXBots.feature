@@ -1,8 +1,8 @@
-#Feature: Test Bots features on NitroX HomePage
-#
-#  Background: Login to application
-#    Given Login to NitroX app with valid login credentials
-#
+Feature: Test Bots features on NitroX HomePage
+
+  Background: Login to application
+    Given Login to NitroX app with valid login credentials
+
 #
 #  @NitroXBot
 #  Scenario Outline: <TestCaseID>_Start Execution_Bot for Buy Order
@@ -70,24 +70,24 @@
 #    Examples:
 #      | SheetName  |  TestCaseID                  |
 #      | NitroXBots  | QA_TestCase_Auto_NitroX_027 |
-#
-#  @NitroXBot
-#  Scenario Outline: <TestCaseID>_Start New Twap_BOT For Buy and Sell Order
-#    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
-#    When Choose Mode, Trading Account, Base and Quote Currency
-#    And Verify total Bots before starting the Twap_Bot execution
-#    And Click start Bot and select the Service,Method and Choose Bot Quantity
-#    And Choose Side,Quantity,and Duration
-#    And Provide Deal Ref and submit
-#    Then Verify Bots in Total Filtered on HomePage
-#    And Click Total Filtered Bots tab & check the Bot in Detail and Config for Twap Bot
-#    Then Verify new Bot in detail and config for Twap_Bot
-#
-#    Examples:
-#      | SheetName  |  TestCaseID               |
-#      | NitroXBots  | QA_TestCase_Auto_NitroX_028 |
-#      | NitroXBots  | QA_TestCase_Auto_NitroX_029 |
-#
+
+  @NitroXBot
+  Scenario Outline: <TestCaseID>_Start New Twap_BOT For Buy and Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Verify total Bots before starting the Twap_Bot execution
+    And Click start Bot and select the Service,Method and Choose Bot Quantity
+    And Choose Side,Quantity,and Duration
+    And Provide Deal Ref and submit
+    Then Verify Bots in Total Filtered on HomePage
+    And Click Total Filtered Bots tab & check the Bot in Detail and Config for Twap Bot
+    Then Verify new Bot in detail and config for Twap_Bot
+
+    Examples:
+      | SheetName  |  TestCaseID               |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_028 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_029 |
+##
 ##  @NitroXBot
 ##  Scenario Outline: NitroXHome-030_Start New Pair_Trading BOT For Buy Order
 ##    Given Read test data "<SheetName1>" and "<TestCaseID1>" from Excel file

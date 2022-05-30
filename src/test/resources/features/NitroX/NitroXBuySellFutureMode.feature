@@ -9,7 +9,7 @@ Feature: Test buys sell features using Future Mode
     When Choose Mode, Trading Account and Instrument
     And Choose Position Mode,Leverage and Margin Type
     And Create A buy Order less than Market Price for Future Mode
-     And Click Buy Order and Validate
+    And Click Buy Order and Validate
     Then Validate order is in Open State for Future Mode
     Examples:
       | SheetName     | TestCaseID                  | Number |
@@ -32,7 +32,8 @@ Feature: Test buys sell features using Future Mode
     And Validate No previous position
     And Choose Position Mode,Leverage and Margin Type
     And Create Buy Order Equal to Ask Price for Future Mode
-    Then Verify Order Submitted Success Message
+    And Click Buy Order and Validate
+    Then Verify Order Submitted Success Message-Future Mode
     Then Validate Order Moves to Dealt Orders-Future Mode
     Examples:
       | SheetName     | TestCaseID                  | Number |
@@ -45,22 +46,21 @@ Feature: Test buys sell features using Future Mode
     And Validate No previous position
     And Choose Position Mode,Leverage and Margin Type
     And Create Buy Order Greater than Ask Price for Future Mode
+    And Click Buy Order and Validate
     Then Verify Order Submitted Success Message-Future Mode
     Then Validate Order Moves to Dealt Orders-Future Mode
     Examples:
       | SheetName     | TestCaseID                     | Number |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_036_01| 1    |
 
-#  @NitroXBuySellFuture
-#  Scenario Outline: <TestCaseID>_Create A Deal Order Price -Future Mode
-#    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
-#    When Choose Mode, Trading Account and Instrument
-#    And Choose Position Mode,Leverage and Margin Type
-#    And Create Buy Order Equal to Ask Price for Future Mode
-#    And Validate previous position for buy order
-#    And Create Buy Order
-#    Then Verify Order Submitted Success Message-Future Mode
-#    Then Validate Order Moves to Dealt Orders-Future Mode
-#    Examples:
-#      | SheetName     | TestCaseID                    | Number |
-#      | NitroXBuySell | QA_TestCase_Auto_NitroX_037   | 1      |
+  @NitroXBuySellFuture
+  Scenario Outline: <TestCaseID>_Create A Deal Order Price -Future Mode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Choose Position Mode,Leverage and Margin Type
+    And Create Buy Order Equal to Ask Price for Future Mode
+    And Validate previous position for buy order
+    Then Validate Order Moves to Dealt Orders-Future Mode
+    Examples:
+      | SheetName     | TestCaseID                    | Number |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_037   | 1      |

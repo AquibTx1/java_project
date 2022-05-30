@@ -127,7 +127,7 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
                 NitroXBotsAction.refreshPage();
-                delay(70000);
+                delay(80000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
 
             } catch (Throwable e) {
@@ -192,7 +192,8 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.CloseConfigTab();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
-                delay(10000);
+                delay(0000);
+               // waitForVisible(NitroXBotsPage.recentDealtOrder);
                // Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Order Direction"));
                 Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getPrice());
                 NitroXBotsAction.stopAllBots();
@@ -297,14 +298,12 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.CloseConfigTab();
                 NitroXBotsAction.CloseBotDetail();
-                delay(2000);
                 NitroXBotsAction.clickDealtOrdersTab();
-
+                delay(120000);
+               // waitForVisible(NitroXBotsPage.recentDealtOrder);
                 Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Order Direction"));
                 Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getBidPrice());
                 NitroXBotsAction.stopCurrentBot();
-                NitroXBotsAction.CloseBotDetail();
-                NitroXBotsAction.refreshPage();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -423,7 +422,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
                 NitroXBotsAction.refreshPage();
-                delay(70000);
+                delay(120000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -448,7 +447,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
                 NitroXBotsAction.sortStartTime();
-
                 NitroXBotsAction.selectLatestBotName();
 
             } catch (Throwable e) {
@@ -472,7 +470,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
             try {
 
                 waitForVisible(NitroXBotsPage.botdetail_snipper);
-                delay(5000);
+                delay(8000);
                 Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(),dataMap.get("TotalAmount"));
                 NitroXBotsAction.selectConfig();
                 waitForVisible(NitroXBotsPage.s_trrigger);
@@ -499,8 +497,10 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
             try {
                 NitroXBotsAction.CloseConfigTab();
                 NitroXBotsAction.CloseBotDetail();
+
                 NitroXBotsAction.clickDealtOrdersTab();
-                delay(2000);
+                delay(120000);
+                //waitForVisible(NitroXBotsPage.recentDealtOrder);
                 Assert.assertEquals(NitroXBotsAction.getDealtOrderPrice(),NitroXBotsAction.getPrice());
                 NitroXBotsAction.stopCurrentBot();
                // NitroXBotsAction.CloseBotDetail();
@@ -547,8 +547,10 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
             try {
                 NitroXBotsAction.CloseConfigTab();
                 NitroXBotsAction.CloseBotDetail();
-                delay(5000);
+
                 NitroXBotsAction.clickDealtOrdersTab();
+                delay(60000);
+                //waitForVisible(NitroXBotsPage.recentDealtOrder);
                 Assert.assertEquals(NitroXBotsAction.getDealtOrderPrice(), NitroXBotsAction.getBidPrice());
                 NitroXBotsAction.stopCurrentBot();
                 //NitroXBotsAction.CloseBotDetail();
