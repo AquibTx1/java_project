@@ -1,6 +1,5 @@
 package step_definitions.NitroX;
 
-import modules.NitroXActions.NitroXBotsAction;
 import pageFactory.NitroXPages.NitroXHomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -679,9 +678,6 @@ public class NitroXHomeSteps {
                     NitroXHome.waitForNotifMsg();
                     Assert.assertTrue(NitroXHome.getNotifMsg().contains("Order submitted successfully"));
                     NitroXHome.waitForInvisibleOrderSubmittedMsg();
-//                    Assert.assertEquals(NitroXHome.getSideofNthOpenOrder(1), "SELL");
-//                    Assert.assertEquals(NitroXHome.getPriceofNthOpenOrder(1), NitroXHome.getOrderFormPrice());
-//                    Assert.assertEquals(NitroXHome.getQuantityofNthOpenOrder(1), NitroXHome.getOrderFormQuantity());
                 }
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -714,12 +710,6 @@ public class NitroXHomeSteps {
                     NitroXHome.waitForNotifMsg();
                     Assert.assertTrue(NitroXHome.getNotifMsg().contains("Order submitted successfully"));
                     NitroXHome.waitForInvisibleOrderSubmittedMsg();
-
-//                    //verify order moves to open state
-//                    NitroXHome.scrollToOrdersPlaced();
-//                    Assert.assertEquals(NitroXHome.getSideofNthOpenOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
-//                    Assert.assertEquals(NitroXHome.getPriceofNthOpenOrder(1), NitroXHome.getOrderFormPrice());
-//                    Assert.assertEquals(NitroXHome.getQuantityofNthOpenOrder(1), NitroXHome.getOrderFormQuantity());
                 }
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -727,6 +717,73 @@ public class NitroXHomeSteps {
                 GlobalUtil.errorMsg = e.getMessage();
                 Assert.fail(e.getMessage());
             }
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Buy Button and Verify the Success Message")
+    public void clickBuyButtonAndVerifyTheSuccessMessage() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //click buy button
+                NitroXHome.ClickBuyButton();
+
+                //wait and verify for the success message
+                NitroXHome.waitForNotifMsg();
+                if (NitroXHome.getNotifMsg().contains("Could not place order.")) {
+                    NitroXHome.waitForNotifMsgToDisappear();
+                    delay(3000);
+                    //click buy button again
+                    NitroXHome.ClickBuyButton();
+                    NitroXHome.waitForNotifMsg();
+                }
+                Assert.assertTrue(NitroXHome.getNotifMsg().contains("Order submitted successfully"));
+                NitroXHome.waitForInvisibleOrderSubmittedMsg();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Click Sell Button and Verify the Success Message")
+    public void clickSellButtonAndVerifyTheSuccessMessage() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.ClickSellButton();
+
+                //wait and verify for the success message
+                NitroXHome.waitForNotifMsg();
+                if (NitroXHome.getNotifMsg().contains("Could not place order.")) {
+                    NitroXHome.waitForNotifMsgToDisappear();
+                    delay(3000);
+                    //click sell button again
+                    NitroXHome.ClickSellButton();
+                    NitroXHome.waitForNotifMsg();
+                }
+                Assert.assertTrue(NitroXHome.getNotifMsg().contains("Order submitted successfully"));
+                NitroXHome.waitForInvisibleOrderSubmittedMsg();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
             if (BaseStepDefinitions.getSITflag()) {
                 BaseStepDefinitions.increaseCounter();
             }

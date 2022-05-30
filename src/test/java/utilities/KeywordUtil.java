@@ -33,7 +33,7 @@ public class KeywordUtil extends GlobalUtil {
      * The constant cucumberTagName.
      */
     public static String cucumberTagName;
-    private static final int DEFAULT_WAIT_SECONDS = 15;
+    private static final int DEFAULT_WAIT_SECONDS = 20;
     public static String os = System.getProperty("os.name").toLowerCase();
     /**
      * The constant FAIL.

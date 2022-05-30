@@ -76,15 +76,14 @@ Feature: Test buys sell features
       | SheetName     | TestCaseID                  |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_012 |
 
-  @NitroXBuySell_debug
+  @NitroXBuySell
   Scenario Outline: NitroXHome-013_Create an Open Order When Price is Less Than Market Price
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
     Given Create "<Number>" Sell Order With Selling Price > Bid Price
     And Create A buy Order less than Market Price
-    And Click Buy Button
-    Then Verify Order Submitted Success Message
-    Then Validate Order is in Open State
+    And Click Buy Button and Verify the Success Message
+    Then Validate Order Moves to Open Orders
     Examples:
       | SheetName     | TestCaseID                  | Number |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_013 | 1      |
@@ -107,8 +106,7 @@ Feature: Test buys sell features
     When Choose Mode, Trading Account, Base and Quote Currency
     Given Create "<Number>" Sell Order With Selling Price > Bid Price
     And Create Buy Order Equal to Ask Price
-    And Click Buy Button
-    Then Verify Order Submitted Success Message
+    And Click Buy Button and Verify the Success Message
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName     | TestCaseID                  | Number |
@@ -120,8 +118,7 @@ Feature: Test buys sell features
     When Choose Mode, Trading Account, Base and Quote Currency
     Given Create "<Number>" Sell Order With Selling Price > Bid Price
     And Create Buy Order Greater Than Ask Price
-    And Click Buy Button
-    Then Verify Order Submitted Success Message
+    And Click Buy Button and Verify the Success Message
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName     | TestCaseID                     | Number |
@@ -132,8 +129,7 @@ Feature: Test buys sell features
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
     And Create Sell Order With Selling Price > Bid Price
-    And Click Sell Button
-    Then Verify Order Submitted Success Message
+    And Click Sell Button and Verify the Success Message
     Then Validate Order Moves to Open Orders
     Examples:
       | SheetName     | TestCaseID                  |
@@ -157,8 +153,7 @@ Feature: Test buys sell features
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
     And Create Sell Order With Selling Price Equal to Bid Price
-    And Click Sell Button
-    Then Verify Order Submitted Success Message
+    And Click Sell Button and Verify the Success Message
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName     | TestCaseID                  |

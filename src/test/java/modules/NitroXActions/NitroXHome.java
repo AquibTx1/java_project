@@ -41,7 +41,7 @@ public class NitroXHome {
 
     public static void selectTradingAccount(HashMap<String, String> dataMap) throws InterruptedException {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
-        inputText(NitroXHomePage.tradingaccount, dataMap.get("TradingAccount"), dataMap.get("TradingAccount")+"=trading account");
+        inputText(NitroXHomePage.tradingaccount, dataMap.get("TradingAccount"), dataMap.get("TradingAccount") + "=trading account");
         waitForPresent(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"));
         KeywordUtil.click(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"), "Trading Account selected from dropdown");
         delay(1000);
@@ -66,7 +66,7 @@ public class NitroXHome {
         KeywordUtil.inputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), dataMap.get("Quote") + " : Quote Currency");
     }
 
-    public static void waitForLiveChart(){
+    public static void waitForLiveChart() {
         waitForVisible(NitroXHomePage.liveFrame);
     }
 
