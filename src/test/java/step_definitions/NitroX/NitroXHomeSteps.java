@@ -277,7 +277,15 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             //execute the step when checkSkipExecutionFlags() returns false
-            waitForVisible(NitroXHomePage.invalidOrder);
+            try {
+                NitroXHome.waitForNotifMsg();
+                Assert.assertTrue(NitroXHome.getNotifMsg().startsWith("Could not place order."));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
         }
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
@@ -725,6 +733,7 @@ public class NitroXHomeSteps {
 
     @And("Click Buy Button and Verify the Success Message")
     public void clickBuyButtonAndVerifyTheSuccessMessage() {
+        boolean flag = false;
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -735,15 +744,28 @@ public class NitroXHomeSteps {
 
                 //wait and verify for the success message
                 NitroXHome.waitForNotifMsg();
-                if (NitroXHome.getNotifMsg().contains("Could not place order.")) {
-                    NitroXHome.waitForNotifMsgToDisappear();
-                    delay(3000);
-                    //click buy button again
-                    NitroXHome.ClickBuyButton();
-                    NitroXHome.waitForNotifMsg();
+                int i = 0;
+                while (i < 2) {
+                    if (NitroXHome.getNotifMsg().contains("Could not place order.")) {
+                        NitroXHome.waitForNotifMsgToDisappear();
+                        delay(4000);
+                        //click sell button again
+                        NitroXHome.ClickBuyButton();
+                        LogUtil.infoLog(thisClass, "BUY button click counter=" + i);
+                        NitroXHome.waitForNotifMsg();
+                        i++;
+                    } else {
+                        flag = true;
+                        break;
+                    }
                 }
-                Assert.assertTrue(NitroXHome.getNotifMsg().contains("Order submitted successfully"));
-                NitroXHome.waitForInvisibleOrderSubmittedMsg();
+                if (flag) {
+                    Assert.assertTrue(NitroXHome.getNotifMsg().contains("Order submitted successfully"));
+                    NitroXHome.waitForInvisibleOrderSubmittedMsg();
+                } else {
+                    LogUtil.errorLog(thisClass, "Could you not place BUY order two times in a row");
+                    assert false;
+                }
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -757,8 +779,10 @@ public class NitroXHomeSteps {
         }
     }
 
+
     @And("Click Sell Button and Verify the Success Message")
     public void clickSellButtonAndVerifyTheSuccessMessage() {
+        boolean flag = false;
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -768,15 +792,28 @@ public class NitroXHomeSteps {
 
                 //wait and verify for the success message
                 NitroXHome.waitForNotifMsg();
-                if (NitroXHome.getNotifMsg().contains("Could not place order.")) {
-                    NitroXHome.waitForNotifMsgToDisappear();
-                    delay(3000);
-                    //click sell button again
-                    NitroXHome.ClickSellButton();
-                    NitroXHome.waitForNotifMsg();
+                int i = 0;
+                while (i < 2) {
+                    if (NitroXHome.getNotifMsg().contains("Could not place order.")) {
+                        NitroXHome.waitForNotifMsgToDisappear();
+                        delay(4000);
+                        //click sell button again
+                        NitroXHome.ClickSellButton();
+                        LogUtil.infoLog(thisClass, "SELL button click counter=" + i);
+                        NitroXHome.waitForNotifMsg();
+                        i++;
+                    } else {
+                        flag = true;
+                        break;
+                    }
                 }
-                Assert.assertTrue(NitroXHome.getNotifMsg().contains("Order submitted successfully"));
-                NitroXHome.waitForInvisibleOrderSubmittedMsg();
+                if (flag) {
+                    Assert.assertTrue(NitroXHome.getNotifMsg().contains("Order submitted successfully"));
+                    NitroXHome.waitForInvisibleOrderSubmittedMsg();
+                } else {
+                    LogUtil.errorLog(thisClass, "Could you not place SELL order two times in a row");
+                    assert false;
+                }
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
