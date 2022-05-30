@@ -457,12 +457,12 @@ public class NitroXBotsAction {
     }
     public static void getFilteredBots()
     {
-        int count=0;
-        count = getDriver().findElements(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span")).size();
-        if(count>0){
+        String a =(getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span")));
+        int bots= Integer.parseInt(a);
+        if(bots>0)
+        {
             NitroXBotsAction.stopAllBots();
         }
-
     }
     public static void validateStatus() {
         try {

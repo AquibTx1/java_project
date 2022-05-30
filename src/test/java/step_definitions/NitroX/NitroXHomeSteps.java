@@ -209,9 +209,12 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+
                 NitroXHome.selectmode(dataMap);
                 NitroXHome.inputTradingAccount(dataMap);
                 enterTheBaseAndQuoteCurrency();
+
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -360,7 +363,6 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
-
 
     @Then("Verify Cancel Order Success Message")
     public void verifyCancelOrderSuccessMessage() {
