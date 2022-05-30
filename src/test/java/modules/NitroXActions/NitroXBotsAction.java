@@ -455,20 +455,14 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Deal Reference in Quantity : " + side);
         return side;
     }
-
-
     public static void getFilteredBots()
     {
         int count=0;
-        count = getDriver().findElements(By.xpath("//div[text()='Total (Filtered)']")).size();
-        if(count>1){
-            click(NitroXBotsPage.totalfilered,"Clicked the Total Filtered");
+        count = getDriver().findElements(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span")).size();
+        if(count>0){
             NitroXBotsAction.stopAllBots();
         }
-        else
-        {
-            System.out.println("Total Bots");
-        }
+
     }
     public static void validateStatus() {
         try {

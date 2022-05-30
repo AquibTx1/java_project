@@ -87,7 +87,8 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID               |
       | NitroXBots  | QA_TestCase_Auto_NitroX_028 |
       | NitroXBots  | QA_TestCase_Auto_NitroX_029 |
-##
+
+
 ##  @NitroXBot
 ##  Scenario Outline: NitroXHome-030_Start New Pair_Trading BOT For Buy Order
 ##    Given Read test data "<SheetName1>" and "<TestCaseID1>" from Excel file

@@ -58,7 +58,6 @@ public class NitroXBuySellFutureSteps {
             try {
                 NitroXBuySellFutureAction.validateInstrument(dataMap);
 
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -133,13 +132,17 @@ public class NitroXBuySellFutureSteps {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
-
-            waitForVisible(NitroXBuySellFuturePage.validOrder);
-            NitroXBuySellFutureAction.clickOpenState();
-
-            Assert.assertEquals(NitroXHome.getSideofNthOpenOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
-            Assert.assertEquals(NitroXHome.getPriceofNthOpenOrder(1), NitroXHome.getOrderFormPrice());
-
+            try {
+                scrollingToElementofAPage(NitroXBuySellFuturePage.openOrderTab,"Scrolled to Element");
+                NitroXBuySellFutureAction.clickOpenState();
+                Assert.assertEquals(NitroXHome.getSideofNthOpenOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
+                Assert.assertEquals(NitroXHome.getPriceofNthOpenOrder(1), NitroXHome.getOrderFormPrice());
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
             if (BaseStepDefinitions.getSITflag()) {
                 BaseStepDefinitions.increaseCounter();
             }
@@ -267,11 +270,8 @@ public class NitroXBuySellFutureSteps {
         } else {
             try {
                 NitroXBuySellFutureAction.getPreorderAmount(dataMap);
+                NitroXBuySellFutureAction.validateAmount(dataMap);
 
-                NitroXBuySellFutureAction.ClickBuyButton();
-                NitroXBuySellFutureAction.getOrderSubmittedSuccessMsg();
-                delay(60000);
-                Assert.assertTrue(NitroXBuySellFutureAction.validateAmount(dataMap),"Added the Quantity in Same Instrument");
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

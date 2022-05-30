@@ -64,3 +64,16 @@ Feature: Test buys sell features using Future Mode
     Examples:
       | SheetName     | TestCaseID                    | Number |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_037   | 1      |
+
+  @NitroXBuySellFuture
+  Scenario Outline: <TestCaseID>_Create Sell Order When Selling Price Greater Than Market Price
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Choose Position Mode,Leverage and Margin Type
+    And Create Sell Order With Selling Price > Bid Price
+    And Click Sell Button
+    Then Verify Order Submitted Success Message
+    Then Validate order is in Open State for Future Mode
+    Examples:
+      | SheetName     | TestCaseID                  |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_038 |

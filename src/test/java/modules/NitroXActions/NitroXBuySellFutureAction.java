@@ -39,6 +39,10 @@ public class NitroXBuySellFutureAction {
         KeywordUtil.click(NitroXBuySellFuturePage.Buybtn, "Buy order Clicked");
     }
 
+    public static void ClickSellButton() {
+        KeywordUtil.click(NitroXBuySellFuturePage.sellbtn, "Sell order Clicked");
+    }
+
 
     public static void inputInstrument(HashMap<String, String> dataMap) {
         try {
@@ -159,6 +163,8 @@ public class NitroXBuySellFutureAction {
         boolean flag = false;
         for (int i = 1; i <= s; i++) {
             String value = getDriver().findElement(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[1]")).getText();
+            //String Side=getDriver().findElement(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[4]")).getText();
+            //String side=dataMap.get("Mside").toString();
             if (value.equals(S3)) {
                 flag = true;
                 click(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[12]//span[text()='Market']"), "Clicked The Postion");
@@ -167,23 +173,33 @@ public class NitroXBuySellFutureAction {
             }
         }
     }
-    public static boolean validateAmount(HashMap<String, String> dataMap) throws InterruptedException {
+    public static void  validateAmount(HashMap<String, String> dataMap) throws InterruptedException {
         String S1 = dataMap.get("Instrument").toString();
         String[] S2 = S1.split(" ");
         String S3 = S2[0].replace("/", "");
-        postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+
         LogUtil.infoLog(thisClass, "Post Amount After Buy order=" + postamount);
         defaultamount=Double.parseDouble(dataMap.get("Quantity"));
+        String Side=(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[3]/span")));
 
-        if(preamount+defaultamount==postamount)
+        if(Side.equals("LONG"))
         {
-            //Check the Post and Pre Amount
-            return true;
+            NitroXBuySellFutureAction.ClickBuyButton();
+            NitroXBuySellFutureAction.getOrderSubmittedSuccessMsg();
+            delay(70000);
+            postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+            Assert.assertEquals(preamount+defaultamount,postamount);
         }
+
         else
         {
-            return  false;
+            NitroXBuySellFutureAction.ClickSellButton();
+            delay(70000);
+            postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+            Assert.assertEquals(preamount+defaultamount,postamount);
+
         }
+
     }
 
     public static String getOrderSubmittedSuccessMsg() {
