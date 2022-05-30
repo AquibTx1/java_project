@@ -52,21 +52,30 @@ public class XAlphaDealProcessingActions extends KeywordUtil {
         click(XAlphaDealProcessingPage.yesbtn, "Click yes button to confirm approve");
     }
 
+    public static void waitForNotification(){
+        waitForPresent(XAlphaDealProcessingPage.notifText);
+    }
+
+    public static void waitForNotificationsToDisappear(){
+        waitForInVisibile(XAlphaDealProcessingPage.notifText);
+    }
+
+    //get notification title text
     public static String getNotifText() {
         String notifMsg = getElementText(XAlphaDealProcessingPage.notifText);
         LogUtil.infoLog(thisClass, "Notification message on deal processing=" + notifMsg);
         return notifMsg;
     }
 
-    public static void waitForApprovedNotif() {
-        waitForPresent(XAlphaDealProcessingPage.notifTextDescriptionApproved);
-    }
-
-    public static String getnotifDescription() {
+    //get notification description text
+    public static String getNotifDescription() {
         String notifMsg = getElementText(XAlphaDealProcessingPage.notifTextDescription);
         LogUtil.infoLog(thisClass, "Notification description on deal processing=" + notifMsg);
         return notifMsg;
     }
 
-
+    //wait for "Task has been approved." message
+    public static void waitForApprovedNotif() {
+        waitForPresent(XAlphaDealProcessingPage.notifTextDescriptionApproved);
+    }
 }

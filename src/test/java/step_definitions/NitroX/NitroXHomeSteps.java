@@ -1,5 +1,6 @@
 package step_definitions.NitroX;
 
+import modules.NitroXActions.NitroXBotsAction;
 import pageFactory.NitroXPages.NitroXHomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -202,10 +203,36 @@ public class NitroXHomeSteps {
         }
     }
 
+    @When("Choose Mode, Trading Account, Base and Quote Currency for execution_bot")
+    public void chooseModeTradingAccountBaseAndQuoteCurrencyExecutionBot() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try
+            {
+                NitroXHome.selectmode(dataMap);
+                NitroXHome.inputTradingAccount(dataMap);
+                enterTheBaseAndQuoteCurrency();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+
     @When("Choose Mode, Trading Account, Base and Quote Currency")
     public void chooseModeTradingAccountBaseAndQuoteCurrency() {
 
         try {
+
             NitroXHome.selectmode(dataMap);
             NitroXHome.inputTradingAccount(dataMap);
             enterTheBaseAndQuoteCurrency();

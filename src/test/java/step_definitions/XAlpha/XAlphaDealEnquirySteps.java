@@ -155,6 +155,7 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
+                Assert.assertEquals(XAlphaDealEnquiryActions.getSuccessMsgDescription(), "Deal has updated");
                 XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -176,7 +177,8 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear_MO();
+                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
+                Assert.assertEquals(XAlphaDealEnquiryActions.getSuccessMsgDescription(), "Deal update has to be approved by MO. A task has created.");
                 XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -192,7 +194,7 @@ public class XAlphaDealEnquirySteps {
     }
 
     @And("Load a deal wrt deal reference id")
-    public void loadADealWrtDealReferenceId() throws InterruptedException {
+    public void loadADealWrtDealReferenceId() {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();

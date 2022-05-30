@@ -8,7 +8,7 @@ public class XAlphaDealProcessingPage {
     public static By dealProcessingTab = By.xpath("//span[text()='Deal Processing']");
     public static By XAlphaDealslabel = By.xpath("//span[text()='X-Alpha Deals']");
     public static By inputSearchBox = By.xpath("//input[@class='ant-input']");
-    public static By searchIcon = By.xpath("//button[@class='ant-btn ant-btn-icon-only ant-input-search-button']");
+    public static By searchIcon = By.xpath("//span[@class='ant-input-group-addon']");
     public static By selectAllCheckBox = By.xpath("//span[text()='Select All']/../span[@class='ant-checkbox']");
     public static By approveBtnFirst = By.xpath("(//button[@type='button']/span[text()='Approve'])[1]");
     public static By approveBtns = By.xpath("//button[@type='button']/span[text()='Approve']");

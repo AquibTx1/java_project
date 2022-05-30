@@ -49,8 +49,6 @@ public class NitroXBuySellFutureSteps {
             }
         }
     }
-
-
     @And("Validate No previous position")
     public void validateNoPreviousPostion() {
         //Assert price and quantity at the time of placing order with first row of dealt orders
@@ -59,6 +57,8 @@ public class NitroXBuySellFutureSteps {
         } else {
             try {
                 NitroXBuySellFutureAction.validateInstrument(dataMap);
+
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -184,7 +184,7 @@ public class NitroXBuySellFutureSteps {
                 NitroXHome.InputthePrice(NitroXHome.getHighestAskPrice());
                 NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
-                NitroXBuySellFutureAction.ClickBuyButton();
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -214,7 +214,6 @@ public class NitroXBuySellFutureSteps {
             }
         }
     }
-
     @Then("Validate Order Moves to Dealt Orders-Future Mode")
     public void validateOrderMovesToDealtOrdersFutureMode() {
 
@@ -237,5 +236,65 @@ public class NitroXBuySellFutureSteps {
                 }
             }
         }
+
+    @And("Create Buy Order Greater than Ask Price for Future Mode")
+    public void createBuyOrderGreaterThanAskPriceForFutureMode() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //NitroXHome.InputBuyOrderPrice();
+                NitroXHome.scrollToAskPrices();
+                NitroXHome.ClearInputPrice();
+                NitroXHome.InputthePrice(NitroXHome.getHighestAskPrice() + generateRandomNumber20to40());
+                NitroXHome.ClearOrderQuantity();
+                NitroXHome.InputCustomQuantity(dataMap);
+                NitroXBuySellFutureAction.ClickBuyButton();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+    }
+    }
+
+    @And("Validate previous position for buy order")
+    public void validatePreviousPositionForBuyOrder() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBuySellFutureAction.getPreorderAmount(dataMap);
+                System.out.println(NitroXBuySellFutureAction.preorderAmount);
+                delay(60000);
+                Assert.assertTrue(NitroXBuySellFutureAction.validateAmount(dataMap));
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+
+    }
+    @And("Create Buy Order")
+    public void createBuyOrder() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+
+                NitroXBuySellFutureAction.ClickBuyButton();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+
+    }
 }
 
