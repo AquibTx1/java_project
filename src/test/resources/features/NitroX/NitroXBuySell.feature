@@ -110,7 +110,7 @@ Feature: Test buys sell features
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName     | TestCaseID                  | Number |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_015 | 2      |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_015 | 1      |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-015_01_Create A Dealt Order
@@ -122,7 +122,7 @@ Feature: Test buys sell features
     Then Validate Order Moves to Dealt Orders
     Examples:
       | SheetName     | TestCaseID                     | Number |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_015_01 | 3      |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_015_01 | 1      |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-017_Create Sell Order When Selling Price Greater Than Market Price
