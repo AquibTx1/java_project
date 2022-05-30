@@ -696,7 +696,7 @@ public class KeywordUtil extends GlobalUtil {
         LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
         List<WebElement> elements = getDriver().findElements(locator);
         if (elements.isEmpty()) {
-            RunCukesTest.logger.log(LogStatus.FAIL, HTMLReportUtil.failStringRedColor(logStep));
+            RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.passStringGreenColor(logStep));
             return false;
         }
         RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));

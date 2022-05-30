@@ -184,7 +184,6 @@ public class NitroXBuySellFutureSteps {
                 NitroXHome.InputthePrice(NitroXHome.getHighestAskPrice());
                 NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

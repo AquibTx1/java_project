@@ -32,7 +32,7 @@ Feature: Test buys sell features using Future Mode
     And Validate No previous position
     And Choose Position Mode,Leverage and Margin Type
     And Create Buy Order Equal to Ask Price for Future Mode
-    Then Verify Order Submitted Success Message-Future Mode
+    Then Verify Order Submitted Success Message
     Then Validate Order Moves to Dealt Orders-Future Mode
     Examples:
       | SheetName     | TestCaseID                  | Number |
