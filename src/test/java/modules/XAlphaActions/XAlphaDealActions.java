@@ -41,8 +41,20 @@ public class XAlphaDealActions extends KeywordUtil {
         pressEnter(XAlphaDealsPage.dealInput_direction);
     }
 
+    public static String get_dealInput_direction() {
+        String direction = getElementText(XAlphaDealsPage.dealInput_directionText);
+        LogUtil.infoLog(thisClass, "deal input direction=" + direction);
+        return direction;
+    }
+
     public static void dealInput_BaseAssetAmount(HashMap<String, String> dataMap) {
         inputText(XAlphaDealsPage.dealInput_BaseAssetAmount, dataMap.get("BaseAssetAmount"), "Select deal input base asset amount");
+    }
+
+    public static String get_dealInput_BaseAssetAmount() {
+        String BaseAssetAmount = getElementValue(XAlphaDealsPage.dealInput_BaseAssetAmount);
+        LogUtil.infoLog(thisClass, "deal input base asset amount=" + BaseAssetAmount);
+        return BaseAssetAmount;
     }
 
     public static void dealInput_BaseAsset(HashMap<String, String> dataMap) {
@@ -50,9 +62,21 @@ public class XAlphaDealActions extends KeywordUtil {
         pressEnter(XAlphaDealsPage.dealInput_BaseAsset);
     }
 
+    public static String get_dealInput_BaseAsset() {
+        String BaseAsset = getElementText(XAlphaDealsPage.dealInput_BaseAssetText);
+        LogUtil.infoLog(thisClass, "deal input BaseAsset=" + BaseAsset);
+        return BaseAsset;
+    }
+
     public static void dealInput_QuoteAsset(HashMap<String, String> dataMap) {
         inputText(XAlphaDealsPage.dealInput_QuoteAsset, dataMap.get("QuoteAsset"), "Select deal input Quote Asset");
         pressEnter(XAlphaDealsPage.dealInput_QuoteAsset);
+    }
+
+    public static String get_dealInput_QuoteAsset() {
+        String QuoteAsset = getElementText(XAlphaDealsPage.dealInput_QuoteAssetText);
+        LogUtil.infoLog(thisClass, "deal input QuoteAsset=" + QuoteAsset);
+        return QuoteAsset;
     }
 
     public static String get_dealInput_ReferencePrice() throws InterruptedException {
@@ -69,20 +93,30 @@ public class XAlphaDealActions extends KeywordUtil {
     public static String get_dealInput_UnitPrice() {
         String dealInput_UnitPrice;
         dealInput_UnitPrice = getElementValue(XAlphaDealsPage.dealInput_UnitPrice);
-        LogUtil.infoLog(XAlphaDealActions.class, "dealInput_UnitPrice" + dealInput_UnitPrice);
+        LogUtil.infoLog(XAlphaDealActions.class, "dealInput_UnitPrice=" + dealInput_UnitPrice);
         return dealInput_UnitPrice;
+    }
+
+    public static void dealInput_QuoteAssetAmount(String QuoteAssetAmount) {
+        inputText(XAlphaDealsPage.dealInput_QuoteAssetAmount, QuoteAssetAmount, "dealInput_QuoteAssetAmount=" + QuoteAssetAmount);
     }
 
     public static String get_dealInput_QuoteAssetAmount() {
         String dealInput_QuoteAssetAmount;
         dealInput_QuoteAssetAmount = getElementValue(XAlphaDealsPage.dealInput_QuoteAssetAmount);
-        LogUtil.infoLog(XAlphaDealActions.class, "dealInput_QuoteAssetAmount" + dealInput_QuoteAssetAmount);
+        LogUtil.infoLog(XAlphaDealActions.class, "dealInput_QuoteAssetAmount=" + dealInput_QuoteAssetAmount);
         return dealInput_QuoteAssetAmount;
     }
 
     public static void dealInput_FeeAsset(HashMap<String, String> dataMap) {
         inputText(XAlphaDealsPage.dealInput_FeeAsset, dataMap.get("FeeAsset"), "Select deal input Fee Asset");
         pressEnter(XAlphaDealsPage.dealInput_FeeAsset);
+    }
+
+    public static String get_dealInput_FeeAsset() {
+        String FeeAsset = getElementText(XAlphaDealsPage.dealInput_FeeAssetText);
+        LogUtil.infoLog(XAlphaDealActions.class, "dealInput_FeeAsset=" + FeeAsset);
+        return FeeAsset;
     }
 
     public static void dealInput_FeeAmount(HashMap<String, String> dataMap) throws InterruptedException {
@@ -102,9 +136,21 @@ public class XAlphaDealActions extends KeywordUtil {
         pressEnter(XAlphaDealsPage.dealInput_CounterpartyName);
     }
 
+    public static String get_dealInput_CounterpartyName() {
+        String CounterpartyName = getElementText(XAlphaDealsPage.dealInput_CounterpartyNameText);
+        LogUtil.infoLog(XAlphaDealActions.class, "CounterpartyName=" + CounterpartyName);
+        return CounterpartyName;
+    }
+
     public static void dealInput_PortfolioNumber(HashMap<String, String> dataMap) {
         inputText(XAlphaDealsPage.dealInput_PortfolioNumber, dataMap.get("PortfolioNumber"), "Select deal input Portfolio Number");
         pressEnter(XAlphaDealsPage.dealInput_PortfolioNumber);
+    }
+
+    public static String get_dealInput_PortfolioNumber() {
+        String PortfolioNumber = getElementText(XAlphaDealsPage.dealInput_PortfolioNumberText);
+        LogUtil.infoLog(XAlphaDealActions.class, "PortfolioNumber=" + PortfolioNumber);
+        return PortfolioNumber;
     }
 
     public static void dealInput_ProcessingStatus(String arg0) {
