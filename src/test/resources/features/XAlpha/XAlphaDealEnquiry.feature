@@ -26,6 +26,7 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_024 | Confirmed  | Settled   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_025 | Processed  | Settled   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_026 | Confirmed  | Cancelled |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_027 | Pending    | Cancelled |
 
   @XAlphaDealEnquiry
   Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing FX-Spot Deal in Deal Inquiry
@@ -61,3 +62,4 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_021 | MO_CheckerAccount | Processed  | Pending   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_022 | MO_CheckerAccount | Settled    | Pending   |
 
+  
