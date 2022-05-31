@@ -26,7 +26,7 @@ Feature: Test buys sell features using Future Mode
       | NitroXBuySell | QA_TestCase_Auto_NitroX_035 |
 
   @NitroXBuySellFuture
-  Scenario Outline: <TestCaseID>_Create A Dealt Order
+  Scenario Outline: <TestCaseID>_Create A Dealt Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account and Instrument
     And Validate No previous position
@@ -88,3 +88,15 @@ Feature: Test buys sell features using Future Mode
       | SheetName     | TestCaseID                  |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_039 |
 
+  @NitroXBuySellFuture
+  Scenario Outline: <TestCaseID>_Create a Dealt Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Validate No previous position
+    And Choose Position Mode,Leverage and Margin Type
+    And Create Sell Order With Selling Price > Bid Price-Future Mode
+    And Click Sell Button and Verify the Success Message
+    Then Validate Order Moves to Dealt Orders-Future Mode
+    Examples:
+      | SheetName     | TestCaseID                  |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_040 |

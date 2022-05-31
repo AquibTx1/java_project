@@ -365,6 +365,33 @@ public class NitroXBuySellFutureSteps {
         }
     }
 
+
+    @And("Create Sell Order With Selling Price > Bid Price-Future Mode")
+    public void createSellOrderWithSellingPriceBidPrice() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                // get the highest bid price add some amount into the highest bid price and also store it in a variable to use later
+                NitroXHome.scrollToBidPrices();
+                NitroXHome.ClearInputPrice();
+                NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice());
+                NitroXHome.ClearOrderQuantity();
+                NitroXHome.InputCustomQuantity(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        //increase the step counter by 1
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
 }
 
 
