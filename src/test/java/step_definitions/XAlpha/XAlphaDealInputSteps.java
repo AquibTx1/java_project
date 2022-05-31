@@ -3,22 +3,22 @@ package step_definitions.XAlpha;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import modules.XAlphaActions.XAlphaDealActions;
+import modules.XAlphaActions.XAlphaDealInputActions;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
 
 import java.util.HashMap;
 
-public class XAlphaDealSteps {
+public class XAlphaDealInputSteps {
 
-    static Class thisClass = XAlphaDealSteps.class;
+    static Class thisClass = XAlphaDealInputSteps.class;
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
 
     public static String quoteAssetAmount, referencePrice, feeAmount, unitPrice;
 
-    public XAlphaDealSteps() {
+    public XAlphaDealInputSteps() {
         //constructor of the class to load datamap from BaseStepDefinitions
         dataMap = BaseStepDefinitions.dataMap;
     }
@@ -30,8 +30,8 @@ public class XAlphaDealSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealActions.clickXAlphaHeader();
-                XAlphaDealActions.waitForDealInputTab();
+                XAlphaDealInputActions.clickXAlphaHeader();
+                XAlphaDealInputActions.waitForDealInputTab();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -52,8 +52,8 @@ public class XAlphaDealSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealActions.clickDealInputTab();
-                XAlphaDealActions.waitFordealInput_navbar();
+                XAlphaDealInputActions.clickDealInputTab();
+                XAlphaDealInputActions.waitFordealInput_navbar();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -74,7 +74,7 @@ public class XAlphaDealSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealActions.clickFXSpotTab();
+                XAlphaDealInputActions.clickFXSpotTab();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -95,22 +95,22 @@ public class XAlphaDealSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealActions.dealInput_direction(dataMap);
-                XAlphaDealActions.dealInput_BaseAssetAmount(dataMap);
-                XAlphaDealActions.dealInput_BaseAsset(dataMap);
-                XAlphaDealActions.dealInput_QuoteAsset(dataMap);
-                referencePrice = XAlphaDealActions.get_dealInput_ReferencePrice(); //to be used later
-                XAlphaDealActions.dealInput_UnitPrice(referencePrice);
-                XAlphaDealActions.dealInput_FeeAsset(dataMap);
-                XAlphaDealActions.dealInput_FeeAmount(dataMap);
-                XAlphaDealActions.dealInput_CounterpartyName(dataMap);
-                XAlphaDealActions.dealInput_PortfolioNumber(dataMap);
-                XAlphaDealActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus"));
+                XAlphaDealInputActions.dealInput_direction(dataMap);
+                XAlphaDealInputActions.dealInput_BaseAssetAmount(dataMap);
+                XAlphaDealInputActions.dealInput_BaseAsset(dataMap);
+                XAlphaDealInputActions.dealInput_QuoteAsset(dataMap);
+                referencePrice = XAlphaDealInputActions.get_dealInput_ReferencePrice(); //to be used later
+                XAlphaDealInputActions.dealInput_UnitPrice(referencePrice);
+                XAlphaDealInputActions.dealInput_FeeAsset(dataMap);
+                XAlphaDealInputActions.dealInput_FeeAmount(dataMap);
+                XAlphaDealInputActions.dealInput_CounterpartyName(dataMap);
+                XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap);
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus"));
 
-                quoteAssetAmount = XAlphaDealActions.get_dealInput_QuoteAssetAmount(); //to be used later
-                unitPrice = XAlphaDealActions.get_dealInput_UnitPrice(); //to be used later
-                feeAmount = XAlphaDealActions.get_dealInput_FeeAmount(); //to be used later
-                referencePrice = XAlphaDealActions.get_dealInput_ReferencePrice(); //to be used later
+                quoteAssetAmount = XAlphaDealInputActions.get_dealInput_QuoteAssetAmount(); //to be used later
+                unitPrice = XAlphaDealInputActions.get_dealInput_UnitPrice(); //to be used later
+                feeAmount = XAlphaDealInputActions.get_dealInput_FeeAmount(); //to be used later
+                referencePrice = XAlphaDealInputActions.get_dealInput_ReferencePrice(); //to be used later
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -131,7 +131,7 @@ public class XAlphaDealSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealActions.dealInput_CreateBtn();
+                XAlphaDealInputActions.dealInput_CreateBtn();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -152,8 +152,8 @@ public class XAlphaDealSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealActions.waitForDealSubmittedMsg();
-                Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "Deal has created");
+                XAlphaDealInputActions.waitForDealSubmittedMsg();
+                Assert.assertEquals(XAlphaDealInputActions.dealInput_SubmitMessage(), "Deal has created");
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -174,8 +174,8 @@ public class XAlphaDealSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealActions.waitForDealSubmittedMsg();
-                Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "processing status should be 'pending' or 'confirmed'");
+                XAlphaDealInputActions.waitForDealSubmittedMsg();
+                Assert.assertEquals(XAlphaDealInputActions.dealInput_SubmitMessage(), "processing status should be 'pending' or 'confirmed'");
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -196,8 +196,8 @@ public class XAlphaDealSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealActions.waitForDealSubmittedMsg();
-                Assert.assertEquals(XAlphaDealActions.dealInput_SubmitMessage(), "FX Spot deal is settled, but base is not settled");
+                XAlphaDealInputActions.waitForDealSubmittedMsg();
+                Assert.assertEquals(XAlphaDealInputActions.dealInput_SubmitMessage(), "FX Spot deal is settled, but base is not settled");
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

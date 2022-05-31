@@ -2,7 +2,7 @@ package pageFactory.XAlphaPages;
 
 import org.openqa.selenium.By;
 
-public class XAlphaDealsPage {
+public class XAlphaDealInputPage {
 
     //X-Alpha tab in the header section
     public static By xAlphaHeader = By.linkText("X-Alpha");

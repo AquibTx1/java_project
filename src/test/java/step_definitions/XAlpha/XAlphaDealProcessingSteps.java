@@ -2,10 +2,7 @@ package step_definitions.XAlpha;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import modules.XAlphaActions.XAlphaDealActions;
 import modules.XAlphaActions.XAlphaDealProcessingActions;
-import modules.XAlphaActions.XAlphaLoginActions;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
