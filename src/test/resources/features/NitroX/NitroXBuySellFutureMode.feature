@@ -33,7 +33,6 @@ Feature: Test buys sell features using Future Mode
     And Choose Position Mode,Leverage and Margin Type
     And Create Buy Order Equal to Ask Price for Future Mode
     And Click Buy Order and Validate
-    Then Verify Order Submitted Success Message-Future Mode
     Then Validate Order Moves to Dealt Orders-Future Mode
     Examples:
       | SheetName     | TestCaseID                  | Number |
@@ -47,7 +46,6 @@ Feature: Test buys sell features using Future Mode
     And Choose Position Mode,Leverage and Margin Type
     And Create Buy Order Greater than Ask Price for Future Mode
     And Click Buy Order and Validate
-    Then Verify Order Submitted Success Message-Future Mode
     Then Validate Order Moves to Dealt Orders-Future Mode
     Examples:
       | SheetName     | TestCaseID                     | Number |
@@ -72,8 +70,21 @@ Feature: Test buys sell features using Future Mode
     And Choose Position Mode,Leverage and Margin Type
     And Create Sell Order With Selling Price > Bid Price
     And Click Sell Button
-    Then Verify Order Submitted Success Message
     Then Validate order is in Open State for Future Mode
     Examples:
       | SheetName     | TestCaseID                  |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_038 |
+
+  @NitroXBuySellFuture
+  Scenario Outline: <TestCaseID>_Cancel An Open-Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Create Sell Order With Selling Price > Bid Price
+    And Click Sell Button and Verify the Success Message
+    And Cancel First Open Sell Order for FutureMode
+    Then Verify Cancel Order Success Message
+    Then Verify First Order Removed From Orders List
+    Examples:
+      | SheetName     | TestCaseID                  |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_039 |
+

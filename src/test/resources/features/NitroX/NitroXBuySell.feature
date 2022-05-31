@@ -134,13 +134,15 @@ Feature: Test buys sell features
     Examples:
       | SheetName     | TestCaseID                  |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_017 |
-#
+
   @NitroXBuySell
-  Scenario Outline: NitroXHome-014_Cancel An Open-Sell Order
+  Scenario Outline: NitroXHome-018_Cancel An Open-Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose mode value using dropdown
     And Select the Trading Account
     And Enter The Base and Quote Currency
+    And Create Sell Order With Selling Price > Bid Price
+    And Click Sell Button and Verify the Success Message
     And Cancel First Open Sell Order
     Then Verify Cancel Order Success Message
     Then Verify First Order Removed From Orders List
