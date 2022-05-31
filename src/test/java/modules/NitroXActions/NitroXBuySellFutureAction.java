@@ -67,7 +67,7 @@ public class NitroXBuySellFutureAction {
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
-        //click(By.xpath("//span[text()='"+dataMap.get("Position")+"']"),"Entered");
+
     }
 
     public static void inputLeverage(HashMap<String, String> dataMap) {
@@ -142,7 +142,6 @@ public class NitroXBuySellFutureAction {
             Assert.fail(e.getMessage());
         }
     }
-
     public static void clickDealtOrdersTab() {
         click(NitroXBotsPage.DealtOrderTab, "Clicked Dealt Order");
     }
@@ -172,7 +171,6 @@ public class NitroXBuySellFutureAction {
                     delay(40000);
                     break;
                 }
-
         }
     }
     public static void  validateAmount(HashMap<String, String> dataMap) throws InterruptedException {
@@ -192,7 +190,6 @@ public class NitroXBuySellFutureAction {
             postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
             Assert.assertEquals(preamount+defaultamount,postamount);
         }
-
         else
         {
             NitroXBuySellFutureAction.ClickSellButton();
@@ -203,7 +200,6 @@ public class NitroXBuySellFutureAction {
         }
 
     }
-
     public static String getOrderSubmittedSuccessMsg() {
         waitForInVisibile(NitroXHomePage.orderSubmittedSuccessMsg);
         String msg = getElementText(NitroXHomePage.orderSubmittedSuccessMsg);

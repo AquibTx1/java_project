@@ -174,6 +174,7 @@ public class NitroXBuySellFutureSteps {
             try {
                 scrollingToElementofAPage(NitroXBuySellFuturePage.openOrderTab,"Scrolled to Element");
                 NitroXBuySellFutureAction.clickOpenState();
+                delay(5000);
                 Assert.assertEquals(NitroXHome.getSideofNthOpenOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
                 Assert.assertEquals(NitroXHome.getPriceofNthOpenOrder(1), NitroXHome.getOrderFormPrice());
             } catch (Throwable e) {
@@ -269,6 +270,7 @@ public class NitroXBuySellFutureSteps {
                 NitroXHome.scrollToOrdersPlaced();
                 NitroXHome.waitForInvisibleOrderSubmittedMsg();
                 NitroXHome.clickDealtOrdersTab();
+                delay(5000);
                 Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
                 //Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXHome.getOrderFormPrice());
                 Assert.assertEquals(NitroXBuySellFutureAction.getQuantityofNthDealtOrder(1), NitroXHome.getOrderFormQuantity());

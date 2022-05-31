@@ -69,7 +69,7 @@ Feature: Test buys sell features using Future Mode
     When Choose Mode, Trading Account and Instrument
     And Choose Position Mode,Leverage and Margin Type
     And Create Sell Order With Selling Price > Bid Price
-    And Click Sell Button
+    And Click Sell Button and Verify the Success Message
     Then Validate order is in Open State for Future Mode
     Examples:
       | SheetName     | TestCaseID                  |
