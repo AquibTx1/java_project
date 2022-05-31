@@ -39,29 +39,35 @@ public class NitroXHome {
         KeywordUtil.pressEnter(NitroXHomePage.modeTextbyID);
     }
 
-    public static void selectTradingAccount(HashMap<String, String> dataMap) {
+    public static void selectTradingAccount(HashMap<String, String> dataMap) throws InterruptedException {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
-        waitForVisible(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"));
+        inputText(NitroXHomePage.tradingaccount, dataMap.get("TradingAccount"), dataMap.get("TradingAccount") + "=trading account");
+        waitForPresent(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"));
         KeywordUtil.click(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"), "Trading Account selected from dropdown");
+        delay(1000);
     }
 
-    public static void inputTradingAccount(HashMap<String, String> dataMap) {
+    public static void inputTradingAccount(HashMap<String, String> dataMap) throws InterruptedException {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
         KeywordUtil.inputText(NitroXHomePage.inputtradingaccount, dataMap.get("TradingAccount"), dataMap.get("TradingAccount") + " : Trading account");
-        KeywordUtil.pressEnter(NitroXHomePage.inputtradingaccount);
+        click(By.xpath(String.format(NitroXHomePage.tradingAccountSuggestion, dataMap.get("TradingAccount"))), "Select trading account from suggestion options");
+        delay(1000);
     }
 
     public static void selectBaseCurrency(HashMap<String, String> dataMap) throws Exception {
-        delay(1000);
+
+        click(NitroXHomePage.Basecurrency, "Click Base Currency");
         KeywordUtil.inputText(NitroXHomePage.Basecurrency, dataMap.get("Base"), dataMap.get("Base") + " : Base Currency");
-        delay(1000);
-        pressTabKey(NitroXHomePage.Basecurrency);
+        delay(3000);
     }
 
     public static void selectQuoteCurrency(HashMap<String, String> dataMap) throws Exception {
+        click(NitroXHomePage.Quotecurrency, "Click Quote Currency");
         KeywordUtil.inputText(NitroXHomePage.Quotecurrency, dataMap.get("Quote"), dataMap.get("Quote") + " : Quote Currency");
-        delay(1000);
-        pressEnter(NitroXHomePage.Quotecurrency);
+    }
+
+    public static void waitForLiveChart() {
+        waitForVisible(NitroXHomePage.liveFrame);
     }
 
     public String getBaseCurrency() {
@@ -221,8 +227,15 @@ public class NitroXHome {
         LogUtil.infoLog(thisClass, "Order cancelled success message displayed.");
     }
 
-    public static void getOrderSubmittedSuccessMsg() {
-        waitForVisible(NitroXHomePage.orderSubmittedSuccessMsg);
+    public static String getOrderSubmittedSuccessMsg() {
+        waitForInVisibile(NitroXHomePage.orderSubmittedSuccessMsg);
+        String msg = getElementText(NitroXHomePage.orderSubmittedSuccessMsg);
+        LogUtil.infoLog(thisClass, "Order submitted message=" + msg);
+        return msg;
+    }
+
+    public static void waitForOrderSubmittedSuccessMsg() {
+        waitForPresent(NitroXHomePage.orderSubmittedSuccessMsg);
         LogUtil.infoLog(thisClass, "Order submitted successfully message displayed.");
     }
 
@@ -270,10 +283,9 @@ public class NitroXHome {
         return lowestAskPrice;
     }
 
-    public static double getHighestAskPrice()
-    {
+    public static double getHighestAskPrice() {
         waitForVisible(NitroXHomePage.orderBookprice);
-        double orderBookprice= Double.parseDouble((getElementText(NitroXHomePage.orderBookprice).replace(",", "")));
+        double orderBookprice = Double.parseDouble((getElementText(NitroXHomePage.orderBookprice).replace(",", "")));
         LogUtil.infoLog(thisClass, "Highest Ask price=" + orderBookprice);
         return orderBookprice;
     }
@@ -330,8 +342,7 @@ public class NitroXHome {
         click(NitroXHomePage.cancelFirstSellOrder, "Cancel very first sell order");
     }
 
-    public static void clickDealtOrdersTab()
-    {
+    public static void clickDealtOrdersTab() {
         click(NitroXHomePage.DealtOrderTab, "Clicked Dealt Order");
     }
 
@@ -364,4 +375,32 @@ public class NitroXHome {
         LogUtil.infoLog(thisClass, "Dealt order quantity=" + quantity);
         return Double.parseDouble(quantity);
     }
+
+    public static void waitForNotifMsg() {
+        waitForPresent(NitroXHomePage.bottomRightNotifText);
+    }
+
+    public static String getNotifMsg() {
+        String notifMsg;
+        notifMsg = getElementText(NitroXHomePage.bottomRightNotifDesc);
+        LogUtil.infoLog(thisClass, "Notification message description=" + notifMsg);
+        return notifMsg;
+    }
+
+    public static void waitForNotifMsgToDisappear() {
+        waitForInVisibile(NitroXHomePage.bottomRightNotifText);
+    }
+
+    public static boolean isPresentOrderListener() {
+        return isWebElementPresent(NitroXHomePage.orderBookListener, "Orderbook listener notification is present");
+    }
+
+    public static void closeBottomRightNotif() {
+        click(NitroXHomePage.closeBottomRightNotif, "Bottom right notification closed.");
+    }
+
+    public static void waitForOrderListernerToDisappear() {
+        waitForInVisibile(NitroXHomePage.orderBookListener);
+    }
+
 }

@@ -33,7 +33,7 @@ public class Hooks {
 //        if (scenario.getName().contains("_"))
 //            testCaseDescription = scenario.getName().split("_")[1].trim();
 //        else
-            testCaseDescription = scenario.getName();
+        testCaseDescription = scenario.getName();
 
         RunCukesTest.logger = RunCukesTest.extent.startTest(testCaseDescription);
         RunCukesTest.tagName = scenario.getSourceTagNames().toString().replace("[@", "").replace("]", "").trim();
@@ -55,7 +55,7 @@ public class Hooks {
 //        if (scenario.getName().contains("_"))
 //            testCaseDescription = scenario.getName().split("_")[1];
 //        else
-            testCaseDescription = scenario.getName();
+        testCaseDescription = scenario.getName();
 
         RunCukesTest.logger = RunCukesTest.extent.startTest(testCaseDescription);
         RunCukesTest.tagName = scenario.getSourceTagNames().toString().replace("[@", "").replace("]", "").trim();
@@ -71,7 +71,7 @@ public class Hooks {
 //        if (scenario.getName().contains("_"))
 //            testCaseDescription = scenario.getName().split("_")[1].trim();
 //        else
-            testCaseDescription = scenario.getName();
+        testCaseDescription = scenario.getName();
 
         RunCukesTest.logger = RunCukesTest.extent.startTest(testCaseDescription);
         RunCukesTest.tagName = scenario.getSourceTagNames().toString().replace("[@", "").replace("]", "").trim();
@@ -109,7 +109,7 @@ public class Hooks {
                 pathForLogger = RunCukesTest.logger.addBase64ScreenShot("data:image/png;base64," + base64);
 
                 RunCukesTest.logger.log(LogStatus.FAIL,
-                        HTMLReportUtil.failStringRedColor("Failed at point: " + pathForLogger) + GlobalUtil.e);
+                        HTMLReportUtil.failStringRedColor("Failed at point: " + "\n" + KeywordUtil.getCurrentUrl() + pathForLogger) + GlobalUtil.e);
                 byte[] screenshot = KeywordUtil.takeScreenshot(imagePath);
                 scenario.attach(screenshot, "image/png", "Screenshot");
 
@@ -148,7 +148,7 @@ public class Hooks {
 //        if (scenario.getName().contains("_"))
 //            testName = scenario.getName().split("_")[0].trim();
 //        else
-            testName = scenario.getName();
+        testName = scenario.getName();
 
         if (scenario.isFailed()) {
             try {
@@ -212,7 +212,6 @@ public class Hooks {
                 e.printStackTrace();
             }
         } else {
-
             LogUtil.infoLog(Hooks.class,
                     "Test has ended closing browser: " + GlobalUtil.getCommonSettings().getBrowser());
             // updating the results in Test mangement tool
@@ -245,7 +244,7 @@ public class Hooks {
 //        if (scenario.getName().contains("_"))
 //            testName = scenario.getName().split("_")[0].trim();
 //        else
-            testName = scenario.getName();
+        testName = scenario.getName();
 
         if (scenario.isFailed()) {
             try {
@@ -310,7 +309,7 @@ public class Hooks {
 //        if (scenario.getName().contains("_"))
 //            testName = scenario.getName().split("_")[0].trim();
 //        else
-            testName = scenario.getName();
+        testName = scenario.getName();
 
         if (scenario.isFailed()) {
             try {
@@ -325,10 +324,11 @@ public class Hooks {
                 String base64 = Base64.getEncoder().encodeToString(imageBytes);
                 pathForLogger = RunCukesTest.logger.addBase64ScreenShot("data:image/png;base64," + base64);
                 RunCukesTest.logger.log(LogStatus.FAIL,
-                        HTMLReportUtil.failStringRedColor("Failed at point: " + pathForLogger) + GlobalUtil.e);
+                        HTMLReportUtil.failStringRedColor("Failed at point: " + KeywordUtil.getCurrentUrl() + pathForLogger) + GlobalUtil.e);
 
                 byte[] screenshot = KeywordUtil.takeMobileScreenshot(imagePath);
                 scenario.attach(screenshot, "image/png", "Failed Screenshot");
+
 
                 // report the bug
                 String bugID = "Please check the Bug tool Configuration";

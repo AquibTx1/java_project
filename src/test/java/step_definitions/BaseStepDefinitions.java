@@ -75,7 +75,6 @@ public class BaseStepDefinitions extends KeywordUtil {
             inputText(NitroXLoginPage.password, ConfigReader.getValue("nitroxPassword"), "Enter the password");
             click(NitroXLoginPage.loginbtn, "Click on Sign on Button");
             waitForVisible(NitroXLoginPage.homepage);
-            System.out.println("Home Page" + KeywordUtil.getElementText(NitroXLoginPage.homepage));
             Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage), "Home");
         } catch (Throwable e) {
             GlobalUtil.e = e;

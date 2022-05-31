@@ -26,7 +26,12 @@ public class NitroXHomePage {
     public static By inputtradingaccount = By.id("account_pair_form_accountId");
     public static By selecttradingaccount1 = By.xpath("//div[@title='Trader01@Tinyex']");
     public static By selecttradingaccount2 = By.xpath("//div[@title='Trader02@Tinyex']");
+    public static String tradingAccountSuggestion = "//div[@title='%s']";
+    //div[@class='ant-select-item-option-content' and text()='Automation_Test@Tinyex']
     public static By varifyaccount = By.xpath("(//div[@class='ant-select-selector'])[2]/child::span[2]");
+
+    //live chart
+    public static By liveFrame = By.xpath("//div[@id='layout-size-sensor']");
 
     //Balance
     public static By balance = By.xpath("(//*[@class='text-gray-800 text-xs'])[1]");
@@ -52,7 +57,7 @@ public class NitroXHomePage {
     public static By openOrderHeader = By.xpath("//span[text()='Open Orders']");
     public static By openOrderTime_first = By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[02]/td[01]");
     public static By orderCancelSuccessMsg = By.xpath("//div/p[contains(text(), 'Order was cancelled successfully.')]");
-    public static By orderSubmittedSuccessMsg = By.xpath("//div/p[contains(text(), 'Order submitted successfully.')]");
+    public static By orderSubmittedSuccessMsg = By.xpath("//div[contains(text(), 'Order submitted successfully.')]");
     public static By orderCancelLoading = By.xpath("//span[text()='Recent Open Orders']/following::table[01]/tbody[01]/tr[2]/td[06]/button/span/span");
     public static By cancelFirstBuyOrder = By.xpath("(//span[text()='Recent Open Orders']/following::table[01]//span[text()='BUY']/../following-sibling::td[4]/button)[1]");
     public static By cancelFirstSellOrder = By.xpath("(//span[text()='Recent Open Orders']/following::table[01]//span[text()='SELL']/../following-sibling::td[4]/button)[1]");
@@ -62,5 +67,9 @@ public class NitroXHomePage {
     public static By DealtOrderTab = By.xpath("//div[text()='Dealt Orders']");
     public static By recentDealt = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[2]/td[02]/span");
 
-
+    //notification messages
+    public static By orderBookListener = By.xpath("//div[text()='Orderbook Listener Starting']");
+    public static By bottomRightNotifText = By.xpath("//div[@class='ant-notification-notice-message']/div[@class='whitespace-pre-line']");
+    public static By bottomRightNotifDesc = By.xpath("//div[@class='ant-notification-notice-description']/div[@class='whitespace-pre-line']");
+    public static By closeBottomRightNotif = By.xpath("//span[@class='ant-notification-close-x']");
 }

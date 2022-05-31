@@ -455,6 +455,15 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Deal Reference in Quantity : " + side);
         return side;
     }
+    public static void getFilteredBots()
+    {
+        String a =(getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span")));
+        int bots= Integer.parseInt(a);
+        if(bots>0)
+        {
+            NitroXBotsAction.stopAllBots();
+        }
+    }
     public static void validateStatus() {
         try {
             int count = 0;

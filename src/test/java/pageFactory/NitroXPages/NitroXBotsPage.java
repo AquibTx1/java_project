@@ -52,6 +52,8 @@ public class NitroXBotsPage {
     public static By config=By.xpath("//div[text()='Config']");
     public static By trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[7]/td[3]");
     public static By clickstarttime=By.xpath(" //span[text()='Start Time']");
+
+    public static By recentDealtOrder = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[02]");
     //span[text()='Start Time']
     public static By editbtn=By.xpath("//span[text()='Edit']");
     public static By resumebtn=By.xpath("//span[text()='Resume']");

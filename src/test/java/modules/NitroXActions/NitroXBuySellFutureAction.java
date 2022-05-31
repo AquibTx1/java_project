@@ -1,3 +1,4 @@
+
 package modules.NitroXActions;
 
 import org.openqa.selenium.By;
@@ -18,8 +19,7 @@ public class NitroXBuySellFutureAction {
 
     static Class thisClass = NitroXBuySellFutureAction.class;
     public static String lastaskprice;
-
-    public static int preorderAmount;
+    public static double preamount,postamount,defaultamount;
 
 
     public static void selectmode(HashMap<String, String> dataMap) {
@@ -37,6 +37,10 @@ public class NitroXBuySellFutureAction {
 
     public static void ClickBuyButton() {
         KeywordUtil.click(NitroXBuySellFuturePage.Buybtn, "Buy order Clicked");
+    }
+
+    public static void ClickSellButton() {
+        KeywordUtil.click(NitroXBuySellFuturePage.sellbtn, "Sell order Clicked");
     }
 
 
@@ -159,45 +163,59 @@ public class NitroXBuySellFutureAction {
         boolean flag = false;
         for (int i = 1; i <= s; i++) {
             String value = getDriver().findElement(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[1]")).getText();
+            //String Side=getDriver().findElement(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[4]")).getText();
+            //String side=dataMap.get("Mside").toString();
             if (value.equals(S3)) {
                 flag = true;
-
                 click(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[12]//span[text()='Market']"), "Clicked The Postion");
-                delay(30000);
+                delay(40000);
                 break;
             }
-
         }
     }
-
-    public static boolean validateAmount(HashMap<String, String> dataMap) throws InterruptedException {
-
-
+    public static void  validateAmount(HashMap<String, String> dataMap) throws InterruptedException {
         String S1 = dataMap.get("Instrument").toString();
         String[] S2 = S1.split(" ");
         String S3 = S2[0].replace("/", "");
 
-        String postamount=getDriver().findElement(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")).getText();
-        int postam=Integer.parseInt(postamount);
-        int p=Integer.parseInt(dataMap.get("Quantity"));
-        if(preorderAmount+p==postam)
+        LogUtil.infoLog(thisClass, "Post Amount After Buy order=" + postamount);
+        defaultamount=Double.parseDouble(dataMap.get("Quantity"));
+        String Side=(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[3]/span")));
+
+        if(Side.equals("LONG"))
         {
-            return true;
+            NitroXBuySellFutureAction.ClickBuyButton();
+            NitroXBuySellFutureAction.getOrderSubmittedSuccessMsg();
+            delay(70000);
+            postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+            Assert.assertEquals(preamount+defaultamount,postamount);
         }
+
         else
         {
-            return  false;
+            NitroXBuySellFutureAction.ClickSellButton();
+            delay(70000);
+            postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+            Assert.assertEquals(preamount+defaultamount,postamount);
+
         }
+
     }
 
-    public static void getPreorderAmount(HashMap<String, String> dataMap) {
+    public static String getOrderSubmittedSuccessMsg() {
+        waitForInVisibile(NitroXHomePage.orderSubmittedSuccessMsg);
+        String msg = getElementText(NitroXHomePage.orderSubmittedSuccessMsg);
+        LogUtil.infoLog(thisClass, "Order submitted message=" + msg);
+        return msg;
+    }
+
+    public static double getPreorderAmount(HashMap<String, String> dataMap) {
 
         String S1 = dataMap.get("Instrument").toString();
         String[] S2 = S1.split(" ");
         String S3 = S2[0].replace("/", "");
-
-        String preamount=getDriver().findElement(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")).getText();
-         preorderAmount=Integer.parseInt(preamount);
-        System.out.println(preorderAmount);
+        preamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+        LogUtil.infoLog(thisClass, "Pre Amount before Buy order=" + preamount);
+        return preamount;
     }
 }

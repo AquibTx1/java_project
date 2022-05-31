@@ -4,8 +4,8 @@ Feature: Test buys sell features
     Given Login to NitroX app with valid login credentials
 
   @CreateAskPrices
-  Scenario Outline: NitroXHome-017_Create Ask Prices
-    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+  Scenario Outline: Create Ask Prices
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
     And Create "<Number>" Sell Order With Selling Price > Bid Price
     Examples:
@@ -13,8 +13,8 @@ Feature: Test buys sell features
       | NitroXBuySell | QA_TestCase_Auto_NitroX_017 | 4      |
 
   @CreateBidPrices
-  Scenario Outline: NitroXHome-013_Create Bid Prices
-    Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
+  Scenario Outline: Create Bid Prices
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
     And Create "<Number>" buy Order less than Market Price
     Examples:
