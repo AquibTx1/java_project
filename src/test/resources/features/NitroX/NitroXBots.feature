@@ -7,7 +7,7 @@ Feature: Test Bots features on NitroX HomePage
   @NitroXBot
   Scenario Outline: <TestCaseID>_Start Execution_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
-    When Choose Mode, Trading Account, Base and Quote Currency for execution_bot
+    When Choose Mode, Trading Account, Base and Quote Currency
     And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break

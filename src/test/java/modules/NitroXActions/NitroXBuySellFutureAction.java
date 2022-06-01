@@ -11,6 +11,7 @@ import utilities.KeywordUtil;
 import utilities.LogUtil;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import static utilities.KeywordUtil.*;
 
@@ -66,7 +67,7 @@ public class NitroXBuySellFutureAction {
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
-        //click(By.xpath("//span[text()='"+dataMap.get("Position")+"']"),"Entered");
+
     }
 
     public static void inputLeverage(HashMap<String, String> dataMap) {
@@ -141,7 +142,6 @@ public class NitroXBuySellFutureAction {
             Assert.fail(e.getMessage());
         }
     }
-
     public static void clickDealtOrdersTab() {
         click(NitroXBotsPage.DealtOrderTab, "Clicked Dealt Order");
     }
@@ -158,19 +158,19 @@ public class NitroXBuySellFutureAction {
         int s = getDriver().findElements(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr")).size();
         String S1 = dataMap.get("Instrument").toString();
         String[] S2 = S1.split(" ");
-        String S3 = S2[0].replace("/", "");
+        String instrument = S2[0].replace("/", "");
 
         boolean flag = false;
         for (int i = 1; i <= s; i++) {
-            String value = getDriver().findElement(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[1]")).getText();
+            String Symbol = getDriver().findElement(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[1]")).getText();
             //String Side=getDriver().findElement(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[4]")).getText();
             //String side=dataMap.get("Mside").toString();
-            if (value.equals(S3)) {
-                flag = true;
-                click(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[12]//span[text()='Market']"), "Clicked The Postion");
-                delay(40000);
-                break;
-            }
+                if (Symbol.equals(instrument)) {
+                    flag = true;
+                    click(By.xpath("//th[text()='Symbol']/../../following-sibling::tbody/tr[" + i + "]/td[12]//span[text()='Market']"), "Clicked The Postion");
+                    delay(40000);
+                    break;
+                }
         }
     }
     public static void  validateAmount(HashMap<String, String> dataMap) throws InterruptedException {
@@ -190,7 +190,6 @@ public class NitroXBuySellFutureAction {
             postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
             Assert.assertEquals(preamount+defaultamount,postamount);
         }
-
         else
         {
             NitroXBuySellFutureAction.ClickSellButton();
@@ -201,7 +200,6 @@ public class NitroXBuySellFutureAction {
         }
 
     }
-
     public static String getOrderSubmittedSuccessMsg() {
         waitForInVisibile(NitroXHomePage.orderSubmittedSuccessMsg);
         String msg = getElementText(NitroXHomePage.orderSubmittedSuccessMsg);
@@ -218,4 +216,9 @@ public class NitroXBuySellFutureAction {
         LogUtil.infoLog(thisClass, "Pre Amount before Buy order=" + preamount);
         return preamount;
     }
+
+    public static void cancelFirstSellOrder() {
+        click(NitroXBuySellFuturePage.cancelFirstSellOrder, "Cancel very first sell order");
+    }
+
 }

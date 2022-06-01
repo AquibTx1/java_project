@@ -2,7 +2,7 @@ package step_definitions.XAlpha;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import modules.XAlphaActions.XAlphaDealActions;
+import modules.XAlphaActions.XAlphaDealInputActions;
 import modules.XAlphaActions.XAlphaDealEnquiryActions;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
@@ -52,23 +52,23 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealEnquiryActions.getDealRefwrtQuoteAssetAmt(XAlphaDealSteps.quoteAssetAmount);
-                String unitPriceDealEnquiry = XAlphaDealEnquiryActions.getUnitPricewrtQuoteAssetAmt(XAlphaDealSteps.quoteAssetAmount);
-                String feeDealEnquiry = XAlphaDealEnquiryActions.getFeewrtQuoteAssetAmt(XAlphaDealSteps.quoteAssetAmount);
-                String referencePriceDealEnquiry = XAlphaDealEnquiryActions.getReferencePricewrtQuoteAssetAmt(XAlphaDealSteps.quoteAssetAmount);
-                String dealTypeDealEnquiry = XAlphaDealEnquiryActions.getDealTypewrtQuoteAssetAmt(XAlphaDealSteps.quoteAssetAmount).toLowerCase();
-                String processingStatusDealEnquiry = XAlphaDealEnquiryActions.getProcessingStatuswrtQuoteAssetAmt(XAlphaDealSteps.quoteAssetAmount).toLowerCase();
-                String directionDealEnquiry = XAlphaDealEnquiryActions.getDirectionwrtQuoteAssetAmt(XAlphaDealSteps.quoteAssetAmount).toLowerCase();
+                XAlphaDealEnquiryActions.getDealRefwrtQuoteAssetAmt(XAlphaDealInputSteps.quoteAssetAmount);
+                String unitPriceDealEnquiry = XAlphaDealEnquiryActions.getUnitPricewrtQuoteAssetAmt(XAlphaDealInputSteps.quoteAssetAmount);
+                String feeDealEnquiry = XAlphaDealEnquiryActions.getFeewrtQuoteAssetAmt(XAlphaDealInputSteps.quoteAssetAmount);
+                String referencePriceDealEnquiry = XAlphaDealEnquiryActions.getReferencePricewrtQuoteAssetAmt(XAlphaDealInputSteps.quoteAssetAmount);
+                String dealTypeDealEnquiry = XAlphaDealEnquiryActions.getDealTypewrtQuoteAssetAmt(XAlphaDealInputSteps.quoteAssetAmount).toLowerCase();
+                String processingStatusDealEnquiry = XAlphaDealEnquiryActions.getProcessingStatuswrtQuoteAssetAmt(XAlphaDealInputSteps.quoteAssetAmount).toLowerCase();
+                String directionDealEnquiry = XAlphaDealEnquiryActions.getDirectionwrtQuoteAssetAmt(XAlphaDealInputSteps.quoteAssetAmount).toLowerCase();
 
                 //convert deal input field values to be matched
-                XAlphaDealSteps.unitPrice = KeywordUtil.formatDecimalToStr(XAlphaDealSteps.unitPrice);
-                XAlphaDealSteps.feeAmount = KeywordUtil.formatDecimalToStr(XAlphaDealSteps.feeAmount);
-                XAlphaDealSteps.referencePrice = KeywordUtil.formatDecimalToStr(XAlphaDealSteps.referencePrice);
+                XAlphaDealInputSteps.unitPrice = KeywordUtil.formatDecimalToStr(XAlphaDealInputSteps.unitPrice);
+                XAlphaDealInputSteps.feeAmount = KeywordUtil.formatDecimalToStr(XAlphaDealInputSteps.feeAmount);
+                XAlphaDealInputSteps.referencePrice = KeywordUtil.formatDecimalToStr(XAlphaDealInputSteps.referencePrice);
 
                 //assert the values
-                Assert.assertEquals(unitPriceDealEnquiry, XAlphaDealSteps.unitPrice);
-                Assert.assertEquals(feeDealEnquiry, XAlphaDealSteps.feeAmount);
-                Assert.assertEquals(referencePriceDealEnquiry, XAlphaDealSteps.referencePrice);
+                Assert.assertEquals(unitPriceDealEnquiry, XAlphaDealInputSteps.unitPrice);
+                Assert.assertEquals(feeDealEnquiry, XAlphaDealInputSteps.feeAmount);
+                Assert.assertEquals(referencePriceDealEnquiry, XAlphaDealInputSteps.referencePrice);
                 Assert.assertEquals(dealTypeDealEnquiry, dataMap.get("DealType").toLowerCase());
                 Assert.assertEquals(processingStatusDealEnquiry, dataMap.get("ProcessingStatus").toLowerCase());
                 Assert.assertEquals(directionDealEnquiry, dataMap.get("Direction").toLowerCase());
@@ -131,8 +131,8 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 //update processing status
-                XAlphaDealActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
-                XAlphaDealActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new")); //intentional due to existing bug
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new")); //intentional due to existing bug
                 XAlphaDealEnquiryActions.clickUpdateDealBtn();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -265,4 +265,41 @@ public class XAlphaDealEnquirySteps {
         }
     }
 
+    @And("Get deal input details")
+    public void getDealInputDetails() throws InterruptedException {
+        XAlphaDealInputActions.get_dealInput_direction();
+        XAlphaDealInputActions.get_dealInput_BaseAssetAmount();
+        XAlphaDealInputActions.get_dealInput_BaseAsset();
+        XAlphaDealInputActions.get_dealInput_QuoteAsset();
+        XAlphaDealInputActions.get_dealInput_UnitPrice();
+        XAlphaDealInputActions.get_dealInput_QuoteAssetAmount();
+        XAlphaDealInputActions.get_dealInput_FeeAsset();
+        XAlphaDealInputActions.get_dealInput_FeeAmount();
+        XAlphaDealInputActions.get_dealInput_ReferencePrice();
+        XAlphaDealInputActions.get_dealInput_CounterpartyName();
+        XAlphaDealInputActions.get_dealInput_PortfolioNumber();
+    }
+
+    @And("Update deal details\\(Direction, BaseAssetAmount, BaseAsset, QuoteAsset, UnitPrice, QuoteAssetAmount, FeeAsset, FeeAmount, ReferencePrice)")
+    public void updateDealDetailsDirectionBaseAssetAmountBaseAssetQuoteAssetUnitPriceQuoteAssetAmountFeeAssetFeeAmountReferencePrice() {
+        
+    }
+
+    @And("Update deal details\\(CounterpartyName, PortfolioNumber)")
+    public void updateDealDetailsCounterpartyNamePortfolioNumber() {
+        
+    }
+
+    @And("Click update deal button")
+    public void clickUpdateDealButton() {
+
+    }
+
+    @Then("Verify Updated deal details\\(Direction, BaseAssetAmount, BaseAsset, QuoteAsset, UnitPrice, QuoteAssetAmount, FeeAsset, FeeAmount, ReferencePrice)")
+    public void verifyUpdatedDealDetailsDirectionBaseAssetAmountBaseAssetQuoteAssetUnitPriceQuoteAssetAmountFeeAssetFeeAmountReferencePrice() {
+    }
+
+    @Then("Verify Updates deal details\\(CounterpartyName, PortfolioNumber)")
+    public void verifyUpdatesDealDetailsCounterpartyNamePortfolioNumber() {
+    }
 }
