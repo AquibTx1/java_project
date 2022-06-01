@@ -14,6 +14,7 @@ import utilities.GlobalUtil;
 import java.util.HashMap;
 import java.util.Locale;
 
+import static modules.NitroXActions.NitroXBotsAction.getTargetAccountPosition;
 import static utilities.KeywordUtil.*;
 
 public class NitroXBotsSteps {
@@ -24,6 +25,7 @@ public class NitroXBotsSteps {
     public NitroXBotsSteps() {
         dataMap = BaseStepDefinitions.dataMap;
     }
+
     @And("Verify total Bots Before staring the Buy execution")
     public void verifyCountNumberOfBotsBeforeBuyingSelling() {
             // Count the Total Bots before Starting Bot Execution
@@ -33,8 +35,6 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.getFilteredBots();
-                NitroXBotsAction.refreshPage();
-                delay(2000);
                 scrollingToElementofAPage(NitroXBotsPage.startbtn,"Scrolled to Total Bot Bot Filtered");
                 totalbotbefore=NitroXBotsAction.getTotalFilteredBots();
             } catch (Throwable e) {
@@ -109,6 +109,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.inputOrderAmount(dataMap);
                 //NitroXBotsAction.inputOrderType(dataMap);
                 NitroXBotsAction.inputTrigerCondtion();
+
                 NitroXBotsAction.clickSubmit();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -840,12 +841,55 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
             BaseStepDefinitions.increaseCounter();
         }
     }
-    @Then("Verify Pair_Trading new Bot in Detail and Config")
-    public void verifyPair_TradingNewBotInDetailAndConfig() {
+
+
+    @And("Collect the Target Account Position")
+    public void collectTheTargetAccountPosition() {
+        {
+            if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+                BaseStepDefinitions.skipThisStep();
+            } else {
+                try {
+
+                    NitroXBotsAction.getTargetAccountPosition(dataMap);
+                } catch (Throwable e) {
+                    GlobalUtil.e = e;
+                    e.printStackTrace();
+                    GlobalUtil.errorMsg = e.getMessage();
+                    Assert.fail(e.getMessage());
+                }
+            }
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+
+
 
     }
-    @Then("Verify the Order in Dealt Order for same Bot")
-    public void verifyTheOrderInDealtOrderForSameBot() {
+    @When("Input the Time, Quantity and Submit the Order for FutureMode")
+    public void input_the_time_quantity_and_submit_the_order_FutureMode() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.inputOrderAmount(dataMap);
+                NitroXBotsAction.inputTrigerCondtion();
+                NitroXBotsAction.inputTargetAccountPosition(dataMap);
+                NitroXBotsAction.clickSubmit();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
     }
+
 }
 

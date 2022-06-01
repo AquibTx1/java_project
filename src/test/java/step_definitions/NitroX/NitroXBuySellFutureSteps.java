@@ -3,6 +3,7 @@ package step_definitions.NitroX;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import modules.NitroXActions.NitroXBotsAction;
 import modules.NitroXActions.NitroXBuySellFutureAction;
 import modules.NitroXActions.NitroXHome;
 import org.testng.Assert;
@@ -41,7 +42,7 @@ public class NitroXBuySellFutureSteps {
                 NitroXBuySellFutureAction.selectmode(dataMap);
                 NitroXBuySellFutureAction.inputTradingAccount(dataMap);
                 NitroXBuySellFutureAction.inputInstrument(dataMap);
-                scrollingToElementofAPage(NitroXBuySellFuturePage.openOrderTab,"Scrolled to Tab");
+                //scrollingToElementofAPage(NitroXBuySellFuturePage.openOrderTab,"Scrolled to Tab");
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
