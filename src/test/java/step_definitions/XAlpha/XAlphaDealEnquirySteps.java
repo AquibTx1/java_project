@@ -267,39 +267,74 @@ public class XAlphaDealEnquirySteps {
 
     @And("Get deal input details")
     public void getDealInputDetails() throws InterruptedException {
-        XAlphaDealInputActions.get_dealInput_direction();
-        XAlphaDealInputActions.get_dealInput_BaseAssetAmount();
-        XAlphaDealInputActions.get_dealInput_BaseAsset();
-        XAlphaDealInputActions.get_dealInput_QuoteAsset();
-        XAlphaDealInputActions.get_dealInput_UnitPrice();
-        XAlphaDealInputActions.get_dealInput_QuoteAssetAmount();
-        XAlphaDealInputActions.get_dealInput_FeeAsset();
-        XAlphaDealInputActions.get_dealInput_FeeAmount();
-        XAlphaDealInputActions.get_dealInput_ReferencePrice();
-        XAlphaDealInputActions.get_dealInput_CounterpartyName();
-        XAlphaDealInputActions.get_dealInput_PortfolioNumber();
+
     }
 
     @And("Update deal details\\(Direction, BaseAssetAmount, BaseAsset, QuoteAsset, UnitPrice, QuoteAssetAmount, FeeAsset, FeeAmount, ReferencePrice)")
-    public void updateDealDetailsDirectionBaseAssetAmountBaseAssetQuoteAssetUnitPriceQuoteAssetAmountFeeAssetFeeAmountReferencePrice() {
-        
+    public void updateDealDetailsDirectionBaseAssetAmountBaseAssetQuoteAssetUnitPriceQuoteAssetAmountFeeAssetFeeAmountReferencePrice() throws InterruptedException {
+        XAlphaDealInputActions.dealInput_direction(dataMap.get("Direction_updated"));
+        XAlphaDealInputActions.dealInput_BaseAssetAmount(dataMap.get("BaseAssetAmount_updated"));
+        XAlphaDealInputActions.dealInput_BaseAsset(dataMap.get("BaseAsset_updated"));
+        XAlphaDealInputActions.dealInput_QuoteAsset(dataMap.get("QuoteAsset_updated")); // not working
+        XAlphaDealInputActions.dealInput_UnitPrice(dataMap.get("UnitPrice_updated"));
+        XAlphaDealInputActions.dealInput_FeeAsset(dataMap.get("FeeAsset_updated"));
+        XAlphaDealInputActions.dealInput_FeeAmount(dataMap.get("FeeAmount_updated"));
     }
 
     @And("Update deal details\\(CounterpartyName, PortfolioNumber)")
     public void updateDealDetailsCounterpartyNamePortfolioNumber() {
-        
+        XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName_updated"));
+        XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber_updated"));
     }
 
     @And("Click update deal button")
     public void clickUpdateDealButton() {
-
+        XAlphaDealEnquiryActions.clickUpdateDealBtn();
     }
 
     @Then("Verify Updated deal details\\(Direction, BaseAssetAmount, BaseAsset, QuoteAsset, UnitPrice, QuoteAssetAmount, FeeAsset, FeeAmount, ReferencePrice)")
-    public void verifyUpdatedDealDetailsDirectionBaseAssetAmountBaseAssetQuoteAssetUnitPriceQuoteAssetAmountFeeAssetFeeAmountReferencePrice() {
+    public void verifyUpdatedDealDetailsDirectionBaseAssetAmountBaseAssetQuoteAssetUnitPriceQuoteAssetAmountFeeAssetFeeAmountReferencePrice() throws InterruptedException {
+        //actual values in the first row
+        String direction = XAlphaDealEnquiryActions.getFirstSummary();
+        String baseAssetAmount = XAlphaDealEnquiryActions.getFirstBaseAssetAmount();
+        String baseAsset = XAlphaDealEnquiryActions.getFirstBaseAsset();
+        String quoteAsset = XAlphaDealEnquiryActions.getFirstQuoteAsset();
+        String unitPrice = XAlphaDealEnquiryActions.getFirstUnitPrice(); //convert to string if required
+        String feeAsset = XAlphaDealEnquiryActions.getFirstFeeAsset();
+        String feeAmount = XAlphaDealEnquiryActions.getFirstFeeAmount();
+
+        //do formatting of the values as per requirement
+        String directionUpdated = dataMap.get("Direction_updated").toLowerCase();
+        String baseAssetAmount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("BaseAssetAmount_updated"));
+        String baseAsset_updated = dataMap.get("BaseAsset_updated").split(" | ")[0].trim();
+        String quoteAsset_updated = dataMap.get("QuoteAsset_updated").split(" | ")[0].trim();
+        String unitPrice_updated = KeywordUtil.formatDecimalToStr(dataMap.get("UnitPrice_updated")); //not working
+        String feeAsset_updated = dataMap.get("FeeAsset_updated").split(" | ")[0].trim();
+        String feeAmount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("FeeAmount_updated"));
+
+        //match the values
+        Assert.assertEquals(direction, dataMap.get("Direction_updated").toLowerCase());
+        Assert.assertEquals(baseAssetAmount, baseAssetAmount_updated);
+        Assert.assertEquals(baseAsset, baseAsset_updated);
+        Assert.assertEquals(quoteAsset, quoteAsset_updated);
+        Assert.assertEquals(unitPrice, unitPrice_updated);
+        Assert.assertEquals(feeAsset, feeAsset_updated);
+        Assert.assertEquals(feeAmount, feeAmount_updated);
     }
 
     @Then("Verify Updates deal details\\(CounterpartyName, PortfolioNumber)")
     public void verifyUpdatesDealDetailsCounterpartyNamePortfolioNumber() {
+
+        //actual values in the first row
+        String counterpartyName = XAlphaDealEnquiryActions.getFirstCounterpartyName();
+        String portfolioNumber = XAlphaDealEnquiryActions.getFirstPortfolioNumber();
+
+        //do formatting of the values as per requirement
+        String counterpartyName_updated = dataMap.get("CounterpartyName_updated").split(" | ")[0].trim() + " " + dataMap.get("CounterpartyName_updated").split(" | ")[1].trim();
+        String portfolioNumber_updated = dataMap.get("PortfolioNumber_updated");
+
+        //match the values
+        Assert.assertEquals(counterpartyName, counterpartyName_updated);
+        Assert.assertEquals(portfolioNumber, portfolioNumber_updated);
     }
 }

@@ -95,16 +95,16 @@ public class XAlphaDealInputSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealInputActions.dealInput_direction(dataMap);
-                XAlphaDealInputActions.dealInput_BaseAssetAmount(dataMap);
-                XAlphaDealInputActions.dealInput_BaseAsset(dataMap);
-                XAlphaDealInputActions.dealInput_QuoteAsset(dataMap);
+                XAlphaDealInputActions.dealInput_direction(dataMap.get("Direction"));
+                XAlphaDealInputActions.dealInput_BaseAssetAmount(dataMap.get("BaseAssetAmount"));
+                XAlphaDealInputActions.dealInput_BaseAsset(dataMap.get("BaseAsset"));
+                XAlphaDealInputActions.dealInput_QuoteAsset(dataMap.get("QuoteAsset"));
                 referencePrice = XAlphaDealInputActions.get_dealInput_ReferencePrice(); //to be used later
                 XAlphaDealInputActions.dealInput_UnitPrice(referencePrice);
-                XAlphaDealInputActions.dealInput_FeeAsset(dataMap);
-                XAlphaDealInputActions.dealInput_FeeAmount(dataMap);
-                XAlphaDealInputActions.dealInput_CounterpartyName(dataMap);
-                XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap);
+                XAlphaDealInputActions.dealInput_FeeAsset(dataMap.get("FeeAsset"));
+                XAlphaDealInputActions.dealInput_FeeAmount(dataMap.get("FeeAmount"));
+                XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
+                XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber"));
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus"));
 
                 quoteAssetAmount = XAlphaDealInputActions.get_dealInput_QuoteAssetAmount(); //to be used later
