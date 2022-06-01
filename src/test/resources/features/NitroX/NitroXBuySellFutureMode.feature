@@ -57,7 +57,7 @@ Feature: Test buys sell features using Future Mode
     When Choose Mode, Trading Account and Instrument
     And Choose Position Mode,Leverage and Margin Type
     And Create Buy Order Equal to Ask Price for Future Mode
-    And Validate previous position for buy order
+    And Validate previous position for Buy order
     Then Validate Order Moves to Dealt Orders-Future Mode
     Examples:
       | SheetName     | TestCaseID                    | Number |
@@ -100,3 +100,16 @@ Feature: Test buys sell features using Future Mode
     Examples:
       | SheetName     | TestCaseID                  |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_040 |
+
+  @NitroXBuySellFuture
+  Scenario Outline: <TestCaseID>_Create A Deal Order Price -Future Mode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Choose Position Mode,Leverage and Margin Type
+    And Create Sell Order With Selling Price > Bid Price-Future Mode
+    And Click Sell Button and Verify the Success Message
+    And Validate previous position for Sell order
+    Then Validate Order Moves to Dealt Orders-Future Mode
+    Examples:
+      | SheetName     | TestCaseID                    | Number |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_041   | 1      |

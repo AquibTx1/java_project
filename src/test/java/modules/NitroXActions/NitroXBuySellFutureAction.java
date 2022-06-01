@@ -176,25 +176,25 @@ public class NitroXBuySellFutureAction {
     public static void  validateAmount(HashMap<String, String> dataMap) throws InterruptedException {
         String S1 = dataMap.get("Instrument").toString();
         String[] S2 = S1.split(" ");
-        String S3 = S2[0].replace("/", "");
+        String instrument = S2[0].replace("/", "");
 
         LogUtil.infoLog(thisClass, "Post Amount After Buy order=" + postamount);
         defaultamount=Double.parseDouble(dataMap.get("Quantity"));
-        String Side=(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[3]/span")));
+        String Side=(getElementText(By.xpath("//td[text()='"+instrument+"']/following-sibling::td[3]/span")));
 
         if(Side.equals("LONG"))
         {
             NitroXBuySellFutureAction.ClickBuyButton();
             NitroXBuySellFutureAction.getOrderSubmittedSuccessMsg();
             delay(70000);
-            postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+            postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+instrument+"']/following-sibling::td[4]")));
             Assert.assertEquals(preamount+defaultamount,postamount);
         }
-        else
+        else if(Side.equals("SHORT"))
         {
             NitroXBuySellFutureAction.ClickSellButton();
             delay(70000);
-            postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+            postamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+instrument+"']/following-sibling::td[4]")));
             Assert.assertEquals(preamount+defaultamount,postamount);
 
         }
@@ -211,8 +211,8 @@ public class NitroXBuySellFutureAction {
 
         String S1 = dataMap.get("Instrument").toString();
         String[] S2 = S1.split(" ");
-        String S3 = S2[0].replace("/", "");
-        preamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+S3+"']/following-sibling::td[4]")));
+        String instrument = S2[0].replace("/", "");
+        preamount=Double.parseDouble(getElementText(By.xpath("//td[text()='"+instrument+"']/following-sibling::td[4]")));
         LogUtil.infoLog(thisClass, "Pre Amount before Buy order=" + preamount);
         return preamount;
     }

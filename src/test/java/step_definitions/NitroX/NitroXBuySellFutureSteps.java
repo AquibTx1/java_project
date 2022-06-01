@@ -304,13 +304,12 @@ public class NitroXBuySellFutureSteps {
         }
     }
 
-    @And("Validate previous position for buy order")
+    @And("Validate previous position for Buy order")
     public void validatePreviousPositionForBuyOrder() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
                 NitroXBuySellFutureAction.getPreorderAmount(dataMap);
                 NitroXBuySellFutureAction.validateAmount(dataMap);
 
@@ -321,7 +320,6 @@ public class NitroXBuySellFutureSteps {
                 Assert.fail(e.getMessage());
             }
         }
-
     }
     @And("Create Buy Order")
     public void createBuyOrder() {
@@ -393,6 +391,26 @@ public class NitroXBuySellFutureSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+
+    @And("Validate previous position for Sell order")
+    public void validatePreviousPositionForSellOrder() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                delay(70000);
+                NitroXBuySellFutureAction.getPreorderAmount(dataMap);
+                NitroXBuySellFutureAction.validateAmount(dataMap);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+    }
+
 
 }
 
