@@ -61,23 +61,6 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_018 | MO_CheckerAccount | Settled    | Confirmed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_021 | MO_CheckerAccount | Processed  | Pending   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_022 | MO_CheckerAccount | Settled    | Pending   |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_028 | MO_CheckerAccount | Processed  | Cancelled |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_029 | MO_CheckerAccount | Settled    | Cancelled |
 
-  @XAlphaDealEnquiry_debug
-  Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing FX-Spot Deal in Deal Inquiry
-    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
-    When Move to X-Alpha page
-    And Navigate to deal enquiry tab
-    And Load a deal wrt processing type and deal type
-    And Open first deal in the row
-    And Update deal details(Direction, BaseAssetAmount, BaseAsset, QuoteAsset, UnitPrice, QuoteAssetAmount, FeeAsset, FeeAmount, ReferencePrice)
-    And Update deal details(CounterpartyName, PortfolioNumber)
-    And Click update deal button
-    Then Verify the deal updated success message
-    And Navigate to deal enquiry tab
-    And Load a deal wrt deal reference id
-    Then Verify Updated deal details(Direction, BaseAssetAmount, BaseAsset, QuoteAsset, UnitPrice, QuoteAssetAmount, FeeAsset, FeeAmount, ReferencePrice)
-    Then Verify Updates deal details(CounterpartyName, PortfolioNumber)
-
-    Examples:
-      | SheetName   | TestCaseID                  | Status  |
-      | XAlphaDeals | QA_TestCase_Auto_XAlpha_034 | Pending |
