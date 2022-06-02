@@ -156,7 +156,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     //input processing status
     public static void inputProcessingStatus(String processingStatus) {
         click(XAlphaDealEnquiryPage.dealEnquiry_processingStatusClick, "Click processing status input filter box");
-        inputText(XAlphaDealEnquiryPage.dealEnquiry_processingStatusInput, processingStatus, "input processing status");
+        inputText(XAlphaDealEnquiryPage.dealEnquiry_processingStatusInput, processingStatus, "input processing status=" + processingStatus);
         waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, processingStatus)));
         click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, processingStatus)), "Choose processing status from dropdown");
     }
@@ -172,7 +172,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     //input deal types
     public static void inputDealType(String dealType) {
         click(XAlphaDealEnquiryPage.dealEnquiry_DealTypesClick, "Click deal types input filter box");
-        inputText(XAlphaDealEnquiryPage.dealEnquiry_DealTypesInput, dealType, "input processing status");
+        inputText(XAlphaDealEnquiryPage.dealEnquiry_DealTypesInput, dealType, "input deal type=" + dealType);
         waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, dealType)));
         click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, dealType)), "Choose deal type from dropdown");
     }
@@ -206,9 +206,9 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     }
 
     //enter deal reference
-    public static void inputDealRef(String dealRef) throws InterruptedException {
+    public static void inputDealRef(String dealRef) {
         System.out.println("inputDealRef=" + dealRef);
-        inputText(XAlphaDealEnquiryPage.dealEnquiry_DealRefInput, dealRef, "Input deal reference.");
+        inputText(XAlphaDealEnquiryPage.dealEnquiry_DealRefInput, dealRef, "Input deal reference=" + dealRef);
         waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_DealRefInputSuggestion, dealRef)));
         click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_DealRefInputSuggestion, dealRef)), "Choose deal reference from dropdown suggestion");
     }

@@ -36,7 +36,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void dealInput_direction(String direction) {
-        inputText(XAlphaDealInputPage.dealInput_direction, direction.toLowerCase(), "Select deal input direction");
+        inputText(XAlphaDealInputPage.dealInput_direction, direction.toLowerCase(), "Select deal input direction" + direction);
         waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_directionOptions, direction)));
         click(By.xpath(String.format(XAlphaDealInputPage.dealInput_directionOptions, direction)), "Choose direction from drop down options");
     }
@@ -49,7 +49,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
 
     public static void dealInput_BaseAssetAmount(String BaseAssetAmount) throws InterruptedException {
         clearInputUsingKeys(XAlphaDealInputPage.dealInput_BaseAssetAmount);
-        inputText(XAlphaDealInputPage.dealInput_BaseAssetAmount, BaseAssetAmount, "Select deal input base asset amount");
+        inputText(XAlphaDealInputPage.dealInput_BaseAssetAmount, BaseAssetAmount, "Select deal input base asset amount=" + BaseAssetAmount);
     }
 
     public static String get_dealInput_BaseAssetAmount() {
@@ -59,7 +59,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void dealInput_BaseAsset(String BaseAsset) {
-        inputText(XAlphaDealInputPage.dealInput_BaseAsset, BaseAsset, "Select deal input base asset");
+        inputText(XAlphaDealInputPage.dealInput_BaseAsset, BaseAsset, "Select deal input base asset" + BaseAsset);
         waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_BaseAssetOptions, BaseAsset)));
         click(By.xpath(String.format(XAlphaDealInputPage.dealInput_BaseAssetOptions, BaseAsset)), "Select deal input base asset from drop down options");
     }
@@ -71,7 +71,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void dealInput_QuoteAsset(String QuoteAsset) {
-        inputText(XAlphaDealInputPage.dealInput_QuoteAsset, QuoteAsset, "Select deal input Quote Asset");
+        inputText(XAlphaDealInputPage.dealInput_QuoteAsset, QuoteAsset, "Select deal input Quote Asset=" + QuoteAsset);
         waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_QuoteAssetOptions, QuoteAsset)));
         click(By.xpath(String.format(XAlphaDealInputPage.dealInput_QuoteAssetOptions, QuoteAsset)), "Choose QuoteAsset from dropdown options");
     }
@@ -89,9 +89,9 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return referencePrice;
     }
 
-    public static void dealInput_UnitPrice(String arg0) throws InterruptedException {
+    public static void dealInput_UnitPrice(String unitPrice) throws InterruptedException {
         clearInputUsingKeys(XAlphaDealInputPage.dealInput_UnitPrice);
-        inputText(XAlphaDealInputPage.dealInput_UnitPrice, arg0, "Select deal input unit price");
+        inputText(XAlphaDealInputPage.dealInput_UnitPrice, unitPrice, "Select deal input unit price=" + unitPrice);
     }
 
     public static String get_dealInput_UnitPrice() {
@@ -113,7 +113,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void dealInput_FeeAsset(String FeeAsset) {
-        inputText(XAlphaDealInputPage.dealInput_FeeAsset, FeeAsset, "Select deal input Fee Asset");
+        inputText(XAlphaDealInputPage.dealInput_FeeAsset, FeeAsset, "Select deal input Fee Asset=" + FeeAsset);
         waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_FeeAssetOptions, FeeAsset)));
         click(By.xpath(String.format(XAlphaDealInputPage.dealInput_FeeAssetOptions, FeeAsset)), "Choose FeeAsset from drop down options");
     }
@@ -126,7 +126,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
 
     public static void dealInput_FeeAmount(String FeeAmount) throws InterruptedException {
         clearInputUsingKeys(XAlphaDealInputPage.dealInput_FeeAmount);
-        inputText(XAlphaDealInputPage.dealInput_FeeAmount, FeeAmount, "Select deal input Fee Amount");
+        inputText(XAlphaDealInputPage.dealInput_FeeAmount, FeeAmount, "Select deal input Fee Amount=" + FeeAmount);
     }
 
     public static String get_dealInput_FeeAmount() throws InterruptedException {
@@ -137,7 +137,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void dealInput_CounterpartyName(String CounterpartyName) {
-        inputText(XAlphaDealInputPage.dealInput_CounterpartyName, CounterpartyName, "Select deal input Counterparty Name");
+        inputText(XAlphaDealInputPage.dealInput_CounterpartyName, CounterpartyName, "Select deal input Counterparty Name=" + CounterpartyName);
         waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_CounterpartyNameOptions, CounterpartyName)));
         click(By.xpath(String.format(XAlphaDealInputPage.dealInput_CounterpartyNameOptions, CounterpartyName)), "Choose counterparty name from dropdown options");
     }
@@ -149,7 +149,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void dealInput_PortfolioNumber(String PortfolioNumber) {
-        inputText(XAlphaDealInputPage.dealInput_PortfolioNumber, PortfolioNumber, "Select deal input Portfolio Number");
+        inputText(XAlphaDealInputPage.dealInput_PortfolioNumber, PortfolioNumber, "Select deal input Portfolio Number=" + PortfolioNumber);
         pressEnter(XAlphaDealInputPage.dealInput_PortfolioNumber);
     }
 
@@ -161,7 +161,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
 
     public static void dealInput_ProcessingStatus(String arg0) {
         String processingStatus = arg0.toLowerCase();
-        inputText(XAlphaDealInputPage.dealInput_ProcessingStatus, processingStatus, "Input deal input ProcessingStatus");
+        inputText(XAlphaDealInputPage.dealInput_ProcessingStatus, processingStatus, "Input deal input ProcessingStatus=" + arg0);
         waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + processingStatus + "']"));
         click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + processingStatus + "']"), "processingStatus=" + processingStatus);
     }
