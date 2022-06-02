@@ -1,6 +1,5 @@
 package modules.NitroXActions;
 
-import org.testng.Assert;
 import pageFactory.NitroXPages.NitroXBotsPage;
 import org.openqa.selenium.By;
 import pageFactory.NitroXPages.NitroXHomePage;
@@ -67,6 +66,7 @@ public class NitroXBotsAction {
 
     public static void inputOrderAmount(HashMap<String,String>dataMap) throws Exception
     {
+
         KeywordUtil.click(NitroXBotsPage.orderamount,"Ordered Amount Entered");
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.orderamount);
         KeywordUtil.inputText(NitroXBotsPage.orderamount, dataMap.get("Order Amount"), "Amount vale entered ");
@@ -332,7 +332,6 @@ public class NitroXBotsAction {
         try {
             KeywordUtil.clearInputUsingKeys(NitroXBotsPage.quantity);
             KeywordUtil.inputText(NitroXBotsPage.quantity, dataMap.get("Quantity"), "Quantity entered");
-           // pressEnter(NitroXBotsPage.quantity);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
@@ -344,7 +343,6 @@ public class NitroXBotsAction {
         try {
             KeywordUtil.clearInputUsingKeys(NitroXBotsPage.slicesize);
             KeywordUtil.inputText(NitroXBotsPage.slicesize, dataMap.get("SliceSize"), "SliceSize value entered");
-           // pressEnter(NitroXBotsPage.slicesize);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
@@ -354,7 +352,6 @@ public class NitroXBotsAction {
         try {
             waitForVisible(NitroXBotsPage.instrumenttype);
             inputText(NitroXBotsPage.instrumenttype,dataMap.get("Mode"),"Mode Selected");
-            //pressEnter(NitroXBotsPage.instrumenttype);
         }
         catch (Throwable ex) {
             throw new RuntimeException(ex);
@@ -379,7 +376,6 @@ public class NitroXBotsAction {
         try {
             click(NitroXBotsPage.basecurrency, "Base text field clicked.");
             inputText(NitroXBotsPage.basecurrency, dataMap.get("Base"), "Base Currency Entered");
-           // pressEnter(NitroXBotsPage.basecurrency);
         }
         catch(Throwable ex)
         {
@@ -455,17 +451,19 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Deal Reference in Quantity : " + side);
         return side;
     }
-    public static void getFilteredBots()
-    {
+    public static void getFilteredBots() throws InterruptedException {
         String a =(getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span")));
         int bots= Integer.parseInt(a);
         if(bots>0)
         {
             NitroXBotsAction.stopAllBots();
+            NitroXBotsAction.refreshPage();
+            delay(2000);
         }
     }
     public static void validateStatus() {
-        try {
+        try
+        {
             int count = 0;
             for (int i = 0; i < 15; i++)
             {
@@ -492,5 +490,24 @@ public class NitroXBotsAction {
 
         KeywordUtil.pageRefresh();
     }
+
+    public static void inputTargetAccountPosition(HashMap<String, String> dataMap)
+    {
+
+        KeywordUtil.inputText(NitroXBotsPage.targetaccountposition,dataMap.get("TargetAmount"), "Duration of Bot entered");
+    }
+    public static void getTargetAccountPosition(HashMap<String, String> dataMap)
+
+    {
+        String S1 = dataMap.get("Instrument").toString();
+        String[] S2 = S1.split(" ");
+        String instrument = S2[0].replace("/", "");
+        String targetaccount= getElementText(By.xpath("//span[text()='Balance']/following::table[1]/tbody/tr/td[starts-with(text(),'"+instrument+"')]/following-sibling::td[1]"));
+        targetaccount = targetaccount.replace(",", "");
+        double amount = Double.parseDouble(targetaccount) + 300;
+        LogUtil.infoLog(thisClass, "Asset  Amount" + amount);
+        dataMap.put("TargetAmount",String.valueOf(amount));
+    }
+
 
 }

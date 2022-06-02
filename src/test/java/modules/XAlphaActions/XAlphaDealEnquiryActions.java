@@ -30,17 +30,57 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         return dealRef;
     }
 
+    public static String getFirstDealProcessingStatus() {
+        return getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstProcessingStatus);
+    }
+
+    public static String getFirstCounterpartyName() {
+        String CounterpartyName = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstCounterPartyName);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "CounterpartyName in the first row=" + CounterpartyName);
+        return CounterpartyName;
+    }
+
+    public static String getFirstPortfolioNumber() {
+        String PortfolioNumber = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstPortfolioNumber);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "PortfolioNumber in the first row=" + PortfolioNumber);
+        return PortfolioNumber;
+    }
+
     public static String getFirstSummary() {
         String summary = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstSummary);
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Summary in the first row=" + summary);
         return summary;
     }
 
+    public static String getFirstBaseAssetAmount() {
+        String BaseAssetAmount = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstBaseAssetAmount);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "BaseAssetAmount in the first row=" + BaseAssetAmount);
+        return BaseAssetAmount;
+    }
+
+    public static String getFirstBaseAsset() {
+        String BaseAsset = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstBaseAsset);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "BaseAsset in the first row=" + BaseAsset);
+        return BaseAsset;
+    }
+
+    public static String getFirstQuoteAsset() {
+        String QuoteAsset = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstQuoteAsset);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "QuoteAsset in the first row=" + QuoteAsset);
+        return QuoteAsset;
+    }
+
     public static String getFirstUnitPrice() {
         String unitPrice = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstUnitPrice);
-        unitPrice = unitPrice.replace(",", "");
+//        unitPrice = unitPrice.replace(",", "");
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Unit price in the first row=" + unitPrice);
         return unitPrice;
+    }
+
+    public static String getFirstFeeAsset() {
+        String FeeAsset = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstFeeAsset);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "FeeAsset in the first row=" + FeeAsset);
+        return FeeAsset;
     }
 
     public static String getFirstFeeAmount() {
@@ -180,7 +220,4 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         return dealRef;
     }
 
-    public static String getFirstDealProcessingStatus() {
-        return getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstProcessingStatus);
-    }
 }

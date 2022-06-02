@@ -35,9 +35,10 @@ public class XAlphaDealInputActions extends KeywordUtil {
         click(XAlphaDealInputPage.dealInput_direction, "Click FX Spot tab");
     }
 
-    public static void dealInput_direction(HashMap<String, String> dataMap) {
-        inputText(XAlphaDealInputPage.dealInput_direction, dataMap.get("Direction").toLowerCase(), "Select deal input direction");
-        pressEnter(XAlphaDealInputPage.dealInput_direction);
+    public static void dealInput_direction(String direction) {
+        inputText(XAlphaDealInputPage.dealInput_direction, direction.toLowerCase(), "Select deal input direction");
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_directionOptions, direction)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_directionOptions, direction)), "Choose direction from drop down options");
     }
 
     public static String get_dealInput_direction() {
@@ -46,8 +47,9 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return direction;
     }
 
-    public static void dealInput_BaseAssetAmount(HashMap<String, String> dataMap) {
-        inputText(XAlphaDealInputPage.dealInput_BaseAssetAmount, dataMap.get("BaseAssetAmount"), "Select deal input base asset amount");
+    public static void dealInput_BaseAssetAmount(String BaseAssetAmount) throws InterruptedException {
+        clearInputUsingKeys(XAlphaDealInputPage.dealInput_BaseAssetAmount);
+        inputText(XAlphaDealInputPage.dealInput_BaseAssetAmount, BaseAssetAmount, "Select deal input base asset amount");
     }
 
     public static String get_dealInput_BaseAssetAmount() {
@@ -56,9 +58,10 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return BaseAssetAmount;
     }
 
-    public static void dealInput_BaseAsset(HashMap<String, String> dataMap) {
-        inputText(XAlphaDealInputPage.dealInput_BaseAsset, dataMap.get("BaseAsset"), "Select deal input base asset");
-        pressEnter(XAlphaDealInputPage.dealInput_BaseAsset);
+    public static void dealInput_BaseAsset(String BaseAsset) {
+        inputText(XAlphaDealInputPage.dealInput_BaseAsset, BaseAsset, "Select deal input base asset");
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_BaseAssetOptions, BaseAsset)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_BaseAssetOptions, BaseAsset)), "Select deal input base asset from drop down options");
     }
 
     public static String get_dealInput_BaseAsset() {
@@ -67,9 +70,10 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return BaseAsset;
     }
 
-    public static void dealInput_QuoteAsset(HashMap<String, String> dataMap) {
-        inputText(XAlphaDealInputPage.dealInput_QuoteAsset, dataMap.get("QuoteAsset"), "Select deal input Quote Asset");
-        pressEnter(XAlphaDealInputPage.dealInput_QuoteAsset);
+    public static void dealInput_QuoteAsset(String QuoteAsset) {
+        inputText(XAlphaDealInputPage.dealInput_QuoteAsset, QuoteAsset, "Select deal input Quote Asset");
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_QuoteAssetOptions, QuoteAsset)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_QuoteAssetOptions, QuoteAsset)), "Choose QuoteAsset from dropdown options");
     }
 
     public static String get_dealInput_QuoteAsset() {
@@ -85,7 +89,8 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return referencePrice;
     }
 
-    public static void dealInput_UnitPrice(String arg0) {
+    public static void dealInput_UnitPrice(String arg0) throws InterruptedException {
+        clearInputUsingKeys(XAlphaDealInputPage.dealInput_UnitPrice);
         inputText(XAlphaDealInputPage.dealInput_UnitPrice, arg0, "Select deal input unit price");
     }
 
@@ -96,7 +101,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return dealInput_UnitPrice;
     }
 
-    public static void dealInput_QuoteAssetAmount(String QuoteAssetAmount) {
+    public static void dealInput_QuoteAssetAmount(String QuoteAssetAmount) throws InterruptedException {
         inputText(XAlphaDealInputPage.dealInput_QuoteAssetAmount, QuoteAssetAmount, "dealInput_QuoteAssetAmount=" + QuoteAssetAmount);
     }
 
@@ -107,9 +112,10 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return dealInput_QuoteAssetAmount;
     }
 
-    public static void dealInput_FeeAsset(HashMap<String, String> dataMap) {
-        inputText(XAlphaDealInputPage.dealInput_FeeAsset, dataMap.get("FeeAsset"), "Select deal input Fee Asset");
-        pressEnter(XAlphaDealInputPage.dealInput_FeeAsset);
+    public static void dealInput_FeeAsset(String FeeAsset) {
+        inputText(XAlphaDealInputPage.dealInput_FeeAsset, FeeAsset, "Select deal input Fee Asset");
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_FeeAssetOptions, FeeAsset)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_FeeAssetOptions, FeeAsset)), "Choose FeeAsset from drop down options");
     }
 
     public static String get_dealInput_FeeAsset() {
@@ -118,9 +124,9 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return FeeAsset;
     }
 
-    public static void dealInput_FeeAmount(HashMap<String, String> dataMap) throws InterruptedException {
+    public static void dealInput_FeeAmount(String FeeAmount) throws InterruptedException {
         clearInputUsingKeys(XAlphaDealInputPage.dealInput_FeeAmount);
-        inputText(XAlphaDealInputPage.dealInput_FeeAmount, dataMap.get("FeeAmount"), "Select deal input Fee Amount");
+        inputText(XAlphaDealInputPage.dealInput_FeeAmount, FeeAmount, "Select deal input Fee Amount");
     }
 
     public static String get_dealInput_FeeAmount() throws InterruptedException {
@@ -130,9 +136,10 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return feeAmount;
     }
 
-    public static void dealInput_CounterpartyName(HashMap<String, String> dataMap) {
-        inputText(XAlphaDealInputPage.dealInput_CounterpartyName, dataMap.get("CounterpartyName"), "Select deal input Counterparty Name");
-        pressEnter(XAlphaDealInputPage.dealInput_CounterpartyName);
+    public static void dealInput_CounterpartyName(String CounterpartyName) {
+        inputText(XAlphaDealInputPage.dealInput_CounterpartyName, CounterpartyName, "Select deal input Counterparty Name");
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_CounterpartyNameOptions, CounterpartyName)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_CounterpartyNameOptions, CounterpartyName)), "Choose counterparty name from dropdown options");
     }
 
     public static String get_dealInput_CounterpartyName() {
@@ -141,8 +148,8 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return CounterpartyName;
     }
 
-    public static void dealInput_PortfolioNumber(HashMap<String, String> dataMap) {
-        inputText(XAlphaDealInputPage.dealInput_PortfolioNumber, dataMap.get("PortfolioNumber"), "Select deal input Portfolio Number");
+    public static void dealInput_PortfolioNumber(String PortfolioNumber) {
+        inputText(XAlphaDealInputPage.dealInput_PortfolioNumber, PortfolioNumber, "Select deal input Portfolio Number");
         pressEnter(XAlphaDealInputPage.dealInput_PortfolioNumber);
     }
 

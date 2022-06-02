@@ -117,5 +117,11 @@ public class NitroXBotsPage {
 
     public static By distancetotob=By.id("bot_config_form_config_pair_leg_distance_to_tob");
 
+    /*****************************************Future Mode ****************************************/
+
+    public static By targetaccountposition= By.id("bot_config_form_config_target_account_position");
+
+
+
 
 }

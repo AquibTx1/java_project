@@ -3,6 +3,7 @@ package step_definitions.NitroX;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import modules.NitroXActions.NitroXBotsAction;
 import modules.NitroXActions.NitroXBuySellFutureAction;
 import modules.NitroXActions.NitroXHome;
 import org.testng.Assert;
@@ -41,7 +42,7 @@ public class NitroXBuySellFutureSteps {
                 NitroXBuySellFutureAction.selectmode(dataMap);
                 NitroXBuySellFutureAction.inputTradingAccount(dataMap);
                 NitroXBuySellFutureAction.inputInstrument(dataMap);
-                scrollingToElementofAPage(NitroXBuySellFuturePage.openOrderTab,"Scrolled to Tab");
+                //scrollingToElementofAPage(NitroXBuySellFuturePage.openOrderTab,"Scrolled to Tab");
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -304,13 +305,12 @@ public class NitroXBuySellFutureSteps {
         }
     }
 
-    @And("Validate previous position for buy order")
+    @And("Validate previous position for Buy order")
     public void validatePreviousPositionForBuyOrder() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
                 NitroXBuySellFutureAction.getPreorderAmount(dataMap);
                 NitroXBuySellFutureAction.validateAmount(dataMap);
 
@@ -321,7 +321,6 @@ public class NitroXBuySellFutureSteps {
                 Assert.fail(e.getMessage());
             }
         }
-
     }
     @And("Create Buy Order")
     public void createBuyOrder() {
@@ -393,6 +392,26 @@ public class NitroXBuySellFutureSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+
+    @And("Validate previous position for Sell order")
+    public void validatePreviousPositionForSellOrder() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                delay(70000);
+                NitroXBuySellFutureAction.getPreorderAmount(dataMap);
+                NitroXBuySellFutureAction.validateAmount(dataMap);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+    }
+
 
 }
 
