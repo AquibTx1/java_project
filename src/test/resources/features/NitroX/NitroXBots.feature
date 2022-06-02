@@ -89,19 +89,19 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_029 |
 
   @NitroXBot
-  Scenario Outline: <TestCaseID>_Start Execution_Bot for Buy Order-Furture Mode
+  Scenario Outline: <TestCaseID>_Start Execution_Bot for Buy Order-Future Mode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account and Instrument
-    And Collect the Target Account Position
     And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order for FutureMode
-#    Then Verify Bot Count in Total Filtered
-#    And Click total filtered bots and click the detail bot
-#    Then Verify new Bot in detail and config
-#    Then Verify the Buy Order in Dealt Order
+    Then Verify Bot Count in Total Filtered
+    And Click total filtered bots and click the detail bot
+   Then Verify new Bot in detail and config for FutureMode
+    Then Verify the Buy Order in Dealt Order for FutureMode
 
     Examples:
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_046 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_047 |

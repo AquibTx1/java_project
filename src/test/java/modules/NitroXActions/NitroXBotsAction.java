@@ -452,13 +452,15 @@ public class NitroXBotsAction {
         return side;
     }
     public static void getFilteredBots() throws InterruptedException {
-        String a =(getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span")));
-        int bots= Integer.parseInt(a);
+
+        String totalbots =(getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span")));
+        int bots= Integer.parseInt(totalbots);
         if(bots>0)
         {
             NitroXBotsAction.stopAllBots();
             NitroXBotsAction.refreshPage();
             delay(2000);
+            NitroXBotsAction.refreshPage();
         }
     }
     public static void validateStatus() {
@@ -493,8 +495,8 @@ public class NitroXBotsAction {
 
     public static void inputTargetAccountPosition(HashMap<String, String> dataMap)
     {
-
-        KeywordUtil.inputText(NitroXBotsPage.targetaccountposition,dataMap.get("TargetAmount"), "Duration of Bot entered");
+        KeywordUtil.inputText(NitroXBotsPage.targetaccountposition,dataMap.get("Target Account Position"), "Target Account Entered");
+       // KeywordUtil.inputText(NitroXBotsPage.targetaccountposition,dataMap.get("TargetAmount"), "Duration of Bot entered");
     }
     public static void getTargetAccountPosition(HashMap<String, String> dataMap)
 
@@ -507,6 +509,13 @@ public class NitroXBotsAction {
         double amount = Double.parseDouble(targetaccount) + 300;
         LogUtil.infoLog(thisClass, "Asset  Amount" + amount);
         dataMap.put("TargetAmount",String.valueOf(amount));
+    }
+
+    public static String getTrigerConditionvalueforFutureMode() {
+
+        String trriger= KeywordUtil.getElementText(NitroXBotsPage.trrigger_futuremode);
+        LogUtil.infoLog(thisClass, "Trigger value is" + trriger);
+        return trriger;
     }
 
 
