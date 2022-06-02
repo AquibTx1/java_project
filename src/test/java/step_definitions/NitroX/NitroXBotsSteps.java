@@ -34,7 +34,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.getFilteredBots();
                 scrollingToElementofAPage(NitroXBotsPage.startbtn,"Scrolled to Total Bot Bot Filtered");
                 totalbotbefore=NitroXBotsAction.getTotalFilteredBots();
             } catch (Throwable e) {
@@ -424,7 +423,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(80000);
+                delay(90000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -460,22 +459,18 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
-
     }
-
     @Then("Verify new Bot in detail and config for Snipper Bot")
     public void verifyNewBotInDetaiilAndConfigTab() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
                 waitForVisible(NitroXBotsPage.botdetail_snipper);
                 Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(),dataMap.get("TotalAmount"));
                 NitroXBotsAction.selectConfig();
                 waitForVisible(NitroXBotsPage.s_trrigger);
                 Assert.assertEquals(NitroXBotsAction.getTrigerConditionvalue_Sniper(),NitroXBotsAction.trrigervalue);
-
                 // Assert.assertEquals();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -483,7 +478,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 GlobalUtil.errorMsg = e.getMessage();
                 Assert.fail(e.getMessage());
             }
-
         }
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
@@ -768,7 +762,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         }
 
     }
-
     @And("Choose Side,Quantity,and Slice_Size")
     public void chooseSideQuantityAndSlice_Size() {
 
@@ -789,10 +782,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
-
     }
-
-
     @And("Choose AccountId,Base,Quote and Side in Pair leg and submit")
     public void chooseAccountIdBaseQuoteAndSideInPairLegAndSubmit() {
 
@@ -841,8 +831,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
             BaseStepDefinitions.increaseCounter();
         }
     }
-
-
     @And("Collect the Target Account Position")
     public void collectTheTargetAccountPosition() {
         {
@@ -863,10 +851,6 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 BaseStepDefinitions.increaseCounter();
             }
         }
-
-
-
-
     }
     @When("Input the Time, Quantity and Submit the Order for FutureMode")
     public void input_the_time_quantity_and_submit_the_order_FutureMode() {
@@ -889,6 +873,57 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
+    }
+
+
+    @Then("Verify new Bot in detail and config for FutureMode")
+    public void verifyNewBotInDetaiilAndConfigforFutureMode() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(NitroXBotsPage.trrigger_futuremode);
+                Assert.assertEquals(NitroXBotsAction.getTrigerConditionvalueforFutureMode(),NitroXBotsAction.trrigervalue);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Verify the Buy Order in Dealt Order for FutureMode")
+    public void CloseConfigTabandVerifyOrderinDealttoBuyforFuture() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseBotDetail();
+                scrollingToElementofAPage(NitroXBotsPage.DealtOrderTab,"Scrolled to Recent Orders");
+                NitroXBotsAction.clickDealtOrdersTab();
+                delay(40000);
+                Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Order Direction"));
+               // Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getPrice());
+                NitroXBotsAction.stopCurrentBot();
+                NitroXBotsAction.CloseBotDetail();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
     }
 
 }

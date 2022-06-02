@@ -37,20 +37,21 @@ public class NitroXBotsPage {
     public static By totalfilered=By.xpath("//div[text()='Total (Filtered)']");
 
    // Detailed Bots Frame
-    public static By serviceid=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[2]");
+    public static By serviceid=By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]");
 
-    public static By botid=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[3]");
-    public static By botName=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[4]");
-    public static By allbots=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table/thead/tr/th[1]");
-    public static By status=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[5]");
-    public static By currentbot=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table/tbody/tr[1]/td[1]");
+    public static By botid=By.xpath("//th[text()='Service ID']//following::tr[1]/td[3]");
+    public static By botName=By.xpath("//th[text()='Service ID']//following::tr[1]/td[4]");
+    public static By allbots=By.xpath("//th[text()='Service ID']//preceding-sibling::th");
+
+    public static By currentbot=By.xpath("//th[text()='Service ID']//following::tr[1]/td[1]");
     public static By stopbots=By.xpath("//span[text()='Stop all']");
 
     public static By nodata=By.xpath("//div[text()='No Data']");
-    public static By progress=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[6]");
-    public static By starttime=By.xpath("//div[starts-with(@id,'rcDialogTitle0')]/following::table[1]/tbody/tr[1]/td[7]");
-    public static By config=By.xpath("//div[text()='Config']");
+    public static By progress=By.xpath("//th[text()='Service ID']//following::tr[1]/td[6]");
+    public static By starttime=By.xpath("//th[text()='Service ID']//following::tr[1]/td[7]");
+    public static By config=By.xpath("//div[text()='Bot Details']/following::div[11]");
     public static By trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[7]/td[3]");
+
     public static By clickstarttime=By.xpath(" //span[text()='Start Time']");
 
     public static By recentDealtOrder = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[02]");
@@ -68,7 +69,9 @@ public class NitroXBotsPage {
 
     public static By closebotdetailbtn=By.xpath("(//button[@class='ant-modal-close'])[1]");
 
-    public static By DealtOrderTab = By.id("rc-tabs-0-tab-dealt");
+    public static By DealtOrderTab = By.xpath("//div[text()='Dealt Orders']");
+
+    public static By trrigger_futuremode=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[7]/td[2]");
 
 
 
