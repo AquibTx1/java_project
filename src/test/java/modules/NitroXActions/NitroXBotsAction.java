@@ -38,16 +38,13 @@ public class NitroXBotsAction {
         KeywordUtil.click(NitroXBotsPage.botquanity,"Clicked into the Bot Quantity");
         KeywordUtil.pressBackSpace(NitroXBotsPage.botquanity);
         KeywordUtil.inputText(NitroXBotsPage.botquanity, dataMap.get("Bot Quantity"), "Bot Quantity value entered ");
-        //pressEnter(NitroXBotsPage.botquanity);
     }
 
     public static void inputOrderDirection(HashMap<String,String>dataMap) throws Exception
     {
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.orderdirection);
-        delay(2000);
         KeywordUtil.inputText(NitroXBotsPage.orderdirection, dataMap.get("Order Direction"), "BUY or Sell Order field selected ");
         pressEnter(NitroXBotsPage.orderdirection);
-
     }
 
     public static void inputMinTime(HashMap<String,String>dataMap) throws Exception
@@ -148,7 +145,6 @@ public class NitroXBotsAction {
     {
         waitForVisible(NitroXBotsPage.starttime);
         String time=getElementText(By.xpath("//span[text()='Detailed Bots ETH/USDT' or text()='Detailed Bots BTC/USDT']/following::table[1]/tbody/tr[1]/td[7]"));
-        System.out.println(time);
         return time;
     }
 
@@ -285,7 +281,6 @@ public class NitroXBotsAction {
     public static void inputTotalAmount(HashMap<String,String>dataMap) throws InterruptedException {
 
         KeywordUtil.inputText(NitroXBotsPage.totalamount, dataMap.get("TotalAmount"), "Amount vale entered ");
-        //pressEnter(NitroXBotsPage.totalamount);
     }
     public static String getTotalAmount(){
         String amount=getElementText(NitroXBotsPage.totalamount);
@@ -327,35 +322,25 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Trigger  value in Config Tab : " + tvalue_sniper);
         return tvalue_sniper;
     }
-    public static void inputPairBotQuantity(HashMap<String, String> dataMap) {
+    public static void inputPairBotQuantity(HashMap<String, String> dataMap) throws InterruptedException {
 
-        try {
+
             KeywordUtil.clearInputUsingKeys(NitroXBotsPage.quantity);
             KeywordUtil.inputText(NitroXBotsPage.quantity, dataMap.get("Quantity"), "Quantity entered");
-        } catch (InterruptedException ex) {
-            throw new RuntimeException(ex);
-        }
+
     }
+    public static void inputSliceSize(HashMap<String, String> dataMap) throws InterruptedException {
 
 
-    public static void inputSliceSize(HashMap<String, String> dataMap) {
-
-        try {
             KeywordUtil.clearInputUsingKeys(NitroXBotsPage.slicesize);
             KeywordUtil.inputText(NitroXBotsPage.slicesize, dataMap.get("SliceSize"), "SliceSize value entered");
-        } catch (InterruptedException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
 
-    public static void selectmode(HashMap<String, String> dataMap) {
-        try {
+    }
+    public static void selectmode(HashMap<String, String> dataMap)
+    {
+
             waitForVisible(NitroXBotsPage.instrumenttype);
             inputText(NitroXBotsPage.instrumenttype,dataMap.get("Mode"),"Mode Selected");
-        }
-        catch (Throwable ex) {
-            throw new RuntimeException(ex);
-        }
 
     }
 
@@ -406,7 +391,7 @@ public class NitroXBotsAction {
 
         try {
             KeywordUtil.clearInputUsingKeys(NitroXBotsPage.pairlegSide);
-            KeywordUtil.inputText(NitroXBotsPage.pairlegSide, dataMap.get("Side"), "BUY or Sell Order field selected ");
+            KeywordUtil.inputText(NitroXBotsPage.pairlegSide, dataMap.get("PairSide"), "BUY or Sell Order field selected ");
             pressEnter(NitroXBotsPage.pairlegSide);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
