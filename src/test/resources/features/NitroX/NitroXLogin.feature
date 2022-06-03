@@ -3,7 +3,7 @@ Feature: Test login feature
   @NitroXLogin
   Scenario Outline: NitroX-001_Verify login feature with valid credentials
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
-    When Navigate to the url
+    When Navigate to the "NitroX" app url
     And Input username and password
     And Click submit button
     Then Verify user is able to login successfully
@@ -14,7 +14,7 @@ Feature: Test login feature
   @NitroXLogin
   Scenario Outline: NitroX-002-003_Verify login feature with invalid credentials
     Given Read test data "<SheetName>" and "<TestCaseID>" from Excel file
-    When Navigate to the url
+    When Navigate to the "NitroX" app url
     And Input username and password
     And Click submit button
     Then Verify validation message is displayed

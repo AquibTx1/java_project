@@ -3,7 +3,7 @@ Feature: Test login feature
   @XAlphaLogin
   Scenario Outline: "<TestCaseID>" Verify login feature with valid credentials
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
-    When Navigate to the url
+    When Navigate to the "XAlpha" app url
     And Input XAlpha Username and Password
     And Click XAlpha Login Button
     Then Verify User is Able to Login to XAlpha Successfully
@@ -14,7 +14,7 @@ Feature: Test login feature
   @XAlphaLogin
   Scenario Outline: "<TestCaseID>" Verify login feature with invalid credentials
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
-    When Navigate to the url
+    When Navigate to the "XAlpha" app url
     And Input XAlpha Username and Password
     And Click XAlpha Login Button
     Then Verify XAlpha validation message is displayed
