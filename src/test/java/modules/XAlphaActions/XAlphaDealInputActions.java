@@ -180,4 +180,11 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return msg;
     }
 
+    public static String getDealRefFromNotif() {
+        String msg = getElementText(XAlphaDealInputPage.dealInput_validationMsg);
+        String[] splittedMsg = msg.split(" ");
+        LogUtil.infoLog(thisClass, "Deal ref id in notification message=" + splittedMsg[3]);
+        return splittedMsg[3];
+    }
+
 }

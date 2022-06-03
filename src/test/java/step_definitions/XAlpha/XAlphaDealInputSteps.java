@@ -15,6 +15,7 @@ public class XAlphaDealInputSteps {
     static Class thisClass = XAlphaDealInputSteps.class;
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
+    public static String dealRefId;
 
     public static String quoteAssetAmount, referencePrice, feeAmount, unitPrice;
 
