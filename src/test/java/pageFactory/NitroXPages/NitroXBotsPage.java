@@ -52,6 +52,8 @@ public class NitroXBotsPage {
     public static By config=By.xpath("//div[text()='Bot Details']/following::div[11]");
     public static By trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[7]/td[3]");
 
+    public static By instrument_type_spot_ex=By.xpath("//*[text()='Bot Details']/following::table[4]/tbody/tr[2]/td[1]/span");
+
     public static By clickstarttime=By.xpath(" //span[text()='Start Time']");
 
     public static By recentDealtOrder = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[02]");
@@ -83,7 +85,7 @@ public class NitroXBotsPage {
      */
     public static By totalamount=By.id("bot_config_form_config_totalAmount");
 
-    public static By botdetail_snipper=By.xpath("(//*[text()='Bot Details']/following::table)[3]/tbody/tr[2]/td[1]");
+    public static By botdetail_snipper=By.xpath("(//*[text()='Bot Details']/following::table)[3]/tbody/tr[2]/td[1]/span");
     public static By side=By.id("bot_config_form_config_side");
     public static By minprice_sniper=By.id("bot_config_form_config_minPrice");
     public static By maxprice_sniper=By.id("bot_config_form_config_maxPrice");
@@ -91,6 +93,8 @@ public class NitroXBotsPage {
 
     public static By s_trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[4]/td[3]");
 
+
+    public static By s_trrigger_futuremode=By.xpath("//*[text()='Config']/following::table[8]/tbody/tr[5]/td/span");
     /*********************************PAIR TRADING BOT************************************************/
 
     public static By quantity= By.id("bot_config_form_config_quantity");
