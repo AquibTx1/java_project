@@ -153,7 +153,8 @@ public class XAlphaDealInputSteps {
         } else {
             try {
                 XAlphaDealInputActions.waitForDealSubmittedMsg();
-                Assert.assertEquals(XAlphaDealInputActions.dealInput_SubmitMessage(), "Deal has created");
+                Assert.assertTrue(XAlphaDealInputActions.dealInput_SubmitMessage().startsWith("Deal has created"));
+                Assert.assertTrue(XAlphaDealInputActions.dealInput_SubmitMessage().endsWith("and copied to clipboard"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
