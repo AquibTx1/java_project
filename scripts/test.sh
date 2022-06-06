@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mvn test -Dcucumber.filter.tags=$1
+mvn test -Denv=staging -Dcucumber.filter.tags=$1
