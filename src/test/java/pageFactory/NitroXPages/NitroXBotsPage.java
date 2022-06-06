@@ -44,6 +44,7 @@ public class NitroXBotsPage {
     public static By allbots=By.xpath("//th[text()='Service ID']//preceding-sibling::th");
 
     public static By currentbot=By.xpath("//th[text()='Service ID']//following::tr[1]/td[1]");
+    public static By pausebtn=By.xpath("//th[text()='Service ID']//following::div[7]/button");
     public static By stopbots=By.xpath("//span[text()='Stop all']");
 
     public static By nodata=By.xpath("//div[text()='No Data']");
@@ -73,7 +74,7 @@ public class NitroXBotsPage {
 
     public static By DealtOrderTab = By.xpath("//div[text()='Dealt Orders']");
 
-    public static By trrigger_futuremode=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[7]/td[2]");
+    public static By trrigger_futuremode=By.xpath("//*[text()='trigger_condition']//following::td[1]/span");
 
 
 
@@ -85,16 +86,16 @@ public class NitroXBotsPage {
      */
     public static By totalamount=By.id("bot_config_form_config_totalAmount");
 
-    public static By botdetail_snipper=By.xpath("(//*[text()='Bot Details']/following::table)[3]/tbody/tr[2]/td[1]/span");
+    public static By botdetail_snipper=By.xpath("//*[text()='dealt']/following::td[1]/span");
     public static By side=By.id("bot_config_form_config_side");
     public static By minprice_sniper=By.id("bot_config_form_config_minPrice");
     public static By maxprice_sniper=By.id("bot_config_form_config_maxPrice");
     public static By maxSlippageThreshold_sniper=By.id("bot_config_form_config_maxSlippageThreshold");
 
-    public static By s_trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[4]/td[3]");
+    public static By s_trrigger=By.xpath("//*[text()='trigger_condition']//following::td[1]/span");
 
 
-    public static By s_trrigger_futuremode=By.xpath("//*[text()='Config']/following::table[8]/tbody/tr[5]/td/span");
+    public static By s_trrigger_futuremode=By.xpath("//*[text()='trigger_condition']//following::td[1]/span");
     /*********************************PAIR TRADING BOT************************************************/
 
     public static By quantity= By.id("bot_config_form_config_quantity");

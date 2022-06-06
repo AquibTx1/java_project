@@ -160,7 +160,7 @@ Feature: Test buys sell features
     Examples:
       | SheetName     | TestCaseID                  |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_019 |
-    
+
   @NitroXBuySell
   Scenario Outline: NitroXHome-016_Not Able to Create a Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data

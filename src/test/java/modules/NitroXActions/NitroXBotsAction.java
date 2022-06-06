@@ -13,7 +13,7 @@ import static utilities.KeywordUtil.*;
 public class NitroXBotsAction {
 
     static Class thisClass = NitroXBotsAction.class;
-    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref,Mode;
+    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref,Mode,dealtamount;
    public static int totalfiltered = 0;
 
     public static void clickStart() throws Exception
@@ -235,14 +235,12 @@ public class NitroXBotsAction {
                 e.getMessage();
                 e.printStackTrace();
             }
-
     }
-
     public static double getPrice() {
         waitForVisible(NitroXHomePage.Ordertableprice);
         String lastaskprice = getElementText(By.xpath("(//span[text()='Orderbook ']/following::table[1]/tbody//child::tr)[last()]/td[2]"));
         lastaskprice = lastaskprice.replace(",", "");
-        LogUtil.infoLog(thisClass, "Biding price" + lastaskprice);
+        LogUtil.infoLog(thisClass, "Ask price" + lastaskprice);
         return Double.parseDouble(lastaskprice);
     }
 
@@ -260,15 +258,18 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Dealt order price=" + price);
         return Double.parseDouble(price.replace(",", ""));
     }
-
+    public static double getDealt_price()
+    {
+        String dealt_price = getElementText(By.xpath("//span[text()='dealt_price']/following::td[1]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order price=" + dealt_price);
+        return Double.parseDouble(dealt_price.replace(",", ""));
+    }
     public static String getSide()
     {
         String side=getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[02]"));
         LogUtil.infoLog(thisClass, "Side is=" + side);
         return side;
     }
-
-
     /*********************************SNIPER BOT********************************************/
 
     public static void selectSide(HashMap<String,String>dataMap) throws InterruptedException {
@@ -289,9 +290,9 @@ public class NitroXBotsAction {
     }
     public static String getAmountfromBotDetailSnipper()
     {
-        String s_amount=getElementText(NitroXBotsPage.botdetail_snipper);
-        LogUtil.infoLog(thisClass, "Deal Reference Amount : " + s_amount);
-        return s_amount;
+        dealtamount=getElementText(NitroXBotsPage.botdetail_snipper);
+        LogUtil.infoLog(thisClass, "Deal Reference Amount : " + dealtamount);
+        return dealtamount;
 
     }
     public static void inputMinPriceforSniper(HashMap<String,String>dataMap) throws InterruptedException {
@@ -541,9 +542,17 @@ public class NitroXBotsAction {
     }
 
     public static void pauseAllBots() throws InterruptedException {
+        waitForVisible(By.xpath("//span[@title='More actions...']"));
         hoverOnElement(By.xpath("//span[@title='More actions...']"));
         delay(1000);
         hoverOnElement(By.xpath("//span[text()='Pause all running bots']"));
         click(By.xpath("//span[text()='Pause all running bots']"),"Bots Paused");
+    }
+
+    public static void selectLatestBot() {click(NitroXBotsPage.currentbot,"Current Bot Selected");
+    }
+
+    public static void pauseCurrentBot() {
+        click(NitroXBotsPage.pausebtn, "Current Bot Paused");
     }
 }
