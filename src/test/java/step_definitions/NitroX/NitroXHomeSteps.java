@@ -828,4 +828,48 @@ public class NitroXHomeSteps {
             }
         }
     }
+    @And("Input the Price and Quantity >Available Balance")
+    public void InputThePriceAndQuanitiyforSellOrder() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice());
+                NitroXHome.InputQuantity(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            NitroXHome.InputQuantity(dataMap);
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @Then("Validate User do not allowed to Sell")
+    public void validateUserDoNotAllowedToSell() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.waitForNotifMsg();
+                Assert.assertTrue(NitroXHome.getNotifMsg().startsWith("Could not place order."));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
 }
