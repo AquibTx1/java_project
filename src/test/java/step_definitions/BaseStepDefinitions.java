@@ -67,20 +67,24 @@ public class BaseStepDefinitions extends KeywordUtil {
         }
     }
 
-    @Given("Login to NitroX app with valid login credentials")
-    public void loginToNitroXAppWithValidLoginCredentials() {
-        try {
-            navigateToUrl(ConfigReader.getValue("NitroX"));
-            inputText(NitroXLoginPage.username, ConfigReader.getValue("nitroxUsername"), "Enter the username");
-            inputText(NitroXLoginPage.password, ConfigReader.getValue("nitroxPassword"), "Enter the password");
-            click(NitroXLoginPage.loginbtn, "Click on Sign on Button");
-            waitForVisible(NitroXLoginPage.homepage);
-            Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage), "Home");
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
+    @When("Navigate to the {string} app url")
+    public void navigateToTheAppURL(String appName) {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                navigateToUrl(EnvironmentHelper.getURL(appName));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
         }
     }
 
@@ -118,10 +122,27 @@ public class BaseStepDefinitions extends KeywordUtil {
         LogUtil.infoLog(thisClass, "counterVar reset to 1");
     }
 
+    @Given("Login to NitroX app with valid login credentials")
+    public void loginToNitroXAppWithValidLoginCredentials() {
+        try {
+            navigateToUrl(EnvironmentHelper.getURL("nitrox"));
+            inputText(NitroXLoginPage.username, ConfigReader.getValue("nitroxUsername"), "Enter the username");
+            inputText(NitroXLoginPage.password, ConfigReader.getValue("nitroxPassword"), "Enter the password");
+            click(NitroXLoginPage.loginbtn, "Click on Sign on Button");
+            waitForVisible(NitroXLoginPage.homepage);
+            Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage), "Home");
+        } catch (Throwable e) {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
+    }
+
     @Given("Login to XAlpha with valid login credentials")
     public void loginToXAlphaWithValidLoginCredentials() {
         try {
-            navigateToUrl(ConfigReader.getValue("XAlpha"));
+            navigateToUrl(EnvironmentHelper.getURL("xalpha"));
             inputText(XAlphaLoginPage.username, ConfigReader.getValue("XAlphaUsername"), "Enter the username");
             inputText(XAlphaLoginPage.password, ConfigReader.getValue("XAlphaPassword"), "Enter the password");
             click(XAlphaLoginPage.loginBtn, "Click Login Button");
@@ -134,5 +155,4 @@ public class BaseStepDefinitions extends KeywordUtil {
             Assert.fail(e.getMessage());
         }
     }
-
 }

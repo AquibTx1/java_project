@@ -186,6 +186,8 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     }
 
     public static String getSuccessMsgDescription() {
+        String notifMsg = getElementText(XAlphaDealEnquiryPage.dealEnquiry_LoadDealMsgDescp);
+        LogUtil.infoLog(thisClass, "getSuccessMsgDescription="+notifMsg);
         return getElementText(XAlphaDealEnquiryPage.dealEnquiry_LoadDealMsgDescp);
     }
 

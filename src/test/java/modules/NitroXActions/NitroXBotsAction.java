@@ -13,7 +13,7 @@ import static utilities.KeywordUtil.*;
 public class NitroXBotsAction {
 
     static Class thisClass = NitroXBotsAction.class;
-    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref;
+    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref,Mode;
    public static int totalfiltered = 0;
 
     public static void clickStart() throws Exception
@@ -444,7 +444,7 @@ public class NitroXBotsAction {
         {
             NitroXBotsAction.stopAllBots();
             NitroXBotsAction.refreshPage();
-            delay(2000);
+            delay(3000);
             NitroXBotsAction.refreshPage();
         }
     }
@@ -504,4 +504,46 @@ public class NitroXBotsAction {
     }
 
 
+    public static void validatePairTradingStatus() {
+        try
+        {
+            int count = 0;
+            for (int i = 0; i < 15; i++)
+            {
+
+                count = getDriver().findElements(By.xpath("//span[text()='LEG COMPLETED']")).size();
+                if (count < 1) {
+                    KeywordUtil.pageRefresh();
+                    delay(2000);
+                    NitroXBotsAction.selecttotalBots();
+                    NitroXBotsAction.sortStartTime();
+                    NitroXBotsAction.selectLatestBotName();
+                    delay(5000);
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        catch(Throwable e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public static String getModefromHomePage() {
+        return  null;
+    }
+
+    public static String getModefromBotDetailPage() {
+        Mode=getElementText(NitroXBotsPage.instrument_type_spot_ex);
+        LogUtil.infoLog(thisClass, "Mode is : " + Mode);
+        return Mode;
+    }
+
+    public static void pauseAllBots() throws InterruptedException {
+        hoverOnElement(By.xpath("//span[@title='More actions...']"));
+        delay(1000);
+        hoverOnElement(By.xpath("//span[text()='Pause all running bots']"));
+        click(By.xpath("//span[text()='Pause all running bots']"),"Bots Paused");
+    }
 }
