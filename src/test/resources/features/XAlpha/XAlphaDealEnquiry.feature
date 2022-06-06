@@ -72,7 +72,7 @@ Feature: Test deal enquiry feature
     And Load a deal wrt processing type and deal type
     And Open first deal in the row
     And Update deal details(Direction, BaseAssetAmount, BaseAsset, QuoteAsset, UnitPrice, QuoteAssetAmount, FeeAsset, FeeAmount, ReferencePrice)
-    And Update deal details(CounterpartyName, PortfolioNumber)
+    And Update deal details(CounterpartyName, PortfolioNumber, ValueDate)
     And Click update deal button
     Then Verify the deal updated success message
     And Navigate to deal enquiry tab
@@ -93,7 +93,7 @@ Feature: Test deal enquiry feature
     And Load a deal wrt processing type and deal type
     And Open first deal in the row
     And Update deal details(Direction, BaseAssetAmount, BaseAsset, QuoteAsset, UnitPrice, QuoteAssetAmount, FeeAsset, FeeAmount, ReferencePrice)
-    And Update deal details(CounterpartyName, PortfolioNumber)
+    And Update deal details(CounterpartyName, PortfolioNumber, ValueDate)
     And Click update deal button
     Then Verify the deal forwarded to MO for approval
     #login with checker user and approve the deal processing status
