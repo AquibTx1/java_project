@@ -166,6 +166,19 @@ public class XAlphaDealInputActions extends KeywordUtil {
         click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + processingStatus + "']"), "processingStatus=" + processingStatus);
     }
 
+    public static void dealInput_ValueDate(String ValueDate) throws InterruptedException {
+        clearInputUsingKeys(XAlphaDealInputPage.dealInput_ValueDate);
+        inputText(XAlphaDealInputPage.dealInput_ValueDate, ValueDate, "Deal input ValueDate=" + ValueDate);
+        waitForPresent(XAlphaDealInputPage.dealInput_ValueDateOkBtn);
+        click(XAlphaDealInputPage.dealInput_ValueDateOkBtn, "Click OK button on value date picker");
+    }
+
+    public static void dealInput_ValueDateNowBtn() {
+        click(XAlphaDealInputPage.dealInput_ValueDate, "Click ValueDate picker");
+        waitForPresent(XAlphaDealInputPage.dealInput_ValueDateNowBtn);
+        click(XAlphaDealInputPage.dealInput_ValueDateNowBtn, "Click OK button on value date picker");
+    }
+
     public static void dealInput_CreateBtn() {
         click(XAlphaDealInputPage.dealInput_CreateBtn, "Click deal input Create Button");
     }

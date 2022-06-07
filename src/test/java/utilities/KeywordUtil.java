@@ -191,7 +191,7 @@ public class KeywordUtil extends GlobalUtil {
         try {
             KeywordUtil.lastAction = "Navigate to: " + url;
             LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
-            RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.passStringGreenColor("Application URL="+url));
+            RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.passStringGreenColor("Application URL=" + url));
             getDriver().get(url);
             String Pagetitle = getDriver().getTitle();
             LogUtil.infoLog(KeywordUtil.class, Pagetitle);
@@ -667,9 +667,9 @@ public class KeywordUtil extends GlobalUtil {
     /**
      * Gets list elements.
      *
-     * @param locator the locator
+     * @param locator      the locator
      * @param wait_seconds for the locator
-     * @param logStep the log step
+     * @param logStep      the log step
      * @return list elements
      */
     public static List<WebElement> getListElements(By locator, int wait_seconds, String logStep) {
@@ -888,6 +888,23 @@ public class KeywordUtil extends GlobalUtil {
         }
         delay(1000); //wait for key actions to happen
         elm.sendKeys(Keys.DELETE);
+    }
+
+    /**
+     * Clear input using value attribute.
+     *
+     * @param locator the locator
+     */
+    public static void clearInputValue(By locator) {
+        String locatorString = getSelectorAsString(locator).trim();
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+        executor.executeScript("window.document.getElementById(\'" + locatorString + "\').value = ' '");
+    }
+
+    //convert WebElement to String
+    public static String getSelectorAsString(By by) {
+        String str = by.toString();
+        return str.substring(str.indexOf(" "), str.length());
     }
 
     /**

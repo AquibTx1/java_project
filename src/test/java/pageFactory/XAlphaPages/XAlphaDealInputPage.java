@@ -37,6 +37,9 @@ public class XAlphaDealInputPage {
     public static By dealInput_PortfolioNumberText = By.xpath("//input[@id='portfolio_number']/../following-sibling::span");
     public static By dealInput_ProcessingStatus = By.id("deal_processing_status");
     public static By dealInput_ProcessingStatusClick = By.xpath("//label[@for='deal_processing_status']/../following-sibling::div//div[@class='ant-select-selector']");
+    public static By dealInput_ValueDate = By.id("value_date");
+    public static By dealInput_ValueDateOkBtn = By.xpath("//button[@type='button']/span[text()='Ok']");
+    public static By dealInput_ValueDateNowBtn = By.xpath("//a[@class='ant-picker-now-btn' and text()='Now']");
     public static By dealInput_CreateBtn = By.xpath("//button[@type='submit']/span[text()='Create']");
     public static By dealInput_validationMsg = By.xpath("//div[@class='ant-notification-notice-description']");
 

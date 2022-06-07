@@ -292,13 +292,14 @@ public class XAlphaDealEnquirySteps {
         }
     }
 
-    @And("Update deal details\\(CounterpartyName, PortfolioNumber)")
-    public void updateDealDetailsCounterpartyNamePortfolioNumber() {
+    @And("Update deal details\\(CounterpartyName, PortfolioNumber, ValueDate)")
+    public void updateDealDetailsCounterpartyNamePortfolioNumberValueDate() {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                XAlphaDealInputActions.dealInput_ValueDateNowBtn();
                 XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName_updated"));
                 XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber_updated"));
             } catch (Throwable e) {

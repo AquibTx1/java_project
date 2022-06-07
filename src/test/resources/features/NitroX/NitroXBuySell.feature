@@ -160,3 +160,14 @@ Feature: Test buys sell features
     Examples:
       | SheetName     | TestCaseID                  |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_019 |
+
+  @NitroXBuySell
+  Scenario Outline: NitroXHome-016_Not Able to Create a Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Input the Price and Quantity >Available Balance
+    And Click Sell Button
+    Then Validate User do not allowed to Sell
+    Examples:
+      | SheetName     | TestCaseID                  |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_016 |
