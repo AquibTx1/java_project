@@ -13,7 +13,7 @@ import static utilities.KeywordUtil.*;
 public class NitroXBotsAction {
 
     static Class thisClass = NitroXBotsAction.class;
-    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref,Mode,dealtamount;
+    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref,Mode,dealtamount,Botdetailquantity;
    public static int totalfiltered = 0;
 
     public static void clickStart() throws Exception
@@ -257,6 +257,19 @@ public class NitroXBotsAction {
         String price = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[03]/span"));
         LogUtil.infoLog(thisClass, "Dealt order price=" + price);
         return Double.parseDouble(price.replace(",", ""));
+    }
+    public static double getDealtOrderQuantity()
+    {
+        String Quantity = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[04]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order Quantity=" + Quantity);
+        return Double.parseDouble(Quantity.replace(",", ""));
+    }
+
+    public static double getBotDetailQuantity()
+    {
+         Botdetailquantity = getElementText(By.xpath("//span[text()='quantity']/following::td[1]/span"));
+        LogUtil.infoLog(thisClass, "Bot detail Quantity=" + Botdetailquantity);
+        return Double.parseDouble(Botdetailquantity.replace(",", ""));
     }
     public static double getDealt_price()
     {
@@ -551,8 +564,17 @@ public class NitroXBotsAction {
 
     public static void selectLatestBot() {click(NitroXBotsPage.currentbot,"Current Bot Selected");
     }
-
     public static void pauseCurrentBot() {
         click(NitroXBotsPage.pausebtn, "Current Bot Paused");
+    }
+    public static boolean getPairBotNotifMsg() {
+        String notifMsg;
+        notifMsg = getElementText(NitroXBotsPage.pairtradingstatus);
+        LogUtil.infoLog(thisClass, "Notification message description=" + notifMsg);
+        return true;
+    }
+
+    public static void resumeCurrentBot() {
+        click(NitroXBotsPage.resumebotbtn, "Current Bot Resumed");
     }
 }

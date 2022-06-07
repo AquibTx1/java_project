@@ -24,10 +24,21 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         click(XAlphaDealEnquiryPage.dealEnquiry_firstDetailLink, "Open first deal");
     }
 
+    public static void expandFirstDealDetail(){
+        waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_firstExpandDeal);
+        click(XAlphaDealEnquiryPage.dealEnquiry_firstExpandDeal, "Expand deal details in the first row by clicking + icon");
+    }
+
     public static String getFirstDealReferenceId() {
         String dealRef = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstDealRef);
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Deal reference in the first row=" + dealRef);
         return dealRef;
+    }
+
+    public static String getFirstDealType() {
+        String dealType = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstDealType);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "dealType in the first row=" + dealType);
+        return dealType;
     }
 
     public static String getFirstDealProcessingStatus() {
@@ -72,7 +83,6 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     public static String getFirstUnitPrice() {
         String unitPrice = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstUnitPrice);
-//        unitPrice = unitPrice.replace(",", "");
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Unit price in the first row=" + unitPrice);
         return unitPrice;
     }
@@ -87,6 +97,49 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         String feeAmount = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstFeeAmount);
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Fee Amount in the first row=" + feeAmount);
         return feeAmount;
+    }
+
+    //execution deal
+    public static String getFirstStartAsset() {
+        String StartAsset = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstStartAsset);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "StartAsset in the first row=" + StartAsset);
+        return StartAsset;
+    }
+
+    public static String getFirstStartAssetAmount() {
+        String StartAssetAmount = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstStartAssetAmount);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "StartAssetAmount in the first row=" + StartAssetAmount);
+        return StartAssetAmount;
+    }
+
+    public static String getFirstEndAsset() {
+        String EndAsset = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstEndAsset);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "EndAsset in the first row=" + EndAsset);
+        return EndAsset;
+    }
+
+    public static String getFirstEndAssetAmount() {
+        String EndAssetAmount = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstEndAssetAmount);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "EndAssetAmount in the first row=" + EndAssetAmount);
+        return EndAssetAmount;
+    }
+
+    public static String getFirstFeeAsset_Execution() {
+        String FeeAsset = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstFeeAsset_Execution);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "FeeAsset in the first row=" + FeeAsset);
+        return FeeAsset;
+    }
+
+    public static String getFirstFeeProportion() {
+        String FeeProportion = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstFeeProportion);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "FeeProportion in the first row=" + FeeProportion);
+        return FeeProportion;
+    }
+
+    public static String getFirstFeeAmount_Execution() {
+        String FeeAmount_Execution = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstFeeAmount_Execution);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "FeeAmount_Execution in the first row=" + FeeAmount_Execution);
+        return FeeAmount_Execution;
     }
 
     public static String getDealRefwrtQuoteAssetAmt(String QuotePrice) {
@@ -187,7 +240,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     public static String getSuccessMsgDescription() {
         String notifMsg = getElementText(XAlphaDealEnquiryPage.dealEnquiry_LoadDealMsgDescp);
-        LogUtil.infoLog(thisClass, "getSuccessMsgDescription="+notifMsg);
+        LogUtil.infoLog(thisClass, "getSuccessMsgDescription=" + notifMsg);
         return getElementText(XAlphaDealEnquiryPage.dealEnquiry_LoadDealMsgDescp);
     }
 

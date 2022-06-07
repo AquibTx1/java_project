@@ -63,7 +63,7 @@ Feature: Test deals creation feature
       | SheetName   | TestCaseID                  |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_007 |
 
-  @XAlphaDealInput_debug
+  @XAlphaDealInput
   Scenario Outline: "<TestCaseID>"_Able to Create FX-Spot Sell Deal via Deal Input Page with "<Status>" Status
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -79,3 +79,21 @@ Feature: Test deals creation feature
       | SheetName   | TestCaseID                  | Status    |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_009 | Confirmed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_010 | Pending   |
+
+  @XAlphaDealInput
+  Scenario Outline: "<TestCaseID>" Able to Create Execution Deal via Deal Input Page with "<Status>" Status
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal input tab
+    And Choose Execution deal tab
+    And Provide execution deal input details
+    And Click create deal button
+    Then Verify the deal success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id from deal input
+    Then Verify execution deal is created
+
+    Examples:
+      | SheetName     | TestCaseID                  | Status    |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_038 | Confirmed |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_039 | Pending   |

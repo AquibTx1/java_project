@@ -22,7 +22,6 @@ public class XAlphaDealEnquirySteps {
         dataMap = BaseStepDefinitions.dataMap;
     }
 
-
     @And("Navigate to deal enquiry tab")
     public void navigateToDealEnquiryTab() {
         //check if this step needs to be skipped
@@ -200,9 +199,33 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                //verify processing status is updated
                 XAlphaDealEnquiryActions.clearProcessingStatuses();
                 XAlphaDealEnquiryActions.inputDealRef(dealRefId);
+                XAlphaDealEnquiryActions.clickLoadDealBtn();
+                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
+                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Load a deal wrt deal reference id from deal input")
+    public void loadADealWrtDealReferenceIdFromDealInput() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.clearProcessingStatuses();
+                XAlphaDealEnquiryActions.inputDealRef(XAlphaDealInputSteps.dealRefId);
                 XAlphaDealEnquiryActions.clickLoadDealBtn();
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
                 XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
@@ -299,7 +322,7 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealInputActions.dealInput_ValueDateNowBtn();
+                XAlphaDealInputActions.dealInput_ValueDateNow();
                 XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName_updated"));
                 XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber_updated"));
             } catch (Throwable e) {
@@ -412,4 +435,66 @@ public class XAlphaDealEnquirySteps {
             }
         }
     }
+
+    @Then("Verify execution deal is created")
+    public void verifyExecutionDealIsCreated() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.expandFirstDealDetail();
+                //actual values in the first row
+                String dealTypeActual = XAlphaDealEnquiryActions.getFirstDealType();
+                String processingStatusActual = XAlphaDealEnquiryActions.getFirstDealProcessingStatus();
+                String startAssetActual = XAlphaDealEnquiryActions.getFirstStartAsset();
+                String startAssetAmountActual = KeywordUtil.formatDecimalToStr(XAlphaDealEnquiryActions.getFirstStartAssetAmount());
+                String endAssetActual = XAlphaDealEnquiryActions.getFirstEndAsset();
+                String endAssetAmountActual = XAlphaDealEnquiryActions.getFirstEndAssetAmount();
+                String feeAssetActual = XAlphaDealEnquiryActions.getFirstFeeAsset_Execution();
+                String feeProportionActual = XAlphaDealEnquiryActions.getFirstFeeProportion();
+                String feeAmountActual = XAlphaDealEnquiryActions.getFirstFeeAmount_Execution();
+                String counterpartyNameActual = XAlphaDealEnquiryActions.getFirstCounterpartyName();
+                String portfolioNumberActual = XAlphaDealEnquiryActions.getFirstPortfolioNumber();
+
+                //expected values from test data
+                String dealTypeExpected = dataMap.get("DealType");
+                String processingStatusExpected = dataMap.get("ProcessingStatus");
+                String startAssetExpected = dataMap.get("StartAsset").split(" | ")[0].trim();
+                String startAssetAmountExpected = KeywordUtil.formatDecimalToStr(dataMap.get("StartAssetAmount"));
+                String endAssetActualExpected = dataMap.get("EndAsset").split(" | ")[0].trim();
+                String endAssetAmountExpected = KeywordUtil.formatDecimalToStr(dataMap.get("EndAssetAmount"));
+                String feeAssetExpected = dataMap.get("FeeAsset").split(" | ")[0].trim();
+                String feeProportionExpected = KeywordUtil.formatDecimalToStr(dataMap.get("FeeProportion"));
+                String feeAmountExpected = KeywordUtil.formatDecimalToStr(dataMap.get("FeeAmount"));
+                String counterpartyNameExpected = dataMap.get("CounterpartyName").split(" | ")[0].trim() + " " + dataMap.get("CounterpartyName").split(" | ")[1].trim();
+                String portfolioNumberExpected = dataMap.get("PortfolioNumber");
+
+                //match the values
+                Assert.assertEquals(dealTypeActual, dealTypeExpected);
+                Assert.assertEquals(processingStatusActual, processingStatusExpected);
+                Assert.assertEquals(startAssetActual, startAssetExpected);
+                Assert.assertEquals(startAssetAmountActual, startAssetAmountExpected);
+                Assert.assertEquals(endAssetActual, endAssetActualExpected);
+                Assert.assertEquals(endAssetAmountActual, endAssetAmountExpected);
+                Assert.assertEquals(feeAssetActual, feeAssetExpected);
+                Assert.assertEquals(feeProportionActual, feeProportionExpected + "%");
+                Assert.assertEquals(feeAmountActual, feeAmountExpected);
+                Assert.assertEquals(feeAmountActual, feeAmountExpected);
+                Assert.assertEquals(feeAmountActual, feeAmountExpected);
+                Assert.assertEquals(counterpartyNameActual, counterpartyNameExpected);
+                Assert.assertEquals(portfolioNumberActual, portfolioNumberExpected);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
 }

@@ -45,6 +45,7 @@ public class NitroXBotsPage {
 
     public static By currentbot=By.xpath("//th[text()='Service ID']//following::tr[1]/td[1]");
     public static By pausebtn=By.xpath("//th[text()='Service ID']//following::div[7]/button");
+    public static By resumebotbtn=By.xpath("//th[text()='Service ID']//following::div[7]/button");
     public static By stopbots=By.xpath("//span[text()='Stop all']");
 
     public static By nodata=By.xpath("//div[text()='No Data']");
@@ -122,6 +123,8 @@ public class NitroXBotsPage {
     public static By quotecurrency=By.id("bot_config_form_config_pair_leg_quote");
 
     public static By pairlegSide=By.id("bot_config_form_config_pair_leg_side");
+
+    public static By pairtradingstatus= By.xpath("//span[text()='LEG COMPLETED']");
 
     public static By distancetotob=By.id("bot_config_form_config_pair_leg_distance_to_tob");
 
