@@ -193,7 +193,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     //execution deal > StartAssetAmount
     public static void dealInput_StartAssetAmount(String StartAssetAmount) {
         clearInputValue(XAlphaDealInputPage.dealInput_StartAssetAmount);
-        inputText(XAlphaDealInputPage.dealInput_StartAssetAmount, StartAssetAmount, "Deal input ValueDate=" + StartAssetAmount);
+        inputText(XAlphaDealInputPage.dealInput_StartAssetAmount, StartAssetAmount, "Deal input StartAssetAmount=" + StartAssetAmount);
     }
 
     //execution deal > end asset

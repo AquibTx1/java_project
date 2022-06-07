@@ -96,3 +96,4 @@ Feature: Test deals creation feature
     Examples:
       | SheetName     | TestCaseID                  | Status    |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_038 | Confirmed |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_039 | Pending   |
