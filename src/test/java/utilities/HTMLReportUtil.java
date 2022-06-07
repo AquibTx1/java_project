@@ -92,7 +92,7 @@ public class HTMLReportUtil {
 	 * @return the string
 	 */
 	public static String passStringGreenColor(String stepName) {
-		html = "<span style='color:#008000'><b>" + stepName + " - PASSED" + "</b></span>";
+		html = "<span style='color:#008000'><b>" + stepName + "" + "</b></span>";
 		return html;
 	}
 
