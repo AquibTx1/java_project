@@ -86,24 +86,6 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID               |
       | NitroXBots  | QA_TestCase_Auto_NitroX_028 |
       | NitroXBots  | QA_TestCase_Auto_NitroX_029 |
-
-#
-#     @NitroXBot
-#    Scenario Outline: NitroXHome-030_Start New Pair_Trading BOT For Buy Order
-#       Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
-#       When Choose Mode, Trading Account, Base and Quote Currency
-#       And Verify total Bots before starting the Pair_Trading Bot execution
-#       And Click start Bot and select the Service,Method and Choose Bot Quantity
-#       And Choose Side,Quantity,and Slice_Size
-#       And Choose AccountId,Base,Quote and Side in Pair leg and submit
-#        And Verify Pair_Trading Bot in Total Filtered on homePage
-#       Then Click Total Filtered Bots tab & check the Bot in Detail and Config for Pair_Trading Bot
-#  #    Then Verify the Order in Dealt Order for same Bot
-#
-#    Examples:
-#      | SheetName  |  TestCaseID                  |
-#      | NitroXBots  | QA_TestCase_Auto_NitroX_030 |
-
   @NitroXBot
   Scenario Outline: <TestCaseID>_Start Execution_Bot for Buy Order-Future Mode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
@@ -171,3 +153,18 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_056 |
+  @NitroXBot
+  Scenario Outline: NitroXHome-030_Start New Pair_Trading BOT For Buy Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Verify total Bots before starting the Pair_Trading Bot execution
+    And Click start Bot and select the Service,Method and Choose Bot Quantity
+    And Choose Side,Quantity,and Slice_Size
+    And Choose AccountId,Base,Quote and Side in Pair leg and submit
+    And Verify Pair_Trading Bot in Total Filtered on homePage
+    Then Click Total Filtered Bots tab & check the Bot in Detail and Config for Pair_Trading Bot
+    Then Verify the Order in Dealt Order for PairTrading Bot
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_030 |

@@ -123,6 +123,8 @@ public class NitroXBotsPage {
 
     public static By pairlegSide=By.id("bot_config_form_config_pair_leg_side");
 
+    public static By pairtradingstatus= By.xpath("//span[text()='LEG COMPLETED']");
+
     public static By distancetotob=By.id("bot_config_form_config_pair_leg_distance_to_tob");
 
     /*****************************************Future Mode ****************************************/

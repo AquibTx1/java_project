@@ -258,6 +258,19 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Dealt order price=" + price);
         return Double.parseDouble(price.replace(",", ""));
     }
+    public static double getDealtOrderQuantity()
+    {
+        String Quantity = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[04]/span"));
+        LogUtil.infoLog(thisClass, "Dealt order Quantity=" + Quantity);
+        return Double.parseDouble(Quantity.replace(",", ""));
+    }
+
+    public static double getBotDetailQuantity()
+    {
+        String Botdetailquantity = getElementText(By.xpath("//span[text()='quantity']/following::td[1]/span"));
+        LogUtil.infoLog(thisClass, "Bot detail Quantity=" + Botdetailquantity);
+        return Double.parseDouble(Botdetailquantity.replace(",", ""));
+    }
     public static double getDealt_price()
     {
         String dealt_price = getElementText(By.xpath("//span[text()='dealt_price']/following::td[1]/span"));
@@ -551,8 +564,13 @@ public class NitroXBotsAction {
 
     public static void selectLatestBot() {click(NitroXBotsPage.currentbot,"Current Bot Selected");
     }
-
     public static void pauseCurrentBot() {
         click(NitroXBotsPage.pausebtn, "Current Bot Paused");
+    }
+    public static boolean getPairBotNotifMsg() {
+        String notifMsg;
+        notifMsg = getElementText(NitroXBotsPage.pairtradingstatus);
+        LogUtil.infoLog(thisClass, "Notification message description=" + notifMsg);
+        return true;
     }
 }
