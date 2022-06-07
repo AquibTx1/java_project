@@ -13,6 +13,7 @@ public class XAlphaDealInputPage {
     //deal input
     public static By dealInput_navbar = By.linkText("deal_input");
     public static By dealInput_FXSpot = By.id("rc-tabs-0-tab-FX Spot");
+    public static By dealInput_ExecutionTab = By.id("rc-tabs-0-tab-Execution");
     public static By dealInput_direction = By.id("deal_type_data.direction");
     public static String dealInput_directionOptions = "//div[@id='deal_type_data.direction_list']/following-sibling::div//div[text()='%s']";
     public static By dealInput_directionText = By.xpath("//input[@id='deal_type_data.direction']/../following-sibling::span");
@@ -43,4 +44,13 @@ public class XAlphaDealInputPage {
     public static By dealInput_CreateBtn = By.xpath("//button[@type='submit']/span[text()='Create']");
     public static By dealInput_validationMsg = By.xpath("//div[@class='ant-notification-notice-description']");
 
+    //execution deal
+    public static By dealInput_StartAsset = By.id("deal_type_data.start_asset");
+    public static String dealInput_StartAssetOptions = "//div[@id='deal_type_data.start_asset_list']/following-sibling::div//div[text()='%s']";
+    public static By dealInput_StartAssetAmount = By.id("deal_type_data.start_asset_amount");
+    public static By dealInput_EndAsset = By.id("deal_type_data.end_asset");
+    public static String dealInput_EndAssetOptions = "//div[@id='deal_type_data.end_asset_list']/following-sibling::div//div[text()='%s']";
+    public static By dealInput_EndAssetAmount = By.id("deal_type_data.end_asset_amount");
+    public static By dealInput_FeeProportion = By.id("deal_type_data.fee_proportion");
+    public static By dealInput_FeeAdjustment = By.id("deal_type_data.fee_adjustment_amount");
 }

@@ -9,6 +9,7 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_navbar = By.linkText("deals");
 
     //first row details
+    public static By dealEnquiry_firstExpandDeal = By.xpath("//button[@aria-label='Expand row']");
     public static By dealEnquiry_firstDealRef = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[04]");
     public static By dealEnquiry_firstDetailLink = By.xpath("(//tbody[@class='ant-table-tbody']//a[@type='link' and text()='Detail'])[1]");
     public static By dealEnquiry_firstDealType = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[05]/span");
@@ -22,6 +23,16 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_firstUnitPrice = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[4]/div[2]/span");
     public static By dealEnquiry_firstFeeAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[5]/div[3]");
     public static By dealEnquiry_firstFeeAmount = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[5]/div[2]/span");
+
+    //execution deal
+    public static By dealEnquiry_firstStartAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[1]/div[3]");
+    public static By dealEnquiry_firstStartAssetAmount = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[1]/div[2]/span");
+    public static By dealEnquiry_firstEndAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[3]/div[3]");
+    public static By dealEnquiry_firstEndAssetAmount = By.xpath("//div[text()='End: ']/following-sibling::div/span");
+    public static By dealEnquiry_firstFeeAsset_Execution = By.xpath("//div[text()='Fee: ']/following-sibling::div[2]");
+    public static By dealEnquiry_firstFeeProportion = By.xpath("//div[text()='Fee Proportion: ']/following-sibling::div/span");
+    public static By dealEnquiry_firstFeeAmount_Execution = By.xpath("//div[text()='Fee: ']/following-sibling::div/span");
+    public static By dealEnquiry_firstFeeAdjustment = By.xpath(""); //not available at the moment on deal enquiry
 
     //deal filters
     public static By dealEnquiry_processingStatusClick = By.xpath("//div[@ph_label='Processing Status']");
@@ -44,4 +55,6 @@ public class XAlphaDealEnquiryPage {
 
     //deal details
     public static By dealDetail_dealRef = By.xpath("//input[@placeholder='Deal Ref']");
+
+
 }

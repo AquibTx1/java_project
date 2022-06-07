@@ -89,6 +89,27 @@ public class XAlphaDealInputSteps {
         }
     }
 
+    @And("Choose Execution deal tab")
+    public void chooseExecutionDealTab() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.clickExecutionTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
     @And("Provide deal input details")
     public void provideDealInputDetails() throws InterruptedException {
         //check if this step needs to be skipped
@@ -112,6 +133,40 @@ public class XAlphaDealInputSteps {
                 unitPrice = XAlphaDealInputActions.get_dealInput_UnitPrice(); //to be used later
                 feeAmount = XAlphaDealInputActions.get_dealInput_FeeAmount(); //to be used later
                 referencePrice = XAlphaDealInputActions.get_dealInput_ReferencePrice(); //to be used later
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Provide execution deal input details")
+    public void provideExecutionDealInputDetails() throws InterruptedException {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //asset details
+                XAlphaDealInputActions.dealInput_StartAsset(dataMap.get("StartAsset"));
+                XAlphaDealInputActions.dealInput_StartAssetAmount(dataMap.get("StartAssetAmount"));
+                XAlphaDealInputActions.dealInput_EndAsset(dataMap.get("EndAsset"));
+                XAlphaDealInputActions.dealInput_EndAssetAmount(dataMap.get("EndAssetAmount"));
+                XAlphaDealInputActions.dealInput_FeeAsset(dataMap.get("FeeAsset"));
+                XAlphaDealInputActions.dealInput_FeeProportion(dataMap.get("FeeProportion"));
+                XAlphaDealInputActions.dealInput_FeeAmount(dataMap.get("FeeAmount"));
+                XAlphaDealInputActions.dealInput_FeeAdjustment(dataMap.get("FeeAdjustment"));
+
+                //counterparty details
+                XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
+                XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber"));
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -156,6 +211,7 @@ public class XAlphaDealInputSteps {
                 XAlphaDealInputActions.waitForDealSubmittedMsg();
                 Assert.assertTrue(XAlphaDealInputActions.dealInput_SubmitMessage().startsWith("Deal has created"));
                 Assert.assertTrue(XAlphaDealInputActions.dealInput_SubmitMessage().endsWith("and copied to clipboard"));
+                dealRefId = XAlphaDealInputActions.getDealRefFromNotif();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

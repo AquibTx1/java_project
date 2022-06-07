@@ -31,6 +31,10 @@ public class XAlphaDealInputActions extends KeywordUtil {
         click(XAlphaDealInputPage.dealInput_FXSpot, "Click FX Spot tab");
     }
 
+    public static void clickExecutionTab() {
+        click(XAlphaDealInputPage.dealInput_ExecutionTab, "Click Execution tab");
+    }
+
     public static void dealInput_direction_click() {
         click(XAlphaDealInputPage.dealInput_direction, "Click FX Spot tab");
     }
@@ -125,7 +129,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void dealInput_FeeAmount(String FeeAmount) throws InterruptedException {
-        clearInputUsingKeys(XAlphaDealInputPage.dealInput_FeeAmount);
+        clearInputValue(XAlphaDealInputPage.dealInput_FeeAmount);
         inputText(XAlphaDealInputPage.dealInput_FeeAmount, FeeAmount, "Select deal input Fee Amount=" + FeeAmount);
     }
 
@@ -173,10 +177,48 @@ public class XAlphaDealInputActions extends KeywordUtil {
         click(XAlphaDealInputPage.dealInput_ValueDateOkBtn, "Click OK button on value date picker");
     }
 
-    public static void dealInput_ValueDateNowBtn() {
+    public static void dealInput_ValueDateNow() {
         click(XAlphaDealInputPage.dealInput_ValueDate, "Click ValueDate picker");
         waitForPresent(XAlphaDealInputPage.dealInput_ValueDateNowBtn);
         click(XAlphaDealInputPage.dealInput_ValueDateNowBtn, "Click OK button on value date picker");
+    }
+
+    //execution deal > start asset
+    public static void dealInput_StartAsset(String StartAsset) {
+        inputText(XAlphaDealInputPage.dealInput_StartAsset, StartAsset, "Select deal input StartAsset=" + StartAsset);
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_StartAssetOptions, StartAsset)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_StartAssetOptions, StartAsset)), "Choose StartAsset from dropdown options");
+    }
+
+    //execution deal > StartAssetAmount
+    public static void dealInput_StartAssetAmount(String StartAssetAmount) {
+        clearInputValue(XAlphaDealInputPage.dealInput_StartAssetAmount);
+        inputText(XAlphaDealInputPage.dealInput_StartAssetAmount, StartAssetAmount, "Deal input ValueDate=" + StartAssetAmount);
+    }
+
+    //execution deal > end asset
+    public static void dealInput_EndAsset(String EndAsset) {
+        inputText(XAlphaDealInputPage.dealInput_EndAsset, EndAsset, "Select deal input EndAsset=" + EndAsset);
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_EndAssetOptions, EndAsset)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_EndAssetOptions, EndAsset)), "Choose EndAsset from dropdown options");
+    }
+
+    //execution deal > EndAssetAmount
+    public static void dealInput_EndAssetAmount(String EndAssetAmount) {
+        clearInputValue(XAlphaDealInputPage.dealInput_EndAssetAmount);
+        inputText(XAlphaDealInputPage.dealInput_EndAssetAmount, EndAssetAmount, "Deal input EndAssetAmount=" + EndAssetAmount);
+    }
+
+    //execution deal > FeeProportion
+    public static void dealInput_FeeProportion(String FeeProportion) {
+        clearInputValue(XAlphaDealInputPage.dealInput_FeeProportion);
+        inputText(XAlphaDealInputPage.dealInput_FeeProportion, FeeProportion, "Deal input FeeProportion=" + FeeProportion);
+    }
+
+    //execution deal > FeeAdjustment
+    public static void dealInput_FeeAdjustment(String FeeAdjustment) {
+        clearInputValue(XAlphaDealInputPage.dealInput_FeeAdjustment);
+        inputText(XAlphaDealInputPage.dealInput_FeeAdjustment, FeeAdjustment, "Deal input FeeAdjustment=" + FeeAdjustment);
     }
 
     public static void dealInput_CreateBtn() {
