@@ -153,8 +153,27 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_056 |
+
+    @NitroXBot
+  Scenario Outline: <TestCaseID>_Start New SNIPER_BOT for SpotMode Buy Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Verify total Bots before starting the Sniper Bot execution
+    And Click Start Bot and select the Service,Method and Input Bot Quantity
+    And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
+    And Enter Quantity and submit the order
+    Then Verify Bots in Total Filtered on HomePage
+      And Click Total Filtered Bots and pause the Bot
+      Then Verify current running Bot is paused
+      And Click Total Filtered Bots and Resume the Bot
+      Then Verify Bot has started again
+
+    Examples:
+      | SheetName  |  TestCaseID               |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_057 |
+
   @NitroXBot
-  Scenario Outline: NitroXHome-030_Start New Pair_Trading BOT For Buy Order
+  Scenario Outline: <TestCaseID>_Start New Pair_Trading BOT For Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
     And Verify total Bots before starting the Pair_Trading Bot execution
@@ -168,3 +187,5 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_030 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_031 |
+

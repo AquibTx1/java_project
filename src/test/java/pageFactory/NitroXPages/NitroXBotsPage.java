@@ -45,6 +45,7 @@ public class NitroXBotsPage {
 
     public static By currentbot=By.xpath("//th[text()='Service ID']//following::tr[1]/td[1]");
     public static By pausebtn=By.xpath("//th[text()='Service ID']//following::div[7]/button");
+    public static By resumebotbtn=By.xpath("//th[text()='Service ID']//following::div[7]/button");
     public static By stopbots=By.xpath("//span[text()='Stop all']");
 
     public static By nodata=By.xpath("//div[text()='No Data']");

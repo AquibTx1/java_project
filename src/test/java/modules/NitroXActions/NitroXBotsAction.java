@@ -13,7 +13,7 @@ import static utilities.KeywordUtil.*;
 public class NitroXBotsAction {
 
     static Class thisClass = NitroXBotsAction.class;
-    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref,Mode,dealtamount;
+    public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref,Mode,dealtamount,Botdetailquantity;
    public static int totalfiltered = 0;
 
     public static void clickStart() throws Exception
@@ -267,7 +267,7 @@ public class NitroXBotsAction {
 
     public static double getBotDetailQuantity()
     {
-        String Botdetailquantity = getElementText(By.xpath("//span[text()='quantity']/following::td[1]/span"));
+         Botdetailquantity = getElementText(By.xpath("//span[text()='quantity']/following::td[1]/span"));
         LogUtil.infoLog(thisClass, "Bot detail Quantity=" + Botdetailquantity);
         return Double.parseDouble(Botdetailquantity.replace(",", ""));
     }
@@ -572,5 +572,9 @@ public class NitroXBotsAction {
         notifMsg = getElementText(NitroXBotsPage.pairtradingstatus);
         LogUtil.infoLog(thisClass, "Notification message description=" + notifMsg);
         return true;
+    }
+
+    public static void resumeCurrentBot() {
+        click(NitroXBotsPage.resumebotbtn, "Current Bot Resumed");
     }
 }

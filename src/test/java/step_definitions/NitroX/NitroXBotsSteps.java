@@ -21,6 +21,8 @@ public class NitroXBotsSteps {
 
 
     public static  int totalbotbefore,finalbotvalue;
+
+    public static double botdetailquantity;
     public static HashMap<String, String> dataMap ;
     public NitroXBotsSteps() {
         dataMap = BaseStepDefinitions.dataMap;
@@ -831,7 +833,8 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 Assert.assertTrue((NitroXBotsAction.getPairBotNotifMsg()));
                 NitroXBotsAction.selectConfig();
                 delay(2000);
-                Assert.assertEquals(NitroXBotsAction.getBotDetailQuantity(),dataMap.get("Quantity"));
+                botdetailquantity=NitroXBotsAction.getBotDetailQuantity();
+                Assert.assertEquals(botdetailquantity,dataMap.get("Quantity"));
                 NitroXBotsAction.CloseConfigTab();
                 NitroXBotsAction.CloseBotDetail();
 
@@ -1082,6 +1085,57 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
+    }
+
+    @And("Click Total Filtered Bots and Resume the Bot")
+    public void clickTotalFilteredBotsAndResumeTheBot()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.refreshPage();
+                delay(2000);
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+                NitroXBotsAction.selecttotalBots();
+                NitroXBotsAction.sortStartTime();
+                NitroXBotsAction.selectLatestBot();
+                NitroXBotsAction.resumeCurrentBot();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @Then("Verify Bot has started again")
+    public void verifyBotHasStartedAgain() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+
+                NitroXHome.waitForNotifMsg();
+                Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be resumed."));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
     }
 }
 
