@@ -62,9 +62,9 @@ public class NitroXBotsSteps {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
-                NitroXBotsAction.inputService(dataMap);
-                NitroXBotsAction.inputMethod(dataMap);
-                NitroXBotsAction.inputBotQuantity(dataMap);
+                NitroXBotsAction.inputService(dataMap.get("Service"));
+                NitroXBotsAction.inputMethod(dataMap.get("Method"));
+                NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                 waitForVisible(NitroXBotsPage.orderdirection);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -131,10 +131,10 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+
                 NitroXBotsAction.getBotSubmitSuccessMsg();
                 delay(30000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -176,6 +176,7 @@ public class NitroXBotsSteps {
             try {
 
                 Assert.assertEquals(dataMap.get("Mode"),NitroXBotsAction.getModefromBotDetailPage());
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -250,9 +251,9 @@ public class NitroXBotsSteps {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
-                NitroXBotsAction.inputService(dataMap);
-                NitroXBotsAction.inputMethod(dataMap);
-                NitroXBotsAction.inputBotQuantity(dataMap);
+                NitroXBotsAction.inputService(dataMap.get("Service"));
+                NitroXBotsAction.inputMethod(dataMap.get("Method"));
+                NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                 waitForVisible(NitroXBotsPage.orderdirection);
 
             } catch (Throwable e) {
@@ -352,10 +353,9 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
-                NitroXBotsAction.inputService(dataMap);
-                NitroXBotsAction.inputMethod(dataMap);
-                NitroXBotsAction.inputBotQuantity(dataMap);
-
+                NitroXBotsAction.inputService(dataMap.get("Service"));
+                NitroXBotsAction.inputMethod(dataMap.get("Method"));
+                NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -734,9 +734,9 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
-                NitroXBotsAction.inputService(dataMap);
-                NitroXBotsAction.inputMethod(dataMap);
-                NitroXBotsAction.inputBotQuantity(dataMap);
+                NitroXBotsAction.inputService(dataMap.get("Service"));
+                NitroXBotsAction.inputMethod(dataMap.get("Method"));
+                NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
