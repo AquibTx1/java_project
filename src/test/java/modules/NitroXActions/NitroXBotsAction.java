@@ -22,23 +22,23 @@ public class NitroXBotsAction {
         KeywordUtil.click(NitroXBotsPage.startbtn,  "Start Button Clicked");
     }
 
-    public static void inputService(HashMap<String,String>dataMap) throws Exception
+    public static void inputService(String service) throws Exception
     {
-        KeywordUtil.inputText(NitroXBotsPage.service, dataMap.get("Service"), "Service value entered ");
+        KeywordUtil.inputText(NitroXBotsPage.service, service, "Service value entered ");
         pressEnter(NitroXBotsPage.service);
     }
 
-    public static void inputMethod(HashMap<String,String>dataMap) throws Exception
+    public static void inputMethod(String method) throws Exception
     {
-        KeywordUtil.inputText(NitroXBotsPage.method, dataMap.get("Method"), "Method of bot value entered ");
+        KeywordUtil.inputText(NitroXBotsPage.method,method, "Method of bot value entered ");
         pressEnter(NitroXBotsPage.method);
     }
 
-    public static void inputBotQuantity(HashMap<String,String>dataMap) throws Exception
+    public static void inputBotQuantity(String botquantity) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.botquanity,"Clicked into the Bot Quantity");
         KeywordUtil.pressBackSpace(NitroXBotsPage.botquanity);
-        KeywordUtil.inputText(NitroXBotsPage.botquanity, dataMap.get("Bot Quantity"), "Bot Quantity value entered ");
+        KeywordUtil.inputText(NitroXBotsPage.botquanity, botquantity, "Bot Quantity value entered ");
     }
 
     public static void inputOrderDirection(HashMap<String,String>dataMap) throws Exception
@@ -540,6 +540,32 @@ public class NitroXBotsAction {
             {
 
                 count = getDriver().findElements(By.xpath("//span[text()='LEG COMPLETED']")).size();
+                if (count < 1) {
+                    KeywordUtil.pageRefresh();
+                    delay(2000);
+                    NitroXBotsAction.selecttotalBots();
+                    NitroXBotsAction.sortStartTime();
+                    NitroXBotsAction.selectLatestBotName();
+                    delay(5000);
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        catch(Throwable e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void validateTotalFilteredStatus() {
+        try
+        {
+            int count = 0;
+            for (int i = 0; i < 15; i++)
+            {
+                count = getDriver().findElements(By.xpath("//div[text()='Total (Filtered)']/following::span[2]")).size();
                 if (count < 1) {
                     KeywordUtil.pageRefresh();
                     delay(2000);
