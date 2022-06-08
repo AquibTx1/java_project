@@ -132,7 +132,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(10000);
+                delay(30000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
 
             } catch (Throwable e) {
