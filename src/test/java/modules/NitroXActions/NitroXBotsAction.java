@@ -14,7 +14,8 @@ public class NitroXBotsAction {
 
     static Class thisClass = NitroXBotsAction.class;
     public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref,Mode,dealtamount,Botdetailquantity;
-   public static int totalfiltered = 0;
+   public static int totalfiltered,serviceidbefore,serviceidAfter = 0;
+
 
     public static void clickStart() throws Exception
     {
@@ -153,6 +154,19 @@ public class NitroXBotsAction {
         String getTotal=getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
         totalfiltered= Integer.parseInt(getTotal);
         return  totalfiltered;
+    }
+    public static int getServiceIDBefore()
+    {
+        String serviceid=getElementText(By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]"));
+        serviceidbefore= Integer.parseInt(serviceid);
+        return  serviceidbefore;
+    }
+
+    public static int getServiceIDAfter()
+    {
+        String serviceid=getElementText(By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]"));
+        serviceidAfter= Integer.parseInt(serviceid);
+        return  serviceidAfter;
     }
     public static int getBotafterBuyorSell(){
         getTotal=getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
@@ -576,5 +590,16 @@ public class NitroXBotsAction {
 
     public static void resumeCurrentBot() {
         click(NitroXBotsPage.resumebotbtn, "Current Bot Resumed");
+    }
+
+    public static void restartCurrentBot() {
+        click(NitroXBotsPage.restartbotbtn, "Restart Bot Resumed");
+    }
+
+    public static void clickPersistyes()  {
+        click(NitroXBotsPage.persistyes, "CLicked on Bot Persist Yes");
+    }
+    public static void clickPersistNo()  {
+        click(NitroXBotsPage.persistno, "CLicked on Bot Persist No");
     }
 }

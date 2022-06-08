@@ -44,13 +44,23 @@ public class NitroXBotsPage {
     public static By allbots=By.xpath("//th[text()='Service ID']//preceding-sibling::th");
 
     public static By currentbot=By.xpath("//th[text()='Service ID']//following::tr[1]/td[1]");
-    public static By pausebtn=By.xpath("//th[text()='Service ID']//following::div[7]/button");
-    public static By resumebotbtn=By.xpath("//th[text()='Service ID']//following::div[7]/button");
+    public static By pausebtn=By.xpath("(//span[text()='Pause'])[1]");
+    public static By resumebotbtn=By.xpath("(//span[text()='Resume'])[1]");
+    public static By restartbotbtn=By.xpath("(//span[text()='Restart'])[1]");
+
+    public static By persistyes=By.xpath("(//div[text()='Persist status?'])[1]/following::span[2]");
+
+    public static By persist=By.xpath("//div[text()='Persist status?']");
+
+    public static By persistno=By.xpath("(//div[text()='Persist status?'])[1]/following::span[1]");
     public static By stopbots=By.xpath("//span[text()='Stop all']");
 
     public static By nodata=By.xpath("//div[text()='No Data']");
     public static By progress=By.xpath("//th[text()='Service ID']//following::tr[1]/td[6]");
     public static By starttime=By.xpath("//th[text()='Service ID']//following::tr[1]/td[7]");
+
+    public static By service_id=By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]");
+
     public static By config=By.xpath("//div[text()='Bot Details']/following::div[11]");
     public static By trrigger=By.xpath("//*[text()='Bot Details']/following::table/tbody/tr[7]/td[3]");
 

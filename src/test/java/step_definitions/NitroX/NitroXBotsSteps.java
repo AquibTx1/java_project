@@ -15,12 +15,13 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import static modules.NitroXActions.NitroXBotsAction.getTargetAccountPosition;
+import static modules.NitroXActions.NitroXBotsAction.serviceidAfter;
 import static utilities.KeywordUtil.*;
 
 public class NitroXBotsSteps {
 
 
-    public static  int totalbotbefore,finalbotvalue;
+    public static  int totalbotbefore,finalbotvalue,serviceIdbefore;
 
     public static double botdetailquantity;
     public static HashMap<String, String> dataMap ;
@@ -131,7 +132,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(60000);
+                delay(10000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
 
             } catch (Throwable e) {
@@ -421,7 +422,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(60000);
+                delay(30000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots()-1,totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -833,8 +834,8 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 Assert.assertTrue((NitroXBotsAction.getPairBotNotifMsg()));
                 NitroXBotsAction.selectConfig();
                 delay(2000);
-                botdetailquantity=NitroXBotsAction.getBotDetailQuantity();
-                Assert.assertEquals(botdetailquantity,dataMap.get("Quantity"));
+                //botdetailquantity=NitroXBotsAction.getBotDetailQuantity();
+                //Assert.assertEquals(botdetailquantity,dataMap.get("Quantity"));
                 NitroXBotsAction.CloseConfigTab();
                 NitroXBotsAction.CloseBotDetail();
 
@@ -1124,6 +1125,7 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
 
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be resumed."));
+                NitroXBotsAction.stopCurrentBot();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1131,6 +1133,98 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
                 Assert.fail(e.getMessage());
             }
 
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @And("Click Total Filtered Bots and restart the Bot")
+    public void clickTotalFilteredBotsRestartBots() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+                NitroXBotsAction.selecttotalBots();
+                NitroXBotsAction.sortStartTime();
+                delay(2000);
+                NitroXBotsAction.selectLatestBot();
+                //serviceIdbefore=NitroXBotsAction.getServiceIDBefore();
+                NitroXBotsAction.restartCurrentBot();
+                waitForVisible(NitroXBotsPage.persist);
+                //delay(10000);
+                //int serviceidafter=NitroXBotsAction.getServiceIDAfter();
+               // Assert.assertNotEquals(serviceIdbefore,serviceidafter);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @Then("Verify current running Bot is restarted")
+    public void verifyCurrentRunningBotIsrestarted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.waitForNotifMsg();
+                Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be restarted."));
+                NitroXBotsAction.stopCurrentBot();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Click Persist Status No")
+    public void clickPersistStatusNo()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.clickPersistNo();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @And("Click on Persist Yes")
+    public void clickOnPersistYes() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.clickPersistyes();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
         }
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
