@@ -33,6 +33,8 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_firstFeeProportion = By.xpath("//div[text()='Fee Proportion: ']/following-sibling::div/span");
     public static By dealEnquiry_firstFeeAmount_Execution = By.xpath("//div[text()='Fee: ']/following-sibling::div/span");
     public static By dealEnquiry_firstFeeAdjustment = By.xpath(""); //not available at the moment on deal enquiry
+    public static By dealEnquiry_firstValueDate = By.xpath("//tbody[@class='ant-table-tbody']/tr[2]/td[12]/span");
+
 
     //deal filters
     public static By dealEnquiry_processingStatusClick = By.xpath("//div[@ph_label='Processing Status']");

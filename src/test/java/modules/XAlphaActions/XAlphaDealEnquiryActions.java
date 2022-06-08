@@ -24,7 +24,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         click(XAlphaDealEnquiryPage.dealEnquiry_firstDetailLink, "Open first deal");
     }
 
-    public static void expandFirstDealDetail(){
+    public static void expandFirstDealDetail() {
         waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_firstExpandDeal);
         click(XAlphaDealEnquiryPage.dealEnquiry_firstExpandDeal, "Expand deal details in the first row by clicking + icon");
     }
@@ -140,6 +140,12 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         String FeeAmount_Execution = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstFeeAmount_Execution);
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "FeeAmount_Execution in the first row=" + FeeAmount_Execution);
         return FeeAmount_Execution;
+    }
+
+    public static String getFirstValueDate_Execution() throws Exception {
+        String ValueDate_Execution = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstValueDate);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "ValueDate_Execution in the first row=" + ValueDate_Execution);
+        return ValueDate_Execution;
     }
 
     public static String getDealRefwrtQuoteAssetAmt(String QuotePrice) {

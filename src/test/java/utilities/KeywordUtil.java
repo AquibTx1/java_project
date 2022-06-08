@@ -761,6 +761,24 @@ public class KeywordUtil extends GlobalUtil {
         }
     }
 
+    public static boolean inputTextByCharacter(By locator, String data, String logStep) {
+        KeywordUtil.lastAction = "Input Text: " + data + " - " + locator.toString();
+        LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
+        WebElement elm = waitForVisible(locator);
+        if (elm == null) {
+            return false;
+        } else {
+            elm.clear();
+            for (int i = 0; i < data.length(); i++) {
+                char c = data.charAt(i);
+                String s = new StringBuilder().append(c).toString();
+                elm.sendKeys(s);
+            }
+            RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));
+            return true;
+        }
+    }
+
     /**
      * Input text mobile boolean.
      *

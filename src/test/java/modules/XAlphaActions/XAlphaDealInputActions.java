@@ -171,10 +171,14 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void dealInput_ValueDate(String ValueDate) throws InterruptedException {
+        click(XAlphaDealInputPage.dealInput_ValueDate, "");
         clearInputUsingKeys(XAlphaDealInputPage.dealInput_ValueDate);
         inputText(XAlphaDealInputPage.dealInput_ValueDate, ValueDate, "Deal input ValueDate=" + ValueDate);
+        delay(2000);
         waitForPresent(XAlphaDealInputPage.dealInput_ValueDateOkBtn);
         click(XAlphaDealInputPage.dealInput_ValueDateOkBtn, "Click OK button on value date picker");
+        delay(1500);
+        click(XAlphaDealInputPage.dealInput_FeeAdjustment, "");
     }
 
     public static void dealInput_ValueDateNow() {
