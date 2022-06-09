@@ -288,6 +288,13 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Dealt order price=" + dealt_price);
         return Double.parseDouble(dealt_price.replace(",", ""));
     }
+
+    public static double getOrderAmount()
+    {
+        String orderamount = getElementText(By.xpath("//*[text()='order_amount']/following::span[1]"));
+        LogUtil.infoLog(thisClass, "Ordered Amount is=" + orderamount);
+        return Double.parseDouble(orderamount.replace(",", ""));
+    }
     public static String getSide()
     {
         String side=getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[02]"));

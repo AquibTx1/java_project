@@ -111,7 +111,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.inputOrderAmount(dataMap);
-                NitroXBotsAction.inputTrigerCondtion();
+               // NitroXBotsAction.inputTrigerCondtion();
                 NitroXBotsAction.clickSubmit();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1354,13 +1354,36 @@ public void CountNumberOfBotsBeforeBuyingSelling() {
         }
     }
 
-    @Then("Verify the Bot is edit")
+    @Then("Verify the Bot is updated")
     public void verifyTheBotIsEdit() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                NitroXHome.waitForNotifMsg();
+                Assert.assertTrue(NitroXHome.getNotifMsg().startsWith("Bot has queued to be updated."));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
 
+    @Then("Verify the Config Tab for modified field")
+    public void verifyTheConfigTabForModifiedField() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.selectLatestBotName();
+                NitroXBotsAction.selectConfig();
+                Assert.assertEquals(Double.toString(NitroXBotsAction.getOrderAmount()),dataMap.get("New Order Amount"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
