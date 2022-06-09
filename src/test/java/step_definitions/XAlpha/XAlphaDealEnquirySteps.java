@@ -103,6 +103,10 @@ public class XAlphaDealEnquirySteps {
                 //click load deal button
                 XAlphaDealEnquiryActions.clickLoadDealBtn();
 
+                //wait for deals to load
+                XAlphaDealEnquiryActions.waitForLoadingIconToAppear();
+                XAlphaDealEnquiryActions.waitForLoadingIconToDisappear();
+
                 //wait for success message to appear and disappear
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
                 XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();

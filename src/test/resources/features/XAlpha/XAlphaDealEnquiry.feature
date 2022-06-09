@@ -138,3 +138,4 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_043 | Confirmed  | Processed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_044 | Confirmed  | Settled   |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_045 | Pending    | Processed |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_046 | Pending    | Settled   |

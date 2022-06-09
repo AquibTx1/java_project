@@ -222,7 +222,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     //clear existing deal types(if any)
     public static void clearDealTypes() {
-        List<WebElement> dealTypes = getListElements(XAlphaDealEnquiryPage.dealEnquiry_DealTypesXicon, 4, "Clearing deal types");
+        List<WebElement> dealTypes = getListElements(XAlphaDealEnquiryPage.dealEnquiry_DealTypesXicon, 2, "Clearing deal types");
         for (WebElement element : dealTypes) {
             element.click();
         }
@@ -238,6 +238,14 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     public static void clickLoadDealBtn() {
         click(XAlphaDealEnquiryPage.dealEnquiry_LoadDealBtn, "Click load deal button");
+    }
+
+    public static void waitForLoadingIconToAppear() {
+        waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_loading);
+    }
+
+    public static void waitForLoadingIconToDisappear() {
+        waitForInVisibile(XAlphaDealEnquiryPage.dealEnquiry_loading);
     }
 
     public static void waitForSuccessMsgToAppear() {

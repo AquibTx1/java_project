@@ -40,7 +40,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void dealInput_direction(String direction) {
-        inputText(XAlphaDealInputPage.dealInput_direction, direction.toLowerCase(), "Select deal input direction" + direction);
+        inputText(XAlphaDealInputPage.dealInput_direction, direction.toLowerCase(), "Select deal input direction=" + direction);
         waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_directionOptions, direction)));
         click(By.xpath(String.format(XAlphaDealInputPage.dealInput_directionOptions, direction)), "Choose direction from drop down options");
     }
@@ -128,7 +128,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return FeeAsset;
     }
 
-    public static void dealInput_FeeAmount(String FeeAmount) throws InterruptedException {
+    public static void dealInput_FeeAmount(String FeeAmount) {
         clearInputValue(XAlphaDealInputPage.dealInput_FeeAmount);
         inputText(XAlphaDealInputPage.dealInput_FeeAmount, FeeAmount, "Select deal input Fee Amount=" + FeeAmount);
     }
@@ -178,7 +178,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
         waitForPresent(XAlphaDealInputPage.dealInput_ValueDateOkBtn);
         click(XAlphaDealInputPage.dealInput_ValueDateOkBtn, "Click OK button on value date picker");
         delay(1500);
-        click(XAlphaDealInputPage.dealInput_FeeAdjustment, "");
+        pressTabKey(XAlphaDealInputPage.dealInput_ValueDate);
     }
 
     public static void dealInput_ValueDateNow() {
