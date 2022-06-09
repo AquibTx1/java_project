@@ -497,4 +497,53 @@ public class XAlphaDealEnquirySteps {
         }
     }
 
+    @And("Change processing status and value date")
+    public void changeProcessingStatusAndValueDate() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //update processing status and value date
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new")); //intentional due to existing bug
+                XAlphaDealInputActions.dealInput_ValueDate(dataMap.get("ValueDate"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the processing type and value date")
+    public void verifyTheProcessingTypeAndValueDate() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(XAlphaDealEnquiryActions.getFirstDealProcessingStatus().toLowerCase(), dataMap.get("ProcessingStatus_new").toLowerCase());
+
+                //do formatting for the date into an acceptable format
+                String actualDate = XAlphaDealEnquiryActions.getFirstValueDate_Execution();
+                String expectedDate = GlobalUtil.getDateTime_ddMMMyyyy(dataMap.get("ValueDate"));
+                Assert.assertEquals(actualDate, expectedDate);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 }

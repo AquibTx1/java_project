@@ -14,30 +14,31 @@ public class NitroXBotsAction {
 
     static Class thisClass = NitroXBotsAction.class;
     public static String getTotal, firstbotid,firsttradingAccount,trrigervalue,tvalue,dealref,Mode,dealtamount,Botdetailquantity;
-   public static int totalfiltered = 0;
+   public static int totalfiltered,serviceidbefore,serviceidAfter = 0;
+
 
     public static void clickStart() throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.startbtn,  "Start Button Clicked");
     }
 
-    public static void inputService(HashMap<String,String>dataMap) throws Exception
+    public static void inputService(String service) throws Exception
     {
-        KeywordUtil.inputText(NitroXBotsPage.service, dataMap.get("Service"), "Service value entered ");
+        KeywordUtil.inputText(NitroXBotsPage.service, service, "Service value entered ");
         pressEnter(NitroXBotsPage.service);
     }
 
-    public static void inputMethod(HashMap<String,String>dataMap) throws Exception
+    public static void inputMethod(String method) throws Exception
     {
-        KeywordUtil.inputText(NitroXBotsPage.method, dataMap.get("Method"), "Method of bot value entered ");
+        KeywordUtil.inputText(NitroXBotsPage.method,method, "Method of bot value entered ");
         pressEnter(NitroXBotsPage.method);
     }
 
-    public static void inputBotQuantity(HashMap<String,String>dataMap) throws Exception
+    public static void inputBotQuantity(String botquantity) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.botquanity,"Clicked into the Bot Quantity");
         KeywordUtil.pressBackSpace(NitroXBotsPage.botquanity);
-        KeywordUtil.inputText(NitroXBotsPage.botquanity, dataMap.get("Bot Quantity"), "Bot Quantity value entered ");
+        KeywordUtil.inputText(NitroXBotsPage.botquanity, botquantity, "Bot Quantity value entered ");
     }
 
     public static void inputOrderDirection(HashMap<String,String>dataMap) throws Exception
@@ -153,6 +154,19 @@ public class NitroXBotsAction {
         String getTotal=getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
         totalfiltered= Integer.parseInt(getTotal);
         return  totalfiltered;
+    }
+    public static int getServiceIDBefore()
+    {
+        String serviceid=getElementText(By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]"));
+        serviceidbefore= Integer.parseInt(serviceid);
+        return  serviceidbefore;
+    }
+
+    public static int getServiceIDAfter()
+    {
+        String serviceid=getElementText(By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]"));
+        serviceidAfter= Integer.parseInt(serviceid);
+        return  serviceidAfter;
     }
     public static int getBotafterBuyorSell(){
         getTotal=getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
@@ -544,6 +558,32 @@ public class NitroXBotsAction {
             e.printStackTrace();
         }
     }
+
+    public static void validateTotalFilteredStatus() {
+        try
+        {
+            int count = 0;
+            for (int i = 0; i < 15; i++)
+            {
+                count = getDriver().findElements(By.xpath("//div[text()='Total (Filtered)']/following::span[2]")).size();
+                if (count < 1) {
+                    KeywordUtil.pageRefresh();
+                    delay(2000);
+                    NitroXBotsAction.selecttotalBots();
+                    NitroXBotsAction.sortStartTime();
+                    NitroXBotsAction.selectLatestBotName();
+                    delay(5000);
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        catch(Throwable e)
+        {
+            e.printStackTrace();
+        }
+    }
     public static String getModefromHomePage() {
         return  null;
     }
@@ -576,5 +616,16 @@ public class NitroXBotsAction {
 
     public static void resumeCurrentBot() {
         click(NitroXBotsPage.resumebotbtn, "Current Bot Resumed");
+    }
+
+    public static void restartCurrentBot() {
+        click(NitroXBotsPage.restartbotbtn, "Restart Bot Resumed");
+    }
+
+    public static void clickPersistyes()  {
+        click(NitroXBotsPage.persistyes, "CLicked on Bot Persist Yes");
+    }
+    public static void clickPersistNo()  {
+        click(NitroXBotsPage.persistno, "CLicked on Bot Persist No");
     }
 }

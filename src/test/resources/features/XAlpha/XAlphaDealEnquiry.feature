@@ -118,3 +118,23 @@ Feature: Test deal enquiry feature
       | SheetName   | TestCaseID                  | loginCredentials  | Status    |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_036 | MO_CheckerAccount | Processed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_037 | MO_CheckerAccount | Settled   |
+
+  @XAlphaDealEnquiry
+  Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Execution Deal in Deal Inquiry
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal enquiry tab
+    And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Change processing status and value date
+    And Click update deal button
+    Then Verify the deal updated success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id
+    Then Verify the processing type and value date
+
+    Examples:
+      | SheetName     | TestCaseID                  | FromStatus | ToStatus  |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_043 | Confirmed  | Processed |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_044 | Confirmed  | Settled   |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_045 | Pending    | Processed |
