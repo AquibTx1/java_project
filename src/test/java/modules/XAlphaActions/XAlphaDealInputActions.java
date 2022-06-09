@@ -87,7 +87,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static String get_dealInput_ReferencePrice() throws InterruptedException {
-        delay(1000);
+        delay(1500);
         String referencePrice = getElementValueWithVisibility(XAlphaDealInputPage.dealInput_ReferencePrice);
         LogUtil.infoLog(XAlphaDealInputActions.class, "Reference price=" + referencePrice);
         return referencePrice;
