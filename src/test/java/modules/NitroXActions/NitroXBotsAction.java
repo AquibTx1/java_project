@@ -61,22 +61,18 @@ public class NitroXBotsAction {
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.maxtimebreak);
         KeywordUtil.inputText(NitroXBotsPage.maxtimebreak, dataMap.get("Max Time Break"), "Max Time  selected ");
     }
-
     public static void inputOrderAmount(HashMap<String,String>dataMap) throws Exception
     {
-
         KeywordUtil.click(NitroXBotsPage.orderamount,"Ordered Amount Entered");
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.orderamount);
         KeywordUtil.inputText(NitroXBotsPage.orderamount, dataMap.get("Order Amount"), "Amount vale entered ");
     }
-
     public static void inputMinPrice(HashMap<String,String>dataMap) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.minprice,"Min Price  Values Click");
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.minprice);
         KeywordUtil.inputText(NitroXBotsPage.minprice, dataMap.get("Min Price"), "Min Amount value entered ");
     }
-
     public static void inputMaxPrice(HashMap<String,String>dataMap) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.maxprice,"Max Price Values Click");
@@ -272,11 +268,12 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Dealt order price=" + price);
         return Double.parseDouble(price.replace(",", ""));
     }
-    public static double getDealtOrderQuantity()
+    public static String getDealtOrderQuantity()
     {
-        String Quantity = getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[04]/span"));
+        String Quantity = formatDecimalToStr(getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[04]/span")));
         LogUtil.infoLog(thisClass, "Dealt order Quantity=" + Quantity);
-        return Double.parseDouble(Quantity.replace(",", ""));
+        return Quantity;
+        //Double.parseDouble(Quantity.replace(",", ""));
     }
 
     public static double getBotDetailQuantity()
@@ -536,10 +533,9 @@ public class NitroXBotsAction {
         try
         {
             int count = 0;
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 10; i++)
             {
-
-                count = getDriver().findElements(By.xpath("//span[text()='LEG COMPLETED']")).size();
+                count = getDriver().findElements(By.xpath("(//span[text()='LEG COMPLETED'])[1]")).size();
                 if (count < 1) {
                     KeywordUtil.pageRefresh();
                     delay(2000);
@@ -559,6 +555,31 @@ public class NitroXBotsAction {
         }
     }
 
+    public static void validateLegPairTradingStatus() {
+        try
+        {
+            int count = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                count = getDriver().findElements(By.xpath("(//span[text()='LEG COMPLETED'])[2]")).size();
+                if (count < 1) {
+                    KeywordUtil.pageRefresh();
+                    delay(2000);
+                    NitroXBotsAction.selecttotalBots();
+                    NitroXBotsAction.sortStartTime();
+                    NitroXBotsAction.selectLatestBotName();
+                    delay(5000);
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        catch(Throwable e)
+        {
+            e.printStackTrace();
+        }
+    }
     public static void validateTotalFilteredStatus() {
         try
         {
@@ -627,5 +648,20 @@ public class NitroXBotsAction {
     }
     public static void clickPersistNo()  {
         click(NitroXBotsPage.persistno, "CLicked on Bot Persist No");
+    }
+
+    public static void stopCurrentRunningBot() {
+        click(NitroXBotsPage.stopbotbtn, "Current Bot Stopped");
+
+    }
+
+    public static void editLatestBot() {
+        click(NitroXBotsPage.editbotbtn, "Current Bot Stopped");
+    }
+
+    public static void inputNewOrderAmount(HashMap<String, String> dataMap) throws InterruptedException {
+        KeywordUtil.click(NitroXBotsPage.orderamount,"Ordered Amount Entered");
+        KeywordUtil.clearInputUsingKeys(NitroXBotsPage.orderamount);
+        KeywordUtil.inputText(NitroXBotsPage.orderamount, dataMap.get("New Order Amount"), "Amount vale entered ");
     }
 }
