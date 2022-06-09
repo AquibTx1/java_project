@@ -139,3 +139,35 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_044 | Confirmed  | Settled   |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_045 | Pending    | Processed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_046 | Pending    | Settled   |
+
+  @XAlphaDealEnquiry
+  Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing Execution Deal in Deal Inquiry
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal enquiry tab
+    And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Change processing status
+    Then Verify the deal forwarded to MO for approval
+    #login with checker user and approve the deal processing status
+    Given Read "XAlpha" and "XAlphaLogin" and "<loginCredentials>" from test data
+    And Logout from XAlpha
+    And Input XAlpha Username and Password
+    And Click XAlpha Login Button
+    And Verify User is Able to Login to XAlpha Successfully
+    And Navigate to deal processing tab
+    And Search for the deal to approve
+    And Approve the deal
+    #login again with system user and verify the deal processing status
+    And Logout from XAlpha
+    Given Login to XAlpha with valid login credentials
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    Then Verify the processing type
+
+    Examples:
+      | SheetName     | TestCaseID                  | loginCredentials  | FromStatus | ToStatus  |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_051 | MO_CheckerAccount | Processed  | Confirmed |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_052 | MO_CheckerAccount | Processed  | Pending   |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_053 | MO_CheckerAccount | Settled    | Pending   |
