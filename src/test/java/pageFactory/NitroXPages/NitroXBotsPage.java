@@ -32,6 +32,7 @@ public class NitroXBotsPage {
     public static By submitbtn=By.xpath("//span[text()='Submit']");
     public static By closebtn=By.xpath("//button[@aria-label='Close']");
 
+    public static By slicesize_botdetail=By.xpath("//*[text()='slice_size']/following::span[1]");
     public static By trrigercond=By.id("bot_config_form_config_trigger_condition");
     //Total Filtered
     public static By totalfilered=By.xpath("//div[text()='Total (Filtered)']");
@@ -49,6 +50,9 @@ public class NitroXBotsPage {
 
     public static By stopbotbtn=By.xpath("(//span[text()='Stop'])[1]");
     public static By editbotbtn=By.xpath("(//span[text()='Edit'])[1]");
+
+    public static By duplicatebotbtn=By.xpath("(//span[text()='Duplicate'])[1]");
+
     public static By restartbotbtn=By.xpath("(//span[text()='Restart'])[1]");
 
     public static By persistyes=By.xpath("(//div[text()='Persist status?'])[1]/following::span[2]");
