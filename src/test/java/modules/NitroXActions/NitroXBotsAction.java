@@ -310,19 +310,19 @@ public class NitroXBotsAction {
         pressEnter(NitroXBotsPage.side);
     }
 
-    public static void inputTotalAmount(HashMap<String,String>dataMap) throws InterruptedException {
-
-        KeywordUtil.inputText(NitroXBotsPage.totalamount, dataMap.get("TotalAmount"), "Amount vale entered ");
+    public static void inputTotalAmount(String totalAmount) throws InterruptedException {
+        KeywordUtil.clearInputUsingKeys(NitroXBotsPage.totalamount);
+        KeywordUtil.inputText(NitroXBotsPage.totalamount, totalAmount, "Amount value entered ");
     }
     public static String getTotalAmount(){
         String amount=getElementText(NitroXBotsPage.totalamount);
-        LogUtil.infoLog(thisClass, "Deal Reference in Quantity : " + amount);
+        LogUtil.infoLog(thisClass, "Total Amount is : " + amount);
         return amount;
     }
     public static String getAmountfromBotDetailSnipper()
     {
         dealtamount=getElementText(NitroXBotsPage.botdetail_snipper);
-        LogUtil.infoLog(thisClass, "Deal Reference Amount : " + dealtamount);
+        LogUtil.infoLog(thisClass, "Total Amount in Bot Detail : " + dealtamount);
         return dealtamount;
 
     }

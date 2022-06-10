@@ -221,7 +221,7 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_062 |
 
   @NitroX
-  Scenario Outline: <TestCaseID>_Start Execution_Bot for Buy Order
+  Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
     And Verify total Bots Before staring the Buy execution
@@ -259,3 +259,22 @@ Feature: Test Bots features on NitroX HomePage
 #      | NitroXBots  | QA_TestCase_Auto_NitroX_031 |
 #      | NitroXBots  | QA_TestCase_Auto_NitroX_032 |
 #      | NitroXBots  | QA_TestCase_Auto_NitroX_033 |
+
+
+  @NitroXBotEdit
+  Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT for SpotMode Buy Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Verify total Bots before starting the Sniper Bot execution
+    And Click Start Bot and select the Service,Method and Input Bot Quantity
+    And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
+    And submit the order
+    Then Verify Bot Count in Total Filtered
+    And Click total filtered bots and click the latest running bot to edit
+    And Input any field with new value and again submit for Sniper Bot
+    Then Verify the Bot is updated
+    Then Verify the Config Tab for modified field in Sniper Bot
+
+    Examples:
+      | SheetName  |  TestCaseID               |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_065 |
