@@ -7,6 +7,7 @@ public class XAlphaDealEnquiryPage {
     //deal Enquiry
     public static By dealEnquiryTab = By.linkText("Deal Enquiry");
     public static By dealEnquiry_navbar = By.linkText("deals");
+    public static By dealEnquiry_loading= By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 
     //first row details
     public static By dealEnquiry_firstExpandDeal = By.xpath("//button[@aria-label='Expand row']");
