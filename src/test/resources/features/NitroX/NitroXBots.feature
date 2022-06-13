@@ -284,6 +284,57 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_069 |
 
   @NitroXBot
+  Scenario Outline: <TestCaseID>_Duplicate the Sniper_Bot for Buy Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Verify total Bots before starting the Sniper Bot execution
+    And Click Start Bot and select the Service,Method and Input Bot Quantity
+    And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
+    And submit the order
+    Then Verify Bot Count in Total Filtered
+    And Click total filtered bots and click the latest running bot and create duplicate Bot
+    And Input any field with new value and again submit for Sniper Bot
+    Then Verify duplicate bot is created
+    Then Verify the Config Tab for modified field in Sniper Bot
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_070 |
+  @NitroXBot
+  Scenario Outline: <TestCaseID>_Duplicate PairTrading BOT For Buy and Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Verify total Bots before starting the Pair_Trading Bot execution
+    And Click start Bot and select the Service,Method and Choose Bot Quantity
+    And Choose Side,Quantity,and Slice_Size
+    And Choose AccountId,Base,Quote and Side in Pair leg and submit
+    And Verify Pair_Trading Bot in Total Filtered on homePage
+    And Click total filtered bots and click the latest running bot and create duplicate Bot
+    And Input any field with new value and again submit for PairTrading Bot
+    Then Verify duplicate bot is created
+    Then Verify the Config Tab for modified field in PairTrading Bot
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_071 |
+  @NitroXBot72
+  Scenario Outline: <TestCaseID>__Duplicate TWAP BOT For Buy and Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Verify total Bots before starting the Twap_Bot execution
+    And Click start Bot and select the Service,Method and Choose Bot Quantity
+    And Choose Side,Quantity,and Duration
+    And Provide Deal Ref and submit
+    Then Verify Bots in Total Filtered on HomePage
+    And Click total filtered bots and click the latest running bot and create duplicate Bot
+    And Input any field with new value and again submit for Twap Bot
+    Then Verify duplicate bot is created
+    Then Verify the Config Tab for modified field in Twap Bot
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_072 |
+
+  @NitroXBot
   Scenario Outline: <TestCaseID>_Start New Pair_Trading BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
@@ -300,9 +351,9 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_030 |
-##      | NitroXBots  | QA_TestCase_Auto_NitroX_031 |
-##      | NitroXBots  | QA_TestCase_Auto_NitroX_032 |
-##      | NitroXBots  | QA_TestCase_Auto_NitroX_033 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_031 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_032 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_033 |
 
 
 
