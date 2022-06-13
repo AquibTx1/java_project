@@ -173,7 +173,7 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_053 | MO_CheckerAccount | Settled    | Confirmed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_054 | MO_CheckerAccount | Settled    | Pending   |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_057 | MO_CheckerAccount | Processed  | Cancelled |
-      | ExecutionDeal | QA_TestCase_Auto_XAlpha_058 | MO_CheckerAccount | Setlled    | Cancelled |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_058 | MO_CheckerAccount | Settled    | Cancelled |
 
   @XAlphaDealEnquiry
   Scenario Outline: "<TestCaseID>" Able to Edit Status from "<FromStatus>" to "<ToStatus>" of an Existing Execution Deal in Deal Inquiry
