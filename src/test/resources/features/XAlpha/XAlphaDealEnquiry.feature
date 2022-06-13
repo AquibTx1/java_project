@@ -117,7 +117,7 @@ Feature: Test deal enquiry feature
     Examples:
       | SheetName   | TestCaseID                  | loginCredentials  | Status    |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_036 | MO_CheckerAccount | Processed |
-#      | XAlphaDeals | QA_TestCase_Auto_XAlpha_037 | MO_CheckerAccount | Settled   |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_037 | MO_CheckerAccount | Settled   |
 
   @XAlphaDealEnquiry
   Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Execution Deal in Deal Inquiry
@@ -173,6 +173,7 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_053 | MO_CheckerAccount | Settled    | Confirmed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_054 | MO_CheckerAccount | Settled    | Pending   |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_057 | MO_CheckerAccount | Processed  | Cancelled |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_058 | MO_CheckerAccount | Setlled    | Cancelled |
 
   @XAlphaDealEnquiry
   Scenario Outline: "<TestCaseID>" Able to Edit Status from "<FromStatus>" to "<ToStatus>" of an Existing Execution Deal in Deal Inquiry
@@ -191,3 +192,7 @@ Feature: Test deal enquiry feature
       | SheetName     | TestCaseID                  | FromStatus | ToStatus  |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_055 | Pending    | Cancelled |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_056 | Confirmed  | Cancelled |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_059 | Cancelled  | Pending   |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_060 | Cancelled  | Confirmed |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_061 | Cancelled  | Processed |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_062 | Cancelled  | Settled   |
