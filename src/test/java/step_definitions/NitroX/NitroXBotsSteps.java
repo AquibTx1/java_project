@@ -602,7 +602,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.selectSideTwapBot(dataMap);
-                NitroXBotsAction.inputPairBotQuantity(dataMap);
+                NitroXBotsAction.inputTwapBotQuantity(dataMap.get("Quantity"));
                 NitroXBotsAction.inputDuration(dataMap);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -771,7 +771,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.selectMainPairTradingSide(dataMap);
-                NitroXBotsAction.inputPairBotQuantity(dataMap);
+                NitroXBotsAction.inputPairBotQuantity(dataMap.get("Quantity"));
                 NitroXBotsAction.inputSliceSize(dataMap.get("SliceSize"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -819,9 +819,8 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(30000);
+                delay(15000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots() - 1, totalbotbefore);
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1300,7 +1299,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
                 NitroXBotsAction.sortStartTime();
@@ -1308,7 +1306,6 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.validateLegPairTradingStatus();
                 NitroXBotsAction.CloseConfigTab();
                 NitroXBotsAction.CloseBotDetail();
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1438,8 +1435,9 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
                 Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(), dataMap.get("S_UpdatedTotalAmount"));
+                NitroXBotsAction.selectConfig();
+                Assert.assertEquals(NitroXBotsAction.getBotDetailSide(),dataMap.get("Side"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1523,7 +1521,6 @@ public class NitroXBotsSteps {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
                 NitroXBotsAction.sortStartTime();
-                delay(2000);
                 NitroXBotsAction.selectLatestBot();
                 NitroXBotsAction.duplicateLatestBot();
             } catch (Throwable e) {
@@ -1543,9 +1540,55 @@ public class NitroXBotsSteps {
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().startsWith("1 Bot(s) were suceessfully started."));
                 NitroXBotsAction.refreshPage();
+                NitroXHome.waitForLiveChart();
+                delay(5000);
                 NitroXBotsAction.selecttotalBots();
                 NitroXBotsAction.sortStartTime();
                 NitroXBotsAction.selectLatestBotName();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @And("Input any field with new value and again submit for Twap Bot")
+    public void inputAnyFieldWithNewValueAndAgainSubmitForTwapBot()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.inputTwapBotQuantity(dataMap.get("T_UpdatedQuantity"));
+                NitroXBotsAction.clickSubmit();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @Then("Verify the Config Tab for modified field in Twap Bot")
+    public void verifyTheConfigTabForModifiedFieldInTwapBot() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.selectConfig();
+               Assert.assertEquals(Double.toString(NitroXBotsAction.getBotDetailQuantity()),dataMap.get("T_UpdatedQuantity"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

@@ -273,7 +273,7 @@ public class NitroXBotsAction {
     }
     public static double getBotDetailQuantity()
     {
-         Botdetailquantity = getElementText(By.xpath("//span[text()='quantity']/following::td[1]/span"));
+        Botdetailquantity = getElementText(By.xpath("//span[text()='quantity']/following::td[1]/span"));
         LogUtil.infoLog(thisClass, "Bot detail Quantity=" + Botdetailquantity);
         return Double.parseDouble(Botdetailquantity.replace(",", ""));
     }
@@ -296,6 +296,14 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Side is=" + side);
         return side;
     }
+    public static String getBotDetailSide()
+    {
+        String side=getElementText(By.xpath("//span[text()='side']/following::span[1]"));
+        LogUtil.infoLog(thisClass, "Side is=" + side);
+        return side;
+    }
+
+
     /*********************************SNIPER BOT********************************************/
 
     public static void selectSide(HashMap<String,String>dataMap) throws InterruptedException {
@@ -343,10 +351,16 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Trigger  value in Config Tab : " + tvalue_sniper);
         return tvalue_sniper;
     }
-    public static void inputPairBotQuantity(HashMap<String, String> dataMap) throws InterruptedException {
+    public static void inputTwapBotQuantity(String Quantity) throws InterruptedException {
             KeywordUtil.clearInputUsingKeys(NitroXBotsPage.quantity);
-            KeywordUtil.inputText(NitroXBotsPage.quantity, dataMap.get("Quantity"), "Quantity entered");
+            KeywordUtil.inputText(NitroXBotsPage.quantity,Quantity, "Quantity entered");
     }
+
+    public static void inputPairBotQuantity(String Quantity) throws InterruptedException {
+        KeywordUtil.clearInputUsingKeys(NitroXBotsPage.quantity);
+        KeywordUtil.inputText(NitroXBotsPage.quantity,Quantity, "Quantity entered");
+    }
+
     public static void inputSliceSize(String slicesize) throws InterruptedException {
             KeywordUtil.clearInputUsingKeys(NitroXBotsPage.slicesize);
             KeywordUtil.inputText(NitroXBotsPage.slicesize, slicesize, "SliceSize value entered");
