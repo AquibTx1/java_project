@@ -41,43 +41,43 @@ public class NitroXBotsAction {
         KeywordUtil.inputText(NitroXBotsPage.botquanity, botquantity, "Bot Quantity value entered ");
     }
 
-    public static void inputOrderDirection(HashMap<String,String>dataMap) throws Exception
+    public static void inputOrderDirection(String orderdirection) throws Exception
     {
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.orderdirection);
-        KeywordUtil.inputText(NitroXBotsPage.orderdirection, dataMap.get("Order Direction"), "BUY or Sell Order field selected ");
+        KeywordUtil.inputText(NitroXBotsPage.orderdirection,orderdirection, "BUY or Sell Order field selected ");
         pressEnter(NitroXBotsPage.orderdirection);
     }
 
-    public static void inputMinTime(HashMap<String,String>dataMap) throws Exception
+    public static void inputMinTime(String mintime) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.mintimebreak,"Min Time Values Click");
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.mintimebreak);
-        KeywordUtil.inputText(NitroXBotsPage.mintimebreak, dataMap.get("Min Time Break"), "Min Time values selected");
+        KeywordUtil.inputText(NitroXBotsPage.mintimebreak,mintime, "Min Time values selected");
     }
 
-    public static void inputMaxTime(HashMap<String,String>dataMap) throws Exception
+    public static void inputMaxTime(String maxtime) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.maxtimebreak,"Max Time Values Click");
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.maxtimebreak);
-        KeywordUtil.inputText(NitroXBotsPage.maxtimebreak, dataMap.get("Max Time Break"), "Max Time  selected ");
+        KeywordUtil.inputText(NitroXBotsPage.maxtimebreak,maxtime, "Max Time  selected ");
     }
-    public static void inputOrderAmount(HashMap<String,String>dataMap) throws Exception
+    public static void inputOrderAmount(String amount) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.orderamount,"Ordered Amount Entered");
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.orderamount);
-        KeywordUtil.inputText(NitroXBotsPage.orderamount, dataMap.get("Order Amount"), "Amount vale entered ");
+        KeywordUtil.inputText(NitroXBotsPage.orderamount, amount, "Amount vale entered ");
     }
-    public static void inputMinPrice(HashMap<String,String>dataMap) throws Exception
+    public static void inputMinPrice(String minprice) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.minprice,"Min Price  Values Click");
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.minprice);
-        KeywordUtil.inputText(NitroXBotsPage.minprice, dataMap.get("Min Price"), "Min Amount value entered ");
+        KeywordUtil.inputText(NitroXBotsPage.minprice,minprice, "Min Amount value entered ");
     }
-    public static void inputMaxPrice(HashMap<String,String>dataMap) throws Exception
+    public static void inputMaxPrice(String maxprice) throws Exception
     {
         KeywordUtil.click(NitroXBotsPage.maxprice,"Max Price Values Click");
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.maxprice);
-        KeywordUtil.inputText(NitroXBotsPage.maxprice, dataMap.get("Max Price"), "Max Amount value entered ");
+        KeywordUtil.inputText(NitroXBotsPage.maxprice, maxprice,"Max Amount value entered ");
     }
 
     public static void inputOrderType(HashMap<String,String>dataMap) throws Exception
