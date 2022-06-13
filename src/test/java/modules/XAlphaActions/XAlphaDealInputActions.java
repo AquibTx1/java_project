@@ -128,8 +128,8 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return FeeAsset;
     }
 
-    public static void dealInput_FeeAmount(String FeeAmount) {
-        clearInputValue(XAlphaDealInputPage.dealInput_FeeAmount);
+    public static void dealInput_FeeAmount(String FeeAmount) throws InterruptedException {
+        clearInputUsingKeys(XAlphaDealInputPage.dealInput_FeeAmount);
         inputText(XAlphaDealInputPage.dealInput_FeeAmount, FeeAmount, "Select deal input Fee Amount=" + FeeAmount);
     }
 
