@@ -240,6 +240,10 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         click(XAlphaDealEnquiryPage.dealEnquiry_LoadDealBtn, "Click load deal button");
     }
 
+    public static void closeSuccessNotification() {
+        click(XAlphaDealEnquiryPage.dealEnquiry_LoadDealNotifXBtn, "Close the success notification");
+    }
+
     public static void waitForLoadingIconToAppear() {
         waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_loading);
     }
@@ -248,8 +252,22 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         waitForInVisibile(XAlphaDealEnquiryPage.dealEnquiry_loading);
     }
 
+    public static void waitForLoadingIconToAppearAndDisappear() {
+        waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_loading);
+        waitForInVisibile(XAlphaDealEnquiryPage.dealEnquiry_loading);
+    }
+
     public static void waitForSuccessMsgToAppear() {
         waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg);
+    }
+
+    public static void waitForSuccessMsgToDisappear() {
+        waitForInVisibile(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg);
+    }
+
+    public static void waitForSuccessMsgToAppearAndDisappear() {
+        waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg);
+        waitForInVisibile(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg);
     }
 
     public static String getSuccessMsgDescription() {
@@ -260,10 +278,6 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     public static void waitForSuccessMsgToAppear_MO() {
         waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg_MO);
-    }
-
-    public static void waitForSuccessMsgToDisappear() {
-        waitForInVisibile(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg);
     }
 
     public static void waitForDealDetailsPage() {

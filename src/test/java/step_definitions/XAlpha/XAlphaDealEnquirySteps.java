@@ -31,6 +31,9 @@ public class XAlphaDealEnquirySteps {
             try {
                 XAlphaDealEnquiryActions.clickDealEnquiryTab();
                 XAlphaDealEnquiryActions.waitFordealEnquiry_navbar();
+                XAlphaDealEnquiryActions.waitForLoadingIconToAppearAndDisappear();
+                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
+                XAlphaDealEnquiryActions.closeSuccessNotification();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -109,7 +112,7 @@ public class XAlphaDealEnquirySteps {
 
                 //wait for success message to appear and disappear
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
-                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+                XAlphaDealEnquiryActions.closeSuccessNotification();
 
                 //make sure the first deal have the correct processing status
                 Assert.assertEquals(XAlphaDealEnquiryActions.getFirstDealProcessingStatus(), dataMap.get("ProcessingStatus"));
@@ -159,7 +162,7 @@ public class XAlphaDealEnquirySteps {
             try {
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
                 Assert.assertEquals(XAlphaDealEnquiryActions.getSuccessMsgDescription(), "Deal has updated");
-                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+                XAlphaDealEnquiryActions.closeSuccessNotification();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -182,7 +185,7 @@ public class XAlphaDealEnquirySteps {
             try {
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
                 Assert.assertEquals(XAlphaDealEnquiryActions.getSuccessMsgDescription(), "Deal update has to be approved by MO. A task has created.");
-                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+                XAlphaDealEnquiryActions.closeSuccessNotification();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -207,7 +210,7 @@ public class XAlphaDealEnquirySteps {
                 XAlphaDealEnquiryActions.inputDealRef(dealRefId);
                 XAlphaDealEnquiryActions.clickLoadDealBtn();
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
-                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+                XAlphaDealEnquiryActions.closeSuccessNotification();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -232,7 +235,7 @@ public class XAlphaDealEnquirySteps {
                 XAlphaDealEnquiryActions.inputDealRef(XAlphaDealInputSteps.dealRefId);
                 XAlphaDealEnquiryActions.clickLoadDealBtn();
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
-                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+                XAlphaDealEnquiryActions.closeSuccessNotification();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
