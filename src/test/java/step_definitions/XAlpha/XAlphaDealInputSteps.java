@@ -255,7 +255,7 @@ public class XAlphaDealInputSteps {
         } else {
             try {
                 XAlphaDealInputActions.waitForDealSubmittedMsg();
-                Assert.assertEquals(XAlphaDealInputActions.dealInput_SubmitMessage(), "FX Spot deal is settled, but base is not settled");
+                Assert.assertEquals(XAlphaDealInputActions.dealInput_SubmitMessage(), dataMap.get("ValidationMsg"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
