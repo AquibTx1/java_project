@@ -1,5 +1,9 @@
 package modules.NitroXActions;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.server.handler.FindElements;
+import org.testng.Assert;
+import org.testng.IDataProviderInterceptor;
 import pageFactory.NitroXPages.NitroXBotsPage;
 import org.openqa.selenium.By;
 import pageFactory.NitroXPages.NitroXHomePage;
@@ -7,6 +11,7 @@ import utilities.KeywordUtil;
 import utilities.LogUtil;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static utilities.KeywordUtil.*;
 
@@ -151,6 +156,13 @@ public class NitroXBotsAction {
         totalfiltered= Integer.parseInt(getTotal);
         return  totalfiltered;
     }
+    public static boolean validateBotDisplayed()
+    {
+        String getTotalbbots=getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
+        LogUtil.infoLog(thisClass, "Bots available=" + getTotalbbots);
+        System.out.println(getTotalbbots);
+        return true;
+    }
     public static int getServiceIDBefore()
     {
         String serviceid=getElementText(By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]"));
@@ -221,7 +233,7 @@ public class NitroXBotsAction {
             click(NitroXBotsPage.allbots,"Selected All Bots");
             scrollingToElementofAPage(NitroXBotsPage.stopbots,"Scrolled to Stop All Bots ");
             click(NitroXBotsPage.stopbots,"Stopped all Bots");
-            waitForVisible(NitroXBotsPage.nodata);
+            waitForVisible(NitroXBotsPage.nodatabotdetail);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
@@ -672,5 +684,82 @@ public class NitroXBotsAction {
         KeywordUtil.click(NitroXBotsPage.orderamount,"Ordered Amount Entered");
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.orderamount);
         KeywordUtil.inputText(NitroXBotsPage.orderamount, dataMap.get("New Order Amount"), "Amount vale entered ");
+    }
+
+    public static boolean validaterunningbot() {
+        String notifMsg;
+        notifMsg = getElementText(NitroXBotsPage.botid);
+        LogUtil.infoLog(thisClass, "Running bots id is=" + notifMsg);
+        return true;
+    }
+
+    public static boolean getAllBots()
+    {
+        List<WebElement> all_bots= getDriver().findElements(By.xpath("//th[text()='Service ID']//following::tr/td[5]"));
+        boolean runningstatus=false;
+        for(WebElement e:all_bots)
+        {
+            String value=e.getText();
+            System.out.println(value);
+            if(value.contains("Running"))
+            {
+                runningstatus=true;
+                break;
+            }
+        }
+        Assert.assertTrue(runningstatus,"Running Bot is there in the list");
+        return true;
+    }
+    public static boolean validateEmptyList() {
+        String notifMsg;
+        notifMsg = getElementText(NitroXBotsPage.nodatabotdetail);
+        LogUtil.infoLog(thisClass, "Bot available=" + notifMsg);
+        return true;
+    }
+
+
+    public static void validateBots(HashMap<String, String> dataMap) throws Exception {
+
+        String value;
+        value = getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
+        if (value.equals("0"))
+        {
+            NitroXHome.selectBaseCurrency(dataMap);
+            NitroXHome.selectQuoteCurrency(dataMap);
+            scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+            NitroXBotsAction.clickStart();
+            NitroXBotsAction.waitforBotWindow();
+            NitroXBotsAction.inputService(dataMap.get("Service"));
+            NitroXBotsAction.inputMethod(dataMap.get("Method"));
+            NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
+            waitForVisible(NitroXBotsPage.orderdirection);
+            NitroXBotsAction.clickSubmit();
+            delay(15000);
+            NitroXBotsAction.selecttotalBots();
+        }
+        else
+        {
+            NitroXBotsAction.selecttotalBots();
+        }
+        }
+
+    public static void CheckBotStatus() {
+        try {
+            String value;
+            value = getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
+            if (value.equals("0")) {
+                NitroXBotsAction.selecttotalBots();
+            } else {
+                NitroXBotsAction.stopAllBots();
+                NitroXBotsAction.closeBot();
+                NitroXBotsAction.refreshPage();
+                NitroXBotsAction.selecttotalBots();
+            }
+        }
+        catch (Throwable e)
+        {
+            e.printStackTrace();
+        }
+
     }
 }

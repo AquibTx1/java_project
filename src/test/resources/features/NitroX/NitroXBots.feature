@@ -335,6 +335,28 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_072 |
 
   @NitroXBot
+  Scenario Outline: <TestCaseID>_Count list of Running Bots
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode,Trading Account
+    And Check if No Current running Bot
+    Then Verify the list of running bots is displayed
+
+    Examples:
+      | SheetName   |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_020 |
+
+  @NitroXBot21
+  Scenario Outline: <TestCaseID>_No Bot in List
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode,Trading Account
+    And Validate the Bots
+    Then Verify the bot list is empty
+
+    Examples:
+      | SheetName   |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_021 |
+
+  @NitroXBot
   Scenario Outline: <TestCaseID>_Start New Pair_Trading BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency

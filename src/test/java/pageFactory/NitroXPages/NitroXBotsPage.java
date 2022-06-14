@@ -63,6 +63,9 @@ public class NitroXBotsPage {
     public static By stopbots=By.xpath("//span[text()='Stop all']");
 
     public static By nodata=By.xpath("//div[text()='No Data']");
+
+
+    public static By nodatabotdetail=By.xpath("//th[text()='Service ID']/following::div[text()='No Data']");
     public static By progress=By.xpath("//th[text()='Service ID']//following::tr[1]/td[6]");
     public static By starttime=By.xpath("//th[text()='Service ID']//following::tr[1]/td[7]");
 
