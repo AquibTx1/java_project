@@ -1366,6 +1366,7 @@ public class NitroXBotsSteps {
                 waitForVisible(NitroXBotsPage.totalfilered);
                 NitroXBotsAction.selecttotalBots();
                 NitroXBotsAction.sortStartTime();
+                delay(15000);
                 NitroXBotsAction.selectLatestBotName();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1780,6 +1781,27 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+
+    @And("Check the Current running Bot")
+    public void checkTheCurrentRunningBot() {
+
+            if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+                BaseStepDefinitions.skipThisStep();
+            } else {
+                try {
+                    NitroXBotsAction.countBots(dataMap);
+                } catch (Throwable e) {
+                    GlobalUtil.e = e;
+                    e.printStackTrace();
+                    GlobalUtil.errorMsg = e.getMessage();
+                    Assert.fail(e.getMessage());
+                }
+            }
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
 }
 
 
