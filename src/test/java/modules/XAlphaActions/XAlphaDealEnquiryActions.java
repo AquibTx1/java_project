@@ -142,7 +142,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         return FeeAmount_Execution;
     }
 
-    public static String getFirstValueDate_Execution() throws Exception {
+    public static String getFirstValueDate_Execution() {
         String ValueDate_Execution = getElementText(XAlphaDealEnquiryPage.dealEnquiry_firstValueDate);
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "ValueDate_Execution in the first row=" + ValueDate_Execution);
         return ValueDate_Execution;
@@ -270,10 +270,15 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         waitForInVisibile(XAlphaDealEnquiryPage.dealEnquiry_LoadDealSuccessMsg);
     }
 
-    public static String getSuccessMsgDescription() {
-        String notifMsg = getElementText(XAlphaDealEnquiryPage.dealEnquiry_LoadDealMsgDescp);
-        LogUtil.infoLog(thisClass, "getSuccessMsgDescription=" + notifMsg);
-        return getElementText(XAlphaDealEnquiryPage.dealEnquiry_LoadDealMsgDescp);
+    public static void waitForNotifDescription() {
+        waitForPresent(XAlphaDealEnquiryPage.dealEnquiry_NotifDescp);
+        LogUtil.infoLog(thisClass, "Notification description=" + getElementText(XAlphaDealEnquiryPage.dealEnquiry_NotifDescp));
+    }
+
+    public static String getNotifDescription() {
+        String notifDescp = getElementText(XAlphaDealEnquiryPage.dealEnquiry_NotifDescp);
+        LogUtil.infoLog(thisClass, "getNotifDescription=" + notifDescp);
+        return getElementText(XAlphaDealEnquiryPage.dealEnquiry_NotifDescp);
     }
 
     public static void waitForSuccessMsgToAppear_MO() {

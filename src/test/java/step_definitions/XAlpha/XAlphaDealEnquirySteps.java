@@ -160,8 +160,8 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
-                Assert.assertEquals(XAlphaDealEnquiryActions.getSuccessMsgDescription(), "Deal has updated");
+                XAlphaDealEnquiryActions.waitForNotifDescription();
+                Assert.assertEquals(XAlphaDealEnquiryActions.getNotifDescription(), "Deal has updated");
                 XAlphaDealEnquiryActions.closeSuccessNotification();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -184,7 +184,7 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
-                Assert.assertEquals(XAlphaDealEnquiryActions.getSuccessMsgDescription(), "Deal update has to be approved by MO. A task has created.");
+                Assert.assertEquals(XAlphaDealEnquiryActions.getNotifDescription(), "Deal update has to be approved by MO. A task has created.");
                 XAlphaDealEnquiryActions.closeSuccessNotification();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
