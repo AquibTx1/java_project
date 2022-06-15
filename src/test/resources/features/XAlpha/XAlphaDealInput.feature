@@ -13,6 +13,7 @@ Feature: Test deals creation feature
     And Click create deal button
     Then Verify the deal success message
     And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id from deal input
     Then Verify the deal is created
 
     Examples:

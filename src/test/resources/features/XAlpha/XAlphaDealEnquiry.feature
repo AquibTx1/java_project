@@ -28,7 +28,7 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_026 | Confirmed  | Cancelled |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_027 | Pending    | Cancelled |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_030 | Cancelled  | Pending   |
-      | XAlphaDeals | QA_TestCase_Auto_XAlpha_031 | Cancelled  | Confirmed   |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_031 | Cancelled  | Confirmed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_032 | Cancelled  | Processed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_033 | Cancelled  | Settled   |
 
