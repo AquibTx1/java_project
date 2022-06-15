@@ -242,7 +242,7 @@ public class NitroXBotsAction {
             try {
                 KeywordUtil.pageRefresh();
                 click(NitroXBotsPage.totalfilered,"Clicked Total Filtered");
-                delay(1000);
+                delay(2000);
                 NitroXBotsAction.sortStartTime();
                 //NitroXBotsAction.selectLatestBotName();
                 click(NitroXBotsPage.currentbot,"Selected Current Bot");
@@ -685,14 +685,12 @@ public class NitroXBotsAction {
         KeywordUtil.clearInputUsingKeys(NitroXBotsPage.orderamount);
         KeywordUtil.inputText(NitroXBotsPage.orderamount, dataMap.get("New Order Amount"), "Amount vale entered ");
     }
-
     public static boolean validaterunningbot() {
         String notifMsg;
         notifMsg = getElementText(NitroXBotsPage.botid);
         LogUtil.infoLog(thisClass, "Running bots id is=" + notifMsg);
         return true;
     }
-
     public static boolean getAllBots()
     {
         List<WebElement> all_bots= getDriver().findElements(By.xpath("//th[text()='Service ID']//following::tr/td[5]"));
@@ -716,56 +714,58 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Bot available=" + notifMsg);
         return true;
     }
-
-
-    public static void validateBots(HashMap<String, String> dataMap) throws Exception {
-
-        String value;
-        value = getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
-        if (value.equals("0"))
-        {
-            NitroXHome.selectBaseCurrency(dataMap);
-            NitroXHome.selectQuoteCurrency(dataMap);
-            scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
-            NitroXBotsAction.clickStart();
-            NitroXBotsAction.waitforBotWindow();
-            NitroXBotsAction.inputService(dataMap.get("Service"));
-            NitroXBotsAction.inputMethod(dataMap.get("Method"));
-            NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
-            waitForVisible(NitroXBotsPage.orderdirection);
-            NitroXBotsAction.clickSubmit();
-            delay(15000);
-            NitroXBotsAction.selecttotalBots();
+    public static void validateBots(HashMap<String, String> dataMap)  {
+            try {
+                String value;
+                value = getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
+                if (value.equals("0")) {
+                    NitroXHome.selectBaseCurrency(dataMap);
+                    NitroXHome.selectQuoteCurrency(dataMap);
+                    scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+                    NitroXBotsAction.clickStart();
+                    NitroXBotsAction.waitforBotWindow();
+                    NitroXBotsAction.inputService(dataMap.get("Service"));
+                    NitroXBotsAction.inputMethod(dataMap.get("Method"));
+                    NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
+                    waitForVisible(NitroXBotsPage.orderdirection);
+                    NitroXBotsAction.clickSubmit();
+                    delay(15000);
+                    NitroXBotsAction.selecttotalBots();
+                } else {
+                    NitroXBotsAction.selecttotalBots();
+                }
+            }
+            catch (Throwable e)
+            {
+                e.printStackTrace();
+                e.getMessage();
+            }
         }
-        else
-        {
-            NitroXBotsAction.selecttotalBots();
-        }
-        }
 
-    public static void countBots(HashMap<String, String> dataMap) throws Exception {
-
-        String value;
-        value = getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
-        if (value.equals("0"))
-        {
-            scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
-            NitroXBotsAction.clickStart();
-            NitroXBotsAction.waitforBotWindow();
-            NitroXBotsAction.inputService(dataMap.get("Service"));
-            NitroXBotsAction.inputMethod(dataMap.get("Method"));
-            NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
-            waitForVisible(NitroXBotsPage.orderdirection);
-            NitroXBotsAction.clickSubmit();
-            delay(15000);
-            NitroXBotsAction.selecttotalBots();
+    public static void countBots(HashMap<String, String> dataMap)  {
+        try {
+            String value;
+            value = getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
+            if (value.equals("0")) {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+                NitroXBotsAction.clickStart();
+                NitroXBotsAction.waitforBotWindow();
+                NitroXBotsAction.inputService(dataMap.get("Service"));
+                NitroXBotsAction.inputMethod(dataMap.get("Method"));
+                NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
+                waitForVisible(NitroXBotsPage.orderdirection);
+                NitroXBotsAction.clickSubmit();
+                delay(15000);
+                NitroXBotsAction.selecttotalBots();
+            } else {
+                NitroXBotsAction.selecttotalBots();
+            }
         }
-        else
+        catch (Throwable e)
         {
-            NitroXBotsAction.selecttotalBots();
+            e.printStackTrace();
         }
     }
-
     public static void CheckBotStatus() {
         try {
             String value;
