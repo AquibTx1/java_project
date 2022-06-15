@@ -96,4 +96,9 @@ public class HTMLReportUtil {
 		return html;
 	}
 
+	public static String infoStringGreyColor(String stepName) {
+		html = "<span style='color:#8c8c8c'><b>" + stepName + "" + "</b></span>";
+		return html;
+	}
+
 }

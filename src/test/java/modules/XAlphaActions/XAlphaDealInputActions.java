@@ -1,11 +1,12 @@
 package modules.XAlphaActions;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
 import pageFactory.XAlphaPages.XAlphaDealInputPage;
+import step_definitions.RunCukesTest;
+import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
-
-import java.util.HashMap;
 
 public class XAlphaDealInputActions extends KeywordUtil {
 
@@ -243,6 +244,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
         String msg = getElementText(XAlphaDealInputPage.dealInput_validationMsg);
         String[] splittedMsg = msg.split(" ");
         LogUtil.infoLog(thisClass, "Deal ref id in notification message=" + splittedMsg[3]);
+        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Deal ref id in notification message="+splittedMsg[3]));
         return splittedMsg[3];
     }
 

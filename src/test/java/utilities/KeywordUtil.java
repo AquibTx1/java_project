@@ -191,7 +191,7 @@ public class KeywordUtil extends GlobalUtil {
         try {
             KeywordUtil.lastAction = "Navigate to: " + url;
             LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
-            RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.passStringGreenColor("Application URL=" + url));
+            RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Application URL=" + url));
             getDriver().get(url);
             String Pagetitle = getDriver().getTitle();
             LogUtil.infoLog(KeywordUtil.class, Pagetitle);
