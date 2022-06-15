@@ -39,8 +39,24 @@ Feature: Test deals creation feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_007 | Buy       | Settled   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_008 | Buy       | Cancelled |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_011 | Sell      | Processed |
-      | XAlphaDeals | QA_TestCase_Auto_XAlpha_012 | Sell      | Settled |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_012 | Sell      | Settled   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_013 | Sell      | Cancelled |
+
+  @XAlphaDealInput
+  Scenario Outline: "<TestCaseID>"_Not Able to Create Execution Deal via Deal Input Page with "<Status>" Status
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal input tab
+    And Choose Execution deal tab
+    And Provide execution deal input details
+    And Click create deal button
+    Then Verify settled deal is not created
+
+    Examples:
+      | SheetName     | TestCaseID                  | Status    |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_040 | Processed |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_041 | Settled   |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_042 | Cancelled |
 
   @XAlphaDealInput
   Scenario Outline: "<TestCaseID>" Able to Create Execution Deal via Deal Input Page with "<Status>" Status
