@@ -40,7 +40,7 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.pauseAllBots();
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to Total Bot Bot Filtered");
-                totalbotbefore = NitroXBotsAction.getTotalFilteredBots();
+                totalbotbefore = NitroXBotsAction.getTotalFilteredBots();//to be Used later
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -113,6 +113,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+
                 NitroXBotsAction.inputOrderAmount(dataMap.get("Order Amount"));
                 // NitroXBotsAction.inputTrigerCondtion();
                 NitroXBotsAction.clickSubmit();
@@ -198,10 +199,10 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
-                delay(20000);
+                delay(10000);
                 Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Order Direction"));
                 Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getPrice());
                 NitroXBotsAction.stopCurrentBot();
@@ -304,7 +305,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
                 delay(20000);
@@ -406,7 +407,6 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.inputTrigerCondtion();
                 NitroXBotsAction.clickSubmit();
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -426,7 +426,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(30000);
+                delay(20000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots() - 1, totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -491,7 +491,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
                 delay(20000);
@@ -517,7 +517,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
                 NitroXBotsAction.inputTotalAmount(dataMap.get("TotalAmount"));
                 NitroXBotsAction.selectSide(dataMap);
                 NitroXBotsAction.inputMinPriceforSniper(dataMap);
@@ -541,7 +540,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
                 delay(20000);
@@ -639,7 +638,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.sortStartTime();
                 NitroXBotsAction.selectLatestBotName();
                 NitroXBotsAction.validateStatus();
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
 
             } catch (Throwable e) {
@@ -668,7 +667,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.selectConfig();
                 Assert.assertEquals(NitroXBotsAction.getDealRef(), NitroXBotsAction.dealref);
                 Assert.assertEquals(NitroXBotsAction.getQuantity(), dataMap.get("Quantity"));
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.stopCurrentBot();
             } catch (Throwable e) {
@@ -841,7 +840,7 @@ public class NitroXBotsSteps {
                 delay(2000);
                 //botdetailquantity=NitroXBotsAction.getBotDetailQuantity();
                 //Assert.assertEquals(botdetailquantity,dataMap.get("Quantity"));
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
 
             } catch (Throwable e) {
@@ -930,7 +929,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 scrollingToElementofAPage(NitroXBotsPage.DealtOrderTab, "Scrolled to Recent Orders");
                 NitroXBotsAction.clickDealtOrdersTab();
@@ -982,7 +981,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
                 delay(10000);
@@ -1007,7 +1006,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
                 delay(10000);
@@ -1293,7 +1292,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.sortStartTime();
                 NitroXBotsAction.selectLatestBotName();
                 NitroXBotsAction.validateLegPairTradingStatus();
-                NitroXBotsAction.CloseConfigTab();
+                NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
