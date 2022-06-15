@@ -16,7 +16,7 @@ Feature: Test Bots features on NitroX HomePage
     Then Verify new Bot in detail and config
     Then Verify the Buy Order in Dealt Order
     Examples:
-       | SheetName   |  TestCaseID                  |
+       | SheetName   |  TestCaseID                 |
        | NitroXBots  | QA_TestCase_Auto_NitroX_024 |
 
   @NitroXBot
@@ -166,7 +166,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID               |
       | NitroXBots  | QA_TestCase_Auto_NitroX_060 |
 
-  @NitroXBot61
+  @NitroXBot
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
@@ -181,8 +181,6 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName  |  TestCaseID               |
       | NitroXBots  | QA_TestCase_Auto_NitroX_061 |
-
-
   @NitroXBot
   Scenario Outline: <TestCaseID>_Stop Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data

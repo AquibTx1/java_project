@@ -208,7 +208,7 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Trigger value is" + tvalue);
         return tvalue;
     }
-    public static void CloseConfigTab()
+    public static void CloseConfig()
     {
         KeywordUtil.click(NitroXBotsPage.closeconfigbtn,  " Closed Clicked");
         LogUtil.infoLog(thisClass, "Closed  the config Tab");
@@ -635,11 +635,11 @@ public class NitroXBotsAction {
     }
 
     public static void pauseAllBots() throws InterruptedException {
-        waitForVisible(By.xpath("//span[@title='More actions...']"));
-        hoverOnElement(By.xpath("//span[@title='More actions...']"));
-        delay(1000);
-        hoverOnElement(By.xpath("//span[text()='Pause all running bots']"));
-        click(By.xpath("//span[text()='Pause all running bots']"),"Bots Paused");
+        waitForVisible(NitroXBotsPage.moreactions);
+        hoverOnElement(NitroXBotsPage.moreactions);
+        waitForVisible(NitroXBotsPage.clickhoverbtn);
+        hoverOnElement(NitroXBotsPage.clickhoverbtn);
+        click(NitroXBotsPage.clickhoverbtn,"ALl Bots are paused");
     }
 
     public static void selectLatestBot() {click(NitroXBotsPage.currentbot,"Current Bot Selected");
