@@ -336,10 +336,20 @@ public class NitroXBotsAction {
     public static String getAmountfromBotDetailSnipper()
     {
         dealtamount=getElementText(NitroXBotsPage.botdetail_snipper);
-        LogUtil.infoLog(thisClass, "Total Amount in Bot Detail : " + dealtamount);
+        LogUtil.infoLog(thisClass, "Dealt Amount in Bot Detail : " + dealtamount);
         return dealtamount;
 
     }
+    public static String getTotalAmountfromBotDetailSnipper()
+    {
+        String totalamount=getElementText(NitroXBotsPage.totalamount_botdetail);
+        LogUtil.infoLog(thisClass, "Total Amount in Bot Detail : " + totalamount);
+        return totalamount;
+
+    }
+
+
+
     public static void inputMinPriceforSniper(HashMap<String,String>dataMap) throws InterruptedException {
 
         KeywordUtil.click(NitroXBotsPage.minprice_sniper,"Min Price  Values Entered");
@@ -776,6 +786,8 @@ public class NitroXBotsAction {
                 NitroXBotsAction.stopAllBots();
                 NitroXBotsAction.closeBot();
                 NitroXBotsAction.refreshPage();
+                //NitroXHome.waitForNotifMsg();
+                //waitForInVisibile(NitroXBotsPage.orderbooklistener);
                 NitroXBotsAction.selecttotalBots();
             }
         }

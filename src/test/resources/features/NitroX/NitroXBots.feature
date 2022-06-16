@@ -215,7 +215,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID               |
       | NitroXBots  | QA_TestCase_Auto_NitroX_060 |
 
-  @NitroXBot61
+  @NitroXBot
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
@@ -264,6 +264,25 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_063 |
+
+  @NitroXBot
+  Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Verify total Bots Before staring the Buy execution
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Select Buy Order and Select the MinTime and MaxTime Break
+    And Input the Time, Quantity and Submit the Order
+    Then Verify Bot Count in Total Filtered
+    And Pause the Bot
+    And Input any field with new value and again submit
+    Then Verify the Bot is updated
+    Then Verify the Config Tab for modified field
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_064 |
+
   @NitroXBot
   Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT for SpotMode Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
@@ -281,6 +300,25 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName  |  TestCaseID               |
       | NitroXBots  | QA_TestCase_Auto_NitroX_065 |
+
+  @NitroXBot
+  Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT for SpotMode Buy Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Verify total Bots before starting the Sniper Bot execution
+    And Click Start Bot and select the Service,Method and Input Bot Quantity
+    And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
+    And submit the order
+    Then Verify Bot Count in Total Filtered
+    And Pause the Bot
+    And Input any field with new value and again submit for Sniper Bot
+    Then Verify the Bot is updated
+    Then Verfiy fields are updated in BotDetail
+
+    Examples:
+      | SheetName  |  TestCaseID               |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_066 |
+
   @NitroXBot
   Scenario Outline: <TestCaseID>_Edit PairTrading BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
@@ -368,6 +406,25 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_072 |
 
   @NitroXBot
+  Scenario Outline: <TestCaseID>_Pause Existing Running Execution_Bot for Buy Order-SpotMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode,Trading Account
+    And Validate the Bots
+    And Close the Detailed Bot
+    And Input Base and Quote Currency
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Select Buy Order and Select the MinTime and MaxTime Break
+    And Input the Time, Quantity and Submit the Order
+    And Choose Clear the Base and Quote
+    And Click Total Filtered Bots and pause the Bot
+    Then Verify current running Bot is paused
+
+    Examples:
+      | SheetName   |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_090 |
+
+
+  @NitroXBot
   Scenario Outline: <TestCaseID>_Count list of Running Bots
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -378,7 +435,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_020 |
 
-  @NitroXBot
+  @NitroXBot21
   Scenario Outline: <TestCaseID>_No Bot in List
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account

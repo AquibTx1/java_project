@@ -1,5 +1,6 @@
 package modules.NitroXActions;
 
+import pageFactory.NitroXPages.NitroXBotsPage;
 import pageFactory.NitroXPages.NitroXHomePage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -60,6 +61,19 @@ public class NitroXHome {
         KeywordUtil.inputText(NitroXHomePage.Basecurrency, dataMap.get("Base"), dataMap.get("Base") + " : Base Currency");
         delay(3000);
     }
+
+    public static void clearBaseCurrency() throws Exception {
+
+        click(NitroXHomePage.Basecurrency, "Click Base Currency");
+        KeywordUtil.clearInputUsingKeys(NitroXHomePage.Basecurrency);
+    }
+
+    public static void clearQuoteCurrency() throws Exception {
+
+        click(NitroXHomePage.Quotecurrency, "Click Quote Currency");
+        KeywordUtil.clearInputUsingKeys(NitroXHomePage.Quotecurrency);
+    }
+
 
     public static void selectQuoteCurrency(HashMap<String, String> dataMap) throws Exception {
         click(NitroXHomePage.Quotecurrency, "Click Quote Currency");

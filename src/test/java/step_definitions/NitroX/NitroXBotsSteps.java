@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import modules.NitroXActions.NitroXBotsAction;
 import org.testng.Assert;
+import pageFactory.NitroXPages.NitroXHomePage;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
 
@@ -117,6 +118,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.inputOrderAmount(dataMap.get("Order Amount"));
                 // NitroXBotsAction.inputTrigerCondtion();
                 NitroXBotsAction.clickSubmit();
+                delay(10000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1099,8 +1101,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.refreshPage();
-                delay(2000);
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
                 NitroXBotsAction.sortStartTime();
@@ -1126,7 +1126,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be resumed."));
                 NitroXBotsAction.stopCurrentBot();
@@ -1667,7 +1666,6 @@ public class NitroXBotsSteps {
             try {
                 waitForVisible(NitroXBotsPage.nodatabotdetail);
                 Assert.assertTrue(NitroXBotsAction.validateEmptyList());
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1812,8 +1810,127 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.pauseCurrentBot();
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().startsWith("1 bots have been queued to be paused."));
+                NitroXHome.waitForNotifMsg();
+                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
                 NitroXBotsAction.restartCurrentBot();
                 waitForVisible(NitroXBotsPage.persist);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Pause the Bot")
+    public void pauseTheBot() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+                NitroXBotsAction.selecttotalBots();
+                NitroXBotsAction.sortStartTime();
+                delay(2000);
+                NitroXBotsAction.selectLatestBot();
+                NitroXBotsAction.pauseCurrentBot();
+                NitroXHome.waitForNotifMsg();
+                Assert.assertTrue(NitroXHome.getNotifMsg().startsWith("1 bots have been queued to be paused."));
+                waitForInVisibile(NitroXHomePage.bottomRightNotifDesc);
+                NitroXBotsAction.editLatestBot();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @Then("Verfiy fields are updated in BotDetail")
+    public void verfiyFieldsAreUpdated() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(NitroXBotsAction.getTotalAmountfromBotDetailSnipper(), dataMap.get("S_UpdatedTotalAmount"));
+                NitroXBotsAction.selectConfig();
+                Assert.assertEquals(NitroXBotsAction.getBotDetailSide(),dataMap.get("Side"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+
+    }
+
+    @And("Close the Detailed Bot")
+    public void closeTheDetailedBot() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.closeBot();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @And("Input Base and Quote Currency")
+    public void inputBaseAndQuoteCurrency()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(NitroXHomePage.Basecurrency);
+                NitroXHome.selectBaseCurrency(dataMap);
+                NitroXHome.selectQuoteCurrency(dataMap);
+                NitroXHome.waitForLiveChart();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Choose Clear the Base and Quote")
+    public void chooseClearTheBaseAndQuote()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.clearBaseCurrency();
+                NitroXHome.clearQuoteCurrency();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

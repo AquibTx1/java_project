@@ -111,6 +111,8 @@ public class NitroXBotsPage {
     public static By totalamount=By.id("bot_config_form_config_totalAmount");
 
     public static By botdetail_snipper=By.xpath("//*[text()='dealt']/following::td[1]/span");
+
+    public static By totalamount_botdetail=By.xpath("//*[text()='total']/following::td[1]/span");
     public static By side=By.id("bot_config_form_config_side");
     public static By minprice_sniper=By.id("bot_config_form_config_minPrice");
     public static By maxprice_sniper=By.id("bot_config_form_config_maxPrice");
@@ -155,7 +157,5 @@ public class NitroXBotsPage {
 
     public static By targetaccountposition= By.id("bot_config_form_config_target_account_position");
 
-
-
-
+    public static By orderbooklistener=By.xpath("//div[text()='Orderbook Listener Starting']");
 }
