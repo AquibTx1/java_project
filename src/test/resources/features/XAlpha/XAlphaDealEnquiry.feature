@@ -200,3 +200,24 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_060 | Cancelled  | Confirmed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_061 | Cancelled  | Processed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_062 | Cancelled  | Settled   |
+
+  @XAlphaDealEnquiry
+  Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing Execution Deal in Deal Inquiry
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal enquiry tab
+    And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Update execution deal details(StartAsset, StartAssetAmount, EndAsset, EndAssetAmount, FeeAsset, FeeProportion, FeeAmount, FeeAdjustment)
+    And Update execution deal details(CounterpartyName, PortfolioNumber, ValueDate)
+    And Click update deal button
+    Then Verify the deal updated success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id
+    Then Verify updated execution deal details(StartAsset, StartAssetAmount, EndAsset, EndAssetAmount, FeeAsset, FeeProportion, FeeAmount)
+    Then Verify updated execution deal details(CounterpartyName, PortfolioNumber, ValueDate)
+
+    Examples:
+      | SheetName     | TestCaseID                  | Status    |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_063 | Pending   |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_064 | Confirmed |
