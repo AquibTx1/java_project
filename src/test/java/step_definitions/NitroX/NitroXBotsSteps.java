@@ -1026,7 +1026,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
-
     @And("Click Total Filtered Bots and pause the Bot")
     public void clickTotalFilteredBotsPauseBots() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
