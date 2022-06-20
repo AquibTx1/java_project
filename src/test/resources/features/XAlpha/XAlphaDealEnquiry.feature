@@ -200,3 +200,57 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_060 | Cancelled  | Confirmed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_061 | Cancelled  | Processed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_062 | Cancelled  | Settled   |
+
+  @XAlphaDealEnquiry
+  Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing Execution Deal in Deal Inquiry
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal enquiry tab
+    And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Update execution deal details(StartAsset, StartAssetAmount, EndAsset, EndAssetAmount, FeeAsset, FeeProportion, FeeAmount, FeeAdjustment)
+    And Update execution deal details(CounterpartyName, PortfolioNumber, ValueDate)
+    And Click update deal button
+    Then Verify the deal updated success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id
+    Then Verify updated execution deal details(StartAsset, StartAssetAmount, EndAsset, EndAssetAmount, FeeAsset, FeeProportion, FeeAmount)
+    Then Verify updated execution deal details(CounterpartyName, PortfolioNumber, ValueDate)
+
+    Examples:
+      | SheetName     | TestCaseID                  | Status    |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_063 | Pending   |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_064 | Confirmed |
+
+  @XAlphaDealEnquiry
+  Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing Execution Deal in Deal Inquiry
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal enquiry tab
+    And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Update execution deal details(StartAsset, StartAssetAmount, EndAsset, EndAssetAmount, FeeAsset, FeeProportion, FeeAmount, FeeAdjustment)
+    And Update execution deal details(CounterpartyName, PortfolioNumber, ValueDate)
+    And Click update deal button
+    Then Verify the deal forwarded to MO for approval
+    #login with checker user and approve the deal processing status
+    Given Read "XAlpha" and "XAlphaLogin" and "<loginCredentials>" from test data
+    And Logout from XAlpha
+    And Input XAlpha Username and Password
+    And Click XAlpha Login Button
+    And Verify User is Able to Login to XAlpha Successfully
+    And Navigate to deal processing tab
+    And Search for the deal to approve
+    And Approve the deal
+    And Logout from XAlpha
+    #login again with system user and verify the deal processing status
+    Given Login to XAlpha with valid login credentials
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id
+    Then Verify updated execution deal details(StartAsset, StartAssetAmount, EndAsset, EndAssetAmount, FeeAsset, FeeProportion, FeeAmount)
+    Then Verify updated execution deal details(CounterpartyName, PortfolioNumber, ValueDate)
+
+    Examples:
+      | SheetName     | TestCaseID                  | loginCredentials  | Status    |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_065 | MO_CheckerAccount | Processed |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_066 | MO_CheckerAccount | Settled   |

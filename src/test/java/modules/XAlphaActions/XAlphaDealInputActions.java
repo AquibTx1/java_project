@@ -135,7 +135,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static String get_dealInput_FeeAmount() throws InterruptedException {
-        delay(1000);
+        delay(1200);
         String feeAmount = getElementValueWithVisibility(XAlphaDealInputPage.dealInput_FeeAmount);
         LogUtil.infoLog(XAlphaDealInputActions.class, "Fee Amount=" + feeAmount);
         return feeAmount;
@@ -215,9 +215,12 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     //execution deal > FeeProportion
-    public static void dealInput_FeeProportion(String FeeProportion) {
-        clearInputValue(XAlphaDealInputPage.dealInput_FeeProportion);
-        inputText(XAlphaDealInputPage.dealInput_FeeProportion, FeeProportion, "Deal input FeeProportion=" + FeeProportion);
+    public static void dealInput_FeeProportion(String FeeProportion) throws InterruptedException {
+        clearInputUsingKeys(XAlphaDealInputPage.dealInput_FeeProportion);
+        clearInputUsingKeys(XAlphaDealInputPage.dealInput_FeeProportion); //intentional
+        pressBackSpace(XAlphaDealInputPage.dealInput_FeeProportion); //intentional
+        inputTextByCharacter(XAlphaDealInputPage.dealInput_FeeProportion, FeeProportion, "Deal input FeeProportion=" + FeeProportion);
+        pressTabKey(XAlphaDealInputPage.dealInput_FeeProportion);
     }
 
     //execution deal > FeeAdjustment

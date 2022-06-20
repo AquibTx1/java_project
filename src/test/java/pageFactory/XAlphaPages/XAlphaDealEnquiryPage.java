@@ -7,7 +7,7 @@ public class XAlphaDealEnquiryPage {
     //deal Enquiry
     public static By dealEnquiryTab = By.linkText("Deal Enquiry");
     public static By dealEnquiry_navbar = By.linkText("deals");
-    public static By dealEnquiry_loading= By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
+    public static By dealEnquiry_loading = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 
     //first row details
     public static By dealEnquiry_firstExpandDeal = By.xpath("//button[@aria-label='Expand row']");
@@ -28,7 +28,7 @@ public class XAlphaDealEnquiryPage {
     //execution deal
     public static By dealEnquiry_firstStartAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[1]/div[3]");
     public static By dealEnquiry_firstStartAssetAmount = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[1]/div[2]/span");
-    public static By dealEnquiry_firstEndAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[3]/div[3]");
+    public static By dealEnquiry_firstEndAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[2]/div[3]");
     public static By dealEnquiry_firstEndAssetAmount = By.xpath("//div[text()='End: ']/following-sibling::div/span");
     public static By dealEnquiry_firstFeeAsset_Execution = By.xpath("//div[text()='Fee: ']/following-sibling::div[2]");
     public static By dealEnquiry_firstFeeProportion = By.xpath("//div[text()='Fee Proportion: ']/following-sibling::div/span");

@@ -9,13 +9,14 @@ import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
 import utilities.KeywordUtil;
 
+import java.text.ParseException;
 import java.util.HashMap;
 
 public class XAlphaDealEnquirySteps {
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
 
-    public static String dealRefId;
+    public static String dealRefId, dealInput_FeeAmount_autoPopulated;
 
     public XAlphaDealEnquirySteps() {
         //constructor of the class to load datamap from BaseStepDefinitions
@@ -387,7 +388,7 @@ public class XAlphaDealEnquirySteps {
                 String baseAssetAmount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("BaseAssetAmount_updated"));
                 String baseAsset_updated = dataMap.get("BaseAsset_updated").split(" | ")[0].trim();
                 String quoteAsset_updated = dataMap.get("QuoteAsset_updated").split(" | ")[0].trim();
-                String unitPrice_updated = KeywordUtil.formatDecimalToStr(dataMap.get("UnitPrice_updated")); //not working
+                String unitPrice_updated = KeywordUtil.formatDecimalToStr(dataMap.get("UnitPrice_updated"));
                 String feeAsset_updated = dataMap.get("FeeAsset_updated").split(" | ")[0].trim();
                 String feeAmount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("FeeAmount_updated"));
 
@@ -541,6 +542,138 @@ public class XAlphaDealEnquirySteps {
                 String actualDate = XAlphaDealEnquiryActions.getFirstValueDate_Execution();
                 String expectedDate = GlobalUtil.getDateTime_ddMMMyyyy(dataMap.get("ValueDate"));
                 Assert.assertEquals(actualDate, expectedDate);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Update execution deal details\\(StartAsset, StartAssetAmount, EndAsset, EndAssetAmount, FeeAsset, FeeProportion, FeeAmount, FeeAdjustment)")
+    public void updateExecutionDealDetailsStartAssetStartAssetAmountEndAssetEndAssetAmountFeeAssetFeeProportionFeeAmountFeeAdjustment() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.dealInput_StartAsset(dataMap.get("StartAsset_updated"));
+                XAlphaDealInputActions.dealInput_StartAssetAmount(dataMap.get("StartAssetAmount_updated"));
+                XAlphaDealInputActions.dealInput_EndAsset(dataMap.get("EndAsset_updated"));
+                XAlphaDealInputActions.dealInput_EndAssetAmount(dataMap.get("EndAssetAmount_updated"));
+                XAlphaDealInputActions.dealInput_FeeAsset(dataMap.get("FeeAsset_updated"));
+                XAlphaDealInputActions.dealInput_FeeProportion(dataMap.get("FeeProportion_updated"));
+                dealInput_FeeAmount_autoPopulated = XAlphaDealInputActions.get_dealInput_FeeAmount(); //get automated FeeAmount for later use
+                XAlphaDealInputActions.dealInput_FeeAdjustment(dataMap.get("FeeAdjustment_updated"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Update execution deal details\\(CounterpartyName, PortfolioNumber, ValueDate)")
+    public void updateExecutionDealDetailsCounterpartyNamePortfolioNumberValueDate() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName_updated"));
+                XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber_updated"));
+                XAlphaDealInputActions.dealInput_ValueDate(dataMap.get("ValueDate_updated"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify updated execution deal details\\(StartAsset, StartAssetAmount, EndAsset, EndAssetAmount, FeeAsset, FeeProportion, FeeAmount)")
+    public void verifyUpdatedExecutionDealDetailsStartAssetStartAssetAmountEndAssetEndAssetAmountFeeAssetFeeProportionFeeAmount() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //actual values in the first row
+                String startAsset_actual = XAlphaDealEnquiryActions.getFirstStartAsset();
+                String startAssetAmount_actual = XAlphaDealEnquiryActions.getFirstStartAssetAmount();
+                String endAsset_actual = XAlphaDealEnquiryActions.getFirstEndAsset();
+                String endAssetAmount_actual = XAlphaDealEnquiryActions.getFirstEndAssetAmount();
+                String feeAsset_actual = XAlphaDealEnquiryActions.getFirstFeeAsset_Execution();
+                String feeProportion_actual = XAlphaDealEnquiryActions.getFirstFeeProportion();
+                String feeAmount_actual = XAlphaDealEnquiryActions.getFirstFeeAmount_Execution();
+
+                //expected values along with data formatting as per requirement
+                String startAsset_expected = dataMap.get("StartAsset_updated").split(" | ")[0].trim();
+                String startAssetAmount_expected = KeywordUtil.formatDecimalToStr(dataMap.get("StartAssetAmount_updated"));
+                String endAsset_expected = dataMap.get("EndAsset_updated").split(" | ")[0].trim();
+                String endAssetAmount_expected = KeywordUtil.formatDecimalToStr(dataMap.get("EndAssetAmount_updated"));
+                String feeAsset_expected = dataMap.get("FeeAsset_updated").split(" | ")[0].trim();
+                String feeProportion_expected = KeywordUtil.formatDecimalToStr(dataMap.get("FeeProportion_updated"));
+                String feeAmount_expected = KeywordUtil.formatDecimalToStr(dealInput_FeeAmount_autoPopulated);
+
+                //match the values
+                Assert.assertEquals(startAsset_actual, startAsset_expected);
+                Assert.assertEquals(startAssetAmount_actual, startAssetAmount_expected);
+                Assert.assertEquals(endAsset_actual, endAsset_expected);
+                Assert.assertEquals(endAssetAmount_actual, endAssetAmount_expected);
+                Assert.assertEquals(feeAsset_actual, feeAsset_expected);
+                Assert.assertEquals(feeProportion_actual, feeProportion_expected + "%");
+                Assert.assertEquals(feeAmount_actual, feeAmount_expected);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify updated execution deal details\\(CounterpartyName, PortfolioNumber, ValueDate)")
+    public void verifyUpdatedExecutionDealDetailsCounterpartyNamePortfolioNumberValueDate() throws ParseException {
+
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //actual values in the first row
+                String counterpartyName = XAlphaDealEnquiryActions.getFirstCounterpartyName();
+                String portfolioNumber = XAlphaDealEnquiryActions.getFirstPortfolioNumber();
+                String valueDateActual = XAlphaDealEnquiryActions.getFirstValueDate_Execution();
+
+                //do formatting of the values as per requirement
+                String counterpartyName_updated = dataMap.get("CounterpartyName_updated").split(" | ")[0].trim() + " " + dataMap.get("CounterpartyName_updated").split(" | ")[1].trim();
+                String portfolioNumber_updated = dataMap.get("PortfolioNumber_updated");
+                String valueDate_expected = GlobalUtil.getDateTime_ddMMMyyyy(dataMap.get("ValueDate_updated"));
+
+                //match the values
+                Assert.assertEquals(counterpartyName, counterpartyName_updated);
+                Assert.assertEquals(portfolioNumber, portfolioNumber_updated);
+                Assert.assertEquals(valueDateActual, valueDate_expected);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
