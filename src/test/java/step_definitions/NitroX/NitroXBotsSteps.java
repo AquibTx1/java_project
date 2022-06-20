@@ -1921,7 +1921,7 @@ public class NitroXBotsSteps {
         }
     }
 
-    @And("Choose Clear the Base and Quote")
+    @And("Clear the Base and Quote")
     public void chooseClearTheBaseAndQuote()
     {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
