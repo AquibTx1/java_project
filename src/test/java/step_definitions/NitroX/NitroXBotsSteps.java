@@ -118,7 +118,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.inputOrderAmount(dataMap.get("Order Amount"));
                 // NitroXBotsAction.inputTrigerCondtion();
                 NitroXBotsAction.clickSubmit();
-                delay(10000);
+                delay(30000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -139,7 +139,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(20000);
+                delay(30000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots() - 1, totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -337,6 +337,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                delay(2000);
                 NitroXBotsAction.pauseAllBots();
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to Total Bot Filtered");
                 totalbotbefore = NitroXBotsAction.getTotalFilteredBots();
@@ -497,7 +498,8 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
                 delay(20000);
-                Assert.assertEquals(NitroXBotsAction.dealtamount, dataMap.get("TotalAmount"));
+               // Assert.assertEquals(NitroXBotsAction.dealtamount, dataMap.get("TotalAmount"));
+                Assert.assertEquals(NitroXBotsAction.getSide(),dataMap.get("Side"));
                 NitroXBotsAction.stopCurrentBot();
 
             } catch (Throwable e) {
@@ -546,7 +548,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
                 delay(20000);
-                Assert.assertEquals(NitroXBotsAction.dealtamount, dataMap.get("TotalAmount"));
+                Assert.assertEquals(NitroXBotsAction.getSide(),dataMap.get("Side"));
                 NitroXBotsAction.stopCurrentBot();
 
             } catch (Throwable e) {
@@ -811,7 +813,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(15000);
+                delay(35000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots() - 1, totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1059,6 +1061,7 @@ public class NitroXBotsSteps {
             try {
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be paused."));
+                NitroXBotsAction.closeBot();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1155,6 +1158,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.selectLatestBot();
                 //serviceIdbefore=NitroXBotsAction.getServiceIDBefore();
                 NitroXBotsAction.restartCurrentBot();
+
                 waitForVisible(NitroXBotsPage.persist);
                 //delay(10000);
                 //int serviceidafter=NitroXBotsAction.getServiceIDAfter();
@@ -1527,7 +1531,7 @@ public class NitroXBotsSteps {
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().startsWith("1 Bot(s) were suceessfully started."));
                 NitroXBotsAction.refreshPage();
-                NitroXHome.waitForLiveChart();
+                delay(2000);
                 NitroXBotsAction.selecttotalBots();
                 NitroXBotsAction.sortStartTime();
                 delay(10000);
@@ -1908,7 +1912,7 @@ public class NitroXBotsSteps {
                 waitForVisible(NitroXHomePage.Basecurrency);
                 NitroXHome.selectBaseCurrency(dataMap);
                 NitroXHome.selectQuoteCurrency(dataMap);
-                NitroXHome.waitForLiveChart();
+               // NitroXHome.waitForLiveChart();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

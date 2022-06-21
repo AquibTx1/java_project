@@ -80,6 +80,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID               |
       | NitroXBots  | QA_TestCase_Auto_NitroX_028 |
       | NitroXBots  | QA_TestCase_Auto_NitroX_029 |
+
 #  @NitroXBotFutureMode
 #  Scenario Outline: <TestCaseID>_Start Execution_Bot for Buy Order-Future Mode
 #    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
@@ -477,6 +478,23 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_093 |
 
+  @NitroXBot
+  Scenario Outline: <TestCaseID>_Restart Existing running Execution_Bot for Buy Order-SpotMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode,Trading Account
+    And Validate the Bots
+    And Close the Detailed Bot
+    And Input Base and Quote Currency
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Select Buy Order and Select the MinTime and MaxTime Break
+    And Input the Time, Quantity and Submit the Order
+    And Clear the Base and Quote
+    And Click Total Filtered Bots and restart the Bot
+    And Click Persist Status No
+    Then Verify current running Bot is restarted
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_094 |
 
   @NitroXBot
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
@@ -494,8 +512,7 @@ Feature: Test Bots features on NitroX HomePage
     Then Verify current running Bot is restarted
     Examples:
       | SheetName  |  TestCaseID                  |
-      | NitroXBots  | QA_TestCase_Auto_NitroX_094 |
-
+      | NitroXBots  | QA_TestCase_Auto_NitroX_095 |
   @NitroXBot
   Scenario Outline: <TestCaseID>_Stop Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
@@ -534,7 +551,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_021 |
 
-  @NitroXBot20
+  @NitroXBot
   Scenario Outline: <TestCaseID>_Count list of Running Bots
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
