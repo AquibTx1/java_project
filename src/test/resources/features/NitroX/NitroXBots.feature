@@ -310,7 +310,7 @@ Feature: Test Bots features on NitroX HomePage
     And Pause the Bot
     And Input any field with new value and again submit for Sniper Bot
     Then Verify the Bot is updated
-    Then Verfiy fields are updated in BotDetail
+    Then Verify fields are updated in BotDetail
 
     Examples:
       | SheetName  |  TestCaseID               |
@@ -512,7 +512,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID               |
       | NitroXBots  | QA_TestCase_Auto_NitroX_096 |
 
-  @NitroXBot20
+  @NitroXBot
   Scenario Outline: <TestCaseID>_Count list of Running Bots
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -523,7 +523,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_020 |
 
-  @NitroXBot20
+  @NitroXBot
   Scenario Outline: <TestCaseID>_No Bot in List
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
