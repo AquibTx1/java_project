@@ -140,7 +140,7 @@ public class XAlphaDealEnquirySteps {
                 //update processing status
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new")); //intentional due to existing bug
-                XAlphaDealEnquiryActions.clickUpdateDealBtn();
+//                XAlphaDealEnquiryActions.clickUpdateDealBtn();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -685,5 +685,40 @@ public class XAlphaDealEnquirySteps {
                 BaseStepDefinitions.increaseCounter();
             }
         }
+    }
+
+    @And("Apply value date filter")
+    public void applyValueDateFilter() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //update processing status
+                XAlphaDealEnquiryActions.chooseFilter_ValueDate("Value Date");
+                XAlphaDealEnquiryActions.filter_StartDate(dataMap.get("StartDate"));
+                XAlphaDealEnquiryActions.filter_EndDate(dataMap.get("EndDate"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Clear value date")
+    public void clearValueDate() {
+        XAlphaDealInputActions.clearDealInput_ValueDate();
+    }
+
+    @Then("Verify empty value date")
+    public void verifyEmptyValueDate() {
+        String valueDate = XAlphaDealEnquiryActions.getFirstValueDateBlank();
+        Assert.assertTrue(valueDate.isEmpty());
     }
 }
