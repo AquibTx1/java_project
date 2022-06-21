@@ -11,6 +11,7 @@ Feature: Test deal enquiry feature
     And Load a deal wrt processing type and deal type
     And Open first deal in the row
     And Change processing status
+    And Click update deal button
     Then Verify the deal updated success message
     And Navigate to deal enquiry tab
     And Load a deal wrt deal reference id
@@ -40,6 +41,7 @@ Feature: Test deal enquiry feature
     And Load a deal wrt processing type and deal type
     And Open first deal in the row
     And Change processing status
+    And Click update deal button
     Then Verify the deal forwarded to MO for approval
     #login with checker user and approve the deal processing status
     Given Read "XAlpha" and "XAlphaLogin" and "<loginCredentials>" from test data
@@ -152,6 +154,7 @@ Feature: Test deal enquiry feature
     And Load a deal wrt processing type and deal type
     And Open first deal in the row
     And Change processing status
+    And Click update deal button
     Then Verify the deal forwarded to MO for approval
     #login with checker user and approve the deal processing status
     Given Read "XAlpha" and "XAlphaLogin" and "<loginCredentials>" from test data
@@ -187,6 +190,7 @@ Feature: Test deal enquiry feature
     And Load a deal wrt processing type and deal type
     And Open first deal in the row
     And Change processing status
+    And Click update deal button
     Then Verify the deal updated success message
     And Navigate to deal enquiry tab
     And Load a deal wrt deal reference id
@@ -254,3 +258,24 @@ Feature: Test deal enquiry feature
       | SheetName     | TestCaseID                  | loginCredentials  | Status    |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_065 | MO_CheckerAccount | Processed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_066 | MO_CheckerAccount | Settled   |
+
+  @XAlphaDealEnquiry
+  Scenario Outline: "<TestCaseID>" Able to Edit Status while Value Date is not populated from "<FromStatus>" to "<ToStatus>" of an Existing Execution Deal in Deal Inquiry
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal enquiry tab
+    And Apply value date filter
+    And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Clear value date
+    And Change processing status
+    And Click update deal button
+    Then Verify the deal updated success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id
+    Then Verify the processing type
+    Then Verify empty value date
+
+    Examples:
+      | SheetName     | TestCaseID                  | FromStatus | ToStatus  |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_047 | Confirmed  | Processed |

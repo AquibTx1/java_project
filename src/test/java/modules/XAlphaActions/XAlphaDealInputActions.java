@@ -171,9 +171,13 @@ public class XAlphaDealInputActions extends KeywordUtil {
         click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + processingStatus + "']"), "processingStatus=" + processingStatus);
     }
 
+    public static void clearDealInput_ValueDate() {
+        click(XAlphaDealInputPage.dealInput_ValueDate, "Click value date picker"); waitForPresent(XAlphaDealInputPage.dealInput_ValueDateXbtn);
+        click(XAlphaDealInputPage.dealInput_ValueDateXbtn, "Clear value date");
+    }
+
     public static void dealInput_ValueDate(String ValueDate) throws InterruptedException {
-        click(XAlphaDealInputPage.dealInput_ValueDate, "");
-        clearInputUsingKeys(XAlphaDealInputPage.dealInput_ValueDate);
+        clearDealInput_ValueDate();
         inputText(XAlphaDealInputPage.dealInput_ValueDate, ValueDate, "Deal input ValueDate=" + ValueDate);
         delay(2000);
         waitForPresent(XAlphaDealInputPage.dealInput_ValueDateOkBtn);
@@ -247,7 +251,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
         String msg = getElementText(XAlphaDealInputPage.dealInput_validationMsg);
         String[] splittedMsg = msg.split(" ");
         LogUtil.infoLog(thisClass, "Deal ref id in notification message=" + splittedMsg[3]);
-        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Deal ref id in notification message="+splittedMsg[3]));
+        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Deal ref id in notification message=" + splittedMsg[3]));
         return splittedMsg[3];
     }
 
