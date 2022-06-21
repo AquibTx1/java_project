@@ -77,7 +77,6 @@ Feature: Test buys sell features
       | NitroXBuySell | QA_TestCase_Auto_NitroX_012 |
 
   @NitroXBuySell
-    @debug
   Scenario Outline: NitroXHome-013_Create an Open Order When Price is Less Than Market Price
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
