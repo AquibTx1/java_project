@@ -10,7 +10,7 @@ Feature: Test buys sell features
     And Create "<Number>" Sell Order With Selling Price > Bid Price
     Examples:
       | SheetName     | TestCaseID                  | Number |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_017 | 4      |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_017 | 2      |
 
   @CreateBidPrices
   Scenario Outline: Create Bid Prices
