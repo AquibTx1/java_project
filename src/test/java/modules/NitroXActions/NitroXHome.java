@@ -81,7 +81,7 @@ public class NitroXHome {
     }
 
     public static void waitForLiveChart() {
-        waitForVisible(NitroXHomePage.liveFrame);
+        waitForPresent(NitroXHomePage.liveFrame);
     }
 
     public String getBaseCurrency() {

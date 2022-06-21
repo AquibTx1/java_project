@@ -235,7 +235,7 @@ public class NitroXHomeSteps {
             NitroXHome.selectmode(dataMap);
             NitroXHome.inputTradingAccount(dataMap);
             enterTheBaseAndQuoteCurrency();
-            NitroXHome.waitForLiveChart();
+           //NitroXHome.waitForLiveChart();
         } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();

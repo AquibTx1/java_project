@@ -31,7 +31,7 @@ public class NitroXHomePage {
     public static By varifyaccount = By.xpath("(//div[@class='ant-select-selector'])[2]/child::span[2]");
 
     //live chart
-    public static By liveFrame = By.xpath("//div[@id='layout-size-sensor']");
+    public static By liveFrame = By.id("widget-container");
 
     //Balance
     public static By balance = By.xpath("(//*[@class='text-gray-800 text-xs'])[1]");

@@ -36,7 +36,6 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_firstFeeAdjustment = By.xpath(""); //not available at the moment on deal enquiry
     public static By dealEnquiry_firstValueDate = By.xpath("//tbody[@class='ant-table-tbody']/tr[2]/td[12]/span");
 
-
     //deal filters
     public static By dealEnquiry_processingStatusClick = By.xpath("//div[@ph_label='Processing Status']");
     public static By dealEnquiry_processingStatusInput = By.id("filter_form_processing_status");
@@ -56,6 +55,12 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_DealRefInput = By.id("filter_form_deal_ref");
     public static String dealEnquiry_DealRefInputSuggestion = "//div[@class='ant-select-item-option-content' and text()='%s']";
     public static By dealEnquiry_UpdateBtn = By.xpath("//button[@type='submit']/span[text()='Update']");
+    public static By dealEnquiry_dateFilter = By.id("filter_form_date_type");
+    public static String dealEnquiry_dateFilterOptions = "//div[@id='filter_form_date_type_list']/following-sibling::div//div[text()='%s']";
+    public static By dealEnquiry_StartDate = By.id("filter_form_start");
+    public static By dealEnquiry_EndDate = By.id("filter_form_end");
+
+
 
     //deal details
     public static By dealDetail_dealRef = By.xpath("//input[@placeholder='Deal Ref']");

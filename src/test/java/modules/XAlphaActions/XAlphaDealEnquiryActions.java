@@ -3,6 +3,7 @@ package modules.XAlphaActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
+import pageFactory.XAlphaPages.XAlphaDealInputPage;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
@@ -148,6 +149,13 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         return ValueDate_Execution;
     }
 
+    public static String getFirstValueDateBlank() {
+        String ValueDate_Execution = getElementTextWithFindElement(XAlphaDealEnquiryPage.dealEnquiry_firstValueDate);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "ValueDate_Execution in the first row=" + ValueDate_Execution);
+        return ValueDate_Execution;
+    }
+
+
     public static String getDealRefwrtQuoteAssetAmt(String QuotePrice) {
         QuotePrice = formatDecimalToStr(QuotePrice);
         String dealRef = KeywordUtil.getElementText(By.xpath("(//tbody[@class='ant-table-tbody']//tr/td[10]/div/div[6]/div[2]/span[text()='" + QuotePrice + "'])//ancestor::tr/td[4]"));
@@ -234,6 +242,35 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         inputText(XAlphaDealEnquiryPage.dealEnquiry_DealTypesInput, dealType, "input deal type=" + dealType);
         waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, dealType)));
         click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, dealType)), "Choose deal type from dropdown");
+    }
+
+    //choose date filter
+    public static void chooseFilter_ValueDate(String filterType) {
+        inputText(XAlphaDealEnquiryPage.dealEnquiry_dateFilter, filterType, "Choose " + filterType + " filter");
+        waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_dateFilterOptions, filterType)));
+        click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_dateFilterOptions, filterType)), "");
+    }
+
+    //input start date filter
+    public static void filter_StartDate(String date) throws InterruptedException {
+        click(XAlphaDealEnquiryPage.dealEnquiry_StartDate, "Click end date");
+        inputText(XAlphaDealEnquiryPage.dealEnquiry_StartDate, date, "Start date=" + date);
+        delay(1000);
+        waitForPresent(XAlphaDealInputPage.dealInput_ValueDateOkBtn);
+        click(XAlphaDealInputPage.dealInput_ValueDateOkBtn, "Click OK button on value date picker");
+        delay(1500);
+        pressTabKey(XAlphaDealEnquiryPage.dealEnquiry_StartDate);
+    }
+
+    //input end date filter
+    public static void filter_EndDate(String date) throws InterruptedException {
+        click(XAlphaDealEnquiryPage.dealEnquiry_EndDate, "Click end date");
+        inputText(XAlphaDealEnquiryPage.dealEnquiry_EndDate, date, "End date=" + date);
+        delay(1000);
+        waitForPresent(XAlphaDealInputPage.dealInput_ValueDateOkBtn2);
+        click(XAlphaDealInputPage.dealInput_ValueDateOkBtn2, "Click OK button on value date picker");
+        delay(1500);
+        pressTabKey(XAlphaDealEnquiryPage.dealEnquiry_EndDate);
     }
 
     public static void clickLoadDealBtn() {

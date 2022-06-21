@@ -304,7 +304,7 @@ public class NitroXBotsAction {
     }
     public static String getSide()
     {
-        String side=getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[02]"));
+        String side=getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[02]/span"));
         LogUtil.infoLog(thisClass, "Side is=" + side);
         return side;
     }
@@ -645,9 +645,9 @@ public class NitroXBotsAction {
     }
 
     public static void pauseAllBots() throws InterruptedException {
-        waitForVisible(NitroXBotsPage.moreactions);
+        delay(3000);
         hoverOnElement(NitroXBotsPage.moreactions);
-        waitForVisible(NitroXBotsPage.clickhoverbtn);
+        delay(3000);
         hoverOnElement(NitroXBotsPage.clickhoverbtn);
         click(NitroXBotsPage.clickhoverbtn,"ALl Bots are paused");
     }

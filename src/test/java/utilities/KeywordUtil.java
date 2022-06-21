@@ -548,6 +548,13 @@ public class KeywordUtil extends GlobalUtil {
         return elm.getText().trim();
     }
 
+    public static String getElementTextWithFindElement(By locator) {
+        KeywordUtil.lastAction = "Get Element text: " + locator.toString();
+        LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
+        WebElement elm = getDriver().findElement(locator);
+        return elm.getText();
+    }
+
     /**
      * Gets element Value.
      *

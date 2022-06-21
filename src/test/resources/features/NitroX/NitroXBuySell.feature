@@ -80,13 +80,13 @@ Feature: Test buys sell features
   Scenario Outline: NitroXHome-013_Create an Open Order When Price is Less Than Market Price
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    Given Create "<Number>" Sell Order With Selling Price > Bid Price
+    Given Create "1" Sell Order With Selling Price > Bid Price
     And Create A buy Order less than Market Price
     And Click Buy Button and Verify the Success Message
     Then Validate Order Moves to Open Orders
     Examples:
-      | SheetName     | TestCaseID                  | Number |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_013 | 1      |
+      | SheetName     | TestCaseID                  |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_013 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-014_Cancel An Open-Buy Order
@@ -104,25 +104,25 @@ Feature: Test buys sell features
   Scenario Outline: NitroXHome-015_Create A Dealt Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    Given Create "<Number>" Sell Order With Selling Price > Bid Price
+    Given Create "1" Sell Order With Selling Price > Bid Price
     And Create Buy Order Equal to Ask Price
     And Click Buy Button and Verify the Success Message
     Then Validate Order Moves to Dealt Orders
     Examples:
-      | SheetName     | TestCaseID                  | Number |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_015 | 1      |
+      | SheetName     | TestCaseID                  |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_015 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-015_01_Create A Dealt Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    Given Create "<Number>" Sell Order With Selling Price > Bid Price
+    Given Create "1" Sell Order With Selling Price > Bid Price
     And Create Buy Order Greater Than Ask Price
     And Click Buy Button and Verify the Success Message
     Then Validate Order Moves to Dealt Orders
     Examples:
-      | SheetName     | TestCaseID                     | Number |
-      | NitroXBuySell | QA_TestCase_Auto_NitroX_015_01 | 1      |
+      | SheetName     | TestCaseID                     |
+      | NitroXBuySell | QA_TestCase_Auto_NitroX_015_01 |
 
   @NitroXBuySell
   Scenario Outline: NitroXHome-017_Create Sell Order When Selling Price Greater Than Market Price
