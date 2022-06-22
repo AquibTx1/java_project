@@ -259,7 +259,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         waitForPresent(XAlphaDealInputPage.dealInput_ValueDateOkBtn);
         click(XAlphaDealInputPage.dealInput_ValueDateOkBtn, "Click OK button on value date picker");
         delay(1500);
-        pressTabKey(XAlphaDealEnquiryPage.dealEnquiry_StartDate);
+        clickBlankArea();
     }
 
     //input end date filter
@@ -270,7 +270,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         waitForPresent(XAlphaDealInputPage.dealInput_ValueDateOkBtn2);
         click(XAlphaDealInputPage.dealInput_ValueDateOkBtn2, "Click OK button on value date picker");
         delay(1500);
-        pressTabKey(XAlphaDealEnquiryPage.dealEnquiry_EndDate);
+        clickBlankArea();
     }
 
     public static void clickLoadDealBtn() {
