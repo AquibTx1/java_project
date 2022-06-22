@@ -100,7 +100,7 @@
 #    Examples:
 #      | SheetName     | TestCaseID                  |
 #      | NitroXBuySell | QA_TestCase_Auto_NitroX_040 |
-#
+##
 #  @NitroXBuySellFuture
 #  Scenario Outline: <TestCaseID>_Create A Deal Order Price -Future Mode
 #    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data

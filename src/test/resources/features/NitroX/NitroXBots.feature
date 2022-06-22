@@ -10,7 +10,8 @@ Feature: Test Bots features on NitroX HomePage
     And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
-    And Input the Time, Quantity and Submit the Order
+    And Input the Quantity
+    And submit the order
     Then Verify Bot Count in Total Filtered
     And Click total filtered bots and click the detail bot
     Then Verify new Bot in detail and config
@@ -18,6 +19,7 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
        | SheetName   |  TestCaseID                  |
        | NitroXBots  | QA_TestCase_Auto_NitroX_024 |
+
   @NitroXBot
   Scenario Outline: <TestCaseID>_Start Execution_Bot for Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
@@ -25,7 +27,8 @@ Feature: Test Bots features on NitroX HomePage
     And Verify total Bots Before starting Sell execution
     And Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Sell Order and Select the MinTime and MaxTime Break
-    And Input the Time, Quantity and Submit the Order
+    And Input the Quantity
+    And submit the order
     Then Verify Bot Count in Total Filtered
     And Click total filtered bots and click the detail bot
     Then Verify new Bot in detail and config
@@ -85,6 +88,7 @@ Feature: Test Bots features on NitroX HomePage
 #  Scenario Outline: <TestCaseID>_Start Execution_Bot for Buy Order-Future Mode
 #    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
 #    When Choose Mode, Trading Account and Instrument
+#    And Validate No previous position
 #    And Verify total Bots Before staring the Buy execution
 #    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
 #    And Select Buy Order and Select the MinTime and MaxTime Break
@@ -102,6 +106,7 @@ Feature: Test Bots features on NitroX HomePage
 #  Scenario Outline: <TestCaseID>_Start New SNIPER_BOT for FutureMode Buy Order
 #    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
 #    When Choose Mode, Trading Account and Instrument
+#    And Validate No previous position
 #    And Verify total Bots before starting the Sniper Bot execution
 #    And Click Start Bot and select the Service,Method and Input Bot Quantity
 #    And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
@@ -119,6 +124,7 @@ Feature: Test Bots features on NitroX HomePage
 #  Scenario Outline: <TestCaseID>_Start New SNIPER_BOT for FutureMode Buy Order
 #    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
 #    When Choose Mode, Trading Account and Instrument
+#    And Validate No previous position
 #    And Verify total Bots before starting the Sniper Bot execution
 #    And Click Start Bot and select the Service,Method and Input Bot Quantity
 #    And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
@@ -140,8 +146,6 @@ Feature: Test Bots features on NitroX HomePage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
-    Then Verify Bot Count in Total Filtered
-    Then Verify Bots in Total Filtered on HomePage
     And Click Total Filtered Bots and pause the Bot
     Then Verify current running Bot is paused
 
@@ -153,11 +157,9 @@ Feature: Test Bots features on NitroX HomePage
     Scenario Outline: <TestCaseID>_Resume Existing Execution_Bot for Buy Order-SpotMode
       Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
       When Choose Mode, Trading Account, Base and Quote Currency
-      And Verify total Bots Before staring the Buy execution
       And Click Start Bot ,Select the Service,Method and Input Bot Quantity
       And Select Buy Order and Select the MinTime and MaxTime Break
       And Input the Time, Quantity and Submit the Order
-      Then Verify Bot Count in Total Filtered
       And Click Total Filtered Bots and pause the Bot
       Then Verify current running Bot is paused
       And Click Total Filtered Bots and Resume the Bot
@@ -171,11 +173,9 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
-    Then Verify Bot Count in Total Filtered
     And Click Total Filtered Bots and restart the Bot
     And Click on Persist Yes
     Then Verify current running Bot is restarted
@@ -187,11 +187,9 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
-    Then Verify Bot Count in Total Filtered
     And Pause the Current running bot
     And Click on Persist Yes
     Then Verify current running Bot is restarted
@@ -203,11 +201,9 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
-    Then Verify Bot Count in Total Filtered
     And Click Total Filtered Bots and restart the Bot
     And Click Persist Status No
     Then Verify current running Bot is restarted
@@ -219,11 +215,9 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
-    Then Verify Bot Count in Total Filtered
     And Pause the Current running bot
     And Click Persist Status No
     Then Verify current running Bot is restarted
@@ -234,11 +228,9 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Stop Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
-    Then Verify Bot Count in Total Filtered
     And Click Total Filtered Bots and stop current running Bot
     Then Verify current running Bot is stopped
     Examples:
@@ -249,11 +241,9 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
-    Then Verify Bot Count in Total Filtered
     And Click total filtered bots and click the latest running bot to edit
     And Input any field with new value and again submit
     Then Verify the Bot is updated
@@ -267,11 +257,9 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
-    Then Verify Bot Count in Total Filtered
     And Pause the Bot
     And Input any field with new value and again submit
     Then Verify the Bot is updated
@@ -285,11 +273,10 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT for SpotMode Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots before starting the Sniper Bot execution
     And Click Start Bot and select the Service,Method and Input Bot Quantity
     And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
     And submit the order
-    Then Verify Bot Count in Total Filtered
+    And Wait for sometime to get the Bots Updated
     And Click total filtered bots and click the latest running bot to edit
     And Input any field with new value and again submit for Sniper Bot
     Then Verify the Bot is updated
@@ -303,11 +290,10 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT for SpotMode Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots before starting the Sniper Bot execution
     And Click Start Bot and select the Service,Method and Input Bot Quantity
     And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
     And submit the order
-    Then Verify Bot Count in Total Filtered
+    And Wait for sometime to get the Bots Updated
     And Pause the Bot
     And Input any field with new value and again submit for Sniper Bot
     Then Verify the Bot is updated
@@ -321,11 +307,9 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit PairTrading BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots before starting the Pair_Trading Bot execution
     And Click start Bot and select the Service,Method and Choose Bot Quantity
     And Choose Side,Quantity,and Slice_Size
     And Choose AccountId,Base,Quote and Side in Pair leg and submit
-    And Verify Pair_Trading Bot in Total Filtered on homePage
     And Click total filtered bots and click the latest running bot to edit
     And Input any field with new value and again submit for PairTrading Bot
     Then Verify the Bot is updated
@@ -338,11 +322,9 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Duplicate the Execution_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
-    Then Verify Bot Count in Total Filtered
     And Click total filtered bots and click the latest running bot and create duplicate Bot
     And Input any field with new value and again submit
     Then Verify duplicate bot is created
@@ -356,11 +338,10 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Duplicate the Sniper_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots before starting the Sniper Bot execution
     And Click Start Bot and select the Service,Method and Input Bot Quantity
     And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
     And submit the order
-    Then Verify Bot Count in Total Filtered
+    And Wait for sometime to get the Bots Updated
     And Click total filtered bots and click the latest running bot and create duplicate Bot
     And Input any field with new value and again submit for Sniper Bot
     Then Verify duplicate bot is created
@@ -373,11 +354,9 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Duplicate PairTrading BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots before starting the Pair_Trading Bot execution
     And Click start Bot and select the Service,Method and Choose Bot Quantity
     And Choose Side,Quantity,and Slice_Size
     And Choose AccountId,Base,Quote and Side in Pair leg and submit
-    And Verify Pair_Trading Bot in Total Filtered on homePage
     And Click total filtered bots and click the latest running bot and create duplicate Bot
     And Input any field with new value and again submit for PairTrading Bot
     Then Verify duplicate bot is created
@@ -390,11 +369,10 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Duplicate TWAP BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Verify total Bots before starting the Twap_Bot execution
     And Click start Bot and select the Service,Method and Choose Bot Quantity
     And Choose Side,Quantity,and Duration
     And Provide Deal Ref and submit
-    Then Verify Bots in Total Filtered on HomePage
+    And Wait for sometime to get the Bots Updated
     And Click total filtered bots and click the latest running bot and create duplicate Bot
     And Input any field with new value and again submit for Twap Bot
     Then Verify duplicate bot is created
@@ -434,7 +412,6 @@ Feature: Test Bots features on NitroX HomePage
     And Clear the Base and Quote
     And Click Total Filtered Bots and pause the Bot
     Then Verify current running Bot is paused
-    And Close the Detailed Bot
     And Click Total Filtered Bots and Resume the Bot
     Then Verify Bot has started again
 
