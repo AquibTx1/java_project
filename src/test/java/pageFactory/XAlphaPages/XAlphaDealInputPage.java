@@ -40,8 +40,8 @@ public class XAlphaDealInputPage {
     public static By dealInput_ProcessingStatusClick = By.xpath("//label[@for='deal_processing_status']/../following-sibling::div//div[@class='ant-select-selector']");
     public static By dealInput_ValueDate = By.id("value_date");
     public static By dealInput_ValueDateXbtn = By.xpath("//label[text()='Value Date']/../following-sibling::div//span[@class='ant-picker-clear']");
-    public static By dealInput_ValueDateOkBtn = By.xpath("//button[@type='button']/span[text()='Ok']");
-    public static By dealInput_ValueDateOkBtn2 = By.xpath("(//button[@type='button']/span[text()='Ok'])[2]");
+    public static By dealInput_ValueDateOkBtn = By.xpath("//button[@type='button']/span[text()='OK']");
+    public static By dealInput_ValueDateOkBtn2 = By.xpath("(//button[@type='button']/span[text()='OK'])[2]");
     public static By dealInput_ValueDateNowBtn = By.xpath("//a[@class='ant-picker-now-btn' and text()='Now']");
     public static By dealInput_CreateBtn = By.xpath("//button[@type='submit']/span[text()='Create']");
     public static By dealInput_validationMsg = By.xpath("//div[@class='ant-notification-notice-description']");
