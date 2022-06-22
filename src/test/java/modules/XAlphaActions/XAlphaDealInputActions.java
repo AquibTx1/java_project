@@ -173,19 +173,21 @@ public class XAlphaDealInputActions extends KeywordUtil {
 
     public static void clearDealInput_ValueDate() {
         click(XAlphaDealInputPage.dealInput_ValueDate, "Click value date picker");
-        waitForPresent(XAlphaDealInputPage.dealInput_ValueDateXbtn);
-        click(XAlphaDealInputPage.dealInput_ValueDateXbtn, "Clear value date");
+        waitForPresent(XAlphaDealInputPage.dealInput_ValueDateNowBtn);
+        if (isWebElementVisible(XAlphaDealInputPage.dealInput_ValueDateXbtn)) {
+            click(XAlphaDealInputPage.dealInput_ValueDateXbtn, "Clear value date");
+        }
+        clickBlankArea();
     }
 
     public static void dealInput_ValueDate(String ValueDate) throws InterruptedException {
+        clearDealInput_ValueDate();
         click(XAlphaDealInputPage.dealInput_ValueDate, "");
-        clearInputUsingKeys(XAlphaDealInputPage.dealInput_ValueDate);
-        inputText(XAlphaDealInputPage.dealInput_ValueDate, ValueDate, "Deal input ValueDate=" + ValueDate);
+        inputTextByCharacter(XAlphaDealInputPage.dealInput_ValueDate, ValueDate, "Deal input ValueDate=" + ValueDate);
         delay(2000);
         waitForPresent(XAlphaDealInputPage.dealInput_ValueDateOkBtn);
         click(XAlphaDealInputPage.dealInput_ValueDateOkBtn, "Click OK button on value date picker");
-        delay(1500);
-        pressTabKey(XAlphaDealInputPage.dealInput_ValueDate);
+        clickBlankArea();
     }
 
     public static void dealInput_ValueDateNow() {
@@ -226,7 +228,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
         clearInputUsingKeys(XAlphaDealInputPage.dealInput_FeeProportion); //intentional
         pressBackSpace(XAlphaDealInputPage.dealInput_FeeProportion); //intentional
         inputTextByCharacter(XAlphaDealInputPage.dealInput_FeeProportion, FeeProportion, "Deal input FeeProportion=" + FeeProportion);
-        pressTabKey(XAlphaDealInputPage.dealInput_FeeProportion);
+        clickBlankArea();
     }
 
     //execution deal > FeeAdjustment

@@ -279,3 +279,4 @@ Feature: Test deal enquiry feature
     Examples:
       | SheetName     | TestCaseID                  | FromStatus | ToStatus  |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_047 | Confirmed  | Processed |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_048 | Confirmed  | Settled   |

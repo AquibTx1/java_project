@@ -432,6 +432,10 @@ public class KeywordUtil extends GlobalUtil {
         }
     }
 
+    //click on blank area on page
+    public static void clickBlankArea() {
+        getDriver().findElement(By.xpath("//html")).click();
+    }
 
     /**
      * Click mobile boolean.
@@ -597,16 +601,13 @@ public class KeywordUtil extends GlobalUtil {
      * Is web element visible boolean.
      *
      * @param locator the locator
-     * @param logStep the log step
      * @return boolean
      */
-    public static boolean isWebElementVisible(By locator, String logStep) {
+    public static boolean isWebElementVisible(By locator) {
         try {
             KeywordUtil.lastAction = "Check Element visible: " + locator.toString();
             LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
             WebElement elm = waitForVisible(locator);
-            RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));
-
             return elm.isDisplayed();
         } catch (Exception e) {
             return false;
@@ -978,8 +979,6 @@ public class KeywordUtil extends GlobalUtil {
         return actual.equalsIgnoreCase(data);
 
     }
-
-    //public static boolean iselementdisplay(By locator ,String )
 
     /**
      * Verify input text js boolean.

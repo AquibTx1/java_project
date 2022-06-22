@@ -513,9 +513,9 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 //update processing status and value date
+                XAlphaDealInputActions.dealInput_ValueDate(dataMap.get("ValueDate"));
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new")); //intentional due to existing bug
-                XAlphaDealInputActions.dealInput_ValueDate(dataMap.get("ValueDate"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
