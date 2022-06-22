@@ -118,7 +118,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.inputOrderAmount(dataMap.get("Order Amount"));
                 // NitroXBotsAction.inputTrigerCondtion();
                 NitroXBotsAction.clickSubmit();
-                delay(40000);
+                delay(35000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -139,7 +139,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(30000);
+                delay(20000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots() - 1, totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -204,7 +204,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
-                delay(10000);
+                delay(15000);
                 Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Order Direction"));
                 Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getPrice());
                 NitroXBotsAction.stopCurrentBot();
@@ -310,7 +310,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
-                delay(20000);
+                delay(10000);
                 Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Order Direction"));
                 Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getBidPrice());
                 NitroXBotsAction.stopCurrentBot();
@@ -451,7 +451,7 @@ public class NitroXBotsSteps {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
                 NitroXBotsAction.sortStartTime();
-                delay(40000);
+                delay(30000);
                 NitroXBotsAction.selectLatestBotName();
 
             } catch (Throwable e) {

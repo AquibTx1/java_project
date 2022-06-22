@@ -138,6 +138,24 @@ Feature: Test Bots features on NitroX HomePage
 #      | SheetName   |  TestCaseID                  |
 #      | NitroXBots  | QA_TestCase_Auto_NitroX_049 |
 
+#  @NitroXBotFutureMode
+#  Scenario Outline: <TestCaseID>_Start New Twap_BOT For Buy and Sell Order-FutureMode
+#    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+#    When Choose Mode, Trading Account and Instrument
+#    And Validate No previous position
+#    And Verify total Bots before starting the Twap_Bot execution
+#    And Click start Bot and select the Service,Method and Choose Bot Quantity
+#    And Choose Side,Quantity,and Duration
+#    And Provide Deal Ref and submit
+#    Then Verify Bots in Total Filtered on HomePage
+#    And Click Total Filtered Bots tab & check the Bot in Detail and Config for Twap Bot
+#    Then Verify new Bot in detail and config for Twap_Bot
+#    Examples:
+#      | SheetName  |  TestCaseID                  |
+#      | NitroXBots  | QA_TestCase_Auto_NitroX_050 |
+#     | NitroXBots  | QA_TestCase_Auto_NitroX_051 |
+
+
   @NitroXBot
   Scenario Outline: <TestCaseID>_Pause Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
