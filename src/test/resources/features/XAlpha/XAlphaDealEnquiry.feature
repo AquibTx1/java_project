@@ -280,3 +280,4 @@ Feature: Test deal enquiry feature
       | SheetName     | TestCaseID                  | FromStatus | ToStatus  |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_047 | Confirmed  | Processed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_048 | Confirmed  | Settled   |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_049 | Pending    | Processed |
