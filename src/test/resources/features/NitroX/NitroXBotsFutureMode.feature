@@ -124,7 +124,7 @@ Feature: Test Bots features on NitroX HomePage
   | NitroXBots  | QA_TestCase_Auto_NitroX_075 |
 
   @NitroXBotFutureMode
-  Scenario Outline: <TestCaseID>_Restart Existing Running Execution_Bot for Buy Order-FutureMode
+  Scenario Outline: <TestCaseID>_Restart Existing Running Execution_Bot for Buy Order--FutureMode
   Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
   When Choose Mode, Trading Account and Instrument
   And Verify total Bots Before staring the Buy execution
