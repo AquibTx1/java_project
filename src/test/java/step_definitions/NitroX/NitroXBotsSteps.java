@@ -161,6 +161,7 @@ public class NitroXBotsSteps {
             try {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
                 NitroXBotsAction.selectLatestBotName();
                 NitroXBotsAction.selectConfig();
@@ -450,6 +451,7 @@ public class NitroXBotsSteps {
             try {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
                 delay(30000);
                 NitroXBotsAction.selectLatestBotName();
@@ -639,6 +641,7 @@ public class NitroXBotsSteps {
             try {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
                 NitroXBotsAction.selectLatestBotName();
                 NitroXBotsAction.validateStatus();
@@ -1038,6 +1041,7 @@ public class NitroXBotsSteps {
             try {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
                 delay(2000);
                 NitroXBotsAction.selectLatestBot();
@@ -1156,12 +1160,12 @@ public class NitroXBotsSteps {
             try {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
                 delay(2000);
                 NitroXBotsAction.selectLatestBot();
                 //serviceIdbefore=NitroXBotsAction.getServiceIDBefore();
                 NitroXBotsAction.restartCurrentBot();
-
                 waitForVisible(NitroXBotsPage.persist);
                 //delay(10000);
                 //int serviceidafter=NitroXBotsAction.getServiceIDAfter();
@@ -1246,6 +1250,7 @@ public class NitroXBotsSteps {
             try {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
                 delay(2000);
                 NitroXBotsAction.selectLatestBot();
@@ -1367,6 +1372,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.refreshPage();
                 waitForVisible(NitroXBotsPage.totalfilered);
                 NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
                 delay(15000);
                 NitroXBotsAction.selectLatestBotName();
@@ -1536,6 +1542,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.refreshPage();
                 delay(2000);
                 NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
                 delay(10000);
                 NitroXBotsAction.selectLatestBotName();
@@ -1810,6 +1817,7 @@ public class NitroXBotsSteps {
             try {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
                 delay(2000);
                 NitroXBotsAction.selectLatestBot();
@@ -1990,6 +1998,66 @@ public class NitroXBotsSteps {
         }
     }
 
+    @And("Input the value in Account Position")
+    public void inputTheValueInAccountPosition()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.inputTargetAccountPosition(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @Then("Verify Bot is Paused")
+    public void verifyBotIsPaused() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.waitForNotifMsg();
+                Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be paused."));
+                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Resume the Bot again")
+    public void resumeTheBotAgain()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.resumeCurrentBot();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
 }
 
 
