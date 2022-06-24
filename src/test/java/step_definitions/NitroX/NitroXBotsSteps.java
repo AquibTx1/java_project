@@ -1361,7 +1361,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
-
     @Then("Verify the Bot is updated")
     public void verifyTheBotIsEdit() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {

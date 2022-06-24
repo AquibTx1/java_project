@@ -53,7 +53,7 @@ public class NitroXBotsPage {
 
     public static By duplicatebotbtn=By.xpath("(//span[text()='Duplicate'])[1]");
 
-    public static By restartbotbtn=By.xpath("(//span[text()='Restart'])[1]");
+    public static By restartbotbtn=By.xpath("//button[starts-with(@title,'Restart')]");
 
     public static By persistyes=By.xpath("(//div[text()='Persist status?'])[1]/following::span[2]");
 

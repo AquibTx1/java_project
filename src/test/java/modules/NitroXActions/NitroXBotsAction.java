@@ -671,7 +671,40 @@ public class NitroXBotsAction {
     }
 
     public static void restartCurrentBot() {
-        click(NitroXBotsPage.restartbotbtn, "Restart Bot Resumed");
+
+        Boolean flag=false;
+        try {
+            //click restart
+            clickJS(NitroXBotsPage.restartbotbtn, "Restart Bot Resumed");
+            //wait and verify for the success message
+            NitroXHome.waitForNotifMsg();
+            int i = 0;
+            while (i < 2) {
+                if (NitroXHome.getNotifMsg().startsWith("You have unexpectedly disconnected from ther server.")) {
+                    NitroXHome.waitForNotifMsgToDisappear();
+                    delay(4000);
+                    //click sell button again
+                    clickJS(NitroXBotsPage.restartbotbtn, "Restart Bot Resumed");
+                    LogUtil.infoLog(thisClass, "Restart counter=" + i);
+                    NitroXHome.waitForNotifMsg();
+                    i++;
+                } else {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be restarted."));
+                NitroXHome.waitForInvisibleOrderSubmittedMsg();
+            } else {
+                LogUtil.errorLog(thisClass, "Restart Error");
+                assert false;
+            }
+        }catch (Throwable e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
     public static void clickPersistyes()  {
