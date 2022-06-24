@@ -3,7 +3,7 @@ Feature: Test deal enquiry feature
   Background: Login to XAlpha
     Given Login to XAlpha with valid login credentials
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiryFXSpot
   Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing FX-Spot Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -33,7 +33,7 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_032 | Cancelled  | Processed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_033 | Cancelled  | Settled   |
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiryFXSpot
   Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing FX-Spot Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -70,7 +70,7 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_028 | MO_CheckerAccount | Processed  | Cancelled |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_029 | MO_CheckerAccount | Settled    | Cancelled |
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiryFXSpot
   Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing FX-Spot Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -91,7 +91,7 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_034 | Pending |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_035 | Pending |
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiryFXSpot
   Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing FX-Spot Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -125,7 +125,7 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_036 | MO_CheckerAccount | Processed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_037 | MO_CheckerAccount | Settled   |
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiryExecutionDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Execution Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -146,7 +146,7 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_045 | Pending    | Processed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_046 | Pending    | Settled   |
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiryExecutionDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing Execution Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -182,7 +182,7 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_057 | MO_CheckerAccount | Processed  | Cancelled |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_058 | MO_CheckerAccount | Settled    | Cancelled |
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiryExecutionDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status from "<FromStatus>" to "<ToStatus>" of an Existing Execution Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -205,7 +205,7 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_061 | Cancelled  | Processed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_062 | Cancelled  | Settled   |
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiryExecutionDeal
   Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing Execution Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -226,7 +226,7 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_063 | Pending   |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_064 | Confirmed |
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiryExecutionDeal
   Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing Execution Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -259,7 +259,7 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_065 | MO_CheckerAccount | Processed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_066 | MO_CheckerAccount | Settled   |
 
-  @XAlphaDealEnquiry
+  @XAlphaDealEnquiryExecutionDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status while Value Date is not populated from "<FromStatus>" to "<ToStatus>" of an Existing Execution Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
