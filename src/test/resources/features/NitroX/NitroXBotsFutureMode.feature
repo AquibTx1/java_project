@@ -138,3 +138,36 @@ Feature: Test Bots features on NitroX HomePage
   Examples:
   | SheetName  |  TestCaseID                  |
   | NitroXBots  | QA_TestCase_Auto_NitroX_077 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Stop Existing Running Execution_Bot for Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Verify total Bots Before staring the Buy execution
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Input the value in Account Position
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Click Total Filtered Bots and stop current running Bot
+    Then Verify current running Bot is stopped
+    Examples:
+      | SheetName  |  TestCaseID               |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_079 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Verify total Bots Before staring the Buy execution
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Input the value in Account Position
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Click total filtered bots and click the latest running bot to edit
+    And Input any field with new value and again submit
+    Then Verify the Bot is updated
+    Then Verify the Config Tab for modified field
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_080 |

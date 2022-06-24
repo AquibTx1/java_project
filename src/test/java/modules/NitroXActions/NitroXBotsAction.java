@@ -276,11 +276,11 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Dealt order price=" + price);
         return Double.parseDouble(price.replace(",", ""));
     }
-    public static String getDealtOrderQuantity()
+    public static double getDealtOrderQuantity()
     {
         String Quantity = formatDecimalToStr(getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[04]/span")));
         LogUtil.infoLog(thisClass, "Dealt order Quantity=" + Quantity);
-        return Quantity;
+        return Double.parseDouble(Quantity.replace(",",""));
         //Double.parseDouble(Quantity.replace(",", ""));
     }
     public static double getBotDetailQuantity()
@@ -562,13 +562,14 @@ public class NitroXBotsAction {
         try
         {
             int count = 0;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 15; i++)
             {
                 count = getDriver().findElements(By.xpath("(//span[text()='LEG COMPLETED'])[1]")).size();
                 if (count < 1) {
                     KeywordUtil.pageRefresh();
                     delay(2000);
                     NitroXBotsAction.selecttotalBots();
+                    waitForVisible(NitroXBotsPage.BotTime);
                     NitroXBotsAction.sortStartTime();
                     NitroXBotsAction.selectLatestBotName();
                     delay(5000);
@@ -588,13 +589,14 @@ public class NitroXBotsAction {
         try
         {
             int count = 0;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 15; i++)
             {
                 count = getDriver().findElements(By.xpath("(//span[text()='LEG COMPLETED'])[2]")).size();
                 if (count < 1) {
                     KeywordUtil.pageRefresh();
                     delay(2000);
                     NitroXBotsAction.selecttotalBots();
+                    waitForVisible(NitroXBotsPage.BotTime);
                     NitroXBotsAction.sortStartTime();
                     NitroXBotsAction.selectLatestBotName();
                     delay(5000);

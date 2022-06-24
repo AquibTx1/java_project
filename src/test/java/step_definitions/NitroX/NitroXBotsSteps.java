@@ -817,7 +817,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.getBotSubmitSuccessMsg();
-                delay(35000);
+                delay(40000);
                 Assert.assertEquals(NitroXBotsAction.getTotalFilteredBots() - 1, totalbotbefore);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -837,7 +837,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                delay(40000);
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
                 NitroXBotsAction.sortStartTime();
@@ -1087,9 +1086,10 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                scrollingToElementofAPage(NitroXBotsPage.DealtOrderTab,"Scrolled to Page");
                 NitroXBotsAction.clickDealtOrdersTab();
                 delay(2000);
-                Assert.assertEquals(NitroXBotsAction.getDealtOrderQuantity(), dataMap.get("SliceSize"));
+                Assert.assertEquals(Double.toString(NitroXBotsAction.getDealtOrderQuantity()), dataMap.get("SliceSize"));
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1323,6 +1323,7 @@ public class NitroXBotsSteps {
             try {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
                 delay(2000);
                 NitroXBotsAction.selectLatestBot();
