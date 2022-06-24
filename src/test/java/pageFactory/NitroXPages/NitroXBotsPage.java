@@ -111,7 +111,7 @@ public class NitroXBotsPage {
      */
     public static By totalamount=By.id("bot_config_form_config_totalAmount");
 
-    public static By botdetail_snipper=By.xpath("//*[text()='dealt']/following::td[1]/span");
+    public static By botdetail_snipper=By.xpath("//*[text()='totalAmount']/following::td[1]/span");
 
     public static By totalamount_botdetail=By.xpath("//*[text()='total']/following::td[1]/span");
     public static By side=By.id("bot_config_form_config_side");

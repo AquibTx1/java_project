@@ -1367,6 +1367,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                delay(2000);
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().startsWith("Bot has queued to be updated."));
                 NitroXBotsAction.refreshPage();
@@ -1435,9 +1436,9 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(), dataMap.get("S_UpdatedTotalAmount"));
                 NitroXBotsAction.selectConfig();
                 Assert.assertEquals(NitroXBotsAction.getBotDetailSide(),dataMap.get("Side"));
+                Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(), dataMap.get("S_UpdatedTotalAmount"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1544,7 +1545,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.selecttotalBots();
                 waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
-                delay(10000);
+                delay(20000);
                 NitroXBotsAction.selectLatestBotName();
             } catch (Throwable e) {
                 GlobalUtil.e = e;

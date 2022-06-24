@@ -347,9 +347,6 @@ public class NitroXBotsAction {
         return totalamount;
 
     }
-
-
-
     public static void inputMinPriceforSniper(HashMap<String,String>dataMap) throws InterruptedException {
 
         KeywordUtil.click(NitroXBotsPage.minprice_sniper,"Min Price  Values Entered");
@@ -672,7 +669,7 @@ public class NitroXBotsAction {
 
     public static void restartCurrentBot() {
 
-        Boolean flag=false;
+        boolean flag=false;
         try {
             //click restart
             clickJS(NitroXBotsPage.restartbotbtn, "Restart Bot Resumed");
