@@ -17,7 +17,7 @@ public class XAlphaDealInputSteps {
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
     public static String dealRefId;
 
-    public static String quoteAssetAmount, referencePrice, feeAmount, unitPrice;
+    public static String quoteAssetAmount, referencePrice, marketPrice, feeAmount, unitPrice;
 
     public XAlphaDealInputSteps() {
         //constructor of the class to load datamap from BaseStepDefinitions
@@ -121,10 +121,11 @@ public class XAlphaDealInputSteps {
                 XAlphaDealInputActions.dealInput_BaseAssetAmount(dataMap.get("BaseAssetAmount"));
                 XAlphaDealInputActions.dealInput_BaseAsset(dataMap.get("BaseAsset"));
                 XAlphaDealInputActions.dealInput_QuoteAsset(dataMap.get("QuoteAsset"));
-                referencePrice = XAlphaDealInputActions.get_dealInput_ReferencePrice(); //to be used later
-                XAlphaDealInputActions.dealInput_UnitPrice(referencePrice);
+                marketPrice = XAlphaDealInputActions.get_dealInput_MarketPrice(); //to be used later
+                XAlphaDealInputActions.dealInput_UnitPrice(marketPrice);
                 XAlphaDealInputActions.dealInput_FeeAsset(dataMap.get("FeeAsset"));
                 XAlphaDealInputActions.dealInput_FeeAmount(dataMap.get("FeeAmount"));
+                XAlphaDealInputActions.dealInput_ReferencePrice(marketPrice);
                 XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
                 XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber"));
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus"));
