@@ -87,11 +87,22 @@ public class XAlphaDealInputActions extends KeywordUtil {
         return QuoteAsset;
     }
 
-    public static String get_dealInput_ReferencePrice() throws InterruptedException {
+    public static String get_dealInput_ReferencePrice() {
 //        delay(1500);
         String referencePrice = getElementValueWithVisibility(XAlphaDealInputPage.dealInput_ReferencePrice);
         LogUtil.infoLog(XAlphaDealInputActions.class, "Reference price=" + referencePrice);
         return referencePrice;
+    }
+
+    public static String get_dealInput_MarketPrice() {
+        String marketPrice = getElementValueWithVisibility(XAlphaDealInputPage.dealInput_MarketPrice);
+        LogUtil.infoLog(XAlphaDealInputActions.class, "Market price=" + marketPrice);
+        return marketPrice;
+    }
+
+    public static void dealInput_ReferencePrice(String ReferencePrice) throws InterruptedException {
+        clearInputUsingKeys(XAlphaDealInputPage.dealInput_ReferencePrice);
+        inputText(XAlphaDealInputPage.dealInput_ReferencePrice, ReferencePrice, "Select deal input ReferencePrice=" + ReferencePrice);
     }
 
     public static void dealInput_UnitPrice(String unitPrice) throws InterruptedException {
@@ -132,6 +143,10 @@ public class XAlphaDealInputActions extends KeywordUtil {
     public static void dealInput_FeeAmount(String FeeAmount) throws InterruptedException {
         clearInputUsingKeys(XAlphaDealInputPage.dealInput_FeeAmount);
         inputText(XAlphaDealInputPage.dealInput_FeeAmount, FeeAmount, "Select deal input Fee Amount=" + FeeAmount);
+    }
+
+    public static void dealInput_MarketPrice(String MarketPrice) throws InterruptedException {
+        inputText(XAlphaDealInputPage.dealInput_MarketPrice, MarketPrice, "Select deal input Market Price=" + MarketPrice);
     }
 
     public static String get_dealInput_FeeAmount() throws InterruptedException {
