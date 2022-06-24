@@ -235,7 +235,7 @@ public class NitroXHomeSteps {
             NitroXHome.selectmode(dataMap);
             NitroXHome.inputTradingAccount(dataMap);
             enterTheBaseAndQuoteCurrency();
-           //NitroXHome.waitForLiveChart();
+            NitroXHome.waitForLiveChart();
         } catch (Throwable e) {
             GlobalUtil.e = e;
             e.printStackTrace();
@@ -679,15 +679,17 @@ public class NitroXHomeSteps {
                     if (NitroXHome.isPresentOrderListener()) {
                         NitroXHome.closeBottomRightNotif();
                     }
-                    NitroXHome.InputthePrice(bidPrice + generateRandomNumber20to40());
-                    NitroXHome.ClearOrderQuantity();
-                    NitroXHome.InputCustomQuantity(dataMap);
-                    NitroXHome.ClickSellButton();
 
-                    //verify success message
-                    NitroXHome.waitForNotifMsg();
-                    Assert.assertTrue(NitroXHome.getNotifMsg().contains("Order submitted successfully"));
-                    NitroXHome.waitForInvisibleOrderSubmittedMsg();
+                        NitroXHome.InputthePrice(bidPrice + generateRandomNumber20to40());
+                        NitroXHome.ClearOrderQuantity();
+                        NitroXHome.InputCustomQuantity(dataMap);
+                        NitroXHome.ClickSellButton();
+
+                        //verify success message
+                        NitroXHome.waitForNotifMsg();
+                        Assert.assertTrue(NitroXHome.getNotifMsg().contains("Order submitted successfully"));
+                        NitroXHome.waitForInvisibleOrderSubmittedMsg();
+
                 }
             } catch (Throwable e) {
                 GlobalUtil.e = e;
