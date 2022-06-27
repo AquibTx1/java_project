@@ -67,7 +67,6 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.inputService(dataMap.get("Service"));
                 NitroXBotsAction.inputMethod(dataMap.get("Method"));
                 NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
-                waitForVisible(NitroXBotsPage.orderdirection);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1367,7 +1366,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                delay(2000);
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().startsWith("Bot has queued to be updated."));
                 NitroXBotsAction.refreshPage();
@@ -1480,6 +1478,7 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.inputSliceSize(dataMap.get("UpdatedSliceSize"));
                 NitroXBotsAction.clickSubmit();
+                delay(3000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1545,7 +1544,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.selecttotalBots();
                 waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
-                delay(20000);
+                delay(10000);
                 NitroXBotsAction.selectLatestBotName();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1964,7 +1963,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-               delay(30000);
+               delay(20000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2058,6 +2057,30 @@ public class NitroXBotsSteps {
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
         }
+    }
+
+    @And("Input AccountId,Quote and Side")
+    public void inputAccountIdQuoteAndSide()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.inputTradingAccount(dataMap);
+                NitroXBotsAction.inputQuoteCurrency(dataMap);
+                NitroXBotsAction.selectSubPairSide(dataMap);
+                scrollingToElementofAPage(NitroXBotsPage.submitbtn, "Scrolled to Submit Button");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
     }
 }
 
