@@ -13,7 +13,11 @@ public class XAlphaDealInputActions extends KeywordUtil {
     static Class thisClass = XAlphaLoginActions.class;
 
     public static void clickXAlphaHeader() {
-        click(XAlphaDealInputPage.xAlphaHeader, "Click X-Alpha Tab");
+        if (isWebElementVisible(XAlphaDealInputPage.dealInputTab)) {
+            LogUtil.infoLog(thisClass, "User is already on deal X-Alpha tab");
+        } else {
+            click(XAlphaDealInputPage.xAlphaHeader, "Click X-Alpha Tab");
+        }
     }
 
     public static void waitForDealInputTab() {
@@ -187,9 +191,10 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void clearDealInput_ValueDate() {
+        waitForPresent(XAlphaDealInputPage.dealInput_ValueDate);
         click(XAlphaDealInputPage.dealInput_ValueDate, "Click value date picker");
         waitForPresent(XAlphaDealInputPage.dealInput_ValueDateNowBtn);
-        if (isWebElementVisible(XAlphaDealInputPage.dealInput_ValueDateXbtn)) {
+        if (isWebElementVisible(XAlphaDealInputPage.dealInput_ValueDateXbtn, 1)) {
             click(XAlphaDealInputPage.dealInput_ValueDateXbtn, "Clear value date");
         }
         clickBlankArea();

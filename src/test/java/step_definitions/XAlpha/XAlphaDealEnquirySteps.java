@@ -590,9 +590,9 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                XAlphaDealInputActions.dealInput_ValueDate(dataMap.get("ValueDate_updated"));
                 XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName_updated"));
                 XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber_updated"));
-                XAlphaDealInputActions.dealInput_ValueDate(dataMap.get("ValueDate_updated"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

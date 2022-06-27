@@ -91,7 +91,9 @@ Feature: Test Bots features on NitroX HomePage
     And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
-    And Input the Time, Quantity and Submit the Order
+    And Input the Quantity
+    And submit the order
+    And Wait for sometime to get the Bots Updated
     And Click Total Filtered Bots and pause the Bot
     Then Verify current running Bot is paused
 
@@ -105,7 +107,9 @@ Feature: Test Bots features on NitroX HomePage
       When Choose Mode, Trading Account, Base and Quote Currency
       And Click Start Bot ,Select the Service,Method and Input Bot Quantity
       And Select Buy Order and Select the MinTime and MaxTime Break
-      And Input the Time, Quantity and Submit the Order
+      And Input the Quantity
+      And submit the order
+      And Wait for sometime to get the Bots Updated
       And Click Total Filtered Bots and pause the Bot
       Then Verify Bot is Paused
       And Resume the Bot again
