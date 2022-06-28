@@ -115,7 +115,7 @@ fun makeBuild(
 
         sshExec {
             name = "Docker Test Run for staging environment"
-            commands = loadScriptFromFile("scripts/docker-staging.sh")
+            commands = loadScriptFromFile("scripts/docker-stagingtest.sh")
             targetUrl = "qa.altono.app"
             executionMode = BuildStep.ExecutionMode.DEFAULT
             conditions {
