@@ -8,4 +8,4 @@ docker run \
     -e SCENARIO= \
     -e TEST_ENV=test \
     -v ~/0_all_scenarios/ExecutionReports:/code/ExecutionReports \
-    -v ~/0_all_scenarios/target:/code/target ecr.altono.app/altonomy/qa-bdd
+    -v ~/0_all_scenarios/target:/code/target ecr.altono.app/altonomy/qa-bdd:test
