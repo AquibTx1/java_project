@@ -9,7 +9,7 @@ Feature: Test deals creation feature
     When Move to X-Alpha page
     And Navigate to deal input tab
     And Choose FX Spot
-    And Provide deal input details
+    And Provide FX Spot deal input details
     And Click create deal button
     Then Verify the deal success message
     And Navigate to deal enquiry tab
@@ -29,7 +29,7 @@ Feature: Test deals creation feature
     When Move to X-Alpha page
     And Navigate to deal input tab
     And Choose FX Spot
-    And Provide deal input details
+    And Provide FX Spot deal input details
     And Click create deal button
     Then Verify settled deal is not created
 

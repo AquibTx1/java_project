@@ -110,8 +110,8 @@ public class XAlphaDealInputSteps {
         }
     }
 
-    @And("Provide deal input details")
-    public void provideDealInputDetails() throws InterruptedException {
+    @And("Provide FX Spot deal input details")
+    public void provideFXSpotDealInputDetails() {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -320,4 +320,6 @@ public class XAlphaDealInputSteps {
             }
         }
     }
+
+
 }
