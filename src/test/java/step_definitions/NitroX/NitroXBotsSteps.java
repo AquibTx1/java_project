@@ -39,7 +39,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.pauseAllBots();
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to Total Bot Bot Filtered");
                 totalbotbefore = NitroXBotsAction.getTotalFilteredBots();//to be Used later
             } catch (Throwable e) {
@@ -337,8 +336,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                delay(2000);
-                NitroXBotsAction.pauseAllBots();
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to Total Bot Filtered");
                 totalbotbefore = NitroXBotsAction.getTotalFilteredBots();
             } catch (Throwable e) {
@@ -1087,7 +1084,6 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.clickDealtOrdersTab();
                 delay(2000);
                 Assert.assertEquals(Double.toString(NitroXBotsAction.getDealtOrderQuantity()), dataMap.get("SliceSize"));
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1962,7 +1958,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-               delay(20000);
+               delay(10000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
