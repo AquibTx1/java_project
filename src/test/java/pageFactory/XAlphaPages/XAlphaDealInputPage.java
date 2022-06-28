@@ -10,7 +10,7 @@ public class XAlphaDealInputPage {
     //tabs/pages on the left
     public static By dealInputTab = By.linkText("Deal Input");
 
-    //deal input
+    //fx-spot
     public static By dealInput_navbar = By.linkText("deal_input");
     public static By dealInput_FXSpot = By.id("rc-tabs-0-tab-FX Spot");
     public static By dealInput_ExecutionTab = By.id("rc-tabs-0-tab-Execution");
@@ -56,4 +56,17 @@ public class XAlphaDealInputPage {
     public static By dealInput_EndAssetAmount = By.id("deal_type_data.end_asset_amount");
     public static By dealInput_FeeProportion = By.id("deal_type_data.fee_proportion");
     public static By dealInput_FeeAdjustment = By.id("deal_type_data.fee_adjustment_amount");
+
+    //cash flow
+    public static By dealInput_CashFlowTab = By.id("rc-tabs-0-tab-Cash Flow");
+    public static By dealInput_CashFlow_Direction = By.id("deal_type_data.direction");
+    public static String dealInput_CashFlow_DirectionOptions = "//div[@id='deal_type_data.direction_list']/following-sibling::div//div[text()='%s']";
+    public static By dealInput_CashFlow_DirectionText = By.xpath("//input[@id='deal_type_data.direction']/../following-sibling::span");
+    public static By dealInput_CashFlow_Asset = By.id("deal_type_data.asset");
+    public static String dealInput_CashFlow_AssetOptions = "//div[@id='deal_type_data.asset_list']/following-sibling::div//div[text()='%s']";
+    public static By dealInput_CashFlow_AssetText = By.xpath("//input[@id='deal_type_data.asset']/../following-sibling::span");
+    public static By dealInput_CashFlow_Amount = By.id("deal_type_data.amount");
+    public static By dealInput_CashFlow_Purpose = By.id("deal_type_data.cashflow_purpose");
+    public static String dealInput_CashFlow_PurposeOptions = "//div[@id='deal_type_data.cashflow_purpose_list']/following-sibling::div//div[text()='%s']";
+    public static By dealInput_CashFlow_PurposeText = By.xpath("//input[@id='deal_type_data.cashflow_purpose']/../following-sibling::span");
 }
