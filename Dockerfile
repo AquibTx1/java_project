@@ -15,5 +15,5 @@ RUN apt install -y ./google-chrome-stable_current_amd64.deb
 
 RUN mvn compile
 
-CMD ["sh", "-c", "/code/scripts/test.sh ${SCENARIO} ${TEST_ENV}"]
+CMD ["sh", "-c", "/code/scripts/test.sh  ${TEST_ENV} ${SCENARIO}"]
 # CMD ["bash"]
