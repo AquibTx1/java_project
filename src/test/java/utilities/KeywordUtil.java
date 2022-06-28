@@ -616,6 +616,25 @@ public class KeywordUtil extends GlobalUtil {
     }
 
     /**
+     * Is web element visible boolean.
+     *
+     * @param locator the locator
+     * @param timeOut for exit
+     * @return boolean
+     */
+    public static boolean isWebElementVisible(By locator, int timeOut) {
+        try {
+            KeywordUtil.lastAction = "Check Element visible: " + locator.toString();
+            LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
+            WebDriverWait wait = new WebDriverWait(getDriver(), timeOut);
+            WebElement elm = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return elm.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
      * Is mobile element visible boolean.
      *
      * @param locator the locator
