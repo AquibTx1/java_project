@@ -25,7 +25,7 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_firstFeeAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[5]/div[3]");
     public static By dealEnquiry_firstFeeAmount = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[5]/div[2]/span");
 
-    //execution deal
+    //execution deal details
     public static By dealEnquiry_firstStartAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[1]/div[3]");
     public static By dealEnquiry_firstStartAssetAmount = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[1]/div[2]/span");
     public static By dealEnquiry_firstEndAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[2]/div[3]");
@@ -35,6 +35,13 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_firstFeeAmount_Execution = By.xpath("//div[text()='Fee: ']/following-sibling::div/span");
     public static By dealEnquiry_firstFeeAdjustment = By.xpath(""); //not available at the moment on deal enquiry
     public static By dealEnquiry_firstValueDate = By.xpath("//tbody[@class='ant-table-tbody']/tr[2]/td[12]/span");
+
+    //cash flow deal details
+    public static By dealEnquiry_first_CashFlow_Purpose = By.xpath("//div[text()='Purpose: ']/following-sibling::div[1]");
+    public static By dealEnquiry_first_CashFlow_AssetAmount = By.xpath("//div[text()='Asset: ']/following-sibling::div[1]/span");
+    public static By dealEnquiry_first_CashFlow_AssetName = By.xpath("//div[text()='Asset: ']/following-sibling::div[2]");
+    public static By dealEnquiry_first_CashFlow_TradeDate = By.xpath("//tbody[@class='ant-table-tbody']/tr[2]/td[11]/span");
+    public static By dealEnquiry_first_CashFlow_ValueDate = By.xpath("//tbody[@class='ant-table-tbody']/tr[2]/td[12]/span");
 
     //deal filters
     public static By dealEnquiry_processingStatusClick = By.xpath("//div[@ph_label='Processing Status']");
@@ -60,10 +67,7 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_StartDate = By.id("filter_form_start");
     public static By dealEnquiry_EndDate = By.id("filter_form_end");
 
-
-
     //deal details
     public static By dealDetail_dealRef = By.xpath("//input[@placeholder='Deal Ref']");
-
 
 }

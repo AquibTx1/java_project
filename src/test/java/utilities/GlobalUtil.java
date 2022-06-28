@@ -146,6 +146,18 @@ public class GlobalUtil {
     }
 
     /**
+     * Get data and time stamp in "13 Mar 1990" format
+     *
+     * @return the date time
+     */
+    public static String getCurrentDateTime_ddMMMyyyy() {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+        String dateOfExecution = dateFormat.format(date);
+        return dateOfExecution;
+    }
+
+    /**
      * Get data and time stamp
      *
      * @return the date time
