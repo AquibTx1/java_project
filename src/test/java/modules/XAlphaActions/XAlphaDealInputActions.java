@@ -25,7 +25,11 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void clickDealInputTab() {
-        click(XAlphaDealInputPage.dealInputTab, "Click deal input tab");
+        if (isWebElementVisible(XAlphaDealInputPage.dealInput_navbar)) {
+            LogUtil.infoLog(thisClass, "User is already on deal input tab");
+        } else {
+            click(XAlphaDealInputPage.dealInput_navbar, "Click deal input tab");
+        }
     }
 
     public static void waitFordealInput_navbar() {
@@ -277,6 +281,38 @@ public class XAlphaDealInputActions extends KeywordUtil {
         LogUtil.infoLog(thisClass, "Deal ref id in notification message=" + splittedMsg[3]);
         RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Deal ref id in notification message=" + splittedMsg[3]));
         return splittedMsg[3];
+    }
+
+    //cash flow tab
+    public static void clickCashFlowTab() {
+        click(XAlphaDealInputPage.dealInput_CashFlowTab, "Navigate to CashFlow tab");
+    }
+
+    //cash flow Direction
+    public static void dealInput_CashFlow_Direction(String Direction) {
+        inputText(XAlphaDealInputPage.dealInput_CashFlow_Direction, Direction, "Select deal input CashFlow Direction=" + Direction);
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_CashFlow_DirectionOptions, Direction)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_CashFlow_DirectionOptions, Direction)), "Choose CashFlow Direction from dropdown options");
+    }
+
+    //cash flow Asset
+    public static void dealInput_CashFlow_Asset(String Asset) {
+        inputText(XAlphaDealInputPage.dealInput_CashFlow_Asset, Asset, "Select deal input CashFlow Asset=" + Asset);
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_CashFlow_AssetOptions, Asset)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_CashFlow_AssetOptions, Asset)), "Choose CashFlow Asset from dropdown options");
+    }
+
+    //cash flow Amount
+    public static void dealInput_CashFlow_Amount(String Amount) {
+        clearInputValue(XAlphaDealInputPage.dealInput_CashFlow_Amount);
+        inputText(XAlphaDealInputPage.dealInput_CashFlow_Amount, Amount, "Deal input CashFlow Amount=" + Amount);
+    }
+
+    //cash flow Purpose
+    public static void dealInput_CashFlow_Purpose(String Purpose) {
+        inputText(XAlphaDealInputPage.dealInput_CashFlow_Purpose, Purpose, "Select deal input CashFlow Purpose=" + Purpose);
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_CashFlow_PurposeOptions, Purpose)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_CashFlow_PurposeOptions, Purpose)), "Choose CashFlow Purpose from dropdown options");
     }
 
 }

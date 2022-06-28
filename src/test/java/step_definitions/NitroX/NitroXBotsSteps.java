@@ -39,7 +39,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.pauseAllBots();
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to Total Bot Bot Filtered");
                 totalbotbefore = NitroXBotsAction.getTotalFilteredBots();//to be Used later
             } catch (Throwable e) {
@@ -337,8 +336,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                delay(2000);
-                NitroXBotsAction.pauseAllBots();
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to Total Bot Filtered");
                 totalbotbefore = NitroXBotsAction.getTotalFilteredBots();
             } catch (Throwable e) {
@@ -408,7 +405,6 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.inputTrigerCondtion();
                 NitroXBotsAction.clickSubmit();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -452,7 +448,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.selecttotalBots();
                 waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
-                delay(30000);
+                delay(10000);
                 NitroXBotsAction.selectLatestBotName();
 
             } catch (Throwable e) {
@@ -472,10 +468,9 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                waitForVisible(NitroXBotsPage.botdetail_snipper);
-               // Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(), dataMap.get("TotalAmount"));
+                Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(), dataMap.get("TotalAmount"));
                 NitroXBotsAction.selectConfig();
-                Assert.assertEquals(NitroXBotsAction.getTrigerConditionvalue_Sniper(), NitroXBotsAction.trrigervalue);
+                Assert.assertEquals(NitroXBotsAction.getBotDetailSide(),dataMap.get("Side"));
                 // Assert.assertEquals();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1089,7 +1084,6 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.clickDealtOrdersTab();
                 delay(2000);
                 Assert.assertEquals(Double.toString(NitroXBotsAction.getDealtOrderQuantity()), dataMap.get("SliceSize"));
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1434,9 +1428,10 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(), dataMap.get("S_UpdatedTotalAmount"));
                 NitroXBotsAction.selectConfig();
                 Assert.assertEquals(NitroXBotsAction.getBotDetailSide(),dataMap.get("Side"));
-                Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(), dataMap.get("S_UpdatedTotalAmount"));
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1963,7 +1958,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-               delay(20000);
+               delay(10000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

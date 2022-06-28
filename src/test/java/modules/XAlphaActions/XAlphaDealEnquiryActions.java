@@ -345,4 +345,39 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         return dealRef;
     }
 
+    //cash flow deal
+    public static String getFirst_CashFlow_Purpose() {
+        String CashFlowPurpose = getElementText(XAlphaDealEnquiryPage.dealEnquiry_first_CashFlow_Purpose);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "CashFlowPurpose in the first row=" + CashFlowPurpose);
+        return CashFlowPurpose;
+    }
+
+    //cash flow asset amount
+    public static String getFirst_CashFlow_AssetAmount() {
+        String CashFlowAmount = getElementText(XAlphaDealEnquiryPage.dealEnquiry_first_CashFlow_AssetAmount);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "CashFlowAmount in the first row=" + CashFlowAmount);
+        return CashFlowAmount;
+    }
+
+    //cash flow asset name
+    public static String getFirst_CashFlow_AssetName() {
+        String CashFlowAssetName = getElementText(XAlphaDealEnquiryPage.dealEnquiry_first_CashFlow_AssetName);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "CashFlowAssetName in the first row=" + CashFlowAssetName);
+        return CashFlowAssetName;
+    }
+
+    //cash flow trade date
+    public static String getFirst_CashFlow_TradeDate() {
+        String CashFlowTradeDate = getElementText(XAlphaDealEnquiryPage.dealEnquiry_first_CashFlow_TradeDate);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "CashFlowTradeDate in the first row=" + CashFlowTradeDate);
+        return CashFlowTradeDate;
+    }
+
+    //cash flow trade date
+    public static String getFirst_CashFlow_ValueDate() {
+        String CashFlowValueDate = getElementText(XAlphaDealEnquiryPage.dealEnquiry_first_CashFlow_ValueDate);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "CashFlowValueDate in the first row=" + CashFlowValueDate);
+        return CashFlowValueDate;
+    }
+
 }

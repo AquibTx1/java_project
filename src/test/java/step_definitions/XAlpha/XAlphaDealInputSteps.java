@@ -110,8 +110,8 @@ public class XAlphaDealInputSteps {
         }
     }
 
-    @And("Provide deal input details")
-    public void provideDealInputDetails() throws InterruptedException {
+    @And("Provide FX Spot deal input details")
+    public void provideFXSpotDealInputDetails() {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -269,4 +269,57 @@ public class XAlphaDealInputSteps {
             }
         }
     }
+
+    @And("Choose CashFlow deal")
+    public void chooseCashFlowDeal() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.clickCashFlowTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Provide CashFlow deal input details")
+    public void provideCashFlowDealInputDetails() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //cash flow details
+                XAlphaDealInputActions.dealInput_CashFlow_Direction(dataMap.get("Direction"));
+                XAlphaDealInputActions.dealInput_CashFlow_Asset(dataMap.get("Asset"));
+                XAlphaDealInputActions.dealInput_CashFlow_Amount(dataMap.get("Amount"));
+                XAlphaDealInputActions.dealInput_CashFlow_Purpose(dataMap.get("CashflowPurpose"));
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus"));
+
+                //counterparty details
+                XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
+                XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+
 }

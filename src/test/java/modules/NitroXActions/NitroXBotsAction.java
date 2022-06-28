@@ -819,6 +819,7 @@ public class NitroXBotsAction {
                 NitroXBotsAction.stopAllBots();
                 NitroXBotsAction.closeBot();
                 NitroXBotsAction.refreshPage();
+                NitroXHome.waitForLiveChart();
                 //NitroXHome.waitForNotifMsg();
                 //waitForInVisibile(NitroXBotsPage.orderbooklistener);
                 NitroXBotsAction.selecttotalBots();

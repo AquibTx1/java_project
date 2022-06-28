@@ -653,8 +653,7 @@ public class XAlphaDealEnquirySteps {
     }
 
     @Then("Verify updated execution deal details\\(CounterpartyName, PortfolioNumber, ValueDate)")
-    public void verifyUpdatedExecutionDealDetailsCounterpartyNamePortfolioNumberValueDate() throws ParseException {
-
+    public void verifyUpdatedExecutionDealDetailsCounterpartyNamePortfolioNumberValueDate() {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -713,12 +712,101 @@ public class XAlphaDealEnquirySteps {
 
     @And("Clear value date")
     public void clearValueDate() {
-        XAlphaDealInputActions.clearDealInput_ValueDate();
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.clearDealInput_ValueDate();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
     }
 
     @Then("Verify empty value date")
     public void verifyEmptyValueDate() {
-        String valueDate = XAlphaDealEnquiryActions.getFirstValueDateBlank();
-        Assert.assertTrue(valueDate.isEmpty());
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                String valueDate = XAlphaDealEnquiryActions.getFirstValueDateBlank();
+                Assert.assertTrue(valueDate.isEmpty());
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify CashFlow deal is created with correct details")
+    public void verifyCashFlowDealIsCreatedWithCorrectDetails() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.expandFirstDealDetail();
+
+                //actual values in the first row
+                String dealTypeActual = XAlphaDealEnquiryActions.getFirstDealType();
+                String processingStatusActual = XAlphaDealEnquiryActions.getFirstDealProcessingStatus();
+                String directionActual = XAlphaDealEnquiryActions.getFirstSummary();
+                String purposeActual = XAlphaDealEnquiryActions.getFirst_CashFlow_Purpose();
+                String assetAmountActual = XAlphaDealEnquiryActions.getFirst_CashFlow_AssetAmount();
+                String assetNameActual = XAlphaDealEnquiryActions.getFirst_CashFlow_AssetName();
+                String tradeDateActual = XAlphaDealEnquiryActions.getFirst_CashFlow_TradeDate();
+                String valueDateActual = XAlphaDealEnquiryActions.getFirst_CashFlow_ValueDate();
+                String counterpartyNameActual = XAlphaDealEnquiryActions.getFirstCounterpartyName();
+                String portfolioNumberActual = XAlphaDealEnquiryActions.getFirstPortfolioNumber();
+
+                //expected values from test data
+                String dealTypeExpected = dataMap.get("DealType");
+                String processingStatusExpected = dataMap.get("ProcessingStatus");
+                String directionExpected = dataMap.get("Direction");
+                String purposeExpected = dataMap.get("CashflowPurpose");
+                String assetAmountExpected = KeywordUtil.formatDecimalToStr(dataMap.get("Amount"));
+                String assetNameExpected = dataMap.get("Asset").split(" | ")[0].trim();
+                String tradeDateExpected = GlobalUtil.getCurrentDateTime_ddMMMyyyy(); //today's date
+                String valueDateExpected = GlobalUtil.getCurrentDateTime_ddMMMyyyy(); //today's date
+                String counterpartyNameExpected = dataMap.get("CounterpartyName").split(" | ")[0].trim() + " " + dataMap.get("CounterpartyName").split(" | ")[1].trim();
+                String portfolioNumberExpected = dataMap.get("PortfolioNumber");
+
+                //match the values
+                Assert.assertEquals(dealTypeActual, dealTypeExpected);
+                Assert.assertEquals(processingStatusActual, processingStatusExpected);
+                Assert.assertEquals(directionActual, directionExpected);
+                Assert.assertEquals(purposeActual, purposeExpected);
+                Assert.assertEquals(assetAmountActual, assetAmountExpected);
+                Assert.assertEquals(assetNameActual, assetNameExpected);
+                Assert.assertEquals(tradeDateActual, tradeDateExpected);
+                Assert.assertEquals(valueDateActual, valueDateExpected);
+                Assert.assertEquals(counterpartyNameActual, counterpartyNameExpected);
+                Assert.assertEquals(portfolioNumberActual, portfolioNumberExpected);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
     }
 }
