@@ -121,11 +121,12 @@ public class XAlphaDealInputSteps {
                 XAlphaDealInputActions.dealInput_BaseAssetAmount(dataMap.get("BaseAssetAmount"));
                 XAlphaDealInputActions.dealInput_BaseAsset(dataMap.get("BaseAsset"));
                 XAlphaDealInputActions.dealInput_QuoteAsset(dataMap.get("QuoteAsset"));
-                marketPrice = XAlphaDealInputActions.get_dealInput_MarketPrice(); //to be used later
-                XAlphaDealInputActions.dealInput_UnitPrice(marketPrice);
+//                marketPrice = XAlphaDealInputActions.get_dealInput_MarketPrice(); //obsoleted
+                referencePrice = XAlphaDealInputActions.get_dealInput_ReferencePrice(); //to be used later
+                XAlphaDealInputActions.dealInput_UnitPrice(referencePrice);
                 XAlphaDealInputActions.dealInput_FeeAsset(dataMap.get("FeeAsset"));
                 XAlphaDealInputActions.dealInput_FeeAmount(dataMap.get("FeeAmount"));
-                XAlphaDealInputActions.dealInput_ReferencePrice(marketPrice);
+//                XAlphaDealInputActions.dealInput_ReferencePrice(marketPrice); //obsoleted
                 XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
                 XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber"));
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus"));
@@ -248,8 +249,8 @@ public class XAlphaDealInputSteps {
         }
     }
 
-    @Then("Verify settled deal is not created")
-    public void verifySettledDealIsNotCreated() {
+    @Then("Verify the validation message")
+    public void verifyTheValidationMessage() {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -320,6 +321,4 @@ public class XAlphaDealInputSteps {
             }
         }
     }
-
-
 }
