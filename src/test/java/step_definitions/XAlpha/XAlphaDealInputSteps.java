@@ -249,8 +249,8 @@ public class XAlphaDealInputSteps {
         }
     }
 
-    @Then("Verify settled deal is not created")
-    public void verifySettledDealIsNotCreated() {
+    @Then("Verify the validation message")
+    public void verifyTheValidationMessage() {
         //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
@@ -321,6 +321,4 @@ public class XAlphaDealInputSteps {
             }
         }
     }
-
-
 }

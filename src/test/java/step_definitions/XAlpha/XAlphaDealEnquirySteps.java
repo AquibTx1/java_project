@@ -30,8 +30,9 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
                 XAlphaDealEnquiryActions.clickDealEnquiryTab();
-                XAlphaDealEnquiryActions.waitFordealEnquiry_navbar();
+//                XAlphaDealEnquiryActions.waitFordealEnquiry_navbar();
                 XAlphaDealEnquiryActions.waitForLoadingIconToAppearAndDisappear();
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
                 XAlphaDealEnquiryActions.closeSuccessNotification();
