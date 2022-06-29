@@ -31,7 +31,7 @@ Feature: Test deals creation feature
     And Choose FX Spot
     And Provide FX Spot deal input details
     And Click create deal button
-    Then Verify settled deal is not created
+    Then Verify the validation message
 
     Examples:
       | SheetName   | TestCaseID                  | Direction | Status    |
@@ -50,7 +50,7 @@ Feature: Test deals creation feature
     And Choose Execution deal tab
     And Provide execution deal input details
     And Click create deal button
-    Then Verify settled deal is not created
+    Then Verify the validation message
 
     Examples:
       | SheetName     | TestCaseID                  | Status    |
@@ -77,7 +77,7 @@ Feature: Test deals creation feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_039 | Pending   |
 
   @XAlphaDealInput
-  Scenario Outline: "<TestCaseID>" Able to Create Cashflow Pay Deal via Deal Input Page with "<Status>"
+  Scenario Outline: "<TestCaseID>" Able to Create Cashflow Pay Deal via Deal Input Page with "<Status>" status
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal input tab
@@ -93,3 +93,4 @@ Feature: Test deals creation feature
       | SheetName | TestCaseID                  | Status    |
       | CashFlow  | QA_TestCase_Auto_XAlpha_067 | Confirmed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_068 | Pending   |
+    
