@@ -696,8 +696,8 @@ public class XAlphaDealEnquirySteps {
             try {
                 //update processing status
                 XAlphaDealEnquiryActions.chooseFilter_ValueDate("Value Date");
-                XAlphaDealEnquiryActions.filter_StartDate(dataMap.get("StartDate"));
-                XAlphaDealEnquiryActions.filter_EndDate(dataMap.get("EndDate"));
+//                XAlphaDealEnquiryActions.filter_StartDate(dataMap.get("StartDate"));
+                XAlphaDealEnquiryActions.filter_EndDateNow();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
