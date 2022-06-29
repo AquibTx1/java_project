@@ -45,6 +45,7 @@ public class XAlphaDealInputPage {
     public static By dealInput_ValueDateOkBtn = By.xpath("//button[@type='button']/span[text()='OK']");
     public static By dealInput_ValueDateOkBtn2 = By.xpath("(//button[@type='button']/span[text()='OK'])[2]");
     public static By dealInput_ValueDateNowBtn = By.xpath("//a[@class='ant-picker-now-btn' and text()='Now']");
+    public static By dealInput_ValueDateNowBtn2 = By.xpath("(//a[@class='ant-picker-now-btn' and text()='Now'])[2]");
     public static By dealInput_CreateBtn = By.xpath("//button[@type='submit']/span[text()='Create']");
     public static By dealInput_validationMsg = By.xpath("//div[@class='ant-notification-notice-description']");
 

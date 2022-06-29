@@ -273,6 +273,15 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         clickBlankArea();
     }
 
+    //input end date filter now
+    public static void filter_EndDateNow() {
+        click(XAlphaDealEnquiryPage.dealEnquiry_EndDate, "Click end date");
+        waitForVisible(XAlphaDealInputPage.dealInput_ValueDateNowBtn2);
+        click(XAlphaDealInputPage.dealInput_ValueDateNowBtn2, "Choose end date a Now");
+        waitForInVisibile(XAlphaDealInputPage.dealInput_ValueDateNowBtn2);
+        clickBlankArea();
+    }
+
     public static void clickLoadDealBtn() {
         click(XAlphaDealEnquiryPage.dealEnquiry_LoadDealBtn, "Click load deal button");
     }
