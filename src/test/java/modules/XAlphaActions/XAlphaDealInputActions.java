@@ -96,7 +96,8 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static String get_dealInput_ReferencePrice() {
-//        delay(1500);
+        waitForVisible(XAlphaDealInputPage.dealInput_ReferencePriceLoadingIcon);
+        waitForInVisibile(XAlphaDealInputPage.dealInput_ReferencePriceLoadingIcon);
         String referencePrice = getElementValueWithVisibility(XAlphaDealInputPage.dealInput_ReferencePrice);
         LogUtil.infoLog(XAlphaDealInputActions.class, "Reference price=" + referencePrice);
         return referencePrice;

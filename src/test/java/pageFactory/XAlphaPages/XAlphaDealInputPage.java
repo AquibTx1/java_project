@@ -31,6 +31,7 @@ public class XAlphaDealInputPage {
     public static By dealInput_FeeAssetText = By.xpath("//input[@id='deal_type_data.fee_asset']/../following-sibling::span");
     public static By dealInput_FeeAmount = By.id("deal_type_data.fee_amount");
     public static By dealInput_ReferencePrice = By.id("deal_type_data.reference_price");
+    public static By dealInput_ReferencePriceLoadingIcon= By.xpath("//span[text()='Reference Price']/span[@aria-label='loading']");
     public static By dealInput_MarketPrice = By.xpath("//input[@id='deal_type_data.market_price' and @aria-valuenow]");
     public static By dealInput_CounterpartyName = By.id("counterparty_name");
     public static String dealInput_CounterpartyNameOptions = "//div[@id='counterparty_name_list']/following-sibling::div//div[text()='%s']";
