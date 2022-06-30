@@ -41,14 +41,21 @@ public class NitroXBotsPage {
     public static By serviceid=By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]");
 
     public static By botid=By.xpath("//th[text()='Service ID']//following::tr[1]/td[3]");
+
+    public static By botlist=By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]");
     public static By botName=By.xpath("//th[text()='Service ID']//following::tr[1]/td[4]");
     public static By allbots=By.xpath("//th[text()='Service ID']//preceding-sibling::th");
 
     public static By currentbot=By.xpath("//th[text()='Service ID']//following::tr[1]/td[1]");
+
+    public static By botscheckbox=By.xpath("//span[text()='Detailed Bots ']//following::th[1]");
     public static By pausebtn=By.xpath("(//span[text()='Pause'])[1]");
     public static By resumebotbtn=By.xpath("(//span[text()='Resume'])[1]");
 
-    public static By stopbotbtn=By.xpath("(//span[text()='Stop'])[1]");
+    public static By stopbotbtn=By.xpath("(//span[text()='Stop'])");
+
+    public static By stopallbtn=By.xpath("(//span[text()='Stop all'])");
+
     public static By editbotbtn=By.xpath("(//span[text()='Edit'])[1]");
 
     public static By duplicatebotbtn=By.xpath("(//span[text()='Duplicate'])[1]");

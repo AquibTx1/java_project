@@ -481,7 +481,7 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_020 |
 
   @NitroXBot
-  Scenario Outline: <TestCaseID>_No Bot in List
+  Scenario Outline: <TestCaseID>_Verify Empty Bot List
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
     And Validate the Bots
