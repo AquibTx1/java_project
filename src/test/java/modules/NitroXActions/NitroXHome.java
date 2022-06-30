@@ -409,6 +409,8 @@ public class NitroXHome {
         return isWebElementPresent(NitroXHomePage.orderBookListener, "Orderbook listener notification is present");
     }
 
+
+
     public static void closeBottomRightNotif() {
         click(NitroXHomePage.closeBottomRightNotif, "Bottom right notification closed.");
     }
@@ -416,5 +418,10 @@ public class NitroXHome {
     public static void waitForOrderListernerToDisappear() {
         waitForInVisibile(NitroXHomePage.orderBookListener);
     }
+
+    public static boolean isBotPresent() {
+        return isWebElementPresent(NitroXBotsPage.botlist, "Bots are available");
+    }
+
 
 }

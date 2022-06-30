@@ -93,7 +93,32 @@ Feature: Test Bots features on NitroX HomePage
 #      | SheetName  |  TestCaseID                  |
 #      | NitroXBots  | QA_TestCase_Auto_NitroX_052 |
 #      | NitroXBots  | QA_TestCase_Auto_NitroX_053 |
-#
+#      | NitroXBots  | QA_TestCase_Auto_NitroX_054 |
+#      | NitroXBots  | QA_TestCase_Auto_NitroX_055 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Count list of Running Bots-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode and Trading Account
+    And Check if No Current running Bot fo FutureMode
+    Then Verify the list of running bots is displayed
+
+    Examples:
+      | SheetName   |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_042 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Verify Empty Bot List-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode and Trading Account
+    And Validate the Bots for Future Mode
+    Then Verify the bot list is empty
+
+    Examples:
+      | SheetName   |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_043 |
+
+
   @NitroXBotFutureMode
   Scenario Outline: <TestCaseID>_Pause Existing Running Execution_Bot for Buy Order-FutureMode
   Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
@@ -129,6 +154,7 @@ Feature: Test Bots features on NitroX HomePage
   Examples:
   | SheetName   |  TestCaseID                 |
   | NitroXBots  | QA_TestCase_Auto_NitroX_074 |
+
   @NitroXBotFutureMode
   Scenario Outline: <TestCaseID>_Restart Existing Running Execution_Bot for Buy Order--FutureMode
   Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
