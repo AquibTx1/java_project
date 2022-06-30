@@ -1,12 +1,15 @@
 package step_definitions.XAlpha;
 
+import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import modules.XAlphaActions.XAlphaDealInputActions;
 import modules.XAlphaActions.XAlphaDealEnquiryActions;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
+import step_definitions.RunCukesTest;
 import utilities.GlobalUtil;
+import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 
 import java.text.ParseException;
@@ -281,6 +284,7 @@ public class XAlphaDealEnquirySteps {
             try {
                 //open first deal
                 dealRefId = XAlphaDealEnquiryActions.getFirstDealReferenceId(); //to be used later
+                RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Deal ref id in the first row=" + dealRefId));
                 XAlphaDealEnquiryActions.openFirstDeal();
                 XAlphaDealEnquiryActions.waitForDealDetailsPage();
                 Assert.assertEquals(XAlphaDealEnquiryActions.getDealReferenceFromDealDetails(), dealRefId);
