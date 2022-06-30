@@ -248,7 +248,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     public static void chooseFilter_ValueDate(String filterType) {
         inputText(XAlphaDealEnquiryPage.dealEnquiry_dateFilter, filterType, "Choose " + filterType + " filter");
         waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_dateFilterOptions, filterType)));
-        click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_dateFilterOptions, filterType)), "");
+        click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_dateFilterOptions, filterType)), "Choose " + filterType + " filter from dropdown options");
     }
 
     //input start date filter
