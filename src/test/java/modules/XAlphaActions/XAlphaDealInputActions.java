@@ -207,7 +207,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
 
     public static void dealInput_ValueDate(String ValueDate) throws InterruptedException {
         clearDealInput_ValueDate();
-        click(XAlphaDealInputPage.dealInput_ValueDate, "");
+        click(XAlphaDealInputPage.dealInput_ValueDate, "Click Deal input ValueDate");
         inputTextByCharacter(XAlphaDealInputPage.dealInput_ValueDate, ValueDate, "Deal input ValueDate=" + ValueDate);
         delay(2000);
         waitForPresent(XAlphaDealInputPage.dealInput_ValueDateOkBtn);
