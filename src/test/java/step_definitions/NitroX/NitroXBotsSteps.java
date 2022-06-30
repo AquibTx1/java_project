@@ -1,6 +1,7 @@
 package step_definitions.NitroX;
 
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
+import modules.NitroXActions.NitroXBuySellFutureAction;
 import modules.NitroXActions.NitroXHome;
 import pageFactory.NitroXPages.NitroXBotsPage;
 import io.cucumber.java.en.And;
@@ -1752,6 +1753,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                delay(2000);
                 NitroXBotsAction.validateBots(dataMap);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1770,7 +1772,15 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                NitroXBotsAction.CheckBotStatus();
+                NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
+                while (NitroXHome.isBotPresent())
+                {
+                    NitroXBotsAction.sortStartTime();
+                    NitroXBotsAction.selectCheckBoxList();
+                    NitroXBotsAction.stopBots();
+                    delay(7000);
+                }
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2076,6 +2086,78 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
 
+    }
+
+    @And("Validate the Bots for Future Mode")
+    public void validateTheBotsForFutureMode()
+    {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
+                while (NitroXHome.isBotPresent()) {
+                    NitroXBotsAction.sortStartTime();
+                    NitroXBotsAction.selectCheckBoxList();
+                    NitroXBotsAction.stopBots();
+                    delay(7000);
+                }
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Check if No Current running Bot fo FutureMode")
+    public void checkIfNoCurrentRunningBotFoFutureMode()
+    {
+            if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+                BaseStepDefinitions.skipThisStep();
+            } else {
+                try {
+                    waitForVisible(NitroXBotsPage.totalfilered);
+                    NitroXBotsAction.validateFutureModeBots(dataMap);
+                } catch (Throwable e) {
+                    GlobalUtil.e = e;
+                    e.printStackTrace();
+                    GlobalUtil.errorMsg = e.getMessage();
+                    Assert.fail(e.getMessage());
+                }
+            }
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    @When("Choose Mode and Trading Account")
+    public void chooseModeAndTradingAccountforFutureMode()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBuySellFutureAction.selectmode(dataMap);
+                NitroXBuySellFutureAction.inputTradingAccount(dataMap);
+                delay(3000);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
     }
 }
 
