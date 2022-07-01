@@ -218,7 +218,8 @@ public class XAlphaDealInputActions extends KeywordUtil {
     public static void dealInput_ValueDateNow() {
         click(XAlphaDealInputPage.dealInput_ValueDate, "Click ValueDate picker");
         waitForPresent(XAlphaDealInputPage.dealInput_ValueDateNowBtn);
-        click(XAlphaDealInputPage.dealInput_ValueDateNowBtn, "Click OK button on value date picker");
+        click(XAlphaDealInputPage.dealInput_ValueDateNowBtn, "Click Now button on value date picker");
+        clickBlankArea();
     }
 
     //execution deal > start asset
