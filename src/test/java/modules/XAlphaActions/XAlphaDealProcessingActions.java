@@ -76,6 +76,6 @@ public class XAlphaDealProcessingActions extends KeywordUtil {
 
     //wait for "Task has been approved." message
     public static void waitForApprovedNotif() {
-        waitForPresent(XAlphaDealProcessingPage.notifTextDescriptionApproved);
+        waitForVisible(XAlphaDealProcessingPage.notifTextDescriptionApproved);
     }
 }
