@@ -95,7 +95,7 @@ Feature: Test deals creation feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_068 | Pending   |
 
   @XAlphaDealInput
-  Scenario Outline: "<TestCaseID>"_Not Able to Create Cashflow Pay Deal via Deal Input Page with "<Status>" Status
+  Scenario Outline: "<TestCaseID>"_Not Able to Create Cashflow "Pay" Deal via Deal Input Page with "<Status>" Status
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal input tab
@@ -109,3 +109,21 @@ Feature: Test deals creation feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_069 | Processed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_070 | Settled   |
       | CashFlow  | QA_TestCase_Auto_XAlpha_071 | Cancelled |
+
+  @XAlphaDealInput
+  Scenario Outline: "<TestCaseID>" Able to Create Cashflow "Receive" Deal via Deal Input Page with "<Status>" status
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal input tab
+    And Choose CashFlow deal
+    And Provide CashFlow deal input details
+    And Click create deal button
+    Then Verify the deal success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id from deal input
+    Then Verify CashFlow deal is created with correct details
+
+    Examples:
+      | SheetName | TestCaseID                  | Status    |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_072 | Confirmed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_073 | Pending   |

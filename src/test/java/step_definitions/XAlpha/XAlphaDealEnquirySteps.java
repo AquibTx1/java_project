@@ -90,7 +90,6 @@ public class XAlphaDealEnquirySteps {
                 BaseStepDefinitions.increaseCounter();
             }
         }
-
     }
 
     @And("Load a deal wrt processing type and deal type")
@@ -132,6 +131,36 @@ public class XAlphaDealEnquirySteps {
                 BaseStepDefinitions.increaseCounter();
             }
         }
+    }
+
+    @And("Load deals")
+    public void loadDeals() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.clickLoadDealBtn();
+
+                //wait for deals to load
+                XAlphaDealEnquiryActions.waitForLoadingIconToAppear();
+                XAlphaDealEnquiryActions.waitForLoadingIconToDisappear();
+
+                //wait for success message to appear and disappear
+                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
+                XAlphaDealEnquiryActions.closeSuccessNotification();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
     }
 
     @And("Change processing status")
@@ -736,6 +765,27 @@ public class XAlphaDealEnquirySteps {
         }
     }
 
+    @And("Change value date to now")
+    public void changeValueDateToNow() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.dealInput_ValueDateNow();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
     @Then("Verify empty value date")
     public void verifyEmptyValueDate() {
         //check if this step needs to be skipped
@@ -814,4 +864,5 @@ public class XAlphaDealEnquirySteps {
             }
         }
     }
+
 }

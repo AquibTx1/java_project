@@ -264,8 +264,16 @@ Feature: Test deal enquiry feature
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal enquiry tab
-    And Apply value date filter
+    #generate test data
     And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Change value date to now
+    And Click update deal button
+    Then Verify the deal updated success message
+    #actual test case
+    And Navigate to deal enquiry tab
+    And Apply value date filter
+    And Load deals
     And Open first deal in the row
     And Clear value date
     And Change processing status
@@ -278,7 +286,7 @@ Feature: Test deal enquiry feature
 
     Examples:
       | SheetName     | TestCaseID                  | FromStatus | ToStatus  |
+      | ExecutionDeal | QA_TestCase_Auto_XAlpha_050 | Pending    | Settled   |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_047 | Confirmed  | Processed |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_048 | Confirmed  | Settled   |
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_049 | Pending    | Processed |
-      | ExecutionDeal | QA_TestCase_Auto_XAlpha_050 | Pending    | Settled   |

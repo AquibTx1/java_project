@@ -652,6 +652,11 @@ public class NitroXBotsAction {
     }
 
     public static void selectLatestBot() {click(NitroXBotsPage.currentbot,"Current Bot Selected");
+
+    }
+
+    public static void selectCheckBoxList() {click(NitroXBotsPage.botscheckbox,"Checkbox  Selected");
+
     }
     public static void pauseCurrentBot() {
         click(NitroXBotsPage.pausebtn, "Current Bot Paused");
@@ -714,6 +719,11 @@ public class NitroXBotsAction {
 
     public static void stopCurrentRunningBot() {
         click(NitroXBotsPage.stopbotbtn, "Current Bot Stopped");
+
+    }
+
+    public static void stopBots() {
+        click(NitroXBotsPage.stopallbtn, " Bots Stopped");
 
     }
     public static void editLatestBot() {
@@ -784,6 +794,33 @@ public class NitroXBotsAction {
                 e.getMessage();
             }
         }
+
+    public static void validateFutureModeBots(HashMap<String, String> dataMap)  {
+        try {
+            String value;
+            value = getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
+            if (value.equals("0")) {
+                NitroXBuySellFutureAction.inputInstrument(dataMap);
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+                NitroXBotsAction.clickStart();
+                NitroXBotsAction.waitforBotWindow();
+                NitroXBotsAction.inputService(dataMap.get("Service"));
+                NitroXBotsAction.inputMethod(dataMap.get("Method"));
+                NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
+                NitroXBotsAction.inputTargetAccountPosition(dataMap);
+                NitroXBotsAction.clickSubmit();
+                delay(10000);
+                NitroXBotsAction.selecttotalBots();
+            } else {
+                NitroXBotsAction.selecttotalBots();
+            }
+        }
+        catch (Throwable e)
+        {
+            e.printStackTrace();
+            e.getMessage();
+        }
+    }
 
     public static void countBots(HashMap<String, String> dataMap)  {
         try {
