@@ -222,6 +222,13 @@ public class XAlphaDealInputActions extends KeywordUtil {
         clickBlankArea();
     }
 
+    public static void dealInput_waitForDealInput_IncomingSettledYes() {
+        waitForVisible(XAlphaDealInputPage.dealInput_IncomingSettledYes);
+    }
+    public static void dealInput_waitForDealInput_OutgoingSettledYes() {
+        waitForVisible(XAlphaDealInputPage.dealInput_OutgoingSettledYes);
+    }
+
     //execution deal > start asset
     public static void dealInput_StartAsset(String StartAsset) {
         inputText(XAlphaDealInputPage.dealInput_StartAsset, StartAsset, "Select deal input StartAsset=" + StartAsset);

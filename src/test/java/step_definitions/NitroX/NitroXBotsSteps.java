@@ -2102,7 +2102,9 @@ public class NitroXBotsSteps {
                     NitroXBotsAction.sortStartTime();
                     NitroXBotsAction.selectCheckBoxList();
                     NitroXBotsAction.stopBots();
-                    delay(7000);
+                    NitroXHome.waitForNotifMsg();
+                    waitForInVisibile(NitroXHomePage.bottomRightNotifText);
+
                 }
 
             } catch (Throwable e) {
@@ -2138,6 +2140,27 @@ public class NitroXBotsSteps {
             }
         }
 
+    @And("Check if No Current running Bot for FutureMode")
+    public void checkIfNoCurrentRunningBotFoFutureModewithInstrument()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(NitroXBotsPage.totalfilered);
+                NitroXBotsAction.validateFutureModeBotswithInstrument(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
     @When("Choose Mode and Trading Account")
     public void chooseModeAndTradingAccountforFutureMode()
     {
@@ -2159,6 +2182,38 @@ public class NitroXBotsSteps {
             }
         }
     }
+
+    @And("Click total filtered bots and choose latest bot and pause it")
+    public void clickTotalFilteredBotsAndChooseLatestBotAndPauseIt()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+                NitroXBotsAction.selecttotalBots();
+                waitForVisible(NitroXBotsPage.BotTime);
+                NitroXBotsAction.sortStartTime();
+                delay(2000);
+                NitroXBotsAction.selectLatestBot();
+                NitroXBotsAction.pauseCurrentBot();
+                NitroXHome.waitForNotifMsg();
+                Assert.assertTrue(NitroXHome.getNotifMsg().startsWith("1 bots have been queued to be paused."));
+                NitroXBotsAction.editLatestBot();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
 }
 
 

@@ -822,6 +822,31 @@ public class NitroXBotsAction {
         }
     }
 
+    public static void validateFutureModeBotswithInstrument(HashMap<String, String> dataMap)  {
+        try {
+            String value;
+            value = getElementText(By.xpath("//div[text()='Total (Filtered)']/following-sibling::*/span/span"));
+            if (value.equals("0")) {
+                scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
+                NitroXBotsAction.clickStart();
+                NitroXBotsAction.waitforBotWindow();
+                NitroXBotsAction.inputService(dataMap.get("Service"));
+                NitroXBotsAction.inputMethod(dataMap.get("Method"));
+                NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
+                NitroXBotsAction.inputTargetAccountPosition(dataMap);
+                NitroXBotsAction.clickSubmit();
+                delay(15000);
+                NitroXBotsAction.selecttotalBots();
+            } else {
+                NitroXBotsAction.selecttotalBots();
+            }
+        }
+        catch (Throwable e)
+        {
+            e.printStackTrace();
+            e.getMessage();
+        }
+    }
     public static void countBots(HashMap<String, String> dataMap)  {
         try {
             String value;
