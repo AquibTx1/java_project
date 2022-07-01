@@ -111,13 +111,34 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Verify Empty Bot List-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode and Trading Account
-    And Validate the Bots for Future Mode
+    Then Validate the Bots for Future Mode
     Then Verify the bot list is empty
 
     Examples:
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_043 |
 
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Count list of Running Bots-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Check if No Current running Bot for FutureMode
+    Then Verify the list of running bots is displayed
+
+    Examples:
+      | SheetName   |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_044 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Verify Empty Bot List-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    Then Validate the Bots for Future Mode
+    Then Verify the bot list is empty
+
+    Examples:
+      | SheetName   |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_045 |
 
   @NitroXBotFutureMode
   Scenario Outline: <TestCaseID>_Pause Existing Running Execution_Bot for Buy Order-FutureMode

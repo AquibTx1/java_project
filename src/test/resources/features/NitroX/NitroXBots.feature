@@ -276,6 +276,23 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_067 |
+
+  @NitroXBot
+  Scenario Outline: <TestCaseID>_Edit PairTrading BOT For Buy and Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Pause all the Bots
+    And Click start Bot and select the Service,Method and Choose Bot Quantity
+    And Choose Side,Quantity,and Slice_Size
+    And Choose AccountId,Base,Quote and Side in Pair leg and submit
+    And Click total filtered bots and choose latest bot and pause it
+    And Input any field with new value and again submit for PairTrading Bot
+    Then Verify the Bot is updated
+    Then Verify the Config Tab for modified field in PairTrading Bot
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_068 |
   @NitroXBot
   Scenario Outline: <TestCaseID>_Duplicate the Execution_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
