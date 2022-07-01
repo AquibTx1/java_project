@@ -48,6 +48,8 @@ public class XAlphaDealInputPage {
     public static By dealInput_ValueDateNowBtn2 = By.xpath("(//a[@class='ant-picker-now-btn' and text()='Now'])[last()]");
     public static By dealInput_CreateBtn = By.xpath("//button[@type='submit']/span[text()='Create']");
     public static By dealInput_validationMsg = By.xpath("//div[@class='ant-notification-notice-description']");
+    public static By dealInput_IncomingSettledYes = By.xpath("(//span[@class='ant-switch-inner' and text()='YES'])[1]");
+    public static By dealInput_OutgoingSettledYes = By.xpath("(//span[@class='ant-switch-inner' and text()='YES'])[2]");
 
     //execution deal
     public static By dealInput_StartAsset = By.id("deal_type_data.start_asset");

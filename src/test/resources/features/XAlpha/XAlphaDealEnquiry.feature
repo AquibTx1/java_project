@@ -23,15 +23,33 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_015 | Pending    | Processed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_019 | Pending    | Confirmed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_020 | Confirmed  | Pending   |
-      | XAlphaDeals | QA_TestCase_Auto_XAlpha_023 | Pending    | Settled   |
-      | XAlphaDeals | QA_TestCase_Auto_XAlpha_024 | Confirmed  | Settled   |
-      | XAlphaDeals | QA_TestCase_Auto_XAlpha_025 | Processed  | Settled   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_026 | Confirmed  | Cancelled |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_027 | Pending    | Cancelled |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_030 | Cancelled  | Pending   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_031 | Cancelled  | Confirmed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_032 | Cancelled  | Processed |
-      | XAlphaDeals | QA_TestCase_Auto_XAlpha_033 | Cancelled  | Settled   |
+
+  @XAlphaDealEnquiryFXSpot
+  Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing FX-Spot Deal in Deal Inquiry
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal enquiry tab
+    And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Change processing status
+    And Wait for deal to get settled
+    And Click update deal button
+    Then Verify the deal updated success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id
+    Then Verify the processing type
+
+    Examples:
+      | SheetName   | TestCaseID                  | FromStatus | ToStatus |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_023 | Pending    | Settled  |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_024 | Confirmed  | Settled  |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_025 | Processed  | Settled  |
+      | XAlphaDeals | QA_TestCase_Auto_XAlpha_033 | Cancelled  | Settled  |
 
   @XAlphaDealEnquiryFXSpot
   Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing FX-Spot Deal in Deal Inquiry
