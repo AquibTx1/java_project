@@ -351,3 +351,170 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_089 |
 
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Select Buy Order and Select the MinTime and MaxTime Break
+    And Input the value in Account Position
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Pause the Current running bot
+    And Click on Persist Yes
+    Then Verify current running Bot is restarted
+    Examples:
+      | SheetName  |  TestCaseID               |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_076 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Select Buy Order and Select the MinTime and MaxTime Break
+    And Input the value in Account Position
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Pause the Current running bot
+    And Click Persist Status No
+    Then Verify current running Bot is restarted
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_078 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy -FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Select Buy Order and Select the MinTime and MaxTime Break
+    And Input the value in Account Position
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Pause the Bot
+    And Input any field with new value and again submit
+    Then Verify the Bot is updated
+    Then Verify the Config Tab for modified field
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_081 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT  Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Pause all the Bots
+    And Click Start Bot and select the Service,Method and Input Bot Quantity
+    And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Pause the Bot
+    And Input any field with new value and again submit for Sniper Bot
+    Then Verify the Bot is updated
+    Then Verify fields are updated in BotDetail
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_083 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Edit PairTrading BOT For Buy and Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Pause all the Bots
+    And Click start Bot and select the Service,Method and Choose Bot Quantity
+    And Choose Side,Quantity,and Slice_Size
+    And Input AccountId,Quote and Side
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Click total filtered bots and choose latest bot and pause it
+    And Input any field with new value and again submit for PairTrading Bot
+    Then Verify the Bot is updated
+    Then Verify the Config Tab for modified field in PairTrading Bot
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_085 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode and Trading Account
+    And Check if No Current running Bot fo FutureMode
+    And Close the total filtered
+    And Choose the instrument
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Input the value in Account Position
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Click total filtered bots and click the latest running bot to edit
+    And Input any field with new value and again submit
+    Then Verify the Bot is updated
+    Then Verify the Config Tab for modified field
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_097 |
+
+  @NitroXBotFutureMode98
+  Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode and Trading Account
+    And Check if No Current running Bot fo FutureMode
+    And Close the total filtered
+    And Choose the instrument
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Input the value in Account Position
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Pause the Bot
+    And Input any field with new value and again submit
+    Then Verify the Bot is updated
+    Then Verify the Config Tab for modified field
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_098 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT  Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode and Trading Account
+    And Check if No Current running Bot fo FutureMode
+    And Close the total filtered
+    And Choose the instrument
+    And Click Start Bot and select the Service,Method and Input Bot Quantity
+    And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Pause the Bot
+    And Input any field with new value and again submit for Sniper Bot
+    Then Verify the Bot is updated
+    Then Verify fields are updated in BotDetail
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_099 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT  Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode and Trading Account
+    And Check if No Current running Bot fo FutureMode
+    And Close the total filtered
+    And Choose the instrument
+    And Click Start Bot and select the Service,Method and Input Bot Quantity
+    And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Click total filtered bots
+    And Click edit button
+    And Input any field with new value and again submit for Sniper Bot
+    Then Verify the Bot is updated
+    Then Verify fields are updated in BotDetail
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_100 |
