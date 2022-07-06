@@ -458,7 +458,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_097 |
 
-  @NitroXBotFutureMode98
+  @NitroXBotFutureMode
   Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode and Trading Account
