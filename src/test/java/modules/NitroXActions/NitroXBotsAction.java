@@ -651,6 +651,12 @@ public class NitroXBotsAction {
         click(NitroXBotsPage.clickhoverbtn,"ALl Bots are paused");
     }
 
+    public static void logout() throws InterruptedException {
+        hoverOnElement(NitroXBotsPage.systemlink);
+        delay(3000);
+        hoverOnElement(NitroXBotsPage.logout);
+        click(NitroXBotsPage.logout,"ALl Logout button link");
+    }
     public static void selectLatestBot() {click(NitroXBotsPage.currentbot,"Current Bot Selected");
 
     }
@@ -893,4 +899,13 @@ public class NitroXBotsAction {
         }
 
     }
+
+    public static void clearInstrument() {
+        try {
+            KeywordUtil.clearInputUsingKeys(NitroXBotsPage.instrumenttype);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
 }

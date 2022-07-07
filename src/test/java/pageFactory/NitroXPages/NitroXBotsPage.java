@@ -87,6 +87,12 @@ public class NitroXBotsPage {
     public static By clickstarttime=By.xpath(" //span[text()='Start Time']");
 
     public static By moreactions=By.xpath("//span[@title='More actions...']");
+
+
+    public static By systemlink=By.xpath("//span[text()='system.qa']");
+
+    public static By logout=By.xpath("//span[text()='Log out']");
+
     public static By clickhoverbtn=By.xpath("//span[text()='Pause all running bots']");
 
     public static By recentDealtOrder = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[02]");

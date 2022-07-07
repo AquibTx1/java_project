@@ -10,7 +10,9 @@ import io.cucumber.java.en.When;
 import modules.NitroXActions.NitroXBotsAction;
 import org.testng.Assert;
 import pageFactory.NitroXPages.NitroXHomePage;
+import pageFactory.NitroXPages.NitroXLoginPage;
 import step_definitions.BaseStepDefinitions;
+import utilities.ConfigReader;
 import utilities.GlobalUtil;
 
 import java.util.HashMap;
@@ -1967,7 +1969,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-               delay(15000);
+               delay(25000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2103,7 +2105,6 @@ public class NitroXBotsSteps {
                     NitroXBotsAction.stopBots();
                     NitroXHome.waitForNotifMsg();
                     waitForInVisibile(NitroXHomePage.bottomRightNotifText);
-
                 }
 
             } catch (Throwable e) {
@@ -2267,6 +2268,53 @@ public class NitroXBotsSteps {
                 Assert.fail(e.getMessage());
             }
 
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Clear the Instrument field")
+    public void clearTheInstrumentField() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                scrollingToElementofAPage(NitroXHomePage.tradingaccount,"Scrolled to Account");
+                NitroXBotsAction.clearInstrument();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+    @And("Logout and again login & select Mode,Trading account")
+    public void logoutAndAgainLoginSelectModeTradingAccount() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.logout();
+                waitForVisible(NitroXLoginPage.username);
+                inputText(NitroXLoginPage.username, ConfigReader.getValue("nitroxUsername"), "Enter the username");
+                inputText(NitroXLoginPage.password, ConfigReader.getValue("nitroxPassword"), "Enter the password");
+                click(NitroXLoginPage.loginbtn, "Click on Sign on Button");
+                waitForVisible(NitroXLoginPage.homepage);
+                NitroXBotsAction.refreshPage();
+                waitForVisible(NitroXBotsPage.totalfilered);
+                NitroXBuySellFutureAction.selectmode(dataMap);
+                NitroXBuySellFutureAction.inputTradingAccount(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
         }
         if (BaseStepDefinitions.getSITflag()) {
             BaseStepDefinitions.increaseCounter();
