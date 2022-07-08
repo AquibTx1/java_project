@@ -653,7 +653,6 @@ public class NitroXBotsAction {
 
     public static void logout() throws InterruptedException {
         hoverOnElement(NitroXBotsPage.systemlink);
-        delay(3000);
         hoverOnElement(NitroXBotsPage.logout);
         click(NitroXBotsPage.logout,"ALl Logout button link");
     }
@@ -897,9 +896,7 @@ public class NitroXBotsAction {
         {
             e.printStackTrace();
         }
-
     }
-
     public static void clearInstrument() {
         try {
             KeywordUtil.clearInputUsingKeys(NitroXBotsPage.instrumenttype);
@@ -907,5 +904,8 @@ public class NitroXBotsAction {
             throw new RuntimeException(ex);
         }
     }
-
+    public static void pressenter()
+    {
+        KeywordUtil.pressEnter(NitroXHomePage.tradingaccount);
+    }
 }

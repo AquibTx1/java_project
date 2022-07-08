@@ -37,6 +37,8 @@ public class NitroXBotsPage {
     //Total Filtered
     public static By totalfilered=By.xpath("//div[text()='Total (Filtered)']");
 
+    public static By totalbotaccount=By.xpath("//button[@class='ant-btn ant-btn-default']/span[2]");
+
    // Detailed Bots Frame
     public static By serviceid=By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]");
 

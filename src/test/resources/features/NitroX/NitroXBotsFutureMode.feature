@@ -575,4 +575,63 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_103 |
 
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Duplicate the Sniper_Bot for Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Pause all the Bots
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Logout and again login & select Mode,Trading account
+    And Click total filtered bots and click the latest running bot and create duplicate Bot
+    And Input any field with new value and again submit for Sniper Bot
+    And Click total filtered
+    And Choose latest bot
+    Then Verify the Config Tab for modified field in Sniper Bot
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_104 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Duplicate PairTrading BOT For Buy and Sell Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Pause all the Bots
+    And Click start Bot and select the Service,Method and Choose Bot Quantity
+    And Choose Side,Quantity,and Slice_Size
+    And Input AccountId,Quote and Side
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Logout and again login & select Mode,Trading account
+    And Click total filtered bots and click the latest running bot and create duplicate Bot
+    And Input any field with new value and again submit for PairTrading Bot
+    And Click total filtered
+    And Choose latest bot
+    Then Verify the Config Tab for modified field in PairTrading Bot
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_105 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Duplicate TWAP BOT For Buy and Sell Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Pause all the Bots
+    And Click start Bot and select the Service,Method and Choose Bot Quantity
+    And Choose Side,Quantity,and Duration
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Logout and again login & select Mode,Trading account
+    And Click total filtered bots and click the latest running bot and create duplicate Bot
+    And Input any field with new value and again submit for Twap Bot
+    And Click total filtered
+    And Choose latest bot
+    Then Verify the Config Tab for modified field in Twap Bot
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_106 |
 

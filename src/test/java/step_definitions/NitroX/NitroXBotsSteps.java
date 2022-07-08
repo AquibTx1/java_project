@@ -1413,6 +1413,8 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.inputTotalAmount(dataMap.get("S_UpdatedTotalAmount"));
                 NitroXBotsAction.clickSubmit();
+                NitroXHome.waitForNotifMsg();
+                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1566,6 +1568,8 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.inputTwapBotQuantity(dataMap.get("T_UpdatedQuantity"));
                 NitroXBotsAction.clickSubmit();
+                NitroXHome.waitForNotifMsg();
+                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2304,11 +2308,56 @@ public class NitroXBotsSteps {
                 inputText(NitroXLoginPage.username, ConfigReader.getValue("nitroxUsername"), "Enter the username");
                 inputText(NitroXLoginPage.password, ConfigReader.getValue("nitroxPassword"), "Enter the password");
                 click(NitroXLoginPage.loginbtn, "Click on Sign on Button");
-                waitForVisible(NitroXLoginPage.homepage);
-                NitroXBotsAction.refreshPage();
-                waitForVisible(NitroXBotsPage.totalfilered);
                 NitroXBuySellFutureAction.selectmode(dataMap);
-                NitroXBuySellFutureAction.inputTradingAccount(dataMap);
+                NitroXBuySellFutureAction.selectTradingAccount(dataMap);
+                waitForVisible(NitroXBotsPage.totalbotaccount);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Click total filtered")
+    public void clickTotalFiltered()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.closeBot();
+                NitroXBotsAction.refreshPage();
+              NitroXBotsAction.selecttotalBots();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Choose latest bot")
+    public void chooseLatestBot()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(NitroXBotsPage.BotTime);
+                NitroXBotsAction.sortStartTime();
+                delay(10000);
+                NitroXBotsAction.selectLatestBotName();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
