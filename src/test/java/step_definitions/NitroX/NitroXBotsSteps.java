@@ -1273,7 +1273,6 @@ public class NitroXBotsSteps {
             try {
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be stopped."));
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

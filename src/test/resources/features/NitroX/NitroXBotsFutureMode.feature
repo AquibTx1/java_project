@@ -118,7 +118,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_043 |
 
-  @NitroXBotFutureMode44
+  @NitroXBotFutureMode
   Scenario Outline: <TestCaseID>_Count list of Running Bots-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account and Instrument
@@ -453,7 +453,6 @@ Feature: Test Bots features on NitroX HomePage
     And Input any field with new value and again submit
     Then Verify the Bot is updated
     Then Verify the Config Tab for modified field
-
     Examples:
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_097 |
