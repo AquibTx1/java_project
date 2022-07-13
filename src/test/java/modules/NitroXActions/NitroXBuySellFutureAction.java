@@ -40,8 +40,9 @@ public class NitroXBuySellFutureAction {
         KeywordUtil.click(NitroXHomePage.tradingaccount, "Trading Account text field clicked.");
         inputText(NitroXHomePage.tradingaccount, dataMap.get("TradingAccount"), dataMap.get("TradingAccount") + "=trading account");
         waitForPresent(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"));
+        delay(2000);
         KeywordUtil.click(By.xpath("//div[@title='" + dataMap.get("TradingAccount") + "']"), "Trading Account selected from dropdown");
-        delay(1000);
+
     }
 
     public static void ClickBuyButton() {

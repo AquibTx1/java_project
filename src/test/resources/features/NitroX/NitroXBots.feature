@@ -142,6 +142,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
+    And Pause all the Bots
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order

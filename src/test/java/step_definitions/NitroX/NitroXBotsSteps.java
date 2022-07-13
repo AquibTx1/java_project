@@ -312,7 +312,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.CloseConfig();
                 NitroXBotsAction.CloseBotDetail();
                 NitroXBotsAction.clickDealtOrdersTab();
-                delay(10000);
+                delay(15000);
                 Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Order Direction"));
                 Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXBotsAction.getBidPrice());
                 NitroXBotsAction.stopCurrentBot();
@@ -1273,7 +1273,6 @@ public class NitroXBotsSteps {
             try {
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be stopped."));
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1413,8 +1412,6 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.inputTotalAmount(dataMap.get("S_UpdatedTotalAmount"));
                 NitroXBotsAction.clickSubmit();
-                NitroXHome.waitForNotifMsg();
-                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1973,7 +1970,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-               delay(25000);
+               delay(20000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2311,7 +2308,6 @@ public class NitroXBotsSteps {
                 NitroXBuySellFutureAction.selectmode(dataMap);
                 NitroXBuySellFutureAction.selectTradingAccount(dataMap);
                 waitForVisible(NitroXBotsPage.totalbotaccount);
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2331,10 +2327,11 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                NitroXHome.waitForNotifMsg();
+                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
                 NitroXBotsAction.closeBot();
                 NitroXBotsAction.refreshPage();
               NitroXBotsAction.selecttotalBots();
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
