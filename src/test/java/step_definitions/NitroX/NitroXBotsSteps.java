@@ -1039,7 +1039,6 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.selecttotalBots();
                 waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
-                delay(2000);
                 NitroXBotsAction.selectLatestBot();
                 NitroXBotsAction.pauseCurrentBot();
 
@@ -1064,7 +1063,6 @@ public class NitroXBotsSteps {
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be paused."));
                 NitroXBotsAction.closeBot();
-                delay(10000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

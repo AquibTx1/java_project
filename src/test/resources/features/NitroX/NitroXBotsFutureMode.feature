@@ -600,7 +600,6 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Duplicate PairTrading BOT For Buy and Sell Order-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account and Instrument
-    And Pause all the Bots
     And Click start Bot and select the Service,Method and Choose Bot Quantity
     And Choose Side,Quantity,and Slice_Size
     And Input AccountId,Quote and Side
