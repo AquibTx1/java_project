@@ -50,7 +50,7 @@ Feature: Test Bots features on NitroX HomePage
     Then Verify Bots in Total Filtered on HomePage
     And Click Total Filtered Bots and check the Bot in Detail and Config
     Then Verify new Bot in detail and config for Snipper Bot
-  Then Verify the Order in Dealt Order for Sniper Bot
+    Then Verify the Order in Dealt Order for Sniper Bot
     Examples:
       | SheetName  |  TestCaseID               |
       | NitroXBots  | QA_TestCase_Auto_NitroX_026 |

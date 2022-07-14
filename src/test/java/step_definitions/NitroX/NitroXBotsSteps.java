@@ -1563,8 +1563,6 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.inputTwapBotQuantity(dataMap.get("T_UpdatedQuantity"));
                 NitroXBotsAction.clickSubmit();
-                NitroXHome.waitForNotifMsg();
-                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2351,7 +2349,7 @@ public class NitroXBotsSteps {
             try {
                 waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
-                delay(10000);
+                delay(8000);
                 NitroXBotsAction.selectLatestBotName();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
