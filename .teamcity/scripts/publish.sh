@@ -3,7 +3,7 @@
 # exit when any command fails
 set -e
 
-VERSION=0.0.22
+VERSION=0.0.23
 
 # tag images
 docker tag $DOCKER_IMAGE_NAME "$ALT_REPO_ECR/$DOCKER_IMAGE_NAME:$VERSION"
