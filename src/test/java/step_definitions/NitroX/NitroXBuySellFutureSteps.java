@@ -42,6 +42,7 @@ public class NitroXBuySellFutureSteps {
                 NitroXBuySellFutureAction.selectmode(dataMap);
                 NitroXBuySellFutureAction.inputTradingAccount(dataMap);
                 NitroXBuySellFutureAction.inputInstrument(dataMap);
+                NitroXHome.waitForLiveChart();
                 //scrollingToElementofAPage(NitroXBuySellFuturePage.openOrderTab,"Scrolled to Tab");
 
             } catch (Throwable e) {
