@@ -2094,6 +2094,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                delay(5000);
                 NitroXBotsAction.selecttotalBots();
                 waitForVisible(NitroXBotsPage.BotTime);
                 while (NitroXHome.isBotPresent()) {
@@ -2102,6 +2103,7 @@ public class NitroXBotsSteps {
                     NitroXBotsAction.stopBots();
                     NitroXHome.waitForNotifMsg();
                     waitForInVisibile(NitroXHomePage.bottomRightNotifText);
+                    delay(10000);
                 }
 
             } catch (Throwable e) {
