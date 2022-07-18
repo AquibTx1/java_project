@@ -2364,6 +2364,26 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+
+    @And("Check if Bot Available")
+    public void checkIfBotAvailable()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.validateFutureModeBots(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
 }
 
 

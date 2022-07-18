@@ -624,3 +624,55 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_106 |
 
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Pause the Execution_Bot for Buy Order-FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Verify total Bots Before staring the Buy execution
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Input the value in Account Position
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Logout and again login & select Mode,Trading account
+    And Click Total Filtered Bots and pause the Bot
+    Then Verify current running Bot is paused
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_107 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Resume Existing Execution_Bot for Buy Order--FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Verify total Bots Before staring the Buy execution
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Input the value in Account Position
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Logout and again login & select Mode,Trading account
+    And Click Total Filtered Bots and pause the Bot
+    Then Verify Bot is Paused
+    And Resume the Bot again
+    Then Verify Bot has started again
+
+    Examples:
+      | SheetName   |  TestCaseID                 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_108 |
+
+  @NitroXBotFutureMode
+  Scenario Outline: <TestCaseID>_Restart Existing Running Execution_Bot for Buy Order--FutureMode
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account and Instrument
+    And Verify total Bots Before staring the Buy execution
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Input the value in Account Position
+    And submit the order
+    And Wait for sometime to get the Bots Updated
+    And Logout and again login & select Mode,Trading account
+    And Click Total Filtered Bots and restart the Bot
+    And Click on Persist Yes
+    Then Verify current running Bot is restarted
+    Examples:
+      | SheetName  |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_109 |
