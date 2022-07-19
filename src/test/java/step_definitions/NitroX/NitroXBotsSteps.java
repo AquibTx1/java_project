@@ -1062,6 +1062,8 @@ public class NitroXBotsSteps {
             try {
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be paused."));
+                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
+                NitroXBotsAction.stopCurrentRunningBot();
                 NitroXBotsAction.closeBot();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1131,6 +1133,7 @@ public class NitroXBotsSteps {
             try {
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be resumed."));
+                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
                 NitroXBotsAction.stopCurrentRunningBot();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1184,6 +1187,7 @@ public class NitroXBotsSteps {
             try {
                 NitroXHome.waitForNotifMsg();
                 Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be restarted."));
+                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
                 NitroXBotsAction.stopCurrentRunningBot();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1390,6 +1394,7 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.selectConfig();
                 Assert.assertEquals(Double.toString(NitroXBotsAction.getOrderAmount()), dataMap.get("New Order Amount"));
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1431,7 +1436,6 @@ public class NitroXBotsSteps {
                 Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(), dataMap.get("S_UpdatedTotalAmount"));
                 NitroXBotsAction.selectConfig();
                 Assert.assertEquals(NitroXBotsAction.getBotDetailSide(),dataMap.get("Side"));
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1583,6 +1587,8 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.selectConfig();
                Assert.assertEquals(Double.toString(NitroXBotsAction.getBotDetailQuantity()),dataMap.get("T_UpdatedQuantity"));
+               NitroXBotsAction.CloseConfig();
+               NitroXBotsAction.stopCurrentRunningBot();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1881,6 +1887,8 @@ public class NitroXBotsSteps {
                 Assert.assertEquals(NitroXBotsAction.getTotalAmountfromBotDetailSnipper(), dataMap.get("S_UpdatedTotalAmount"));
                 NitroXBotsAction.selectConfig();
                 Assert.assertEquals(NitroXBotsAction.getBotDetailSide(),dataMap.get("Side"));
+                NitroXBotsAction.CloseConfig();
+                NitroXBotsAction.stopCurrentRunningBot();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2373,6 +2381,26 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.validateFutureModeBots(dataMap);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Stop All the Bots on Homepage")
+    public void stopAllTheBotsOnHomepage()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.stopalltheBot();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

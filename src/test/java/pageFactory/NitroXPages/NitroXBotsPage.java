@@ -97,6 +97,7 @@ public class NitroXBotsPage {
 
     public static By clickhoverbtn=By.xpath("//span[text()='Pause all running bots']");
 
+    public static By clickstopbtn=By.xpath("//span[text()='Stop all bots']");
     public static By recentDealtOrder = By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[02]");
     //span[text()='Start Time']
     public static By editbtn=By.xpath("//span[text()='Edit']");
