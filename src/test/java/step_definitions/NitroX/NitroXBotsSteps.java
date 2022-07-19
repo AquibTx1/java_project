@@ -1563,8 +1563,6 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.inputTwapBotQuantity(dataMap.get("T_UpdatedQuantity"));
                 NitroXBotsAction.clickSubmit();
-                NitroXHome.waitForNotifMsg();
-                waitForInVisibile(NitroXHomePage.bottomRightNotifText);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2096,6 +2094,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                delay(5000);
                 NitroXBotsAction.selecttotalBots();
                 waitForVisible(NitroXBotsPage.BotTime);
                 while (NitroXHome.isBotPresent()) {
@@ -2104,6 +2103,7 @@ public class NitroXBotsSteps {
                     NitroXBotsAction.stopBots();
                     NitroXHome.waitForNotifMsg();
                     waitForInVisibile(NitroXHomePage.bottomRightNotifText);
+                    delay(10000);
                 }
 
             } catch (Throwable e) {
@@ -2351,8 +2351,28 @@ public class NitroXBotsSteps {
             try {
                 waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
-                delay(10000);
+                delay(8000);
                 NitroXBotsAction.selectLatestBotName();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Check if Bot Available")
+    public void checkIfBotAvailable()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.validateFutureModeBots(dataMap);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

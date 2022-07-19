@@ -645,6 +645,7 @@ public class NitroXBotsAction {
 
     public static void pauseAllBots() throws InterruptedException {
         hoverOnElement(NitroXBotsPage.moreactions);
+        delay(2000);
         hoverOnElement(NitroXBotsPage.clickhoverbtn);
         click(NitroXBotsPage.clickhoverbtn,"ALl Bots are paused");
     }
