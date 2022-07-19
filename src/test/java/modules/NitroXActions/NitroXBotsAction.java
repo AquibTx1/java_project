@@ -650,6 +650,13 @@ public class NitroXBotsAction {
         click(NitroXBotsPage.clickhoverbtn,"ALl Bots are paused");
     }
 
+    public static void stopalltheBot() throws InterruptedException {
+        hoverOnElement(NitroXBotsPage.moreactions);
+        delay(2000);
+        hoverOnElement(NitroXBotsPage.clickstopbtn);
+        click(NitroXBotsPage.clickstopbtn,"Bots are stopped");
+    }
+
     public static void logout() throws InterruptedException {
         hoverOnElement(NitroXBotsPage.systemlink);
         hoverOnElement(NitroXBotsPage.logout);
