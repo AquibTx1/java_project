@@ -15,6 +15,8 @@ import utilities.KeywordUtil;
 import java.text.ParseException;
 import java.util.HashMap;
 
+import static utilities.KeywordUtil.delay;
+
 public class XAlphaDealEnquirySteps {
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
@@ -282,7 +284,6 @@ public class XAlphaDealEnquirySteps {
             }
         }
     }
-
     @Then("Verify the processing type")
     public void verifyTheProcessingType() {
         //check if this step needs to be skipped
@@ -290,6 +291,7 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                delay(10000);
                 Assert.assertEquals(XAlphaDealEnquiryActions.getFirstDealProcessingStatus().toLowerCase(), dataMap.get("ProcessingStatus_new").toLowerCase());
             } catch (Throwable e) {
                 GlobalUtil.e = e;
