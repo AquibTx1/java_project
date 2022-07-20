@@ -368,4 +368,24 @@ Feature: Test deal enquiry feature
     Examples:
       | SheetName | TestCaseID                     | loginCredentials|FromStatus | ToStatus  |
       | CashFlow  | QA_TestCase_Auto_XAlpha_077    |MO_CheckerAccount|Confirmed  | Processed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_079    |MO_CheckerAccount|Processed  | Confirmed |
+#      | CashFlow  | QA_TestCase_Auto_XAlpha_078    |MO_CheckerAccount|Pending    | Processed |
+
+  @XAlphaDealEnquiryCashflowDeal
+  Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Cashflow Deal in Deal Inquiry
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal enquiry tab
+    And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Change processing status
+    And Click update deal button
+    Then Verify the deal updated success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id
+    Then Verify the processing type
+    Examples:
+      | SheetName | TestCaseID                     | loginCredentials|FromStatus | ToStatus  |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_078    |MO_CheckerAccount|Pending    | Processed |
+
 
