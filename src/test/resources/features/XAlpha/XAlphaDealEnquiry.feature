@@ -367,9 +367,10 @@ Feature: Test deal enquiry feature
 
     Examples:
       | SheetName | TestCaseID                     | loginCredentials|FromStatus | ToStatus  |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_077    |MO_CheckerAccount|Confirmed  | Processed |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_079    |MO_CheckerAccount|Processed  | Confirmed |
-#      | CashFlow  | QA_TestCase_Auto_XAlpha_078    |MO_CheckerAccount|Pending    | Processed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_079    |MO_CheckerAccount|Settled    | Processed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_080    |MO_CheckerAccount|Processed  | Confirmed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_081    |MO_CheckerAccount|Settled    | Confirmed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_084    |MO_CheckerAccount|Processed  | Pending |
 
   @XAlphaDealEnquiryCashflowDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Cashflow Deal in Deal Inquiry
@@ -387,5 +388,7 @@ Feature: Test deal enquiry feature
     Examples:
       | SheetName | TestCaseID                     | loginCredentials|FromStatus | ToStatus  |
       | CashFlow  | QA_TestCase_Auto_XAlpha_078    |MO_CheckerAccount|Pending    | Processed |
-
+      | CashFlow  | QA_TestCase_Auto_XAlpha_077    |MO_CheckerAccount|Confirmed  | Processed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_082    |MO_CheckerAccount|Pending    | Confirmed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_083    |MO_CheckerAccount|Confirmed    | Pending |
 
