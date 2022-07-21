@@ -390,5 +390,5 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_078    |MO_CheckerAccount|Pending    | Processed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_077    |MO_CheckerAccount|Confirmed  | Processed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_082    |MO_CheckerAccount|Pending    | Confirmed |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_083    |MO_CheckerAccount|Confirmed    | Pending |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_083    |MO_CheckerAccount|Confirmed  | Pending   |
 
