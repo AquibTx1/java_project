@@ -389,4 +389,24 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         return CashFlowValueDate;
     }
 
+    public static void validatestatus() {
+
+        List<WebElement> all_rows = getDriver().findElements(By.xpath("//th[text()='Settled']/../../following-sibling::tbody/tr"));
+        boolean Settledstatus = false;
+
+        for (int i = 0; i < all_rows.size(); i++) {
+                List<WebElement> all_cols = all_rows.get(i).findElements(By.xpath("//th[text()='Settled']/../../following-sibling::tbody/tr/td[7]"));
+                for(int j=1;j<=all_cols.size();j++)
+                {
+                    String cell=getDriver().findElement(By.xpath("//th[text()='Settled']/../../following-sibling::tbody/tr["+i+"]/td[7]")).getText();
+                    if (cell.contains("YES")) {
+                        Settledstatus = true;
+                        break;
+                    } else {
+                        click(By.xpath("//th[text()='Settled']/../../following-sibling::tbody/tr/td[7]/div/button"), "Click on Settled Button");
+                    }
+                }
+            }
+        }
+
 }
