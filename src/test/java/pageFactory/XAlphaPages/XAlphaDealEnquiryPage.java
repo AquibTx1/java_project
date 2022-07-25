@@ -50,6 +50,10 @@ public class XAlphaDealEnquiryPage {
     public static String dealEnquiry_processingStatusChoice = "//div[@class='ant-select-item-option-content' and text()='%s']";
 
     public static By dealEnquiry_DealTypesClick = By.xpath("//div[@ph_label='Processing Status']");
+
+    public static By settlement_detail_Click = By.xpath("//span[text()='INCOMING']/following::td[6]/div/button");
+
+    public static By settlement_detail_outgoing = By.xpath("//span[text()='OUTGOING']/following::td[6]/div/button");
     public static By dealEnquiry_DealTypesInput = By.id("filter_form_deal_type");
     public static By dealEnquiry_DealTypesXicon = By.xpath("//div[@ph_label='Deal Type']//div[@class='ant-select-selection-overflow-item']/span/span[2]");
     public static String dealEnquiry_DealTypesChoice = "//div[@class='ant-select-item-option-content' and text()='%s']";

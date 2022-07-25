@@ -2,6 +2,7 @@ package modules.XAlphaActions;
 
 import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
+import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import pageFactory.XAlphaPages.XAlphaDealInputPage;
 import step_definitions.RunCukesTest;
 import utilities.HTMLReportUtil;
@@ -324,4 +325,8 @@ public class XAlphaDealInputActions extends KeywordUtil {
         click(By.xpath(String.format(XAlphaDealInputPage.dealInput_CashFlow_PurposeOptions, Purpose)), "Choose CashFlow Purpose from dropdown options");
     }
 
+    public static void clickSettled() {
+        click(XAlphaDealEnquiryPage.settlement_detail_Click,"Clicked to Settlement tab");
+        click(XAlphaDealEnquiryPage.settlement_detail_outgoing,"Clicked to Settlement tab");
+    }
 }

@@ -176,7 +176,9 @@ public class XAlphaDealEnquirySteps {
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new")); //intentional due to existing bug
 //                XAlphaDealEnquiryActions.clickUpdateDealBtn();
-            } catch (Throwable e) {
+            }
+            catch (Throwable e)
+            {
                 GlobalUtil.e = e;
                 e.printStackTrace();
                 GlobalUtil.errorMsg = e.getMessage();
@@ -876,6 +878,28 @@ public class XAlphaDealEnquirySteps {
             try {
 
                 XAlphaDealEnquiryActions.validatestatus();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Update processing status from Settlement detail")
+    public void updateProcessingStatusFromSettlementDetail()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.clickSettled();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
