@@ -3,9 +3,11 @@ package step_definitions.XAlpha;
 import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import modules.NitroXActions.NitroXBotsAction;
 import modules.XAlphaActions.XAlphaDealInputActions;
 import modules.XAlphaActions.XAlphaDealEnquiryActions;
 import org.testng.Assert;
+import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import step_definitions.BaseStepDefinitions;
 import step_definitions.RunCukesTest;
 import utilities.GlobalUtil;
@@ -16,6 +18,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 
 import static utilities.KeywordUtil.delay;
+import static utilities.KeywordUtil.waitForVisible;
 
 public class XAlphaDealEnquirySteps {
 
@@ -876,7 +879,7 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
+                waitForVisible(XAlphaDealEnquiryPage.settlement_detail_Click);
                 XAlphaDealEnquiryActions.validatestatus();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
