@@ -36,7 +36,9 @@ Feature: Test deal enquiry feature
     And Navigate to deal enquiry tab
     And Load a deal wrt processing type and deal type
     And Open first deal in the row
-    And Change processing status
+#    And Change processing status
+    And Update processing status from Settlement detail
+#    And Check the status
     And Wait for deal to get settled
     And Click update deal button
     Then Verify the deal updated success message
@@ -371,6 +373,11 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_080    |MO_CheckerAccount|Processed  | Confirmed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_081    |MO_CheckerAccount|Settled    | Confirmed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_084    |MO_CheckerAccount|Processed  | Pending |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_085    |MO_CheckerAccount|Settled  | Pending |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_086    |MO_CheckerAccount|Pending  | Settled |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_087    |MO_CheckerAccount|Confirmed    | Settled |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_088    |MO_CheckerAccount|Processed    | Settled |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_089    |MO_CheckerAccount|Processed    | cancelled |
 
   @XAlphaDealEnquiryCashflowDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Cashflow Deal in Deal Inquiry
