@@ -455,7 +455,6 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_095    |MO_CheckerAccount|cancelled  | Processed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_096    |MO_CheckerAccount|cancelled  | Settled |
 
-
   @XAlphaDealEnquiryCashflowDeal
   Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing Cash-Flow Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
@@ -486,7 +485,6 @@ Feature: Test deal enquiry feature
 
     Examples:
       | SheetName   | TestCaseID                  | loginCredentials  | Status    |
-      | CashFlow | QA_TestCase_Auto_XAlpha_097 | MO_CheckerAccount | Processed |
       | CashFlow | QA_TestCase_Auto_XAlpha_098 | MO_CheckerAccount | Processed |
       | CashFlow | QA_TestCase_Auto_XAlpha_099 | MO_CheckerAccount | Processed |
       | CashFlow | QA_TestCase_Auto_XAlpha_100 | MO_CheckerAccount | Processed |
