@@ -916,4 +916,79 @@ public class XAlphaDealEnquirySteps {
         }
 
     }
+
+    @And("Update deal details\\(Direction,Asset,Amount,CashflowPurpose)")
+    public void updateDealDetailsDirectionAssetAmountCashflowPurpose()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.dealInput_CashFlow_Direction(dataMap.get("Direction_Updated"));
+                XAlphaDealInputActions.dealInput_CashFlow_Asset(dataMap.get("Asset_Updated"));
+                XAlphaDealInputActions.dealInput_CashFlow_Amount(dataMap.get("Amount_Updated"));
+                XAlphaDealInputActions.dealInput_CashFlow_Purpose(dataMap.get("CashflowPurpose_Updated"));
+
+                //counterparty details
+                //XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
+                //XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Updated deal details\\(Direction,Asset,Amount,CashflowPurpose)")
+    public void verifyUpdatedDealDetailsDirectionAssetAmountCashflowPurpose() {
+
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //actual values in the first row
+//                String direction = XAlphaDealEnquiryActions.getFirstSummary();
+//                String baseAssetAmount = XAlphaDealEnquiryActions.getFirstBaseAssetAmount();
+//                String baseAsset = XAlphaDealEnquiryActions.getFirstBaseAsset();
+//                String quoteAsset = XAlphaDealEnquiryActions.getFirstQuoteAsset();
+//                String unitPrice = XAlphaDealEnquiryActions.getFirstUnitPrice(); //convert to string if required
+//                String feeAsset = XAlphaDealEnquiryActions.getFirstFeeAsset();
+//                String feeAmount = XAlphaDealEnquiryActions.getFirstFeeAmount();
+//
+//                //do formatting of the values as per requirement
+//                String directionUpdated = dataMap.get("Direction_updated").toLowerCase();
+//                String baseAssetAmount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("BaseAssetAmount_updated"));
+//                String baseAsset_updated = dataMap.get("BaseAsset_updated").split(" | ")[0].trim();
+//                String quoteAsset_updated = dataMap.get("QuoteAsset_updated").split(" | ")[0].trim();
+//                String unitPrice_updated = KeywordUtil.formatDecimalToStr(dataMap.get("UnitPrice_updated"));
+//                String feeAsset_updated = dataMap.get("FeeAsset_updated").split(" | ")[0].trim();
+//                String feeAmount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("FeeAmount_updated"));
+//
+//                //match the values
+//                Assert.assertEquals(direction, directionUpdated);
+//                Assert.assertEquals(baseAssetAmount, baseAssetAmount_updated);
+//                Assert.assertEquals(baseAsset, baseAsset_updated);
+//                Assert.assertEquals(quoteAsset, quoteAsset_updated);
+//                Assert.assertEquals(unitPrice, unitPrice_updated);
+//                Assert.assertEquals(feeAsset, feeAsset_updated);
+//                Assert.assertEquals(feeAmount, feeAmount_updated);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 }

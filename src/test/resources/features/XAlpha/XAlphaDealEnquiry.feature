@@ -454,3 +454,36 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_094    |MO_CheckerAccount|cancelled  | Confirmed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_095    |MO_CheckerAccount|cancelled  | Processed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_095    |MO_CheckerAccount|cancelled  | Settled |
+
+
+  @XAlphaDealEnquiryCashflowDeal
+  Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing Cash-Flow Deal in Deal Inquiry
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal enquiry tab
+    And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Update deal details(Direction,Asset,Amount,CashflowPurpose)
+#    And Update deal details(CounterpartyName, PortfolioNumber, ValueDate)
+    And Click update deal button
+    Then Verify the deal forwarded to MO for approval
+    #login with checker user and approve the deal processing status
+    Given Read "XAlpha" and "XAlphaLogin" and "<loginCredentials>" from test data
+    And Logout from XAlpha
+    And Input XAlpha Username and Password
+    And Click XAlpha Login Button
+    And Verify User is Able to Login to XAlpha Successfully
+    And Navigate to deal processing tab
+    And Search for the deal to approve
+    And Approve the deal
+    And Logout from XAlpha
+    #login again with system user and verify the deal processing status
+    Given Login to XAlpha with valid login credentials
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    Then Verify Updated deal details(Direction,Asset,Amount,CashflowPurpose)
+
+    Examples:
+      | SheetName   | TestCaseID                  | loginCredentials  | Status    |
+      | CashFlow | QA_TestCase_Auto_XAlpha_099 | MO_CheckerAccount | Processed |
