@@ -18,6 +18,8 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_firstCounterPartyName = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[08]/div");
     public static By dealEnquiry_firstPortfolioNumber = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[09]/div");
     public static By dealEnquiry_firstSummary = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[1]/div/span");
+
+    public static By dealEnquiry_purpose_CashFlow= By.xpath(" (//tbody[@class='ant-table-tbody']/tr[02]/td[10]/..//div[@class='_value_1mi80_16'])[2]");
     public static By dealEnquiry_firstBaseAssetAmount = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[2]/div[2]/span");
     public static By dealEnquiry_firstBaseAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[2]/div[3]");
     public static By dealEnquiry_firstQuoteAsset = By.xpath("//tbody[@class='ant-table-tbody']/tr[02]/td[10]/div/div[3]/div[3]");
@@ -37,8 +39,8 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_firstValueDate = By.xpath("//tbody[@class='ant-table-tbody']/tr[2]/td[12]/span");
 
     //cash flow deal details
-    public static By dealEnquiry_first_CashFlow_Purpose = By.xpath("//div[text()='Purpose: ']/following-sibling::div[1]");
-    public static By dealEnquiry_first_CashFlow_AssetAmount = By.xpath("//div[text()='Asset: ']/following-sibling::div[1]/span");
+    public static By dealEnquiry_first_CashFlow_Purpose = By.xpath("(//div[text()='Purpose: ']/following-sibling::div[1])[1]");
+    public static By dealEnquiry_first_CashFlow_AssetAmount = By.xpath("(//div[text()='Asset: ']/following-sibling::div[1]/span)[1]");
     public static By dealEnquiry_first_CashFlow_AssetName = By.xpath("//div[text()='Asset: ']/following-sibling::div[2]");
     public static By dealEnquiry_first_CashFlow_TradeDate = By.xpath("//tbody[@class='ant-table-tbody']/tr[2]/td[11]/span");
     public static By dealEnquiry_first_CashFlow_ValueDate = By.xpath("//tbody[@class='ant-table-tbody']/tr[2]/td[12]/span");

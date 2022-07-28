@@ -928,6 +928,7 @@ public class XAlphaDealEnquirySteps {
                 XAlphaDealInputActions.dealInput_CashFlow_Asset(dataMap.get("Asset_Updated"));
                 XAlphaDealInputActions.dealInput_CashFlow_Amount(dataMap.get("Amount_Updated"));
                 XAlphaDealInputActions.dealInput_CashFlow_Purpose(dataMap.get("CashflowPurpose_Updated"));
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
 
                 //counterparty details
                 //XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
@@ -954,31 +955,21 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 //actual values in the first row
-//                String direction = XAlphaDealEnquiryActions.getFirstSummary();
-//                String baseAssetAmount = XAlphaDealEnquiryActions.getFirstBaseAssetAmount();
-//                String baseAsset = XAlphaDealEnquiryActions.getFirstBaseAsset();
-//                String quoteAsset = XAlphaDealEnquiryActions.getFirstQuoteAsset();
-//                String unitPrice = XAlphaDealEnquiryActions.getFirstUnitPrice(); //convert to string if required
-//                String feeAsset = XAlphaDealEnquiryActions.getFirstFeeAsset();
-//                String feeAmount = XAlphaDealEnquiryActions.getFirstFeeAmount();
-//
-//                //do formatting of the values as per requirement
-//                String directionUpdated = dataMap.get("Direction_updated").toLowerCase();
-//                String baseAssetAmount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("BaseAssetAmount_updated"));
-//                String baseAsset_updated = dataMap.get("BaseAsset_updated").split(" | ")[0].trim();
-//                String quoteAsset_updated = dataMap.get("QuoteAsset_updated").split(" | ")[0].trim();
-//                String unitPrice_updated = KeywordUtil.formatDecimalToStr(dataMap.get("UnitPrice_updated"));
-//                String feeAsset_updated = dataMap.get("FeeAsset_updated").split(" | ")[0].trim();
-//                String feeAmount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("FeeAmount_updated"));
-//
-//                //match the values
-//                Assert.assertEquals(direction, directionUpdated);
-//                Assert.assertEquals(baseAssetAmount, baseAssetAmount_updated);
-//                Assert.assertEquals(baseAsset, baseAsset_updated);
-//                Assert.assertEquals(quoteAsset, quoteAsset_updated);
-//                Assert.assertEquals(unitPrice, unitPrice_updated);
-//                Assert.assertEquals(feeAsset, feeAsset_updated);
-//                Assert.assertEquals(feeAmount, feeAmount_updated);
+                String direction = XAlphaDealEnquiryActions.getFirstSummary();
+                String purpose = XAlphaDealEnquiryActions.getFirst_CashFlow_Purpose();
+                String Assetname = XAlphaDealEnquiryActions.getFirst_CashFlow_AssetName();
+                String Assetamount = XAlphaDealEnquiryActions.getFirst_CashFlow_AssetAmount();
+
+                //do formatting of the values as per requirement
+                String directionUpdated = dataMap.get("Direction_Updated").toLowerCase();
+                String purpose_updated=dataMap.get("CashflowPurpose_Updated").toLowerCase();
+                String Amount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("Amount_Updated"));
+
+                //match the values
+                Assert.assertEquals(direction, directionUpdated);
+                Assert.assertEquals(purpose, purpose_updated);
+                Assert.assertEquals(Assetamount, Amount_updated);
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

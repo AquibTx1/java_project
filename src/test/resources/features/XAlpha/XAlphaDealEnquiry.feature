@@ -453,7 +453,7 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_093    |MO_CheckerAccount|cancelled  | Pending |
       | CashFlow  | QA_TestCase_Auto_XAlpha_094    |MO_CheckerAccount|cancelled  | Confirmed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_095    |MO_CheckerAccount|cancelled  | Processed |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_095    |MO_CheckerAccount|cancelled  | Settled |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_096    |MO_CheckerAccount|cancelled  | Settled |
 
 
   @XAlphaDealEnquiryCashflowDeal
@@ -486,4 +486,7 @@ Feature: Test deal enquiry feature
 
     Examples:
       | SheetName   | TestCaseID                  | loginCredentials  | Status    |
+      | CashFlow | QA_TestCase_Auto_XAlpha_097 | MO_CheckerAccount | Processed |
+      | CashFlow | QA_TestCase_Auto_XAlpha_098 | MO_CheckerAccount | Processed |
       | CashFlow | QA_TestCase_Auto_XAlpha_099 | MO_CheckerAccount | Processed |
+      | CashFlow | QA_TestCase_Auto_XAlpha_100 | MO_CheckerAccount | Processed |
