@@ -3,9 +3,11 @@ package step_definitions.XAlpha;
 import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import modules.NitroXActions.NitroXBotsAction;
 import modules.XAlphaActions.XAlphaDealInputActions;
 import modules.XAlphaActions.XAlphaDealEnquiryActions;
 import org.testng.Assert;
+import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import step_definitions.BaseStepDefinitions;
 import step_definitions.RunCukesTest;
 import utilities.GlobalUtil;
@@ -16,6 +18,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 
 import static utilities.KeywordUtil.delay;
+import static utilities.KeywordUtil.waitForVisible;
 
 public class XAlphaDealEnquirySteps {
 
@@ -876,7 +879,7 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
+                waitForVisible(XAlphaDealEnquiryPage.settlement_detail_Click);
                 XAlphaDealEnquiryActions.validatestatus();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -912,5 +915,71 @@ public class XAlphaDealEnquirySteps {
             }
         }
 
+    }
+
+    @And("Update deal details\\(Direction,Asset,Amount,CashflowPurpose)")
+    public void updateDealDetailsDirectionAssetAmountCashflowPurpose()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.dealInput_CashFlow_Direction(dataMap.get("Direction_Updated"));
+                XAlphaDealInputActions.dealInput_CashFlow_Asset(dataMap.get("Asset_Updated"));
+                XAlphaDealInputActions.dealInput_CashFlow_Amount(dataMap.get("Amount_Updated"));
+                XAlphaDealInputActions.dealInput_CashFlow_Purpose(dataMap.get("CashflowPurpose_Updated"));
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
+
+                //counterparty details
+                //XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
+                //XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Updated deal details\\(Direction,Asset,Amount,CashflowPurpose)")
+    public void verifyUpdatedDealDetailsDirectionAssetAmountCashflowPurpose() {
+
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //actual values in the first row
+                String direction = XAlphaDealEnquiryActions.getFirstSummary();
+                String purpose = XAlphaDealEnquiryActions.getFirst_CashFlow_Purpose();
+                String Assetname = XAlphaDealEnquiryActions.getFirst_CashFlow_AssetName();
+                String Assetamount = XAlphaDealEnquiryActions.getFirst_CashFlow_AssetAmount();
+
+                //do formatting of the values as per requirement
+                String directionUpdated = dataMap.get("Direction_Updated").toLowerCase();
+                String purpose_updated=dataMap.get("CashflowPurpose_Updated").toLowerCase();
+                String Amount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("Amount_Updated"));
+
+                //match the values
+                Assert.assertEquals(direction, directionUpdated);
+                Assert.assertEquals(purpose, purpose_updated);
+                Assert.assertEquals(Assetamount, Amount_updated);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
     }
 }
