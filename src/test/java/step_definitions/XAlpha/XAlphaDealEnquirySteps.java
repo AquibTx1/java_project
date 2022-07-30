@@ -112,6 +112,10 @@ public class XAlphaDealEnquirySteps {
                 XAlphaDealEnquiryActions.clearDealTypes();
                 XAlphaDealEnquiryActions.inputDealType(dataMap.get("DealType"));
 
+                //clear existing direction from the filter and input the new one
+                XAlphaDealEnquiryActions.clearDirection();
+                XAlphaDealEnquiryActions.inputDirection(dataMap.get("Direction"));
+
                 //click load deal button
                 XAlphaDealEnquiryActions.clickLoadDealBtn();
 
@@ -179,9 +183,7 @@ public class XAlphaDealEnquirySteps {
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new")); //intentional due to existing bug
 //                XAlphaDealEnquiryActions.clickUpdateDealBtn();
-            }
-            catch (Throwable e)
-            {
+            } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
                 GlobalUtil.errorMsg = e.getMessage();
@@ -289,6 +291,7 @@ public class XAlphaDealEnquirySteps {
             }
         }
     }
+
     @Then("Verify the processing type")
     public void verifyTheProcessingType() {
         //check if this step needs to be skipped
@@ -351,29 +354,6 @@ public class XAlphaDealEnquirySteps {
                 XAlphaDealInputActions.dealInput_UnitPrice(dataMap.get("UnitPrice_updated"));
                 XAlphaDealInputActions.dealInput_FeeAsset(dataMap.get("FeeAsset_updated"));
                 XAlphaDealInputActions.dealInput_FeeAmount(dataMap.get("FeeAmount_updated"));
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                e.printStackTrace();
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-
-    @And("Update deal details\\(CounterpartyName, PortfolioNumber, ValueDate)")
-    public void updateDealDetailsCounterpartyNamePortfolioNumberValueDate() {
-        //check if this step needs to be skipped
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                XAlphaDealInputActions.dealInput_ValueDateNow();
-                XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName_updated"));
-                XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber_updated"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -896,8 +876,7 @@ public class XAlphaDealEnquirySteps {
     }
 
     @And("Update processing status from Settlement detail")
-    public void updateProcessingStatusFromSettlementDetail()
-    {
+    public void updateProcessingStatusFromSettlementDetail() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
@@ -917,22 +896,60 @@ public class XAlphaDealEnquirySteps {
 
     }
 
-    @And("Update deal details\\(Direction,Asset,Amount,CashflowPurpose)")
-    public void updateDealDetailsDirectionAssetAmountCashflowPurpose()
-    {
+    @And("Update deal details\\(Direction)")
+    public void updateDealDetailsDirection() {
+
+        //check if this step needs to be skipped
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
                 XAlphaDealInputActions.dealInput_CashFlow_Direction(dataMap.get("Direction_Updated"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Update deal details\\(Asset,Amount,CashflowPurpose)")
+    public void updateDealDetailsAssetAmountCashflowPurpose() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //Updating Asset, Amount, CashflowPurpose
                 XAlphaDealInputActions.dealInput_CashFlow_Asset(dataMap.get("Asset_Updated"));
                 XAlphaDealInputActions.dealInput_CashFlow_Amount(dataMap.get("Amount_Updated"));
                 XAlphaDealInputActions.dealInput_CashFlow_Purpose(dataMap.get("CashflowPurpose_Updated"));
-                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 
-                //counterparty details
-                //XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
-                //XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber"));
+    @And("Update deal details\\(CounterpartyName, PortfolioNumber, ValueDate)")
+    public void updateDealDetailsCounterpartyNamePortfolioNumberValueDate() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
+                XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -962,7 +979,7 @@ public class XAlphaDealEnquirySteps {
 
                 //do formatting of the values as per requirement
                 String directionUpdated = dataMap.get("Direction_Updated").toLowerCase();
-                String purpose_updated=dataMap.get("CashflowPurpose_Updated").toLowerCase();
+                String purpose_updated = dataMap.get("CashflowPurpose_Updated").toLowerCase();
                 String Amount_updated = KeywordUtil.formatDecimalToStr(dataMap.get("Amount_Updated"));
 
                 //match the values
@@ -970,6 +987,28 @@ public class XAlphaDealEnquirySteps {
                 Assert.assertEquals(purpose, purpose_updated);
                 Assert.assertEquals(Assetamount, Amount_updated);
 
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Update CashFlow deal details\\(CounterpartyName, PortfolioNumber)")
+    public void updateCashFlowDealDetailsCounterpartyNamePortfolioNumber() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //counterparty details
+                XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName_updated"));
+                XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber_updated"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
