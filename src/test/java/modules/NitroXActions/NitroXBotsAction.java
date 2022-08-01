@@ -820,7 +820,7 @@ public class NitroXBotsAction {
                 NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                 NitroXBotsAction.inputTargetAccountPosition(dataMap);
                 NitroXBotsAction.clickSubmit();
-                delay(10000);
+                delay(15000);
                 NitroXBotsAction.selecttotalBots();
             } else {
                 NitroXBotsAction.selecttotalBots();
