@@ -461,7 +461,7 @@ Feature: Test deal enquiry feature
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal enquiry tab
-    And Load a deal wrt processing type and deal type
+    And Load a deal wrt processing type, direction and deal type
     And Open first deal in the row
     And Update deal details(Direction)
     And Update deal details(Asset,Amount,CashflowPurpose)
@@ -475,36 +475,36 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_097 | Processed |
 
 
-  @XAlphaDealEnquiryCashflowDeal
-  Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing Cash-Flow Deal in Deal Inquiry
-    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
-    When Move to X-Alpha page
-    And Navigate to deal enquiry tab
-    And Load a deal wrt processing type and deal type
-    And Open first deal in the row
-    And Update deal details(Direction,Asset,Amount,CashflowPurpose)
-#    And Update deal details(CounterpartyName, PortfolioNumber, ValueDate)
-    And Click update deal button
-    Then Verify the deal forwarded to MO for approval
-    #login with checker user and approve the deal processing status
-    Given Read "XAlpha" and "XAlphaLogin" and "<loginCredentials>" from test data
-    And Logout from XAlpha
-    And Input XAlpha Username and Password
-    And Click XAlpha Login Button
-    And Verify User is Able to Login to XAlpha Successfully
-    And Navigate to deal processing tab
-    And Search for the deal to approve
-    And Approve the deal
-    And Logout from XAlpha
-    #login again with system user and verify the deal processing status
-    Given Login to XAlpha with valid login credentials
-    And Navigate to deal enquiry tab
-    And Load a deal wrt deal reference id
-    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
-    Then Verify Updated deal details(Direction,Asset,Amount,CashflowPurpose)
-
-    Examples:
-      | SheetName | TestCaseID                  | loginCredentials  | Status    |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_098 | MO_CheckerAccount | Processed |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_099 | MO_CheckerAccount | Processed |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_100 | MO_CheckerAccount | Processed |
+#  @XAlphaDealEnquiryCashflowDeal
+#  Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing Cash-Flow Deal in Deal Inquiry
+#    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+#    When Move to X-Alpha page
+#    And Navigate to deal enquiry tab
+#    And Load a deal wrt processing type and deal type
+#    And Open first deal in the row
+##    And Update deal details(Direction,Asset,Amount,CashflowPurpose)
+##    And Update deal details(CounterpartyName, PortfolioNumber, ValueDate)
+#    And Click update deal button
+#    Then Verify the deal forwarded to MO for approval
+#    #login with checker user and approve the deal processing status
+#    Given Read "XAlpha" and "XAlphaLogin" and "<loginCredentials>" from test data
+#    And Logout from XAlpha
+#    And Input XAlpha Username and Password
+#    And Click XAlpha Login Button
+#    And Verify User is Able to Login to XAlpha Successfully
+#    And Navigate to deal processing tab
+#    And Search for the deal to approve
+#    And Approve the deal
+#    And Logout from XAlpha
+#    #login again with system user and verify the deal processing status
+#    Given Login to XAlpha with valid login credentials
+#    And Navigate to deal enquiry tab
+#    And Load a deal wrt deal reference id
+#    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+#    Then Verify Updated deal details(Direction,Asset,Amount,CashflowPurpose)
+#
+#    Examples:
+#      | SheetName | TestCaseID                  | loginCredentials  | Status    |
+#      | CashFlow  | QA_TestCase_Auto_XAlpha_098 | MO_CheckerAccount | Confirmed |
+#      | CashFlow  | QA_TestCase_Auto_XAlpha_099 | MO_CheckerAccount | Pending |
+#      | CashFlow  | QA_TestCase_Auto_XAlpha_100 | MO_CheckerAccount | Settled |

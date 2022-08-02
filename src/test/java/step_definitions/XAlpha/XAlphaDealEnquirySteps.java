@@ -112,10 +112,6 @@ public class XAlphaDealEnquirySteps {
                 XAlphaDealEnquiryActions.clearDealTypes();
                 XAlphaDealEnquiryActions.inputDealType(dataMap.get("DealType"));
 
-                //clear existing direction from the filter and input the new one
-                XAlphaDealEnquiryActions.clearDirection();
-                XAlphaDealEnquiryActions.inputDirection(dataMap.get("Direction"));
-
                 //click load deal button
                 XAlphaDealEnquiryActions.clickLoadDealBtn();
 
@@ -1009,6 +1005,51 @@ public class XAlphaDealEnquirySteps {
                 //counterparty details
                 XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName_updated"));
                 XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber_updated"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Load a deal wrt processing type, direction and deal type")
+    public void loadADealWrtProcessingTypeDirectionAndDealType() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //clear existing processing statuses from the filter and input the new one
+                XAlphaDealEnquiryActions.clearProcessingStatuses();
+                XAlphaDealEnquiryActions.inputProcessingStatus(dataMap.get("ProcessingStatus"));
+
+                //clear existing deal types from the filter and input the new one
+                XAlphaDealEnquiryActions.clearDealTypes();
+                XAlphaDealEnquiryActions.inputDealType(dataMap.get("DealType"));
+
+//                clear existing direction from the filter and input the new one
+                XAlphaDealEnquiryActions.clearDirection();
+                XAlphaDealEnquiryActions.inputDirection(dataMap.get("Direction"));
+
+                //click load deal button
+                XAlphaDealEnquiryActions.clickLoadDealBtn();
+
+                //wait for deals to load
+                XAlphaDealEnquiryActions.waitForLoadingIconToAppear();
+                XAlphaDealEnquiryActions.waitForLoadingIconToDisappear();
+
+                //wait for success message to appear and disappear
+                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
+                XAlphaDealEnquiryActions.closeSuccessNotification();
+
+                //make sure the first deal have the correct processing status
+                Assert.assertEquals(XAlphaDealEnquiryActions.getFirstDealProcessingStatus(), dataMap.get("ProcessingStatus"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
