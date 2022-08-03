@@ -244,6 +244,21 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_processingStatusChoice, dealType)), "Choose deal type from dropdown");
     }
 
+    //input Direction
+    public static void inputDirection(String directionType) {
+        click(XAlphaDealEnquiryPage.dealEnquiry_Direction, "Click direction input filter box");
+        inputText(XAlphaDealEnquiryPage.dealEnquiry_DirectionInput, directionType, "input direction =" + directionType);
+        waitForPresent(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_DirectionChoice, directionType)));
+        click(By.xpath(String.format(XAlphaDealEnquiryPage.dealEnquiry_DirectionChoice, directionType)), "Choose direction from dropdown");
+    }
+    //clear existing directions(if any)
+    public static void clearDirection() {
+        List<WebElement> directions = getListElements(XAlphaDealEnquiryPage.dealEnquiry_DirectionXicon, 2, "Clearing direction selections");
+        for (WebElement element : directions) {
+            element.click();
+        }
+    }
+
     //choose date filter
     public static void chooseFilter_ValueDate(String filterType) {
         inputText(XAlphaDealEnquiryPage.dealEnquiry_dateFilter, filterType, "Choose " + filterType + " filter");
