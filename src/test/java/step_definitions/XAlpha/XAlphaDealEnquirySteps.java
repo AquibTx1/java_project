@@ -175,6 +175,7 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                delay(10000); //to load settled Settlement Details sub-section
                 //update processing status
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new")); //intentional due to existing bug
@@ -297,7 +298,23 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                delay(10000);
+                //Method to repeat loading the result 2 times to check the validation
+                int rep = 0;
+                    while(XAlphaDealEnquiryActions.getFirstDealProcessingStatus().toLowerCase().equalsIgnoreCase(dataMap.get("ProcessingStatus")) && rep < 2) {
+                        rep++;
+                        XAlphaDealEnquiryActions.clickLoadDealBtn();
+
+                        //Wait for loading spinner to appear and disappear
+                        XAlphaDealEnquiryActions.waitForLoadingIconToAppear();
+                        XAlphaDealEnquiryActions.waitForLoadingIconToDisappear();
+
+                        //wait for success message to appear and disappear
+                        XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
+                        XAlphaDealEnquiryActions.closeSuccessNotification();
+
+                        delay(10000);
+                    }
+//                }
                 Assert.assertEquals(XAlphaDealEnquiryActions.getFirstDealProcessingStatus().toLowerCase(), dataMap.get("ProcessingStatus_new").toLowerCase());
             } catch (Throwable e) {
                 GlobalUtil.e = e;
