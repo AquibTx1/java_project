@@ -68,6 +68,7 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_DealTypesXicon = By.xpath("//div[@ph_label='Deal Type']//div[@class='ant-select-selection-overflow-item']/span/span[2]");
     public static String dealEnquiry_DealTypesChoice = "//div[@class='ant-select-item-option-content' and text()='%s']";
 
+    public static By dealEnquiry_resetFilter = By.xpath("//button[@type='button']/span[text()='Reset Filter']");
     public static By dealEnquiry_LoadDealBtn = By.xpath("//button[@type='submit']/span[text()='Load Deal']");
     public static By dealEnquiry_LoadDealNotifXBtn = By.xpath("//span[@class='ant-notification-notice-close-x']");
     public static By dealEnquiry_LoadDealSuccessMsg = By.xpath("//div[@class='ant-notification-notice-message' and text()='Success!']");

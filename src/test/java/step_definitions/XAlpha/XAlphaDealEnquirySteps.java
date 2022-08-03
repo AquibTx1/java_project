@@ -245,7 +245,9 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealEnquiryActions.clearProcessingStatuses();
+                XAlphaDealEnquiryActions.dealEnquiry_ResetFiler();
+//                Commenting this to add new method for Reset Filter
+//                XAlphaDealEnquiryActions.clearProcessingStatuses();
                 XAlphaDealEnquiryActions.inputDealRef(dealRefId);
                 XAlphaDealEnquiryActions.clickLoadDealBtn();
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
