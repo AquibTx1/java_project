@@ -1974,7 +1974,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-               delay(20000);
+               delay(22000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
