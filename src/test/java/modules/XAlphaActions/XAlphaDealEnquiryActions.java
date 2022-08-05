@@ -220,6 +220,11 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         }
     }
 
+    public static void dealEnquiry_ResetFiler() {
+        waitForVisible(XAlphaDealEnquiryPage.dealEnquiry_resetFilter);
+        click(XAlphaDealEnquiryPage.dealEnquiry_resetFilter, "Clicking Reset Filter button");
+    }
+
     //input processing status
     public static void inputProcessingStatus(String processingStatus) {
         click(XAlphaDealEnquiryPage.dealEnquiry_processingStatusClick, "Click processing status input filter box");

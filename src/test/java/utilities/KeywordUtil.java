@@ -33,7 +33,7 @@ public class KeywordUtil extends GlobalUtil {
      * The constant cucumberTagName.
      */
     public static String cucumberTagName;
-    private static final int DEFAULT_WAIT_SECONDS = 20;
+    private static final int DEFAULT_WAIT_SECONDS = 50;
     public static String os = System.getProperty("os.name").toLowerCase();
     /**
      * The constant FAIL.
@@ -299,7 +299,7 @@ public class KeywordUtil extends GlobalUtil {
      * @return the boolean
      */
     public static boolean waitForInVisibile(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+        WebDriverWait wait = new WebDriverWait(getDriver(), 50);
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 

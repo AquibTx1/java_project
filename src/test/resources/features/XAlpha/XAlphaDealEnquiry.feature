@@ -417,7 +417,6 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_082 | MO_CheckerAccount | Pending    | Confirmed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_083 | MO_CheckerAccount | Confirmed  | Pending   |
       | CashFlow  | QA_TestCase_Auto_XAlpha_090 | MO_CheckerAccount | Pending    | cancelled |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_090 | MO_CheckerAccount | Pending    | cancelled |
 
   @XAlphaDealEnquiryCashflowDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Cashflow Deal in Deal Inquiry
