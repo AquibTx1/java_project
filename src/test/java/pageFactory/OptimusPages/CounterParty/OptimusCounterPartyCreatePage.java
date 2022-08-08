@@ -101,8 +101,8 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_CounterpartyRemarks = By.id("create_counterparty_counterparty_remarks");
 
 //Operation
-    public static By newCounterPartyPage_CreateCounterparty = By.xpath("//button[@type='submit']");
-    public static By newCounterPartyPage_ResetForm = By.xpath("//button[@type='button' and @class='ant-btn ant-btn-block']");
+    public static By newCounterPartyPage_CreateCounterpartyBtn = By.xpath("//button[@type='submit']");
+    public static By newCounterPartyPage_ResetFormBtn = By.xpath("//button[@type='button' and @class='ant-btn ant-btn-block']");
 
 
 }
