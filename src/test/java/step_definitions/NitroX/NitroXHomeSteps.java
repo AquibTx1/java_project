@@ -673,6 +673,7 @@ public class NitroXHomeSteps {
                 // get the highest bid price add some amount into the highest bid price and also store it in a variable to use later
                 for (int i = 0; i < Integer.parseInt(arg0); i++) {
                     NitroXHome.ClearInputPrice();
+                    delay(5000);
                     double bidPrice = NitroXHome.getHighestBidPrice();
                     if (NitroXHome.isPresentOrderListener()) {
                         NitroXHome.closeBottomRightNotif();

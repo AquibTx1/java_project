@@ -69,6 +69,7 @@ Feature: Test buys sell features
     When Choose mode value using dropdown
     And Select the Trading Account
     And Enter The Base and Quote Currency
+    Given Create "2" Sell Order With Selling Price > Bid Price
     And Input the Price and Quantity
     And Create A buy Order
     Then Validate User do not allowed to buy

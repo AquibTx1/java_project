@@ -418,7 +418,6 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
             String cell = getDriver().findElement(By.xpath("//th[text()='Settled']/../../following-sibling::tbody/tr[" + j + "]/td[7]/div/button/span")).getText();
             if (cell.contains("YES")) {
                 Settledstatus = true;
-                break;
             } else {
                 click(By.xpath("//th[text()='Settled']/../../following-sibling::tbody/tr[" + j + "]/td[7]/div/button/span"), "Click on Settled Button");
             }
