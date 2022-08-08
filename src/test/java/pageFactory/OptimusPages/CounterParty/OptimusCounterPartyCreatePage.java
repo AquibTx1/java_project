@@ -8,9 +8,11 @@ public class OptimusCounterPartyCreatePage {
 
     public static By newCounterPartyPage_Ref = By.cssSelector("#create_counterparty_counterparty_ref");
     public static By newCounterPartyPage_NitroClientID = By.cssSelector("#create_counterparty_nitro_client_id");
+//    Mandatory Field
     public static By newCounterPartyPage_SalesForceID = By.id("create_counterparty_salesforce_id");
     public static By newCounterPartyPage_ElwoodID = By.id("create_counterparty_elwood_id");
     public static By newCounterPartyPage_NicknameExternal = By.id("create_counterparty_nickname_external");
+//    Mandatory Field
     public static By newCounterPartyPage_NicknameInternal = By.id("create_counterparty_nickname_internal");
     public static By newCounterPartyPage_ParentAccount_dropdown = By.id("create_counterparty_parent_account");
     public static By newCounterPartyPage_ParentAccountOption = By.xpath("");
@@ -32,6 +34,7 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_PEPDeclaration = By.id("create_counterparty_pep_declaration");
     public static By newCounterPartyPage_PEPDeclarationRemarks = By.id("create_counterparty_pep_declaration_remarks");
     public static By newCounterPartyPage_Alias = By.id("create_counterparty_alias");
+//    Mandatory Field
     public static By newCounterPartyPage_Tin1 = By.id("create_counterparty_tin_1");
     public static By newCounterPartyPage_Tin2 = By.id("create_counterparty_tin_2");
     public static By newCounterPartyPage_Tin3 = By.id("create_counterparty_tin_3");
@@ -39,13 +42,16 @@ public class OptimusCounterPartyCreatePage {
     //Company and Other Information
     public static By newCounterPartyPage_CompanyName = By.id("create_counterparty_company_name");
     public static By newCounterPartyPage_FormerRegisteredName = By.id("create_counterparty_former_registered_name");
+//    Mandatory Field
     public static By newCounterPartyPage_ClientType = By.id("create_counterparty_client_type");
     public static By newCounterPartyPage_ClientTypeOptions = By.id("");
+//    Mandatory Field
     public static By newCounterPartyPage_EntityType = By.id("create_counterparty_entity_type");
     public static By newCounterPartyPage_EntityTypeOptions = By.id("");
     public static By newCounterPartyPage_IdentificationNumber = By.id("create_counterparty_identification_number");
     public static By newCounterPartyPage_IdentificationType = By.id("create_counterparty_identification_type");
     public static By newCounterPartyPage_IdentificationTypeOptions = By.id("");
+//    Mandatory Field
     public static By newCounterPartyPage_RegisteredAddress = By.id("create_counterparty_registered_address");
     public static By newCounterPartyPage_CountryOfIncorporation = By.id("create_counterparty_country_of_incorporation");
     public static By newCounterPartyPage_CountryOfIncorporationOptions = By.id("");
@@ -68,6 +74,7 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_SourceOfFundsRemarks = By.id("create_counterparty_source_of_funds_remarks");
     public static By newCounterPartyPage_AuthorizedPerson = By.id("create_counterparty_authorized_person");
     public static By newCounterPartyPage_AuthorizedPersonMobile = By.id("create_counterparty_authorized_person_mobile");
+//    Mandatory Field
     public static By newCounterPartyPage_AuthorizedPersonEmail = By.id("create_counterparty_authorized_person_email");
     public static By newCounterPartyPage_BusinessPurposeForRelationship = By.id("create_counterparty_business_purpose_for_relationship");
     public static By newCounterPartyPage_AppointmentOthers = By.id("create_counterparty_appointment_others");
