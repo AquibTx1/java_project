@@ -4,6 +4,7 @@ import io.cucumber.java.en.When;
 import pageFactory.NitroXPages.NitroXLoginPage;
 import io.cucumber.java.en.Given;
 import org.testng.Assert;
+import pageFactory.OptimusPages.OptimusLoginPage;
 import pageFactory.XAlphaPages.XAlphaLoginPage;
 import utilities.*;
 
@@ -154,5 +155,25 @@ public class BaseStepDefinitions extends KeywordUtil {
             GlobalUtil.errorMsg = e.getMessage();
             Assert.fail(e.getMessage());
         }
+    }
+
+
+    @Given("Login to Optimus with Valid Credentials")
+    public void loginToOptimusWithValidCredentials()
+    {
+        try {
+            navigateToUrl(EnvironmentHelper.getURL("Optimus"));
+            inputText(XAlphaLoginPage.username, ConfigReader.getValue("OptimusUsername"), "Enter the username");
+            inputText(XAlphaLoginPage.password, ConfigReader.getValue("OptimusPassword"), "Enter the password");
+            click(OptimusLoginPage.loginBtn, "Click Login Button");
+            waitForVisible(OptimusLoginPage.logoutBtn);
+            Assert.assertEquals(KeywordUtil.getElementText(OptimusLoginPage.logoutBtn), "Logout");
+        } catch (Throwable e) {
+            GlobalUtil.e = e;
+            e.printStackTrace();
+            GlobalUtil.errorMsg = e.getMessage();
+            Assert.fail(e.getMessage());
+        }
+
     }
 }
