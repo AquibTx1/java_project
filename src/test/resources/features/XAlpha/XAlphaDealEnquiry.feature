@@ -359,6 +359,30 @@ Feature: Test deal enquiry feature
       | ExecutionDeal | QA_TestCase_Auto_XAlpha_046 | Pending    | Settled   |
 
   @XAlphaDealEnquiryCashflowDeal
+  Scenario Outline: "<TestCaseID>" Able to Create Cashflow "Receive" Deal via Deal Input Page with "<Status>" status
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal input tab
+    And Choose CashFlow deal
+    And Provide CashFlow deal input details
+    And Click create deal button
+    Then Verify the deal success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id from deal input
+    Then Verify CashFlow deal is created with correct details
+    And Open first deal in the row
+    And Change processing status
+    And Click update deal button
+    Then Verify the deal updated success message
+    Examples:
+      | SheetName | TestCaseID                     | Status    |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_079_01 | Confirmed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_079_01 | Confirmed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_079_01 | Confirmed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_079_02 | Confirmed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_079_02 | Confirmed |
+
+  @XAlphaDealEnquiryCashflowDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Cashflow Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -455,7 +479,7 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_096 | MO_CheckerAccount | cancelled  | Settled   |
 
 
-  @XAlphaDealEnquiryCashflowDeal2
+  @XAlphaDealEnquiryCashflowDeal
   Scenario Outline: "<TestCaseID>" Able to Edit fields where Status is "<Status>" on an Existing Cash-Flow Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
