@@ -31,7 +31,7 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_IdentificationIssueDate = By.id("create_counterparty_identification_issue_moment");
     public static By newCounterPartyPage_IdentificationExpiryDate = By.id("create_counterparty_identification_expiry_moment");
     public static By newCounterPartyPage_MobileNumber = By.id("create_counterparty_mobile_number");
-    public static By newCounterPartyPage_PEPDeclaration = By.id("create_counterparty_pep_declaration");
+    public static By newCounterPartyPage_PEPDeclaration = By.xpath("//button[@id='create_counterparty_pep_declaration']/span/div");
     public static By newCounterPartyPage_PEPDeclarationRemarks = By.id("create_counterparty_pep_declaration_remarks");
     public static By newCounterPartyPage_Alias = By.id("create_counterparty_alias");
 //    Mandatory Field
@@ -66,9 +66,9 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_PrimaryBusinessActivityOptions = By.id("");
     public static By newCounterPartyPage_PrimaryBusinessActivityRemarks = By.id("create_counterparty_primary_business_activity_remarks");
     public static By newCounterPartyPage_CorporateWebsite = By.id("create_counterparty_corporate_website");
-    public static By newCounterPartyPage_GSTRegistered = By.id("create_counterparty_gst_registered");
-    public static By newCounterPartyPage_FinancialInstitution = By.id("create_counterparty_financial_institution");
-    public static By newCounterPartyPage_PaymentServiceProvider = By.id("create_counterparty_payment_service_provider");
+    public static By newCounterPartyPage_GSTRegistered = By.xpath("//button[@id='create_counterparty_gst_registered']/span/div");
+    public static By newCounterPartyPage_FinancialInstitution = By.xpath("//button[@id='create_counterparty_financial_institution']/span/div");
+    public static By newCounterPartyPage_PaymentServiceProvider = By.xpath("//button[@id='create_counterparty_payment_service_provider']/span/div");
     public static By newCounterPartyPage_SourceOfFunds = By.id("create_counterparty_source_of_funds");
     public static By newCounterPartyPage_SourceOfFundsOptions = By.id("");
     public static By newCounterPartyPage_SourceOfFundsRemarks = By.id("create_counterparty_source_of_funds_remarks");

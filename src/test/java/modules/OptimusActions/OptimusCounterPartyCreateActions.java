@@ -1,15 +1,20 @@
 package modules.OptimusActions;
 
-import modules.XAlphaActions.XAlphaLoginActions;
-import org.openqa.selenium.By;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyCreatePage;
-import pageFactory.XAlphaPages.XAlphaDealInputPage;
+import pageFactory.OptimusPages.CounterParty.*;
 import utilities.KeywordUtil;
 
 public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     static Class thisClass = OptimusCounterPartyCreateActions.class;
 
+    public static void navigateToCreateCounterPartyPage() {
+        click(OptimusCounterPartyMainPage.counterParty_MainTab, "Click Counter Party Main tab");
+        waitForVisible(OptimusCounterPartyMainPage.counterPartyMain_WelcomeText);
+        click(OptimusCounterPartyMainPage.counterPartyMain_Counterparties, "Click on CounterParties Side Panel");
+        waitForClickable(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab);
+        click(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab, "Click on Create New Counter Party Sub tab");
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_Ref);
+    }
     public static void waitForCounterPartyCreatePageLoad() {
         waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_NitroClientID);
     }

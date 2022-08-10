@@ -2,7 +2,7 @@ package pageFactory.OptimusPages.CounterParty;
 
 import org.openqa.selenium.By;
 
-public class CounterPartyMainPage {
+public class OptimusCounterPartyMainPage {
 
     //Navigation and pages labels
 
