@@ -381,6 +381,7 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_079_01 | Confirmed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_079_02 | Confirmed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_079_02 | Confirmed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_079_02 | Confirmed |
 
   @XAlphaDealEnquiryCashflowDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Cashflow Deal in Deal Inquiry
@@ -430,14 +431,26 @@ Feature: Test deal enquiry feature
     And Open first deal in the row
     And Change processing status
     And Click update deal button
-    Then Verify the deal updated success message
+    Then Verify the deal forwarded to MO for approval
+      #login with checker user and approve the deal processing status
+    Given Read "XAlpha" and "XAlphaLogin" and "<loginCredentials>" from test data
+    And Logout from XAlpha
+    And Input XAlpha Username and Password
+    And Click XAlpha Login Button
+    And Verify User is Able to Login to XAlpha Successfully
+    And Navigate to deal processing tab
+    And Search for the deal to approve
+    And Approve the deal
+    And Logout from XAlpha
+    #login again with system user and verify the deal processing status
+    Given Login to XAlpha with valid login credentials
     And Navigate to deal enquiry tab
     And Load a deal wrt deal reference id
     Then Verify the processing type
     Examples:
       | SheetName | TestCaseID                  | loginCredentials  | FromStatus | ToStatus  |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_078 | MO_CheckerAccount | Pending    | Processed |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_077 | MO_CheckerAccount | Confirmed  | Processed |
+#      | CashFlow  | QA_TestCase_Auto_XAlpha_078 | MO_CheckerAccount | Pending    | Processed |
+#      | CashFlow  | QA_TestCase_Auto_XAlpha_077 | MO_CheckerAccount | Confirmed  | Processed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_082 | MO_CheckerAccount | Pending    | Confirmed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_083 | MO_CheckerAccount | Confirmed  | Pending   |
       | CashFlow  | QA_TestCase_Auto_XAlpha_090 | MO_CheckerAccount | Pending    | cancelled |
