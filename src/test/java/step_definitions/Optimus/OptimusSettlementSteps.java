@@ -79,7 +79,7 @@ public class OptimusSettlementSteps {
         } else {
             try {
                 OptimusSettlementActions.newSettlement_CounterParty(dataMap.get("Counterparty Name"));
-                delay(5000);
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -128,6 +128,14 @@ public class OptimusSettlementSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                OptimusSettlementActions.chooseBankName(dataMap);
+                delay(5000);
+                OptimusSettlementActions.chooseAddress(dataMap.get("Bank Address"));
+                delay(5000);
+                OptimusSettlementActions.enterBankAccountNumber(dataMap.get("Bank Address"));
+//                OptimusSettlementActions.chooseBankSwiftCode(dataMap.get("Bank Swift Code"));
+//                OptimusSettlementActions.chooseBankBeneficiaryName(dataMap.get("Bank Beneficiary Name"));
+//                OptimusSettlementActions.chooseBankBeneficiaryaddress(dataMap.get("Bank Address"));
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
