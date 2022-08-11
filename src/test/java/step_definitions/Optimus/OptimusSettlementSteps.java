@@ -3,6 +3,7 @@ package step_definitions.Optimus;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import modules.NitroXActions.NitroXBotsAction;
 import modules.OptimusActions.OptimusCounterPartyCreateActions;
 import modules.OptimusActions.OptimusLoginActions;
 import modules.OptimusActions.OptimusSettlementActions;
@@ -21,6 +22,7 @@ public class OptimusSettlementSteps {
 
     public static HashMap<String, String> dataMap;
 
+    public static String nick_name;
     public OptimusSettlementSteps() {
         dataMap = BaseStepDefinitions.dataMap;
     }
@@ -37,7 +39,6 @@ public class OptimusSettlementSteps {
             try {
                 waitForVisible(SettlementMainPage.settlement_MainTab);
                 OptimusSettlementActions.clickSettlement();
-
                 OptimusSettlementActions.clickSettlementLink();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -108,7 +109,10 @@ public class OptimusSettlementSteps {
 
                 OptimusSettlementActions.chooseTransferMethod(dataMap.get("Transfer Method"));
                 OptimusSettlementActions.chooseNetwork(dataMap.get("Network"));
-                //OptimusSettlementActions.chooseCustodian(dataMap.get("Custodian"));
+                OptimusSettlementActions.chooseCustodian(dataMap.get("Custodian"));
+                //to be used in MO Account
+               nick_name= OptimusSettlementActions.getSettlement_Nickname_Internal();
+                System.out.println(nick_name);
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -128,14 +132,11 @@ public class OptimusSettlementSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.chooseBankName(dataMap);
-                delay(5000);
+                OptimusSettlementActions.chooseBankName(dataMap.get("Bank Name"));
                 OptimusSettlementActions.chooseAddress(dataMap.get("Bank Address"));
-                delay(5000);
-                OptimusSettlementActions.enterBankAccountNumber(dataMap.get("Bank Address"));
-//                OptimusSettlementActions.chooseBankSwiftCode(dataMap.get("Bank Swift Code"));
-//                OptimusSettlementActions.chooseBankBeneficiaryName(dataMap.get("Bank Beneficiary Name"));
-//                OptimusSettlementActions.chooseBankBeneficiaryaddress(dataMap.get("Bank Address"));
+                OptimusSettlementActions.enterBankAccountNumber(dataMap.get("Bank Account Number"));
+                OptimusSettlementActions.chooseBankBeneficiaryName(dataMap.get("Bank Beneficiary Name"));
+                OptimusSettlementActions.chooseBankBeneficiaryaddress(dataMap.get("Bank Address"));
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -155,6 +156,9 @@ public class OptimusSettlementSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                OptimusSettlementActions.chooseWalletAddress(dataMap.get("Wallet Address"));
+                OptimusSettlementActions.chooseWalleMemo(dataMap.get("Wallet Memo"));
+                OptimusSettlementActions.choosePurpose(dataMap.get("Purpose"));
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -168,13 +172,156 @@ public class OptimusSettlementSteps {
         }
     }
 
-    @Then("Click Create Settlement and verify")
+    @Then("Click Create Settlement and verify the Settlement Forwarded for Approval")
     public void clickCreateSettlementAndVerify() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                OptimusSettlementActions.clickCreateSettlement();
+                OptimusSettlementActions.waitForSuccessMsgToAppear();
+                OptimusSettlementActions.waitForSuccessMsgToDisappear();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+    @And("Logout from Optimus")
+    public void logoutFromOptimus()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+              OptimusSettlementActions.logoutFromOptimus();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 
+    @And("Click Tasks link")
+    public void clickTasksLink() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.clickTaskslink();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Navigate to Settlement Task")
+    public void navigateToSettlementTask() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputNickname(dataMap.get("Settlement Nickname Internal"));
+                OptimusSettlementActions.selectSettlementCheckbox();
+                waitForVisible(SettlementMainPage.newSettlement_selectAll);
+                OptimusSettlementActions.selectAllSettlementbtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Approve the Settlement")
+    public void approveTheSettlement() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.selectApprovebtn();
+                OptimusSettlementActions.waitForSuccessMsgToAppear();
+                OptimusSettlementActions.waitForSuccessMsgToDisappear();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the Settlement is approved")
+    public void verifyTheSettlementIsApproved() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.settlementlist);
+                OptimusSettlementActions.sortSettlementRef();
+                Assert.assertEquals(OptimusSettlementActions.getNameSettlementList(),dataMap.get("Settlement Nickname Internal"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Logout from MO Account")
+    public void logoutFromMOAccount() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.clickLogout();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click the Settlement link")
+    public void clickTheSettlementLink() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.clickSettlementLink();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
