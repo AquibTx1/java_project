@@ -29,6 +29,9 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_IndustryOfEmployement = By.id("create_counterparty_industry_of_employment");
     public static By newCounterPartyPage_IndustryOfEmployementOptions = By.xpath("");
     public static By newCounterPartyPage_IdentificationIssueDate = By.id("create_counterparty_identification_issue_moment");
+    public static By newCounterPartyPage_IdentificationIssueDate_OKBtn = By.xpath("//div[@class='ant-picker-footer']/ul/li[@class='ant-picker-ok']/button");
+    public static By newCounterPartyPage_IdentificationIssueDate_NowBtn = By.xpath("//div[@class='ant-picker-footer']/ul/li[@class='ant-picker-now']/a[@class='ant-picker-now-btn']");
+
     public static By newCounterPartyPage_IdentificationExpiryDate = By.id("create_counterparty_identification_expiry_moment");
     public static By newCounterPartyPage_MobileNumber = By.id("create_counterparty_mobile_number");
     public static By newCounterPartyPage_PEPDeclaration = By.xpath("//button[@id='create_counterparty_pep_declaration']/span/div");

@@ -10,7 +10,7 @@ Given Login to Optimus with Valid Credentials
     And Click the CounterParty link
     And Enter Mandatory fields of New Counter Party
 #    And Enter Optional Fields of New Counter Party
-    And Click Create Counter Party Button
+#    And Click Create Counter Party Button
 
     Examples:
       | TestCaseID                      | SheetName          |

@@ -7,7 +7,8 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     static Class thisClass = OptimusCounterPartyCreateActions.class;
 
-    public static void navigateToCreateCounterPartyPage() {
+    public static void navigateToCreateCounterPartyPage() throws InterruptedException {
+        waitForVisible(OptimusCounterPartyMainPage.counterParty_MainTab);
         click(OptimusCounterPartyMainPage.counterParty_MainTab, "Click Counter Party Main tab");
         waitForVisible(OptimusCounterPartyMainPage.counterPartyMain_WelcomeText);
         click(OptimusCounterPartyMainPage.counterPartyMain_Counterparties, "Click on CounterParties Side Panel");
@@ -15,14 +16,16 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         click(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab, "Click on Create New Counter Party Sub tab");
         waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_Ref);
     }
+
     public static void waitForCounterPartyCreatePageLoad() {
         waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_NitroClientID);
     }
 //    public static void validateCounterPartyRefData() {  }
 
 
-//Mandatory fields actions
-    public static void createCP_SalesForceId(String SalesForceId) {
+    //Mandatory fields actions
+    public static void createCP_SalesForceId(String SalesForceId) throws InterruptedException {
+        delay(10000);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_SalesForceID, SalesForceId, "Enter Sales Force ID");
     }
 
@@ -54,7 +57,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_AuthorizedPersonEmail, AuthorizedPersonEmail, "Enter Authorized Person Email");
     }
 
-//Optional fields actions
+    //Optional fields actions
     public static void createCP_NitroClientID(String NitroClientID) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_NitroClientID, NitroClientID, "Enter NitroClient ID");
     }
@@ -73,7 +76,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         click(OptimusCounterPartyCreatePage.newCounterPartyPage_ParentAccountOption, "Choose Parent Account from dropdown options");
     }
 
-//Basic Details - Optional Fields
+    //Basic Details - Optional Fields
     public static void createCP_FirstName(String FirstName) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_FirstName, FirstName, "Enter First name for Create CP");
     }
@@ -142,7 +145,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_Tin3, Tin3, "Enter Tin3 value");
     }
 
-// Company and Other Information - Optional fields
+    // Company and Other Information - Optional fields
     public static void createCP_CompanyName(String CompanyName) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_CompanyName, CompanyName, "Enter CompanyName value");
     }
@@ -241,7 +244,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_AppointmentOthers, AppointmentOthers, "Enter Appointment (Others) ");
     }
 
-//Additional Information - Optional Fields
+    //Additional Information - Optional Fields
     public static void createCP_GroupAssociation(String GroupAssociation) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_GroupAssociation, GroupAssociation, "Enter Group Association");
     }
@@ -332,7 +335,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_CounterpartyRemarks, CounterpartyRemarks, "Enter Counterparty Remarks ");
     }
 
-//Operations Buttons Clicks
+    //Operations Buttons Clicks
     public static void clickCreateCounterPartyBtn() {
         click(OptimusCounterPartyCreatePage.newCounterPartyPage_CreateCounterpartyBtn, "Click Create Counterparty button");
     }
