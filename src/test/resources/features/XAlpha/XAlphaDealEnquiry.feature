@@ -422,7 +422,7 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_088 | MO_CheckerAccount | Processed  | Settled   |
       | CashFlow  | QA_TestCase_Auto_XAlpha_089 | MO_CheckerAccount | Processed  | cancelled |
 
-  @XAlphaDealEnquiryCashflowDeal78
+  @XAlphaDealEnquiryCashflowDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Cashflow Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
