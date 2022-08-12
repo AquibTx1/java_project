@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import pageFactory.NitroXPages.NitroXBotsPage;
 import pageFactory.NitroXPages.NitroXBuySellFuturePage;
 import pageFactory.NitroXPages.NitroXHomePage;
+import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyCreatePage;
+import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementMainPage;
 import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import pageFactory.XAlphaPages.XAlphaDealInputPage;
@@ -17,6 +19,7 @@ import utilities.KeywordUtil;
 import utilities.LogUtil;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class OptimusSettlementActions extends KeywordUtil {
 
@@ -42,10 +45,12 @@ public class OptimusSettlementActions extends KeywordUtil {
     }
 
     public static void newSettlement_ExternalNickName(String exnickname) {
+        clearInput(SettlementMainPage.newSettlement_NicknameExternal);
         inputText(SettlementMainPage.newSettlement_NicknameExternal, exnickname, "Nickname External=" + exnickname);
     }
 
     public static void newSettlement_InternalNickName(String innickname) {
+        clearInput(SettlementMainPage.newSettlement_NicknameInternal);
         inputText(SettlementMainPage.newSettlement_NicknameInternal, innickname, "Nickname External=" + innickname);
     }
 
@@ -134,7 +139,7 @@ public class OptimusSettlementActions extends KeywordUtil {
     }
 
     public static void logoutFromOptimus() throws InterruptedException {
-        click(SettlementMainPage.logoutbtn, "Logout from Optimus app");
+        click(SettlementMainPage.logoutbtn_settlement, "Logout from Optimus app");
     }
 
     public static void clickTaskslink() {
@@ -156,12 +161,16 @@ public class OptimusSettlementActions extends KeywordUtil {
     }
 
 
-    public static void inputNickname(String nickname) {
+    public static void inputNickname(String nickname) throws InterruptedException {
         System.out.println("name is =" + nickname);
         inputText(SettlementMainPage.newSettlement_inputsearchtext, nickname, "Input the name =" + nickname);
+        delay(3000);
         click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
     }
 
+    public static void searchuser() {
+        click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
+    }
     public static void sortSettlementRef() throws InterruptedException {
         KeywordUtil.click(SettlementMainPage.settlementSort,"Sorted Based on Start Time");
         delay(2000);
@@ -175,13 +184,50 @@ public class OptimusSettlementActions extends KeywordUtil {
         return  name;
     }
 
-    public static void clickLogout() {
-        click(SettlementMainPage.logoutbtn,"Logout Clicked");
+    public static String getExtNameSettlementList()
+    {
+        String name=getElementText(By.xpath("//span[text()='Settlement Ref.']//following::tr[2]/td[5]"));
+        LogUtil.infoLog(thisClass,"name is ="+name);
+        return  name;
     }
 
-    public static void refreshPage() {
+    public static void clickLogout() throws InterruptedException {
+        hoverOnElement(SettlementMainPage.logoutbtn_settlement);
+        delay(2000);
+        hoverOnElementandClick(SettlementMainPage.logoutbtn_settlement);
 
+    }
+    public static void refreshPage() {
         KeywordUtil.pageRefresh();
     }
 
+    public static void clickEditSettlement() {
+        click(SettlementMainPage.newSettlement_edit, "Clicked the Edit");
+    }
+
+    public static void newSettlement_UpdatedExternalNickName(String settlement_nickname_external_updated) throws InterruptedException {
+        click(SettlementMainPage.newSettlement_updatedNicknameExternal, "Clicked the ext");
+        KeywordUtil.clearInputUsingKeys(SettlementMainPage.newSettlement_updatedNicknameExternal);
+        delay(2000);
+        inputText(SettlementMainPage.newSettlement_updatedNicknameExternal, settlement_nickname_external_updated, "Nickname External=" + settlement_nickname_external_updated);
+    }
+
+    public static void newSettlement_UpdatedInternalNickName(String settlement_nickname_internal_updated) throws InterruptedException {
+        click(SettlementMainPage.newSettlement_updatedNicknameInternal, "Clicked the ext");
+        clearInputUsingKeys(SettlementMainPage.newSettlement_updatedNicknameInternal);
+        delay(2000);
+        inputText(SettlementMainPage.newSettlement_updatedNicknameInternal, settlement_nickname_internal_updated, "Nickname External=" + settlement_nickname_internal_updated);
+    }
+
+    public static void updateSettlement() {
+        click(SettlementMainPage.newSettlement_updatebtn, "Clicked the Edit");
+    }
+
+    public static void clickPortfolio() {
+        click(SettlementMainPage.newSettlement_approvelink, "Clicked the Portfolio");
+    }
+
+    public static void clickCounterPartyTab() {
+        click(OptimusCounterPartyMainPage.counterParty_MainTab, "Clicked the Counterparty");
+    }
 }

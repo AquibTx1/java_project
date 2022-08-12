@@ -5,7 +5,9 @@ import org.openqa.selenium.By;
 public class SettlementMainPage {
 
     public static By settlement_MainTab = By.xpath("//a[text()='Settlement']");
-    public static By logoutbtn = By.xpath("//span[text()='Logout']");
+    public static By logoutbtn_settlement = By.xpath("//*[@id='root']/section/header/div/ul/li[18]");
+
+    public static By adminTab = By.xpath("//a[text()='Auth Admin']");
     public static By newSettlement_Tasks = By.xpath("//span[text()='Tasks']");
     public static By newSettlement_Checkbox = By.xpath("(//div[@class='_workflow_task_1l3ie_1']//following::label)[1]");
     public static By newSettlement_selectAll = By.xpath("//span[text()='Select All Applicable']");
@@ -13,6 +15,7 @@ public class SettlementMainPage {
     public static By yesbtn = By.xpath("//button[@type='button']/span[text()='Yes']");
     public static By newSettlement_Approve = By.xpath("//span[text()='Approve']");
 
+    public static By newSettlement_edit = By.xpath("(//a[text()='Edit'])[1]");
     public static By newSettlement_inputsearchtext = By.xpath("//input[@placeholder='input search text']");
 
     public static By newSettlement_ClickSearch = By.xpath("//button[@class='ant-btn ant-btn-icon-only ant-input-search-button']");
@@ -26,9 +29,13 @@ public class SettlementMainPage {
     //    Mandatory Fields
     public static By newSettlement_CounterpartyID = By.id("create_settlement_counterparty_id");
     public static By newSettlement_NicknameExternal = By.id("create_settlement_settlement_nickname_external");
+
+    public static By newSettlement_updatedNicknameExternal = By.id("update_settlement_settlement_nickname_external");
+
     public static By newCounterPartyPage_NicknameExternal = By.id("create_counterparty_nickname_external");
     //    Mandatory Field
     public static By newSettlement_NicknameInternal = By.id("create_settlement_settlement_nickname_internal");
+    public static By newSettlement_updatedNicknameInternal = By.id("update_settlement_settlement_nickname_internal");
     public static By newSettlement_Type=By.id("create_settlement_settlement_type");
     public static By newSettlement_Currency=By.id("create_settlement_currency");
     public static By newSettlement_Transfermethod=By.id("create_settlement_transfer_method");
@@ -46,4 +53,9 @@ public class SettlementMainPage {
     public static By newSettlement_Settlementstatus=By.id("create_settlement_settlement_status");
     public static By newSettlement_createSettlementbtn = By.xpath("//span[text()='Create Settlement']");
     public static By CreateSettlement_SuccessMsg=By.xpath("//div[text()='Success!']");
+    public static By newSettlement_updatebtn=By.xpath("//span[text()='Update Settlement']");
+
+    public static By newSettlement_approvelink=By.xpath("//a[text()='Portfolio']");
+
+
 }
