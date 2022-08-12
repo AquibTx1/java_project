@@ -9,8 +9,8 @@ Given Login to Optimus with Valid Credentials
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Click the CounterParty link
     And Enter Mandatory fields of New Counter Party
-#    And Enter Optional Fields of New Counter Party
-#    And Click Create Counter Party Button
+    And Enter Optional Fields of New Counter Party
+    And Click Create Counter Party Button
 
     Examples:
       | TestCaseID                      | SheetName          |
