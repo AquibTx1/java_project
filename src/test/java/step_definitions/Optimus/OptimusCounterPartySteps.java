@@ -84,14 +84,18 @@ public class OptimusCounterPartySteps {
 //Basic Details
                 OptimusCounterPartyCreateActions.createCP_FirstName(dataMap.get("FirstName"));
                 OptimusCounterPartyCreateActions.createCP_LastName(dataMap.get("LastName"));
+
+                OptimusCounterPartyCreateActions.createCP_IdentificationExpiryDate(dataMap.get("IdentificationExpiryDate"));
+
                 OptimusCounterPartyCreateActions.createCP_Gender(dataMap.get("Gender"));
                 OptimusCounterPartyCreateActions.createCP_Nationality(dataMap.get("Nationality"));
                 OptimusCounterPartyCreateActions.createCP_DateOfBirth(dataMap.get("DateofBirth"));
                 OptimusCounterPartyCreateActions.createCP_Occupation(dataMap.get("Occupation"));
                 OptimusCounterPartyCreateActions.createCP_CompanyOfEmployment(dataMap.get("CompanyofEmployment"));
                 OptimusCounterPartyCreateActions.createCP_IndustryOfEmployment(dataMap.get("IndustryofEmployment"));
+
                 OptimusCounterPartyCreateActions.createCP_IdentificationIssueDate(dataMap.get("IdentificationIssueDate"));
-                OptimusCounterPartyCreateActions.createCP_IdentificationExpiryDate(dataMap.get("IdentificationExpiryDate"));
+                //Changed sequence of Identification Expiriy date
                 OptimusCounterPartyCreateActions.createCP_MobileNumber(dataMap.get("MobileNumber"));
                 OptimusCounterPartyCreateActions.createCP_PEPDeclarationToggle();
                 OptimusCounterPartyCreateActions.createCP_PEPDeclarationRemarks(dataMap.get("PEPDeclarationRemarks"));
@@ -105,10 +109,12 @@ public class OptimusCounterPartySteps {
                 OptimusCounterPartyCreateActions.createCP_IdentificationType(dataMap.get("IdentificationType"));
                 OptimusCounterPartyCreateActions.createCP_CountryOfIncorporation(dataMap.get("CountryofIncorporation"));
                 OptimusCounterPartyCreateActions.createCP_StateOfIncorporation(dataMap.get("StateofIncorporation"));
-                OptimusCounterPartyCreateActions.createCP_OperatingAddress(dataMap.get("OperatingAddress"));
-                OptimusCounterPartyCreateActions.createCP_CountryOfOperation(dataMap.get("CountryofOperation"));
-                OptimusCounterPartyCreateActions.createCP_OnboardingMode(dataMap.get("OnboardingMode"));
-                OptimusCounterPartyCreateActions.createCP_PrimaryBusinessActivity(dataMap.get("PrimaryBusinessActivity"));
+////                OptimusCounterPartyCreateActions.createCP_OperatingAddress(dataMap.get("OperatingAddress"));
+////                wait(10000);
+////                OptimusCounterPartyCreateActions.createCP_CountryOfOperation(dataMap.get("CountryofOperation"));
+////                OptimusCounterPartyCreateActions.createCP_OnboardingMode(dataMap.get("OnboardingMode"));
+////                wait(5000);
+////                OptimusCounterPartyCreateActions.createCP_PrimaryBusinessActivity(dataMap.get("PrimaryBusinessActivity"));
                 OptimusCounterPartyCreateActions.createCP_PrimaryBusinessActivityRemarks(dataMap.get("PrimaryBusinessActivityRemarks"));
                 OptimusCounterPartyCreateActions.createCP_CorporateWebsite(dataMap.get("CorporateWebsite"));
                 OptimusCounterPartyCreateActions.createCP_GSTRegisteredToggle();

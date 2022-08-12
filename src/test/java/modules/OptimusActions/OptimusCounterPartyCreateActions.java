@@ -1,11 +1,12 @@
 package modules.OptimusActions;
 
+import org.openqa.selenium.By;
 import pageFactory.OptimusPages.CounterParty.*;
 import utilities.KeywordUtil;
 
 public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
-    static Class thisClass = OptimusCounterPartyCreateActions.class;
+    static Class<OptimusCounterPartyCreateActions> thisClass = OptimusCounterPartyCreateActions.class;
 
     public static void navigateToCreateCounterPartyPage() throws InterruptedException {
         waitForVisible(OptimusCounterPartyMainPage.counterParty_MainTab);
@@ -15,6 +16,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         waitForClickable(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab);
         click(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab, "Click on Create New Counter Party Sub tab");
         waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_Ref);
+        waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_SalesForceID);
     }
 
     public static void waitForCounterPartyCreatePageLoad() {
@@ -25,7 +27,8 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     //Mandatory fields actions
     public static void createCP_SalesForceId(String SalesForceId) throws InterruptedException {
-        delay(10000);
+//        delay(3000);
+        waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_SalesForceID);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_SalesForceID, SalesForceId, "Enter Sales Force ID");
     }
 
@@ -39,14 +42,14 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     public static void createCP_ClientType(String ClientType) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientType, ClientType, "Select Client type=" + ClientType);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientTypeOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientTypeOptions, "Choose Client Type from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientTypeOptions, ClientType)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientTypeOptions, ClientType)), "Choose Client Type from dropdown options");
     }
 
     public static void createCP_EntityType(String EntityType) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_EntityType, EntityType, "Select Entity type=" + EntityType);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_EntityTypeOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_EntityTypeOptions, "Choose Entity Type from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_EntityTypeOptions, EntityType)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_EntityTypeOptions, EntityType)), "Choose Entity Type from dropdown options");
     }
 
     public static void createCP_RegisteredAddress(String RegisteredAddress) {
@@ -71,9 +74,9 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_ParentAccount(String ParentAccount) {
-        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_ParentAccount_dropdown, ParentAccount, "Select Parent Account=" + ParentAccount);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_ParentAccountOption);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_ParentAccountOption, "Choose Parent Account from dropdown options");
+        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_ParentAccount, ParentAccount, "Select Parent Account=" + ParentAccount);
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_ParentAccountOptions, ParentAccount)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_ParentAccountOptions, ParentAccount)), "Choose Parent Account from dropdown options");
     }
 
     //Basic Details - Optional Fields
@@ -89,18 +92,20 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_Gender, Gender, "Enter Gender for Create CP");
     }
 
-    public static void createCP_Nationality(String Nationality) {
+    public static void createCP_Nationality(String Nationality) throws InterruptedException {
+        scrollingToElementofAPage(OptimusCounterPartyCreatePage.newCounterPartyPage_Nationality, "Scroll to element Nationality");
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_Nationality, Nationality, "Enter Nationality for Create CP");
     }
 
     public static void createCP_DateOfBirth(String DateOfBirth) {
+        click(OptimusCounterPartyCreatePage.newCounterPartyPage_DateOfBirth, "Click Date Of Birth field");
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_DateOfBirth, DateOfBirth, "Enter Date Of Birth for Create CP");
     }
 
     public static void createCP_Occupation(String Occupation) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_Occupation, Occupation, "Select Occupation= " + Occupation);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_OccupationOption);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_OccupationOption, "Choose Occupation from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_OccupationOptions, Occupation)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_OccupationOptions, Occupation)), "Choose Occupation from dropdown options");
     }
 
     public static void createCP_CompanyOfEmployment(String CompanyOfEmployment) {
@@ -109,16 +114,26 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     public static void createCP_IndustryOfEmployment(String IndustryOfEmployment) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_IndustryOfEmployement, IndustryOfEmployment, "Select Industry Of Employment= " + IndustryOfEmployment);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_IndustryOfEmployementOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_IndustryOfEmployementOptions, "Choose Industry Of Employment from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_IndustryOfEmployementOptions, IndustryOfEmployment)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_IndustryOfEmployementOptions, IndustryOfEmployment)), "Choose Industry Of Employment from dropdown options");
     }
 
-    public static void createCP_IdentificationIssueDate(String IdentificationIssueDate) {
+    public static void createCP_IdentificationIssueDate(String IdentificationIssueDate) throws InterruptedException {
+        click(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationIssueDate, "Click in Identification Issue Date field for Create CP");
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationIssueDate, IdentificationIssueDate, "Enter Identification Issue Date for Create CP");
+        pressEnter(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationIssueDate);
+//        scrollingToElementofAPage(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationIssueDate_OKBtn, "Scroll to Element");
+//        waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationIssueDate_OKBtn);
+//        click(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationIssueDate_OKBtn,"Clicking OK to select entered Date");
     }
 
-    public static void createCP_IdentificationExpiryDate(String IdentificationExpiryDate) {
+    public static void createCP_IdentificationExpiryDate(String IdentificationExpiryDate) throws InterruptedException {
+        click(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate, "Click Identification Expiry Date for Create CP");
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate, IdentificationExpiryDate, "Enter Identification Expiry Date for Create CP");
+        pressEnter(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate);
+//        scrollingToElementofAPage(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate_OKBtn, "Scroll to Element");
+//        waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate_NowBtn);
+//        clickJS(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate_OKBtn,"Clicking NOW to select entered Date");
     }
 
     public static void createCP_MobileNumber(String MobileNumber) {
@@ -158,22 +173,24 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationNumber, IdentificationNumber, "Enter Identification Number value");
     }
 
-    public static void createCP_IdentificationType(String IdentificationType) {
+    public static void createCP_IdentificationType(String IdentificationType) throws InterruptedException {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationType, IdentificationType, "Select Identification Type = " + IdentificationType);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationTypeOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationTypeOptions, "Choose Identification Type from dropdown options");
+//        scrollingToElementofAPage(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationTypeOptions)), "Scroll to Element");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationTypeOptions, IdentificationType)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationTypeOptions, IdentificationType)), "Choose Identification Type from dropdown options");
     }
 
-    public static void createCP_CountryOfIncorporation(String CountryOfIncorporation) {
+    public static void createCP_CountryOfIncorporation(String CountryOfIncorporation) throws InterruptedException {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfIncorporation, CountryOfIncorporation, "Select Country Of Incorporation = " + CountryOfIncorporation);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfIncorporationOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfIncorporationOptions, "Choose Country Of Incorporation from dropdown options");
+//        scrollingToElementofAPage(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfIncorporationOptions)), "Scroll to Element");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfIncorporationOptions, CountryOfIncorporation)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfIncorporationOptions, CountryOfIncorporation)), "Choose Country Of Incorporation from dropdown options");
     }
 
     public static void createCP_StateOfIncorporation(String StateOfIncorporation) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_StateOfIncorporation, StateOfIncorporation, "Select State Of Incorporation = " + StateOfIncorporation);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_StateOfIncorporationOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_StateOfIncorporationOptions, "Choose state Of Incorporation from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_StateOfIncorporationOptions, StateOfIncorporation)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_StateOfIncorporationOptions, StateOfIncorporation)), "Choose State Of Incorporation from dropdown options");
     }
 
     public static void createCP_OperatingAddress(String OperatingAddress) {
@@ -182,20 +199,20 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     public static void createCP_CountryOfOperation(String CountryOfOperation) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfOperation, CountryOfOperation, "Select Country Of Operation = " + CountryOfOperation);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfOperationOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfOperationOptions, "Choose Country Of Operation from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfOperationOptions, CountryOfOperation)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfOperationOptions, CountryOfOperation)), "Choose Country Of Operation from dropdown options");
     }
 
     public static void createCP_OnboardingMode(String OnboardingMode) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardingMode, OnboardingMode, "Select Onboarding Mode = " + OnboardingMode);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardingModeOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardingModeOptions, "Choose Onboarding Mode from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardingModeOptions, OnboardingMode)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardingModeOptions, OnboardingMode)), "Choose Onboarding Mode from dropdown options");
     }
 
     public static void createCP_PrimaryBusinessActivity(String PrimaryBusinessActivity) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_PrimaryBusinessActivity, PrimaryBusinessActivity, "Select Primary Business Activity  = " + PrimaryBusinessActivity);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_PrimaryBusinessActivityOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_PrimaryBusinessActivityOptions, "Choose Onboarding Mode from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_PrimaryBusinessActivityOptions, PrimaryBusinessActivity)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_PrimaryBusinessActivityOptions, PrimaryBusinessActivity)), "Choose Primary Business Activity from dropdown options");
     }
 
     public static void createCP_PrimaryBusinessActivityRemarks(String PrimaryBusinessActivityRemarks) {
@@ -203,7 +220,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_CorporateWebsite(String CorporateWebsite) {
-        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_PrimaryBusinessActivityRemarks, CorporateWebsite, "Enter Corporate Website");
+        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_CorporateWebsite, CorporateWebsite, "Enter Corporate Website");
     }
 
     public static void createCP_GSTRegisteredToggle() {
@@ -215,13 +232,13 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_PaymentServiceProviderToggle() {
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_GSTRegistered, "Toggle Payment Service Provider");
+        click(OptimusCounterPartyCreatePage.newCounterPartyPage_PaymentServiceProvider, "Toggle Payment Service Provider");
     }
 
     public static void createCP_SourceOfFunds(String SourceOfFunds) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_SourceOfFunds, SourceOfFunds, "Select Source of Funds  = " + SourceOfFunds);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_SourceOfFundsOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_SourceOfFundsOptions, "Choose Source of Funds from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_SourceOfFundsOptions, SourceOfFunds)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_SourceOfFundsOptions, SourceOfFunds)), "Choose Source Of Funds from dropdown options");
     }
 
     public static void createCP_SourceOfFundsRemarks(String SourceOfFundsRemarks) {
@@ -241,7 +258,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_AppointmentOthers(String AppointmentOthers) {
-        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_AppointmentOthers, AppointmentOthers, "Enter Appointment (Others) ");
+        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_AppointmentOthers, AppointmentOthers, "Enter Appointment Others");
     }
 
     //Additional Information - Optional Fields
@@ -250,17 +267,23 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_OnboardedDate(String OnboardedDate) {
-        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardedDate, OnboardedDate, "Enter Onboarded Date");
+        click(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardedDate, "Enter Onboarded Date");
+        pressEnter(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardedDate);
+//        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardedDate, OnboardedDate, "Enter Onboarded Date");
+//        click(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardedDate_OKBtn,"Clicking OK to select entered Date");
     }
 
     public static void createCP_ClientTier(String ClientTier) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientTier, ClientTier, "Select Client Tier  = " + ClientTier);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientTierOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientTierOptions, "Choose Client Tier from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientTierOptions, ClientTier)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientTierOptions, ClientTier)), "Choose Client Tier from dropdown options");
     }
 
     public static void createCP_KYCRefreshDate(String KYCRefreshDate) {
+        click(OptimusCounterPartyCreatePage.newCounterPartyPage_KYCRefreshDate, "Click KYC Refresh Date");
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_KYCRefreshDate, KYCRefreshDate, "Enter KYC Refresh Date");
+        pressEnter(OptimusCounterPartyCreatePage.newCounterPartyPage_KYCRefreshDate);
+//        click(OptimusCounterPartyCreatePage.newCounterPartyPage_KYCRefreshDate_OKBtn,"Clicking OK to select entered Date");
     }
 
     public static void createCP_ClientTierRemarks(String ClientTierRemarks) {
@@ -269,8 +292,8 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     public static void createCP_RiskScore(String RiskScore) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_RiskScore, RiskScore, "Select Risk Score  = " + RiskScore);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_RiskScoreOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_RiskScoreOptions, "Choose Risk Score from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_RiskScoreOptions, RiskScore)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_RiskScoreOptions, RiskScore)), "Choose Risk Score from dropdown options");
     }
 
     public static void createCP_RiskScoreRemarks(String RiskScoreRemarks) {
@@ -282,9 +305,9 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_ReferralPersonInternal(String ReferralPersonInternal) {
-        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_ReferralPersonInternal, ReferralPersonInternal, "Select Referral Person (Internal)  = " + ReferralPersonInternal);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_ReferralPersonInternalOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_ReferralPersonInternalOptions, "Choose Referral Person (Internal) from dropdown options");
+        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_ReferralPersonInternal, ReferralPersonInternal, "Select Referral Person Internal  = " + ReferralPersonInternal);
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_ReferralPersonInternalOptions, ReferralPersonInternal)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_ReferralPersonInternalOptions, ReferralPersonInternal)), "Choose Referral Person Internal from dropdown options");
     }
 
     public static void createCP_ReferralPersonExternal(String ReferralPersonExternal) {
@@ -292,29 +315,34 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_ReferralExternalRebate(String ReferralExternalRebate) {
+        waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_ReferralExternalRebate);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_ReferralExternalRebate, ReferralExternalRebate, "Select Referral External Rebate ");
     }
 
     public static void createCP_FaceToFaceVerificationStatus(String FaceToFaceVerificationStatus) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_FaceVerificationStatus, FaceToFaceVerificationStatus, "Select Face to Face Verification Status  = " + FaceToFaceVerificationStatus);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_FaceVerificationStatusOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_FaceVerificationStatusOptions, "Choose Face to Face Verification Status from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_FaceVerificationStatusOptions, FaceToFaceVerificationStatus)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_FaceVerificationStatusOptions, FaceToFaceVerificationStatus)), "Choose FaceToFace Verification Status from dropdown options");
     }
 
     public static void createCP_FaceToFaceVerificationRemarks(String FaceToFaceVerificationRemarks) {
+        waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_FaceVerificationRemarks);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_FaceVerificationRemarks, FaceToFaceVerificationRemarks, "Select Face To Face Verification Remarks ");
     }
 
     public static void createCP_VouchedStatus(String VouchedStatus) {
+        waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedStatus);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedStatus, VouchedStatus, "Select Vouched Status  = " + VouchedStatus);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedStatusOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedStatusOptions, "Choose Vouched Status from dropdown options");
+        pressEnter(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedStatus);
+//        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedStatusOptions, VouchedStatus)));
+//        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedStatusOptions, VouchedStatus)), "Choose Vouched Status from dropdown options");
     }
 
     public static void createCP_VouchedByPerson(String VouchedByPerson) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedByPerson, VouchedByPerson, "Select Vouched By Person  = " + VouchedByPerson);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedByPersonOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedByPersonOptions, "Choose Vouched by Person from dropdown options");
+        pressEnter(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedByPerson);
+//        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedByPersonOptions, VouchedByPerson)));
+//        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_VouchedByPersonOptions, VouchedByPerson)), "Choose Vouched By Person from dropdown options");
     }
 
     public static void createCP_VouchedRemarks(String VouchedRemarks) {
@@ -327,8 +355,8 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     public static void createCP_CounterpartyStatus(String CounterpartyStatus) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_CounterpartyStatus, CounterpartyStatus, "Select Counterparty Status  = " + CounterpartyStatus);
-        waitForPresent(OptimusCounterPartyCreatePage.newCounterPartyPage_CounterpartyStatusOptions);
-        click(OptimusCounterPartyCreatePage.newCounterPartyPage_CounterpartyStatusOptions, "Choose Counterparty Status from dropdown options");
+        waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_CounterpartyStatusOptions, CounterpartyStatus)));
+        click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_CounterpartyStatusOptions, CounterpartyStatus)), "Choose Counterparty Status from dropdown options");
     }
 
     public static void createCP_CounterpartyRemarks(String CounterpartyRemarks) {
