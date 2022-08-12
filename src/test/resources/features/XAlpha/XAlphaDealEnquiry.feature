@@ -422,38 +422,28 @@ Feature: Test deal enquiry feature
       | CashFlow  | QA_TestCase_Auto_XAlpha_088 | MO_CheckerAccount | Processed  | Settled   |
       | CashFlow  | QA_TestCase_Auto_XAlpha_089 | MO_CheckerAccount | Processed  | cancelled |
 
-  @XAlphaDealEnquiryCashflowDeal
+  @XAlphaDealEnquiryCashflowDeal78
   Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Cashflow Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
+    And Navigate to deal input tab
+    And Choose CashFlow deal
+    And Provide CashFlow deal input details
+    And Click create deal button
+    Then Verify the deal success message
     And Navigate to deal enquiry tab
-    And Load a deal wrt processing type and deal type
+    And Load a deal wrt deal reference id from deal input
     And Open first deal in the row
     And Change processing status
     And Click update deal button
-    Then Verify the deal forwarded to MO for approval
-      #login with checker user and approve the deal processing status
-    Given Read "XAlpha" and "XAlphaLogin" and "<loginCredentials>" from test data
-    And Logout from XAlpha
-    And Input XAlpha Username and Password
-    And Click XAlpha Login Button
-    And Verify User is Able to Login to XAlpha Successfully
-    And Navigate to deal processing tab
-    And Search for the deal to approve
-    And Approve the deal
-    And Logout from XAlpha
-    #login again with system user and verify the deal processing status
-    Given Login to XAlpha with valid login credentials
-    And Navigate to deal enquiry tab
-    And Load a deal wrt deal reference id
-    Then Verify the processing type
+    Then Verify the deal updated success message
     Examples:
       | SheetName | TestCaseID                  | loginCredentials  | FromStatus | ToStatus  |
       | CashFlow  | QA_TestCase_Auto_XAlpha_078 | MO_CheckerAccount | Pending    | Processed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_077 | MO_CheckerAccount | Confirmed  | Processed |
-#      | CashFlow  | QA_TestCase_Auto_XAlpha_082 | MO_CheckerAccount | Pending    | Confirmed |
-#      | CashFlow  | QA_TestCase_Auto_XAlpha_083 | MO_CheckerAccount | Confirmed  | Pending   |
-#      | CashFlow  | QA_TestCase_Auto_XAlpha_090 | MO_CheckerAccount | Pending    | cancelled |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_082 | MO_CheckerAccount | Pending    | Confirmed |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_083 | MO_CheckerAccount | Confirmed  | Pending   |
+      | CashFlow  | QA_TestCase_Auto_XAlpha_090 | MO_CheckerAccount | Pending    | cancelled |
 
   @XAlphaDealEnquiryCashflowDeal
   Scenario Outline: "<TestCaseID>" Able to Edit Status and Insert Value Date from "<FromStatus>" to "<ToStatus>" of an Existing Cashflow Deal in Deal Inquiry
