@@ -3,9 +3,7 @@ package pageFactory.OptimusPages.CounterParty;
 import org.openqa.selenium.By;
 
 public class OptimusCounterPartyCreatePage {
-
     public static By counterParty_NewCounterPartyTab = By.cssSelector(".ant-tabs-nav-list .ant-tabs-tab>div#rc-tabs-0-tab-item_1");
-
     public static By newCounterPartyPage_Ref = By.cssSelector("#create_counterparty_counterparty_ref");
     public static By newCounterPartyPage_NitroClientID = By.cssSelector("#create_counterparty_nitro_client_id");
     //    Mandatory Field
@@ -16,8 +14,7 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_NicknameInternal = By.id("create_counterparty_nickname_internal");
     public static By newCounterPartyPage_ParentAccount = By.id("create_counterparty_parent_account");
     public static String newCounterPartyPage_ParentAccountOptions = "//div[@class='rc-virtual-list-holder-inner']//div[text()='%s']";
-
-    //Basic Information Details
+    //  Basic Information Details
     public static By newCounterPartyPage_FirstName = By.id("create_counterparty_first_name");
     public static By newCounterPartyPage_LastName = By.id("create_counterparty_last_name");
     public static By newCounterPartyPage_Gender = By.id("create_counterparty_gender");
@@ -31,11 +28,9 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_IdentificationIssueDate = By.id("create_counterparty_identification_issue_moment");
     public static By newCounterPartyPage_IdentificationIssueDate_OKBtn = By.xpath("//div[@class='ant-picker-footer']/ul/li[@class='ant-picker-ok']/button");
     public static By newCounterPartyPage_IdentificationIssueDate_NowBtn = By.xpath("//div[@class='ant-picker-footer']/ul/li[@class='ant-picker-now']/a[@class='ant-picker-now-btn']");
-
     public static By newCounterPartyPage_IdentificationExpiryDate = By.id("create_counterparty_identification_expiry_moment");
     public static By newCounterPartyPage_IdentificationExpiryDate_OKBtn = By.cssSelector("div.ant-picker-panel div.ant-picker-footer > ul li.ant-picker-ok > button");
     public static By newCounterPartyPage_IdentificationExpiryDate_NowBtn = By.xpath("//div[@class='ant-picker-footer']/ul/li[@class='ant-picker-now']/a[@class='ant-picker-now-btn']");
-
     public static By newCounterPartyPage_MobileNumber = By.id("create_counterparty_mobile_number");
     public static By newCounterPartyPage_PEPDeclaration = By.xpath("//button[@id='create_counterparty_pep_declaration']/span/div");
     public static By newCounterPartyPage_PEPDeclarationRemarks = By.id("create_counterparty_pep_declaration_remarks");
@@ -44,7 +39,6 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_Tin1 = By.id("create_counterparty_tin_1");
     public static By newCounterPartyPage_Tin2 = By.id("create_counterparty_tin_2");
     public static By newCounterPartyPage_Tin3 = By.id("create_counterparty_tin_3");
-
     //Company and Other Information
     public static By newCounterPartyPage_CompanyName = By.id("create_counterparty_company_name");
     public static By newCounterPartyPage_FormerRegisteredName = By.id("create_counterparty_former_registered_name");
@@ -84,23 +78,20 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_AuthorizedPersonEmail = By.id("create_counterparty_authorized_person_email");
     public static By newCounterPartyPage_BusinessPurposeForRelationship = By.id("create_counterparty_business_purpose_for_relationship");
     public static By newCounterPartyPage_AppointmentOthers = By.id("create_counterparty_appointment_others");
-
-    //Additional Information
+    //  Additional Information
     public static By newCounterPartyPage_GroupAssociation = By.id("create_counterparty_group_association");
     public static By newCounterPartyPage_OnboardedDate = By.id("create_counterparty_onboarded_moment");
     public static By newCounterPartyPage_OnboardedDate_OKBtn = By.xpath("//div[@class='ant-picker-footer']/ul/li[@class='ant-picker-ok']/button");
     public static By newCounterPartyPage_OnboardedDate_NowBtn = By.xpath("//div[@class='ant-picker-footer']/ul/li[@class='ant-picker-now']/a[@class='ant-picker-now-btn']");
-
     public static By newCounterPartyPage_ClientTier = By.id("create_counterparty_client_tier");
     public static String newCounterPartyPage_ClientTierOptions = "//div[@class='rc-virtual-list-holder-inner']//div[text()='%s']";
     public static By newCounterPartyPage_KYCRefreshDate = By.id("create_counterparty_kyc_refreshed_moment");
     public static By newCounterPartyPage_KYCRefreshDate_OKBtn = By.xpath("//div[@class='ant-picker-footer']/ul/li[@class='ant-picker-ok']/button");
     public static By newCounterPartyPage_KYCRefreshDate_NowBtn = By.xpath("//div[@class='ant-picker-footer']/ul/li[@class='ant-picker-now']/a[@class='ant-picker-now-btn']");
-
-    public static By newCounterPartyPage_ClientTierRemarks = By.id("create_counterparty_client_tier_remarks");
+    public static By newCounterPartyPage_ClientTierRemarks = By.cssSelector("#create_counterparty_client_tier_remarks");
     public static By newCounterPartyPage_RiskScore = By.id("create_counterparty_risk_score");
     public static String newCounterPartyPage_RiskScoreOptions = "//div[@class='rc-virtual-list-holder-inner']//div[text()='%s']";
-    public static By newCounterPartyPage_RiskScoreRemarks = By.id("create_counterparty_risk_score_remarks");
+    public static By newCounterPartyPage_RiskScoreRemarks = By.cssSelector("#create_counterparty_risk_score_remarks");
     public static By newCounterPartyPage_ExecutionFeeRate = By.id("create_counterparty_execution_fee_rate");
     public static By newCounterPartyPage_ReferralPersonInternal = By.id("create_counterparty_referral_person_id");
     public static String newCounterPartyPage_ReferralPersonInternalOptions = "//div[@class='rc-virtual-list-holder-inner']//div[text()='%s']";
@@ -118,10 +109,8 @@ public class OptimusCounterPartyCreatePage {
     public static By newCounterPartyPage_CounterpartyStatus = By.id("create_counterparty_counterparty_status");
     public static String newCounterPartyPage_CounterpartyStatusOptions = "//div[@class='rc-virtual-list-holder-inner']//div[text()='%s']";
     public static By newCounterPartyPage_CounterpartyRemarks = By.id("create_counterparty_counterparty_remarks");
-
     //Operation
     public static By newCounterPartyPage_CreateCounterpartyBtn = By.xpath("//button[@type='submit']");
     public static By newCounterPartyPage_ResetFormBtn = By.xpath("//button[@type='button' and @class='ant-btn ant-btn-block']");
-
-
+    public static By newCounterPartyPage_SuccessMessage = By.xpath("//div[text()='Success!']");
 }

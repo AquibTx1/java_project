@@ -8,11 +8,17 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     static Class<OptimusCounterPartyCreateActions> thisClass = OptimusCounterPartyCreateActions.class;
 
-    public static void navigateToCreateCounterPartyPage() throws InterruptedException {
+    public static void openCounterPartyMainTab() {
         waitForVisible(OptimusCounterPartyMainPage.counterParty_MainTab);
         click(OptimusCounterPartyMainPage.counterParty_MainTab, "Click Counter Party Main tab");
         waitForVisible(OptimusCounterPartyMainPage.counterPartyMain_WelcomeText);
+    }
+
+    public static void openCounterPartySubTab() {
         click(OptimusCounterPartyMainPage.counterPartyMain_Counterparties, "Click on CounterParties Side Panel");
+    }
+
+    public static void navigateToCreateCounterPartyPage() throws InterruptedException {
         waitForClickable(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab);
         click(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab, "Click on Create New Counter Party Sub tab");
         waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_Ref);
@@ -23,7 +29,6 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_NitroClientID);
     }
 //    public static void validateCounterPartyRefData() {  }
-
 
     //Mandatory fields actions
     public static void createCP_SalesForceId(String SalesForceId) throws InterruptedException {
@@ -187,6 +192,10 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfIncorporationOptions, CountryOfIncorporation)), "Choose Country Of Incorporation from dropdown options");
     }
 
+    public static void waitfor2seconds() throws InterruptedException {
+        delay(2000);
+    }
+
     public static void createCP_StateOfIncorporation(String StateOfIncorporation) {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_StateOfIncorporation, StateOfIncorporation, "Select State Of Incorporation = " + StateOfIncorporation);
         waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_StateOfIncorporationOptions, StateOfIncorporation)));
@@ -266,7 +275,8 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_GroupAssociation, GroupAssociation, "Enter Group Association");
     }
 
-    public static void createCP_OnboardedDate(String OnboardedDate) {
+    public static void createCP_OnboardedDate(String OnboardedDate) throws InterruptedException {
+        delay(2000);
         click(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardedDate, "Enter Onboarded Date");
         pressEnter(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardedDate);
 //        inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_OnboardedDate, OnboardedDate, "Enter Onboarded Date");
@@ -286,17 +296,20 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 //        click(OptimusCounterPartyCreatePage.newCounterPartyPage_KYCRefreshDate_OKBtn,"Clicking OK to select entered Date");
     }
 
-    public static void createCP_ClientTierRemarks(String ClientTierRemarks) {
+    public static void createCP_ClientTierRemarks(String ClientTierRemarks) throws InterruptedException {
+        delay(2000);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_ClientTierRemarks, ClientTierRemarks, "Enter Client Tier Remarks");
     }
 
-    public static void createCP_RiskScore(String RiskScore) {
+    public static void createCP_RiskScore(String RiskScore) throws InterruptedException {
+        delay(2000);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_RiskScore, RiskScore, "Select Risk Score  = " + RiskScore);
         waitForPresent(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_RiskScoreOptions, RiskScore)));
         click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_RiskScoreOptions, RiskScore)), "Choose Risk Score from dropdown options");
     }
 
-    public static void createCP_RiskScoreRemarks(String RiskScoreRemarks) {
+    public static void createCP_RiskScoreRemarks(String RiskScoreRemarks) throws InterruptedException {
+        delay(2000);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_RiskScoreRemarks, RiskScoreRemarks, "Enter Risk Score Remarks");
     }
 
@@ -372,4 +385,70 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         click(OptimusCounterPartyCreatePage.newCounterPartyPage_ResetFormBtn, "Click Reset Form button");
     }
 
+    public static void waitForSuccessMessage() {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_SuccessMessage);
+    }
+
+    public static String getSuccessMessageText() {
+        return getElementText(OptimusCounterPartyCreatePage.newCounterPartyPage_SuccessMessage);
+    }
+
+    public static void openTasksTab() {
+        click(OptimusCounterPartyMainPage.counterPartyMain_Tasks, "Click Tasks tab");
+        waitForVisible(OptimusCounterPartyTasksPage.tasks_CounterPartyTab);
+    }
+
+    public static void searchTasks(String searchText) {
+        click(OptimusCounterPartyTasksPage.tasks_CpSearchBox, "Click Search box");
+        inputText(OptimusCounterPartyTasksPage.tasks_CpSearchBox, searchText, "Searching Tasks");
+        click(OptimusCounterPartyTasksPage.tasks_CpSearchBtn, "Click Search button");
+        waitForVisible(OptimusCounterPartyTasksPage.tasks_CpSearchResult1);
+    }
+
+    public static void selectFirstTask() {
+        waitForVisible(OptimusCounterPartyTasksPage.tasks_CpSearchResult1);
+        click(OptimusCounterPartyTasksPage.tasks_CpSearchResult1_Checkbox, "Click first result check box");
+    }
+
+    public static void selectAllTasks() {
+        waitForVisible(OptimusCounterPartyTasksPage.tasks_CpSelectAllBtn);
+        click(OptimusCounterPartyTasksPage.tasks_CpSelectAllBtn, "Select All tasks on page");
+    }
+
+    public static void approveAllSelectedTasks() {
+        waitForVisible(OptimusCounterPartyTasksPage.tasks_CpApproveBtn);
+        click(OptimusCounterPartyTasksPage.tasks_CpApproveBtn, "Click Approve All button");
+        waitForVisible(OptimusCounterPartyTasksPage.tasks_CpApprovePopUp);
+        click(OptimusCounterPartyTasksPage.tasks_CpApproveAll_YesBtn, "Approve all Click yes button");
+    }
+
+    public static void verifySuccessMessage() {
+        waitForVisible(OptimusCounterPartyTasksPage.tasks_SuccessMessage);
+    }
+
+    public static String getSuccessMessage() {
+        return getElementText(OptimusCounterPartyTasksPage.tasks_SuccessMessage);
+    }
+
+    public static void openListTab() {
+        click(OptimusCounterPartyMainPage.counterPartyMain_Counterparties, "Click CounterParties side tab");
+        click(OptimusCounterPartyListPage.counterParties_ListTab, "Click List tab");
+    }
+
+    public static void searchCounterParty(String nickName) {
+        waitForVisible(OptimusCounterPartyListPage.counterPartyList_SearchBox);
+        click(OptimusCounterPartyListPage.counterPartyList_RefreshBtn, "Click reset Search button");
+        click(OptimusCounterPartyListPage.counterPartyList_SearchBox, "Clicking inside search box");
+        inputText(OptimusCounterPartyListPage.counterPartyList_SearchBox, nickName, "Enter Seaarch Criteria");
+        click(OptimusCounterPartyListPage.counterPartyList_SearchBtn, "Click Search button");
+    }
+
+    public static void checkCounterPart_FirstResultListLoad() {
+        waitForVisible(OptimusCounterPartyListPage.counterPartyList_NickNameInternal1);
+    }
+
+    public static String getNickNameFromList() {
+        waitForVisible(OptimusCounterPartyListPage.counterPartyList_NickNameInternal1);
+        return getElementText(OptimusCounterPartyListPage.counterPartyList_NickNameInternal1);
+    }
 }
