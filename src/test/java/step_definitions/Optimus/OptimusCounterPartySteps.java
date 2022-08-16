@@ -41,8 +41,8 @@ public class OptimusCounterPartySteps {
         }
     }
 
-    @And("Click the CounterParty link")
-    public void clickTheCounterPartyLink() {
+    @And("Click Create CounterParty link")
+    public void clickCreateCounterPartyLink() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
