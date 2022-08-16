@@ -183,7 +183,6 @@ public class OptimusSettlementActions extends KeywordUtil {
         LogUtil.infoLog(thisClass,"name is ="+name);
         return  name;
     }
-
     public static String getExtNameSettlementList()
     {
         String name=getElementText(By.xpath("//span[text()='Settlement Ref.']//following::tr[2]/td[5]"));
