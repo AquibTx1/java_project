@@ -84,7 +84,10 @@ public class NitroXBuySellFutureSteps {
                 waitForVisible(NitroXBuySellFuturePage.lowestAskPrice);
                 NitroXBuySellFutureAction.inputPositionMode(dataMap);
                 NitroXBuySellFutureAction.inputLeverage(dataMap);
+                NitroXHome.waitForNotifMsgToDisappear();
                 NitroXBuySellFutureAction.selectMarginType(dataMap);
+                NitroXHome.waitForNotifMsgToDisappear();
+                delay(10000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -294,7 +297,7 @@ public class NitroXBuySellFutureSteps {
                 //NitroXHome.InputBuyOrderPrice();
                 NitroXHome.scrollToAskPrices();
                 NitroXHome.ClearInputPrice();
-                NitroXHome.InputthePrice(NitroXHome.getHighestAskPrice() + 0.009);
+                NitroXHome.InputthePrice(NitroXHome.getHighestAskPrice());
                 NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
             } catch (Throwable e) {

@@ -189,13 +189,10 @@ public class OptimusSettlementActions extends KeywordUtil {
         String name=getElementText(By.xpath("//span[text()='Settlement Ref.']//following::tr[2]/td[5]"));
         LogUtil.infoLog(thisClass,"name is ="+name);
         return  name;
-    }
-
-    public static void clickLogout() throws InterruptedException {
+    }public static void clickLogout() throws InterruptedException {
         hoverOnElement(SettlementMainPage.logoutbtn_settlement);
         delay(2000);
         hoverOnElementandClick(SettlementMainPage.logoutbtn_settlement);
-
     }
     public static void refreshPage() {
         KeywordUtil.pageRefresh();
