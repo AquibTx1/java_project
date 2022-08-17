@@ -1,5 +1,6 @@
 package modules.OptimusActions;
 
+import modules.XAlphaActions.XAlphaDealEnquiryActions;
 import org.openqa.selenium.By;
 import pageFactory.OptimusPages.CounterParty.*;
 import utilities.KeywordUtil;
@@ -15,7 +16,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void openCounterPartySubTab() {
-        click(OptimusCounterPartyMainPage.counterPartyMain_Counterparties, "Click on CounterParties Side Panel");
+        click(OptimusCounterPartyMainPage.counterPartyMain_Counterparties, "Click CounterParties side tab");
     }
 
     public static void navigateToCreateCounterPartyPage() throws InterruptedException {
@@ -194,6 +195,10 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     public static void waitfor2seconds() throws InterruptedException {
         delay(2000);
+    }
+
+    public static void waitfor5seconds() throws InterruptedException {
+        delay(5000);
     }
 
     public static void createCP_StateOfIncorporation(String StateOfIncorporation) {
@@ -431,14 +436,12 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void openListTab() {
-        click(OptimusCounterPartyMainPage.counterPartyMain_Counterparties, "Click CounterParties side tab");
         click(OptimusCounterPartyListPage.counterParties_ListTab, "Click List tab");
     }
 
-    public static void searchCounterParty(String nickName) {
+    public static void searchCounterParty(String nickName) throws InterruptedException {
         waitForVisible(OptimusCounterPartyListPage.counterPartyList_SearchBox);
-        click(OptimusCounterPartyListPage.counterPartyList_RefreshBtn, "Click reset Search button");
-        click(OptimusCounterPartyListPage.counterPartyList_SearchBox, "Clicking inside search box");
+        waitForClickable(OptimusCounterPartyListPage.counterPartyList_SearchBox);
         inputText(OptimusCounterPartyListPage.counterPartyList_SearchBox, nickName, "Enter Seaarch Criteria");
         click(OptimusCounterPartyListPage.counterPartyList_SearchBtn, "Click Search button");
     }

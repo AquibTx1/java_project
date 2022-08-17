@@ -1,8 +1,9 @@
-package step_definitions.Optimus;
+package step_definitions.Optimus.CounterParty;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import modules.OptimusActions.OptimusCounterPartyCreateActions;
+import modules.OptimusActions.OptimusCounterPartyUpdateActions;
 import modules.OptimusActions.OptimusLoginActions;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
@@ -21,6 +22,7 @@ public class OptimusCounterPartySteps {
 
 
     String nicknameInt;
+    String cpRef;
 
     @And("Open CounterParty main tab")
     public void openCounterPartyMainTab() {
@@ -246,6 +248,116 @@ public class OptimusCounterPartySteps {
         }
     }
 
+    @And("Open CounterParty List tab")
+    public void openCounterPartyListTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//Approve All tasks
+                OptimusCounterPartyCreateActions.openListTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open CounterParties side tab")
+    public void openCounterPartiesSideTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyCreateActions.openCounterPartySubTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for CounterParty Results in List")
+    public void searchForCounterPartyResultsinList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyCreateActions.searchCounterParty(dataMap.get("SalesForceID"));
+                OptimusCounterPartyCreateActions.checkCounterPart_FirstResultListLoad();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click on Edit Link in Search Results to Load CounterParty Details")
+    public void clickOnEditLinkInSearchResultsToLoadCounterPartyDetails() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyUpdateActions.clickEditLinkinSearchResult();
+                OptimusCounterPartyUpdateActions.waitForCounterPartyUpdatePageLoad();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Update Mandatory fields values of existing Counter Party")
+    public void updateMandatoryFieldsValuesOfExistingCounterParty() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//Mandatory Fields Entry
+                cpRef = OptimusCounterPartyUpdateActions.getCPRef();
+                nicknameInt = dataMap.get("NicknameInternal") + KeywordUtil.generateRandomNumber200to500();
+                OptimusCounterPartyUpdateActions.updateCP_SalesForceId(dataMap.get("SalesForceID"));
+                OptimusCounterPartyUpdateActions.updateCP_NicknameInternal(nicknameInt);
+//                nicknameInt = OptimusCounterPartyUpdateActions.getUpdatedCP_NicknameInternal();
+                OptimusCounterPartyUpdateActions.updateCP_TIN1(dataMap.get("TIN1"));
+                OptimusCounterPartyUpdateActions.updateCP_ClientType(dataMap.get("ClientType"));
+                OptimusCounterPartyUpdateActions.updateCP_EntityType(dataMap.get("EntityType"));
+                OptimusCounterPartyUpdateActions.updateCP_RegisteredAddress(dataMap.get("RegisteredAddress"));
+                OptimusCounterPartyUpdateActions.updateCP_AuthorizedPersonEmail(dataMap.get("AuthorizedPersonEmail"));
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
     @And("Approve the CounterParty Task")
     public void approveTheCounterPartyTask() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -269,16 +381,35 @@ public class OptimusCounterPartySteps {
         }
     }
 
+    @And("Approve the CounterParty Update Task")
+    public void approveTheCounterPartyUpdateTask() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//Approve All tasks
+                OptimusCounterPartyCreateActions.searchTasks(cpRef);
+                OptimusCounterPartyCreateActions.selectFirstTask();
+                OptimusCounterPartyCreateActions.selectAllTasks();
+                OptimusCounterPartyCreateActions.approveAllSelectedTasks();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
     @Then("verify CounterParty is updated")
     public void verifyCounterPartyIsUpdated() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-//Approve All tasks
-
-                OptimusCounterPartyCreateActions.searchCounterParty(nicknameInt);
-                OptimusCounterPartyCreateActions.checkCounterPart_FirstResultListLoad();
                 Assert.assertEquals(OptimusCounterPartyCreateActions.getNickNameFromList(), nicknameInt);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -292,14 +423,125 @@ public class OptimusCounterPartySteps {
         }
     }
 
-    @And("Open CounterParty List tab")
-    public void openCounterPartyListTab() {
+    @And("Update Optional Fields values of existing Counter Party")
+    public void updateOptionalFieldsValuesOfExistingCounterParty() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-//Approve All tasks
-                OptimusCounterPartyCreateActions.openListTab();
+//Optional Fields Entry
+                OptimusCounterPartyUpdateActions.waitfor2seconds();
+                OptimusCounterPartyUpdateActions.updateCP_NitroClientID(dataMap.get("NitroClientID") + KeywordUtil.generateRandomNumber200to500());
+                OptimusCounterPartyUpdateActions.updateCP_ElwoodID(dataMap.get("ElwoodID"));
+                OptimusCounterPartyUpdateActions.updateCP_NicknameExternal(dataMap.get("NicknameExternal"));
+                OptimusCounterPartyUpdateActions.updateCP_ParentAccount(dataMap.get("ParentAccount"));
+//Basic Details
+                OptimusCounterPartyUpdateActions.updateCP_FirstName(dataMap.get("FirstName"));
+                OptimusCounterPartyUpdateActions.updateCP_LastName(dataMap.get("LastName"));
+                OptimusCounterPartyUpdateActions.updateCP_IdentificationExpiryDate(dataMap.get("IdentificationExpiryDate"));
+                OptimusCounterPartyUpdateActions.updateCP_Gender(dataMap.get("Gender"));
+                OptimusCounterPartyUpdateActions.updateCP_Nationality(dataMap.get("Nationality"));
+                OptimusCounterPartyUpdateActions.updateCP_DateOfBirth(dataMap.get("DateofBirth"));
+                OptimusCounterPartyUpdateActions.updateCP_Occupation(dataMap.get("Occupation"));
+                OptimusCounterPartyUpdateActions.updateCP_CompanyOfEmployment(dataMap.get("CompanyofEmployment"));
+                OptimusCounterPartyUpdateActions.updateCP_IndustryOfEmployment(dataMap.get("IndustryofEmployment"));
+                OptimusCounterPartyUpdateActions.updateCP_IdentificationIssueDate(dataMap.get("IdentificationIssueDate"));
+                //Changed sequence of Identification Expiry date
+                OptimusCounterPartyUpdateActions.updateCP_MobileNumber(dataMap.get("MobileNumber"));
+                OptimusCounterPartyUpdateActions.updateCP_PEPDeclarationToggle();
+                OptimusCounterPartyUpdateActions.updateCP_PEPDeclarationRemarks(dataMap.get("PEPDeclarationRemarks"));
+                OptimusCounterPartyUpdateActions.updateCP_Alias(dataMap.get("Alias"));
+                OptimusCounterPartyUpdateActions.updateCP_TIN2(dataMap.get("TIN2"));
+                OptimusCounterPartyUpdateActions.updateCP_TIN3(dataMap.get("TIN3"));
+// Company and Other Information - Optional fields
+                OptimusCounterPartyUpdateActions.updateCP_CompanyName(dataMap.get("CompanyName"));
+                OptimusCounterPartyUpdateActions.updateCP_FormerRegisteredName(dataMap.get("FormerRegisteredName"));
+                OptimusCounterPartyUpdateActions.waitfor2seconds();
+                OptimusCounterPartyUpdateActions.updateCP_IdentificationNumber(dataMap.get("IdentificationNumber"));
+                OptimusCounterPartyUpdateActions.updateCP_IdentificationType(dataMap.get("IdentificationType"));
+                OptimusCounterPartyUpdateActions.updateCP_CountryOfIncorporation(dataMap.get("CountryofIncorporation"));
+                OptimusCounterPartyUpdateActions.updateCP_StateOfIncorporation(dataMap.get("StateofIncorporation"));
+////                OptimusCounterPartyUpdateActions.updateCP_OperatingAddress(dataMap.get("OperatingAddress"));
+////                OptimusCounterPartyUpdateActions.updateCP_CountryOfOperation(dataMap.get("CountryofOperation"));
+////                OptimusCounterPartyUpdateActions.updateCP_OnboardingMode(dataMap.get("OnboardingMode"));
+////                OptimusCounterPartyUpdateActions.updateCP_PrimaryBusinessActivity(dataMap.get("PrimaryBusinessActivity"));
+                OptimusCounterPartyUpdateActions.updateCP_PrimaryBusinessActivityRemarks(dataMap.get("PrimaryBusinessActivityRemarks"));
+                OptimusCounterPartyUpdateActions.updateCP_CorporateWebsite(dataMap.get("CorporateWebsite"));
+                OptimusCounterPartyUpdateActions.updateCP_GSTRegisteredToggle();
+                OptimusCounterPartyUpdateActions.updateCP_FinancialInstitutionToggle();
+                OptimusCounterPartyUpdateActions.updateCP_PaymentServiceProviderToggle();
+                OptimusCounterPartyUpdateActions.updateCP_SourceOfFunds(dataMap.get("SourceofFunds"));
+                OptimusCounterPartyUpdateActions.updateCP_SourceOfFundsRemarks(dataMap.get("SourceofFundsRemarks"));
+                OptimusCounterPartyUpdateActions.updateCP_AuthorizedPerson(dataMap.get("AuthorizedPerson"));
+                OptimusCounterPartyUpdateActions.updateCP_AuthorizedPersonMobile(dataMap.get("AuthorizedPersonMobile"));
+                OptimusCounterPartyUpdateActions.updateCP_BusinessPurposeForRelationship(dataMap.get("BusinessPurposeforRelationship"));
+                OptimusCounterPartyUpdateActions.updateCP_AppointmentOthers(dataMap.get("AppointmentOthers"));
+//Additional Information - Optional Fields
+                OptimusCounterPartyUpdateActions.updateCP_GroupAssociation(dataMap.get("GroupAssociation"));
+                OptimusCounterPartyUpdateActions.updateCP_OnboardedDate(dataMap.get("OnboardedDate"));
+                OptimusCounterPartyUpdateActions.updateCP_ClientTier(dataMap.get("ClientTier"));
+                OptimusCounterPartyUpdateActions.updateCP_KYCRefreshDate(dataMap.get("KYCRefreshDate"));
+                OptimusCounterPartyUpdateActions.waitfor2seconds();
+                OptimusCounterPartyUpdateActions.updateCP_ClientTierRemarks(dataMap.get("ClientTierRemarks"));
+                OptimusCounterPartyUpdateActions.updateCP_RiskScore(dataMap.get("RiskScore"));
+                OptimusCounterPartyUpdateActions.waitfor2seconds();
+                OptimusCounterPartyUpdateActions.updateCP_RiskScoreRemarks(dataMap.get("RiskScoreRemarks"));
+                OptimusCounterPartyUpdateActions.updateCP_ExecutionFeeRate(dataMap.get("ExecutionFeeRate"));
+                OptimusCounterPartyUpdateActions.updateCP_ReferralPersonInternal(dataMap.get("ReferralPersonInternal"));
+                OptimusCounterPartyUpdateActions.waitfor2seconds();
+                OptimusCounterPartyUpdateActions.updateCP_ReferralPersonExternal(dataMap.get("ReferralPersonExternal"));
+                OptimusCounterPartyUpdateActions.updateCP_ReferralExternalRebate(dataMap.get("ReferralExternalRebate"));
+                OptimusCounterPartyUpdateActions.updateCP_FaceToFaceVerificationStatus(dataMap.get("FacetoFaceVerificationStatus"));
+                OptimusCounterPartyUpdateActions.updateCP_FaceToFaceVerificationRemarks(dataMap.get("FacetoFaceVerificationRemarks"));
+                OptimusCounterPartyUpdateActions.waitfor2seconds();
+                OptimusCounterPartyUpdateActions.updateCP_VouchedStatus(dataMap.get("VouchedStatus"));
+                OptimusCounterPartyUpdateActions.updateCP_VouchedByPerson(dataMap.get("VouchedbyPerson"));
+                OptimusCounterPartyUpdateActions.updateCP_VouchedRemarks(dataMap.get("VouchedRemarks"));
+                OptimusCounterPartyUpdateActions.waitfor2seconds();
+                OptimusCounterPartyUpdateActions.updateCP_ManagementRemarks(dataMap.get("ManagementRemarks"));
+                OptimusCounterPartyUpdateActions.updateCP_CounterpartyStatus(dataMap.get("CounterpartyStatus"));
+                OptimusCounterPartyUpdateActions.updateCP_CounterpartyRemarks(dataMap.get("CounterpartyRemarks"));
+
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Update Counter Party Button")
+    public void clickUpdateCounterPartyButton() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyUpdateActions.clickUpdateCounterPartyBtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for CounterParty Results in List by Ref")
+    public void searchForCounterPartyResultsInListByRef() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyCreateActions.searchCounterParty(cpRef);
+                OptimusCounterPartyCreateActions.checkCounterPart_FirstResultListLoad();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
