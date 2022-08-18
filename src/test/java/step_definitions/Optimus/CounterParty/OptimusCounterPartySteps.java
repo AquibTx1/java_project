@@ -121,33 +121,39 @@ public class OptimusCounterPartySteps {
         } else {
             try {
 //Optional Fields Entry
-                OptimusCounterPartyCreateActions.waitfor2seconds();
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_NitroClientID(dataMap.get("NitroClientID") + KeywordUtil.generateRandomNumber200to500());
                 OptimusCounterPartyCreateActions.createCP_ElwoodID(dataMap.get("ElwoodID"));
                 OptimusCounterPartyCreateActions.createCP_NicknameExternal(dataMap.get("NicknameExternal"));
                 OptimusCounterPartyCreateActions.createCP_ParentAccount(dataMap.get("ParentAccount"));
 //Basic Details
                 OptimusCounterPartyCreateActions.createCP_FirstName(dataMap.get("FirstName"));
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_LastName(dataMap.get("LastName"));
                 OptimusCounterPartyCreateActions.createCP_IdentificationExpiryDate(dataMap.get("IdentificationExpiryDate"));
+                OptimusCounterPartyCreateActions.waitfor5seconds();
                 OptimusCounterPartyCreateActions.createCP_Gender(dataMap.get("Gender"));
                 OptimusCounterPartyCreateActions.createCP_Nationality(dataMap.get("Nationality"));
+                OptimusCounterPartyCreateActions.waitfor5seconds();
                 OptimusCounterPartyCreateActions.createCP_DateOfBirth(dataMap.get("DateofBirth"));
                 OptimusCounterPartyCreateActions.createCP_Occupation(dataMap.get("Occupation"));
+                OptimusCounterPartyCreateActions.waitfor5seconds();
                 OptimusCounterPartyCreateActions.createCP_CompanyOfEmployment(dataMap.get("CompanyofEmployment"));
                 OptimusCounterPartyCreateActions.createCP_IndustryOfEmployment(dataMap.get("IndustryofEmployment"));
                 OptimusCounterPartyCreateActions.createCP_IdentificationIssueDate(dataMap.get("IdentificationIssueDate"));
                 //Changed sequence of Identification Expiry date
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_MobileNumber(dataMap.get("MobileNumber"));
                 OptimusCounterPartyCreateActions.createCP_PEPDeclarationToggle();
                 OptimusCounterPartyCreateActions.createCP_PEPDeclarationRemarks(dataMap.get("PEPDeclarationRemarks"));
                 OptimusCounterPartyCreateActions.createCP_Alias(dataMap.get("Alias"));
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_TIN2(dataMap.get("TIN2"));
                 OptimusCounterPartyCreateActions.createCP_TIN3(dataMap.get("TIN3"));
 // Company and Other Information - Optional fields
                 OptimusCounterPartyCreateActions.createCP_CompanyName(dataMap.get("CompanyName"));
                 OptimusCounterPartyCreateActions.createCP_FormerRegisteredName(dataMap.get("FormerRegisteredName"));
-                OptimusCounterPartyCreateActions.waitfor2seconds();
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_IdentificationNumber(dataMap.get("IdentificationNumber"));
                 OptimusCounterPartyCreateActions.createCP_IdentificationType(dataMap.get("IdentificationType"));
                 OptimusCounterPartyCreateActions.createCP_CountryOfIncorporation(dataMap.get("CountryofIncorporation"));
@@ -156,11 +162,13 @@ public class OptimusCounterPartySteps {
 ////                OptimusCounterPartyCreateActions.createCP_CountryOfOperation(dataMap.get("CountryofOperation"));
 ////                OptimusCounterPartyCreateActions.createCP_OnboardingMode(dataMap.get("OnboardingMode"));
 ////                OptimusCounterPartyCreateActions.createCP_PrimaryBusinessActivity(dataMap.get("PrimaryBusinessActivity"));
+                OptimusCounterPartyCreateActions.waitfor5seconds();
                 OptimusCounterPartyCreateActions.createCP_PrimaryBusinessActivityRemarks(dataMap.get("PrimaryBusinessActivityRemarks"));
                 OptimusCounterPartyCreateActions.createCP_CorporateWebsite(dataMap.get("CorporateWebsite"));
                 OptimusCounterPartyCreateActions.createCP_GSTRegisteredToggle();
                 OptimusCounterPartyCreateActions.createCP_FinancialInstitutionToggle();
                 OptimusCounterPartyCreateActions.createCP_PaymentServiceProviderToggle();
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_SourceOfFunds(dataMap.get("SourceofFunds"));
                 OptimusCounterPartyCreateActions.createCP_SourceOfFundsRemarks(dataMap.get("SourceofFundsRemarks"));
                 OptimusCounterPartyCreateActions.createCP_AuthorizedPerson(dataMap.get("AuthorizedPerson"));
@@ -172,23 +180,23 @@ public class OptimusCounterPartySteps {
                 OptimusCounterPartyCreateActions.createCP_OnboardedDate(dataMap.get("OnboardedDate"));
                 OptimusCounterPartyCreateActions.createCP_ClientTier(dataMap.get("ClientTier"));
                 OptimusCounterPartyCreateActions.createCP_KYCRefreshDate(dataMap.get("KYCRefreshDate"));
-                OptimusCounterPartyCreateActions.waitfor2seconds();
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_ClientTierRemarks(dataMap.get("ClientTierRemarks"));
                 OptimusCounterPartyCreateActions.createCP_RiskScore(dataMap.get("RiskScore"));
-                OptimusCounterPartyCreateActions.waitfor2seconds();
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_RiskScoreRemarks(dataMap.get("RiskScoreRemarks"));
                 OptimusCounterPartyCreateActions.createCP_ExecutionFeeRate(dataMap.get("ExecutionFeeRate"));
                 OptimusCounterPartyCreateActions.createCP_ReferralPersonInternal(dataMap.get("ReferralPersonInternal"));
-                OptimusCounterPartyCreateActions.waitfor2seconds();
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_ReferralPersonExternal(dataMap.get("ReferralPersonExternal"));
                 OptimusCounterPartyCreateActions.createCP_ReferralExternalRebate(dataMap.get("ReferralExternalRebate"));
                 OptimusCounterPartyCreateActions.createCP_FaceToFaceVerificationStatus(dataMap.get("FacetoFaceVerificationStatus"));
                 OptimusCounterPartyCreateActions.createCP_FaceToFaceVerificationRemarks(dataMap.get("FacetoFaceVerificationRemarks"));
-                OptimusCounterPartyCreateActions.waitfor2seconds();
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_VouchedStatus(dataMap.get("VouchedStatus"));
                 OptimusCounterPartyCreateActions.createCP_VouchedByPerson(dataMap.get("VouchedbyPerson"));
                 OptimusCounterPartyCreateActions.createCP_VouchedRemarks(dataMap.get("VouchedRemarks"));
-                OptimusCounterPartyCreateActions.waitfor2seconds();
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyCreateActions.createCP_ManagementRemarks(dataMap.get("ManagementRemarks"));
                 OptimusCounterPartyCreateActions.createCP_CounterpartyStatus(dataMap.get("CounterpartyStatus"));
                 OptimusCounterPartyCreateActions.createCP_CounterpartyRemarks(dataMap.get("CounterpartyRemarks"));
@@ -293,7 +301,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(dataMap.get("SalesForceID"));
+                OptimusCounterPartyCreateActions.searchCounterParty(nicknameInt);
                 OptimusCounterPartyCreateActions.checkCounterPart_FirstResultListLoad();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -438,12 +446,15 @@ public class OptimusCounterPartySteps {
 //Basic Details
                 OptimusCounterPartyUpdateActions.updateCP_FirstName(dataMap.get("FirstName"));
                 OptimusCounterPartyUpdateActions.updateCP_LastName(dataMap.get("LastName"));
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyUpdateActions.updateCP_IdentificationExpiryDate(dataMap.get("IdentificationExpiryDate"));
                 OptimusCounterPartyUpdateActions.updateCP_Gender(dataMap.get("Gender"));
                 OptimusCounterPartyUpdateActions.updateCP_Nationality(dataMap.get("Nationality"));
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyUpdateActions.updateCP_DateOfBirth(dataMap.get("DateofBirth"));
                 OptimusCounterPartyUpdateActions.updateCP_Occupation(dataMap.get("Occupation"));
                 OptimusCounterPartyUpdateActions.updateCP_CompanyOfEmployment(dataMap.get("CompanyofEmployment"));
+                OptimusCounterPartyCreateActions.waitfor3seconds();
                 OptimusCounterPartyUpdateActions.updateCP_IndustryOfEmployment(dataMap.get("IndustryofEmployment"));
                 OptimusCounterPartyUpdateActions.updateCP_IdentificationIssueDate(dataMap.get("IdentificationIssueDate"));
                 //Changed sequence of Identification Expiry date
@@ -541,6 +552,26 @@ public class OptimusCounterPartySteps {
         } else {
             try {
                 OptimusCounterPartyCreateActions.searchCounterParty(cpRef);
+                OptimusCounterPartyCreateActions.checkCounterPart_FirstResultListLoad();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for Existing CounterParty Results in List")
+    public void searchForExistingCounterPartyResultsInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyCreateActions.searchCounterParty(dataMap.get("SalesForceID"));
                 OptimusCounterPartyCreateActions.checkCounterPart_FirstResultListLoad();
             } catch (Throwable e) {
                 GlobalUtil.e = e;

@@ -22,6 +22,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     public static void navigateToCreateCounterPartyPage() throws InterruptedException {
         waitForClickable(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab);
         click(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab, "Click on Create New Counter Party Sub tab");
+        XAlphaDealEnquiryActions.waitForLoadingIconToAppearAndDisappear();
         waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_Ref);
         waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_SalesForceID);
     }
@@ -95,15 +96,18 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_Gender(String Gender) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_Gender);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_Gender, Gender, "Enter Gender for Create CP");
     }
 
     public static void createCP_Nationality(String Nationality) throws InterruptedException {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_Nationality);
         scrollingToElementofAPage(OptimusCounterPartyCreatePage.newCounterPartyPage_Nationality, "Scroll to element Nationality");
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_Nationality, Nationality, "Enter Nationality for Create CP");
     }
 
     public static void createCP_DateOfBirth(String DateOfBirth) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_DateOfBirth);
         click(OptimusCounterPartyCreatePage.newCounterPartyPage_DateOfBirth, "Click Date Of Birth field");
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_DateOfBirth, DateOfBirth, "Enter Date Of Birth for Create CP");
     }
@@ -137,9 +141,6 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         click(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate, "Click Identification Expiry Date for Create CP");
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate, IdentificationExpiryDate, "Enter Identification Expiry Date for Create CP");
         pressEnter(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate);
-//        scrollingToElementofAPage(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate_OKBtn, "Scroll to Element");
-//        waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate_NowBtn);
-//        clickJS(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationExpiryDate_OKBtn,"Clicking NOW to select entered Date");
     }
 
     public static void createCP_MobileNumber(String MobileNumber) {
@@ -159,23 +160,28 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_TIN2(String Tin2) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_Tin2);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_Tin2, Tin2, "Enter Tin2 value");
     }
 
     public static void createCP_TIN3(String Tin3) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_Tin3);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_Tin3, Tin3, "Enter Tin3 value");
     }
 
     // Company and Other Information - Optional fields
     public static void createCP_CompanyName(String CompanyName) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_CompanyName);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_CompanyName, CompanyName, "Enter CompanyName value");
     }
 
     public static void createCP_FormerRegisteredName(String FormerRegisteredName) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_FormerRegisteredName);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_FormerRegisteredName, FormerRegisteredName, "Enter Former Registered Name value");
     }
 
     public static void createCP_IdentificationNumber(String IdentificationNumber) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationNumber);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_IdentificationNumber, IdentificationNumber, "Enter Identification Number value");
     }
 
@@ -193,8 +199,8 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         click(By.xpath(String.format(OptimusCounterPartyCreatePage.newCounterPartyPage_CountryOfIncorporationOptions, CountryOfIncorporation)), "Choose Country Of Incorporation from dropdown options");
     }
 
-    public static void waitfor2seconds() throws InterruptedException {
-        delay(2000);
+    public static void waitfor3seconds() throws InterruptedException {
+        delay(3000);
     }
 
     public static void waitfor5seconds() throws InterruptedException {
@@ -230,10 +236,12 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_PrimaryBusinessActivityRemarks(String PrimaryBusinessActivityRemarks) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_PrimaryBusinessActivityRemarks);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_PrimaryBusinessActivityRemarks, PrimaryBusinessActivityRemarks, "Enter Primary Business Activity  Remarks ");
     }
 
     public static void createCP_CorporateWebsite(String CorporateWebsite) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_CorporateWebsite);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_CorporateWebsite, CorporateWebsite, "Enter Corporate Website");
     }
 
@@ -256,27 +264,33 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     }
 
     public static void createCP_SourceOfFundsRemarks(String SourceOfFundsRemarks) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_SourceOfFundsRemarks);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_SourceOfFundsRemarks, SourceOfFundsRemarks, "Enter Source Of Funds Remarks");
     }
 
     public static void createCP_AuthorizedPerson(String AuthorizedPerson) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_AuthorizedPerson);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_AuthorizedPerson, AuthorizedPerson, "Enter AuthorizedPerson");
     }
 
     public static void createCP_AuthorizedPersonMobile(String AuthorizedPersonMobile) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_AuthorizedPersonMobile);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_AuthorizedPersonMobile, AuthorizedPersonMobile, "Enter AuthorizedPerson Mobile");
     }
 
     public static void createCP_BusinessPurposeForRelationship(String BusinessPurposeForRelationship) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_BusinessPurposeForRelationship);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_BusinessPurposeForRelationship, BusinessPurposeForRelationship, "Enter Business Purpose for Relationship");
     }
 
     public static void createCP_AppointmentOthers(String AppointmentOthers) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_AppointmentOthers);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_AppointmentOthers, AppointmentOthers, "Enter Appointment Others");
     }
 
     //Additional Information - Optional Fields
     public static void createCP_GroupAssociation(String GroupAssociation) {
+        waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_GroupAssociation);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_GroupAssociation, GroupAssociation, "Enter Group Association");
     }
 
