@@ -513,4 +513,15 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     public static String getUpdatedCP_NicknameInternal() {
         return getElementText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_NicknameInternal);
     }
+
+    public static void deleteCP() {
+        waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DeleteCounterPartyBtn);
+        click(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DeleteCounterPartyBtn, "Click Delete button");
+        waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DeleteCounterParty_YesBtn);
+        click(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DeleteCounterParty_YesBtn, "Click Yes to Confirm Delete");
+    }
+    public static String noDataInResultTable() {
+        waitForVisible(OptimusCounterPartyListPage.counterPartyList_NoDataTable);
+        return getElementText(OptimusCounterPartyListPage.counterPartyList_NoDataTable);
+    }
 }

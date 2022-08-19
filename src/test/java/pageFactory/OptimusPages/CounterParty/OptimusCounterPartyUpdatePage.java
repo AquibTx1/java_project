@@ -113,5 +113,8 @@ public class OptimusCounterPartyUpdatePage {
     //Reset Button -- button[@type='button']/span[contains(text(),'Reset Form')]
     public static By updateCounterPartyPage_ResetFormBtn = By.xpath("//button[@type='button' and @class='ant-btn ant-btn-block']");
     public static By updateCounterPartyPage_DeleteCounterPartyBtn = By.xpath("//button[@type='button' and @class='ant-btn ant-btn-danger ant-btn-block']//span[contains(text(),'Delete Counterparty')]");
+    public static By updateCounterPartyPage_DeleteCounterParty_YesBtn = By.xpath("//div[@class='ant-popover-inner-content']/div[@class='ant-popover-buttons']/button[2]");
+    public static By updateCounterPartyPage_DeleteCounterParty_NoBtn = By.xpath("//div[@class='ant-popover-inner-content']/div[@class='ant-popover-buttons']/button[1]");
+
 
 }

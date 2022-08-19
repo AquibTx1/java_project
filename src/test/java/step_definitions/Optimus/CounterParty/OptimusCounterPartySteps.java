@@ -21,8 +21,8 @@ public class OptimusCounterPartySteps {
     }
 
 
-    String nicknameInt;
-    String cpRef;
+    static String nicknameInt;
+    static String cpRef;
 
     @And("Open CounterParty main tab")
     public void openCounterPartyMainTab() {
@@ -52,6 +52,25 @@ public class OptimusCounterPartySteps {
                 OptimusCounterPartyCreateActions.openCounterPartySubTab();
                 OptimusCounterPartyCreateActions.navigateToCreateCounterPartyPage();
 
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Take the CP Reference")
+    public void takeTheCPReference() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                cpRef = OptimusCounterPartyUpdateActions.getCPRef();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -343,7 +362,6 @@ public class OptimusCounterPartySteps {
         } else {
             try {
 //Mandatory Fields Entry
-                cpRef = OptimusCounterPartyUpdateActions.getCPRef();
                 nicknameInt = dataMap.get("NicknameInternal") + KeywordUtil.generateRandomNumber200to500();
                 OptimusCounterPartyUpdateActions.updateCP_SalesForceId(dataMap.get("SalesForceID"));
                 OptimusCounterPartyUpdateActions.updateCP_NicknameInternal(nicknameInt);
@@ -396,7 +414,6 @@ public class OptimusCounterPartySteps {
         } else {
             try {
 //Approve All tasks
-                OptimusCounterPartyCreateActions.searchTasks(cpRef);
                 OptimusCounterPartyCreateActions.selectFirstTask();
                 OptimusCounterPartyCreateActions.selectAllTasks();
                 OptimusCounterPartyCreateActions.approveAllSelectedTasks();
@@ -573,6 +590,66 @@ public class OptimusCounterPartySteps {
             try {
                 OptimusCounterPartyCreateActions.searchCounterParty(dataMap.get("SalesForceID"));
                 OptimusCounterPartyCreateActions.checkCounterPart_FirstResultListLoad();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Delete Counter Party Button and Confirm")
+    public void clickDeleteCounterPartyButtonAndConfirm() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyUpdateActions.deleteCP();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for CounterParty with Reference")
+    public void searchForCounterPartyWithReference() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//Search for CP
+                OptimusCounterPartyCreateActions.searchTasks(cpRef);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("verify CounterParty is deleted and Not shown in Search Result")
+    public void verifyCounterPartyIsDeletedAndNotShownInSearchResult() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//Search for CP
+                String noData = OptimusCounterPartyUpdateActions.noDataInResultTable();
+                Assert.assertEquals(noData, "No Data");
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
