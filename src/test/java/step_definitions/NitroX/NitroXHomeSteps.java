@@ -529,7 +529,7 @@ public class NitroXHomeSteps {
                 // get the highest bid price add some amount into the highest bid price and also store it in a variable to use later
                 NitroXHome.scrollToBidPrices();
                 NitroXHome.ClearInputPrice();
-                NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice() + generateRandomNumber20to40());
+                NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice()+1000);
                 NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
             } catch (Throwable e) {

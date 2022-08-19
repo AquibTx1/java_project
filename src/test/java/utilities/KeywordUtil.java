@@ -751,6 +751,18 @@ public class KeywordUtil extends GlobalUtil {
 
     }
 
+    public static boolean hoverOnElementandClick(By by) throws InterruptedException {
+
+        WebElement element = getDriver().findElement(by);
+        Actions act = new Actions(getDriver());
+        act.moveToElement(element).click().perform();
+
+        Thread.sleep(3000);
+
+        return true;
+
+    }
+
     /**
      * Is web element not present boolean.
      *
@@ -1566,6 +1578,15 @@ public class KeywordUtil extends GlobalUtil {
         Random random = new Random();
         int low = 20;
         int high = 40;
+        int result = random.nextInt(high - low) + low;
+        LogUtil.infoLog(KeywordUtil.class, "Random number=" + result);
+        return result;
+    }
+
+    public static int generateRandomNumber200to500() {
+        Random random = new Random();
+        int low = 150;
+        int high = 600;
         int result = random.nextInt(high - low) + low;
         LogUtil.infoLog(KeywordUtil.class, "Random number=" + result);
         return result;

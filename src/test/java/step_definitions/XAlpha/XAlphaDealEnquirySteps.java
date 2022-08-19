@@ -175,9 +175,10 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                delay(10000); //to load settled Settlement Details sub-section
+                delay(7000); //to load settled Settlement Details sub-section
                 //update processing status
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new"));
+                delay(3000);
                 XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_new")); //intentional due to existing bug
 //                XAlphaDealEnquiryActions.clickUpdateDealBtn();
             } catch (Throwable e) {
