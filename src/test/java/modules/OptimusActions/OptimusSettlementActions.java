@@ -252,4 +252,13 @@ public class OptimusSettlementActions extends KeywordUtil {
     public static String getSettlmentrefid() {
         return getElementValueWithVisibility(SettlementUpdatePage.updatesettlement_refid);
     }
+
+    public static void clickSearch() {
+        click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
+    }
+
+    public static String getNoData() {
+        String nodata=getElementText(SettlementMainPage.newSettlement_nodata);
+        return nodata;
+    }
 }

@@ -604,11 +604,11 @@ public class OptimusSettlementSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                waitForVisible(SettlementMainPage.settlementlist);
+                OptimusSettlementActions.sortSettlementRef();
                 OptimusSettlementActions.inputValue(refid);
-                OptimusSettlementActions.searchuser();
-                OptimusSettlementActions.selectSettlementCheckbox();
-                waitForVisible(SettlementMainPage.newSettlement_selectAll);
-                OptimusSettlementActions.selectAllSettlementbtn();
+                OptimusSettlementActions.clickSearch();
+                Assert.assertEquals(OptimusSettlementActions.getNoData(),"No Data");
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

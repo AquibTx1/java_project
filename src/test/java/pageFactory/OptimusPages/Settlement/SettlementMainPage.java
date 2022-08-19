@@ -56,5 +56,6 @@ public class SettlementMainPage {
     public static By newSettlement_updatebtn=By.xpath("//span[text()='Update Settlement']");
     public static By newSettlement_approvelink=By.xpath("//a[text()='Portfolio']");
 
+    public static By newSettlement_nodata=By.xpath("//div[text()='No Data']");
 
 }
