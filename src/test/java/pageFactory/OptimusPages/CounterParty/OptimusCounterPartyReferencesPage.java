@@ -10,6 +10,10 @@ public class OptimusCounterPartyReferencesPage
     public static By description_ref = By.id("create_reference_description");
     public static By create_referencebtn = By.xpath("//span[text()='Create Reference']");
     public static By editOccupation = By.xpath("(//a[text()='Edit'])[1]");
+
+    public static By updateOccupation_refname = By.id("update_reference_name");
+
+    public static By updateOccupation_refdes = By.id("update_reference_description");
     public static By update_referencebtn = By.xpath("//span[text()='Update Reference']");
     public static By delete_referencebtn = By.xpath("//span[text()='Delete Reference']");
 

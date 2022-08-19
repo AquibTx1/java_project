@@ -11,7 +11,7 @@ import utilities.LogUtil;
 
 public class XAlphaDealInputActions extends KeywordUtil {
 
-    static Class thisClass = XAlphaLoginActions.class;
+    static Class thisClass = XAlphaDealInputActions.class;
 
     public static void clickXAlphaHeader() {
         if (isWebElementVisible(XAlphaDealInputPage.dealInputTab)) {
