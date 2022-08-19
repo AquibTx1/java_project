@@ -61,3 +61,30 @@ Feature: Test Settlement feature
     Examples:
       | TestCaseID                      | SheetName |loginCredentials  |
       | QA_TestCase_Auto_Optimus_3_1_2 | Settlement | MO_CheckerAccount|
+
+  @OptimusSettlement3
+  Scenario Outline: "<TestCaseID>" Able to Delete a record the from the Settlement List
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Click the Settlement Tab
+    And Click the edit link
+    And Get the Settlement Ref id
+    And Delete the user detail in the Settlement list and sent for Approval
+          #login with checker user and approve the deal processing status
+    Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
+    And Logout from Optimus
+    And Input Optimus Username and Password
+    And Click Optimus Login Button
+    Then Verify user is able to login to Optimus successfully
+    And Click the Settlement Tab
+    And Click Tasks link
+    And Input the value to be delete for approval
+    And Approve the Settlement
+    And Click CounterParty Tab
+    And Logout from MO Account
+    #Login and Check the Approved record
+    Given Login to Optimus with Valid Credentials
+    And Click the Settlement Tab
+    Then Verify the Settlement is deleted
+    Examples:
+      | TestCaseID                      | SheetName |loginCredentials  |
+      | QA_TestCase_Auto_Optimus_3_1_3 | Settlement | MO_CheckerAccount|

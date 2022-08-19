@@ -10,6 +10,7 @@ import modules.OptimusActions.OptimusSettlementActions;
 import org.testng.Assert;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyCreatePage;
 import pageFactory.OptimusPages.Settlement.SettlementMainPage;
+import pageFactory.OptimusPages.Settlement.SettlementUpdatePage;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
 import static utilities.KeywordUtil.*;
@@ -22,7 +23,7 @@ public class OptimusSettlementSteps {
 
     public static HashMap<String, String> dataMap;
 
-    public static String nick_name;
+    public static String nick_name,refid;
     public OptimusSettlementSteps() {
         dataMap = BaseStepDefinitions.dataMap;
     }
@@ -508,5 +509,115 @@ public class OptimusSettlementSteps {
             }
         }
 
+    }
+
+    @And("Click the edit link")
+    public void clickTheEditLink() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.settlementlist);
+                OptimusSettlementActions.clickEditSettlement();
+                waitForVisible(SettlementUpdatePage.updatesettlement_refid);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Delete the user detail in the Settlement list and sent for Approval")
+    public void deleteTheUserDetailInTheSettlementList()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.deleteSettlementRecord();
+                delay(3000);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Input the value to be delete for approval")
+    public void inputTheValueToBeDeleteForApproval() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(refid);
+                OptimusSettlementActions.searchuser();
+                OptimusSettlementActions.selectSettlementCheckbox();
+                waitForVisible(SettlementMainPage.newSettlement_selectAll);
+                OptimusSettlementActions.selectAllSettlementbtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Get the Settlement Ref id")
+    public void getTheSettlementRefId()
+    {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                refid=OptimusSettlementActions.getSettlmentrefid();
+                System.out.println(refid);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the Settlement is deleted")
+    public void verifyTheSettlementIsDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(refid);
+                OptimusSettlementActions.searchuser();
+                OptimusSettlementActions.selectSettlementCheckbox();
+                waitForVisible(SettlementMainPage.newSettlement_selectAll);
+                OptimusSettlementActions.selectAllSettlementbtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
     }
 }

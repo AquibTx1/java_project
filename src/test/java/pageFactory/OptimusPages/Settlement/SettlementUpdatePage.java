@@ -26,6 +26,11 @@ public class SettlementUpdatePage {
     public static By updatedsettlement_Settlementstatus=By.id("update_settlement_settlement_status");
     public static By newSettlement_updatebtn=By.xpath("//span[text()='Update Settlement']");
 
+    public static By updatesettlement_deletebtn=By.xpath("//span[text()='Delete Settlement']");
+
+    public static By updatesettlement_yesdeletebtn=By.xpath("//span[text()='Yes']");
+
+    public static By updatesettlement_refid=By.id("update_settlement_settlement_ref");
 
 
 }

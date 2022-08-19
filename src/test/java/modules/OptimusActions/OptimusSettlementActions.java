@@ -10,7 +10,9 @@ import pageFactory.NitroXPages.NitroXBuySellFuturePage;
 import pageFactory.NitroXPages.NitroXHomePage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyCreatePage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyMainPage;
+import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyUpdatePage;
 import pageFactory.OptimusPages.Settlement.SettlementMainPage;
+import pageFactory.OptimusPages.Settlement.SettlementUpdatePage;
 import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import pageFactory.XAlphaPages.XAlphaDealInputPage;
 import pageFactory.XAlphaPages.XAlphaDealProcessingPage;
@@ -168,6 +170,13 @@ public class OptimusSettlementActions extends KeywordUtil {
         click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
     }
 
+    public static void inputValue(String value) throws InterruptedException {
+        System.out.println("name is =" + value);
+        inputText(SettlementMainPage.newSettlement_inputsearchtext, value, "Input the name =" + value);
+        delay(3000);
+        click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
+    }
+
     public static void searchuser() {
         click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
     }
@@ -225,5 +234,22 @@ public class OptimusSettlementActions extends KeywordUtil {
 
     public static void clickCounterPartyTab() {
         click(OptimusCounterPartyMainPage.counterParty_MainTab, "Clicked the Counterparty");
+    }
+
+    public static void deleteSettlementRecord() {
+        click(SettlementUpdatePage.updatesettlement_deletebtn,"Clicked on the Delet Button");
+        waitForVisible(SettlementUpdatePage.updatesettlement_yesdeletebtn);
+        click(SettlementUpdatePage.updatesettlement_yesdeletebtn,"clicked on Yes Button");
+    }
+
+    public static String getSettlmentref()
+    {
+        String refid=getElementText(SettlementUpdatePage.updatesettlement_refid);
+        LogUtil.infoLog(thisClass,"name is ="+refid);
+        return  refid;
+    }
+
+    public static String getSettlmentrefid() {
+        return getElementValueWithVisibility(SettlementUpdatePage.updatesettlement_refid);
     }
 }
