@@ -13,6 +13,8 @@ import pageFactory.OptimusPages.Settlement.SettlementMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementUpdatePage;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
+import utilities.KeywordUtil;
+
 import static utilities.KeywordUtil.*;
 
 
@@ -609,6 +611,71 @@ public class OptimusSettlementSteps {
                 OptimusSettlementActions.inputValue(refid);
                 OptimusSettlementActions.clickSearch();
                 Assert.assertEquals(OptimusSettlementActions.getNoData(),"No Data");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Navigate to list again and search the user")
+    public void navigateToListAgainAndSearchTheUser() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                KeywordUtil.navigateToBack();
+                delay(3000);
+                waitForVisible(SettlementMainPage.settlementlist);
+                OptimusSettlementActions.inputValue(refid);
+                OptimusSettlementActions.searchuser();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the existing user is available")
+    public void verifyTheExistingUserIsAvailable() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusSettlementActions.validateuser(dataMap),dataMap.get("Settlement Nickname External"));
+                //Assert.assertTrue(KeywordUtil.isWebElementVisible(SettlementMainPage.newSettlement_edit));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Input the user detail to search")
+    public void inputTheUserDetailToSearch() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.settlementlist);
+                OptimusSettlementActions.inputNickname(dataMap.get("Settlement Nickname External"));
+                OptimusSettlementActions.searchuser();
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

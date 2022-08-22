@@ -261,4 +261,12 @@ public class OptimusSettlementActions extends KeywordUtil {
         String nodata=getElementText(SettlementMainPage.newSettlement_nodata);
         return nodata;
     }
+
+    public static String validateuser(HashMap<String, String> dataMap) {
+       // boolean flag = false;
+        String S1 = dataMap.get("Settlement Nickname External").toString();
+        String Name=(getElementText(By.xpath("//td[text()='"+S1+"']")));
+        System.out.println(Name);
+        return Name;
+    }
 }

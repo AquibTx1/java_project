@@ -62,7 +62,7 @@ Feature: Test Settlement feature
       | TestCaseID                      | SheetName |loginCredentials  |
       | QA_TestCase_Auto_Optimus_3_1_2 | Settlement | MO_CheckerAccount|
 
-  @OptimusSettlement3
+  @OptimusSettlement
   Scenario Outline: "<TestCaseID>" Able to Delete a record the from the Settlement List
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Click the Settlement Tab
@@ -88,3 +88,16 @@ Feature: Test Settlement feature
     Examples:
       | TestCaseID                      | SheetName |loginCredentials  |
       | QA_TestCase_Auto_Optimus_3_1_3 | Settlement | MO_CheckerAccount|
+
+  @OptimusSettlement
+  Scenario Outline: "<TestCaseID>" Able to Search a record the from the Settlement List
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Click the Settlement Tab
+#    And Click the edit link
+    And Input the user detail to search
+#    And Get the Settlement Ref id
+#    And Navigate to list again and search the user
+    Then Verify the existing user is available
+    Examples:
+      | TestCaseID                      | SheetName |loginCredentials  |
+      | QA_TestCase_Auto_Optimus_3_1_4 | Settlement | MO_CheckerAccount|
