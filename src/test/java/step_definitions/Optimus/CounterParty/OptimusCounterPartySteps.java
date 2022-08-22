@@ -1,5 +1,7 @@
 package step_definitions.Optimus.CounterParty;
 
+import com.google.common.base.Verify;
+import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import modules.OptimusActions.OptimusCounterPartyCreateActions;
@@ -7,7 +9,9 @@ import modules.OptimusActions.OptimusCounterPartyUpdateActions;
 import modules.OptimusActions.OptimusLoginActions;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
+import step_definitions.RunCukesTest;
 import utilities.GlobalUtil;
+import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 
 import java.util.HashMap;
@@ -650,6 +654,47 @@ public class OptimusCounterPartySteps {
 //Search for CP
                 String noData = OptimusCounterPartyUpdateActions.noDataInResultTable();
                 Assert.assertEquals(noData, "No Data");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Counter Party in the search list")
+    public void verifyCounterPartyInTheSearchList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//Search for CP
+                OptimusCounterPartyUpdateActions.verifySearchResultLoad();
+                OptimusCounterPartyUpdateActions.verifyNicknameIntSearchListContainsTXA();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Download CSV button is clickable in the search list")
+    public void verifyDownloadCSVButtonIsClickableInTheSearchList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//Search for CP
+                OptimusCounterPartyUpdateActions.verifyDownloadCSVBtn();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

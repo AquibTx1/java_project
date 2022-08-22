@@ -1,10 +1,14 @@
 package modules.OptimusActions;
 
+import com.relevantcodes.extentreports.LogStatus;
+import com.sun.media.jfxmedia.logging.Logger;
 import org.openqa.selenium.By;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyUpdatePage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyListPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyMainPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyTasksPage;
+import step_definitions.RunCukesTest;
+import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 
 public class OptimusCounterPartyUpdateActions extends KeywordUtil {
@@ -28,6 +32,14 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     public static void clickEditLinkinSearchResult() {
         waitForVisible(OptimusCounterPartyListPage.counterPartyList_EditLink);
         click(OptimusCounterPartyListPage.counterPartyList_EditLink, "CounterParty Edit Link");
+    }
+
+    public static void verifySearchResultLoad() {
+        waitForClickable(OptimusCounterPartyListPage.counterPartyList_EditLink);
+    }
+
+    public static void verifyNicknameIntSearchListContainsTXA() {
+        verifyTextContains(OptimusCounterPartyListPage.counterPartyList_NickNameInternal1, "TXA", "Nickname in search result list Text contains TXA");
     }
 
     public static void waitForCounterPartyUpdatePageLoad() {
@@ -523,5 +535,10 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     public static String noDataInResultTable() {
         waitForVisible(OptimusCounterPartyListPage.counterPartyList_NoDataTable);
         return getElementText(OptimusCounterPartyListPage.counterPartyList_NoDataTable);
+    }
+
+    public static void verifyDownloadCSVBtn() {
+        waitForClickable(OptimusCounterPartyListPage.counterPartyList_DownloadCSVBtn);
+        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
     }
 }

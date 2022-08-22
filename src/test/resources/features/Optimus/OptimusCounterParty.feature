@@ -111,3 +111,40 @@ Feature: Test CounterParty feature
     Examples:
       | TestCaseID                     | SheetName          | loginCredentials  |
       | QA_TestCase_Auto_Optimus_2_1_3 | CreateCounterParty | MO_CheckerAccount |
+
+  @OptimusCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing CounterParty
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open CounterParties side tab
+    And Open CounterParty List tab
+    And Search for Existing CounterParty Results in List
+    Then Verify Counter Party in the search list
+
+    Examples:
+      | TestCaseID                     | SheetName          |
+      | QA_TestCase_Auto_Optimus_2_1_4 | CreateCounterParty |
+
+  @OptimusCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing CounterParty
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open CounterParties side tab
+    And Open CounterParty List tab
+    And Search for Existing CounterParty Results in List
+    Then Verify Download CSV button is clickable in the search list
+
+    Examples:
+      | TestCaseID                     | SheetName          |
+      | QA_TestCase_Auto_Optimus_2_1_5 | CreateCounterParty |
+
+  @OptimusRelatedCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing CounterParty
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+#    And Open Related Party side tab
+
+
+    Examples:
+      | TestCaseID                     | SheetName          |
+      | QA_TestCase_Auto_Optimus_2_2_1 | RelatedCounterParty |
