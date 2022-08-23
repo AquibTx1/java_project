@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import modules.OptimusActions.OptimusCounterPartyCreateActions;
 import modules.OptimusActions.OptimusCounterPartyUpdateActions;
 import modules.OptimusActions.OptimusLoginActions;
+import modules.OptimusActions.OptimusRelatedCounterPartyActions;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
 import step_definitions.RunCukesTest;
@@ -285,7 +286,6 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-//Approve All tasks
                 OptimusCounterPartyCreateActions.openListTab();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -631,7 +631,6 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-//Search for CP
                 OptimusCounterPartyCreateActions.searchTasks(cpRef);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -651,7 +650,6 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-//Search for CP
                 String noData = OptimusCounterPartyUpdateActions.noDataInResultTable();
                 Assert.assertEquals(noData, "No Data");
             } catch (Throwable e) {
@@ -672,7 +670,6 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-//Search for CP
                 OptimusCounterPartyUpdateActions.verifySearchResultLoad();
                 OptimusCounterPartyUpdateActions.verifyNicknameIntSearchListContainsTXA();
             } catch (Throwable e) {
@@ -693,8 +690,66 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-//Search for CP
                 OptimusCounterPartyUpdateActions.verifyDownloadCSVBtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open Related Party side tab")
+    public void openRelatedPartySideTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyUpdateActions.openRelatedPartySideTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open Create New Related Party page")
+    public void openCreateNewRelatedPartyPage() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyUpdateActions.openNewRelatedPartyPage();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter field values for new Related Party")
+    public void enterFieldValuesForNewRelatedParty() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//                OptimusRelatedCounterPartyActions.relatedCounterPartyRef();
+
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

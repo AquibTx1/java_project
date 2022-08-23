@@ -34,7 +34,6 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     //Mandatory fields actions
     public static void createCP_SalesForceId(String SalesForceId) throws InterruptedException {
-//        delay(3000);
         waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_SalesForceID);
         inputText(OptimusCounterPartyCreatePage.newCounterPartyPage_SalesForceID, SalesForceId, "Enter Sales Force ID");
     }

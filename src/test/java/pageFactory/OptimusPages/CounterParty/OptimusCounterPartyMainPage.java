@@ -12,6 +12,9 @@ public class OptimusCounterPartyMainPage {
     public static By counterPartyMain_Tasks = By.xpath("//span[@aria-label='profile']//parent::li");
     public static By counterPartyMain_Counterparties = By.xpath("//span[@aria-label='user']//parent::li");
     public static By counterPartyMain_RelatedParties = By.xpath("//span[@aria-label='user-switch']//parent::li");
+    public static By relatedParties_ListTab = By.cssSelector("div#rc-tabs-4-tab-item_0.ant-tabs-tab-btn");
+    public static By relatedParties_NewRelatedPartyTab = By.cssSelector("div#rc-tabs-4-tab-item_1.ant-tabs-tab-btn");
+
     public static By counterPartyMain_Services = By.xpath("//span[@aria-label='solution']//parent::li");
     public static By counterPartyMain_References = By.xpath("//span[@aria-label='setting']//parent::li");
 }

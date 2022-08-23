@@ -142,7 +142,10 @@ Feature: Test CounterParty feature
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
-#    And Open Related Party side tab
+    And Open Related Party side tab
+    And Open Create New Related Party page
+    And Enter field values for new Related Party
+#    And
 
 
     Examples:

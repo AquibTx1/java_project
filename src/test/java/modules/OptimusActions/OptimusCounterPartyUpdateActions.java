@@ -2,10 +2,7 @@ package modules.OptimusActions;
 
 import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyUpdatePage;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyListPage;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyMainPage;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyTasksPage;
+import pageFactory.OptimusPages.CounterParty.*;
 import step_definitions.RunCukesTest;
 import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
@@ -502,6 +499,14 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     public static void openListTab() {
         click(OptimusCounterPartyMainPage.counterPartyMain_Counterparties, "Click CounterParties side tab");
         click(OptimusCounterPartyListPage.counterParties_ListTab, "Click List tab");
+    }
+    public static void openRelatedPartySideTab() {
+        click(OptimusCounterPartyMainPage.counterPartyMain_RelatedParties, "Click related parties side tab");
+    }
+    public static void openNewRelatedPartyPage() {
+        waitForVisible(OptimusCounterPartyMainPage.relatedParties_NewRelatedPartyTab);
+        click(OptimusCounterPartyMainPage.relatedParties_NewRelatedPartyTab, "Open Create Related Party List tab");
+        waitForVisible(OptimusRelatedPartyCreatePage.relatedParty_RelatedPartyRef);
     }
 
     public static void searchCounterParty(String nickName) {
