@@ -17,9 +17,11 @@ import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import pageFactory.XAlphaPages.XAlphaDealInputPage;
 import pageFactory.XAlphaPages.XAlphaDealProcessingPage;
 import pageFactory.XAlphaPages.XAlphaLoginPage;
+import utilities.ConfigReader;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -268,5 +270,46 @@ public class OptimusSettlementActions extends KeywordUtil {
         String Name=(getElementText(By.xpath("//td[text()='"+S1+"']")));
         System.out.println(Name);
         return Name;
+    }
+
+    public static Boolean validatefile(String fileName) {
+        boolean flag = false;
+        String dirPath = "";
+        File dir = new File(dirPath);
+        File[] files = dir.listFiles();
+        if (files.length == 0 || files == null) {
+            System.out.println("The directory is empty");
+            flag = false;
+        } else {
+            for (File listFile : files) {
+                if (listFile.getName().contains(fileName)) {
+                    System.out.println(fileName + " is present");
+                    break;
+                }
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    public static boolean isfiletestDownloaded()
+    {
+        boolean flag = false;
+        File filelocation= new File("C:\\Users\\Arjun Diwan\\Downloads");
+        File[] totalfiles= filelocation.listFiles();
+        for(File file :totalfiles)
+        {
+            if(file.getName().startsWith(ConfigReader.getValue("Settlmentsheetname")))
+            {
+                break;
+            }
+            flag = true;
+        }
+        System.out.println("File is downloaded at " +filelocation);
+        return  flag;
+    }
+
+    public static void clickdownloadcsv() {
+        click(SettlementMainPage.newSettlement_download,"Clicked the download button");
     }
 }

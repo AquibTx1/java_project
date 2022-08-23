@@ -1,7 +1,6 @@
 package modules.OptimusActions;
 
 import com.relevantcodes.extentreports.LogStatus;
-import com.sun.media.jfxmedia.logging.Logger;
 import org.openqa.selenium.By;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyUpdatePage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyListPage;

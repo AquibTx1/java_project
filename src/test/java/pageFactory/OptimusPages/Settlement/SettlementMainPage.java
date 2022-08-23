@@ -16,6 +16,8 @@ public class SettlementMainPage {
     public static By newSettlement_Approve = By.xpath("//span[text()='Approve']");
 
     public static By newSettlement_edit = By.xpath("(//a[text()='Edit'])[1]");
+
+    public static By newSettlement_download = By.xpath("//span[text()=' Download CSV ']");
     public static By newSettlement_inputsearchtext = By.xpath("//input[@placeholder='input search text']");
 
     public static By newSettlement_ClickSearch = By.xpath("//button[@class='ant-btn ant-btn-icon-only ant-input-search-button']");
