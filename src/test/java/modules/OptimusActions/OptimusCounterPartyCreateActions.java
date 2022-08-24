@@ -455,7 +455,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     public static void searchCounterParty(String nickName) throws InterruptedException {
         waitForVisible(OptimusCounterPartyListPage.counterPartyList_SearchBox);
         waitForClickable(OptimusCounterPartyListPage.counterPartyList_SearchBox);
-        inputText(OptimusCounterPartyListPage.counterPartyList_SearchBox, nickName, "Enter Seaarch Criteria");
+        inputText(OptimusCounterPartyListPage.counterPartyList_SearchBox, nickName, "Enter Search Criteria");
         click(OptimusCounterPartyListPage.counterPartyList_SearchBtn, "Click Search button");
     }
 
@@ -466,5 +466,12 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
     public static String getNickNameFromList() {
         waitForVisible(OptimusCounterPartyListPage.counterPartyList_NickNameInternal1);
         return getElementText(OptimusCounterPartyListPage.counterPartyList_NickNameInternal1);
+    }
+
+    public static void waitRelatedPartySearchResultLoad() {
+        waitForVisible(OptimusCounterPartyListPage.relatedPartyList_FirstName);
+    }
+    public static String getRelatedFistNameInList() {
+        return getElementText(OptimusCounterPartyListPage.relatedPartyList_FirstName);
     }
 }

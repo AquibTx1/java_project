@@ -28,6 +28,8 @@ public class OptimusCounterPartySteps {
 
     static String nicknameInt;
     static String cpRef;
+//    For related Party reference using Fname with random number
+    static String fname;
 
     @And("Open CounterParty main tab")
     public void openCounterPartyMainTab() {
@@ -259,8 +261,8 @@ public class OptimusCounterPartySteps {
     }
 
 
-    @And("Verify Counter Party Success Message")
-    public void verifyCounterPartySuccessMessage() {
+    @And("Verify Success Message on Create and Update Page")
+    public void VerifySuccessMessageonCreateandUpdatePage() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
@@ -747,9 +749,159 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-//                OptimusRelatedCounterPartyActions.relatedCounterPartyRef();
+                fname = dataMap.get("FirstName") + KeywordUtil.generateRandomNumber200to500();
+                OptimusRelatedCounterPartyActions.relatedParty_FirstName(fname);
+                OptimusRelatedCounterPartyActions.relatedParty_LastName(dataMap.get("LastName"));
+                OptimusRelatedCounterPartyActions.relatedParty_Gender(dataMap.get("Gender"));
+                OptimusRelatedCounterPartyActions.relatedParty_Nationality(dataMap.get("Nationality"));
+                OptimusRelatedCounterPartyActions.relatedParty_Mobile(dataMap.get("MobileNumber"));
+                OptimusRelatedCounterPartyActions.relatedParty_Email(dataMap.get("EmailAddress"));
+                OptimusRelatedCounterPartyActions.relatedParty_SourceOfFundsRemarks(dataMap.get("SourceOfFundsRemarks"));
+                OptimusRelatedCounterPartyActions.relatedParty_UltimateShareholding(dataMap.get("UltimateShareholding"));
+                OptimusRelatedCounterPartyActions.relatedParty_SourceOfWealthRemarks(dataMap.get("SourceOfWealthRemarks"));
+                OptimusRelatedCounterPartyActions.relatedParty_Alias(dataMap.get("Alias"));
+                OptimusRelatedCounterPartyActions.relatedParty_CompanyName(dataMap.get("CompanyName"));
+                OptimusRelatedCounterPartyActions.relatedParty_FormerRegisteredName(dataMap.get("FormerRegisteredName"));
+                OptimusRelatedCounterPartyActions.relatedParty_IdentificationNumber(dataMap.get("IdentificationNumber"));
+                OptimusRelatedCounterPartyActions.relatedParty_RegisteredAddress(dataMap.get("RegisteredAddress"));
+                OptimusRelatedCounterPartyActions.relatedParty_OperationAddress(dataMap.get("OperationAddress"));
+                OptimusRelatedCounterPartyActions.relatedParty_PrimaryBusinessActivityRemarks(dataMap.get("PrimaryBusinessActivityRemarks"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 
+    @And("Enter Date And Dropdown Fields For New Related Party")
+    public void enterDateAndDropdownFieldsForNewRelatedParty() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusRelatedCounterPartyActions.relatedCounterPartyRef(dataMap.get("Counterparty"));
+                OptimusRelatedCounterPartyActions.relatedParty_DateOfBirth(dataMap.get("DateOfBirth"));
+                OptimusRelatedCounterPartyActions.relatedParty_IdentificationIssueDate(dataMap.get("IdentificationIssueDate"));
+                OptimusRelatedCounterPartyActions.relatedParty_IdentificationExpiryDate(dataMap.get("IdentificationExpiryDate"));
+                OptimusRelatedCounterPartyActions.relatedParty_SourceOfFunds(dataMap.get("SourceOfFunds"));
+                OptimusRelatedCounterPartyActions.relatedParty_PEP();
+                OptimusRelatedCounterPartyActions.relatedParty_Appointment(dataMap.get("Appointment"));
+                OptimusRelatedCounterPartyActions.relatedParty_AppointmentAppointDate(dataMap.get("AppointmentAppointDate"));
+                OptimusRelatedCounterPartyActions.relatedParty_AppointmentResignDate(dataMap.get("AppointmentResignDate"));
+                OptimusRelatedCounterPartyActions.relatedParty_ClientType(dataMap.get("ClientType"));
+                OptimusRelatedCounterPartyActions.relatedParty_SourceOfWealth(dataMap.get("SourceOfWealth"));
+                OptimusRelatedCounterPartyActions.relatedParty_EntityType(dataMap.get("EntityType"));
+                OptimusRelatedCounterPartyActions.relatedParty_IdentificationType(dataMap.get("IdentificationType"));
+                OptimusRelatedCounterPartyActions.relatedParty_CountryOfIncorporation(dataMap.get("CountryOfIncorporation"));
+                OptimusRelatedCounterPartyActions.relatedParty_StateOfIncorporation(dataMap.get("StateOfIncorporation"));
+                OptimusRelatedCounterPartyActions.relatedParty_CountryOfOperation(dataMap.get("CountryOfOperation"));
+                OptimusRelatedCounterPartyActions.relatedParty_OnboardingMode(dataMap.get("OnboardingMode"));
+                OptimusRelatedCounterPartyActions.relatedParty_PrimaryBusinessActivity(dataMap.get("PrimaryBusinessActivity"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 
+    @And("Click Create button to Create New Related Party")
+    public void clickCreateButtonToCreateNewRelatedParty() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusRelatedCounterPartyActions.clickCreateRelatedPartyBtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Approve the Related Counter Party Task")
+    public void approveTheRelatedCounterPartyTask() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//Approve All tasks
+                OptimusCounterPartyCreateActions.searchTasks(fname);
+                OptimusCounterPartyCreateActions.selectFirstTask();
+                OptimusCounterPartyCreateActions.selectAllTasks();
+                OptimusCounterPartyCreateActions.approveAllSelectedTasks();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open Related Party List tab")
+    public void openRelatedPartyListTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusRelatedCounterPartyActions.openRelatedPartyListTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for Related Party Results in List")
+    public void searchForRelatedPartyResultsInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyCreateActions.searchCounterParty(fname);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("verify Related Party is updated")
+    public void verifyRelatedPartyIsUpdated() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyCreateActions.waitRelatedPartySearchResultLoad();
+                Assert.assertEquals(OptimusCounterPartyCreateActions.getRelatedFistNameInList(), fname);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

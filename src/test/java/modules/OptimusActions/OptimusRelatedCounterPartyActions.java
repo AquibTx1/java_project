@@ -1,13 +1,16 @@
 package modules.OptimusActions;
 
 import org.openqa.selenium.By;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyUpdatePage;
-import pageFactory.OptimusPages.CounterParty.OptimusRelatedPartyCreatePage;
+import pageFactory.OptimusPages.CounterParty.*;
 import utilities.KeywordUtil;
 
 public class OptimusRelatedCounterPartyActions extends KeywordUtil {
 
     static Class<OptimusRelatedCounterPartyActions> thisClass = OptimusRelatedCounterPartyActions.class;
+
+    public static void openRelatedPartyListTab() {
+        click(OptimusCounterPartyMainPage.relatedParties_ListTab, "Click Related Parties List tab");
+    }
 
     public static String getRelatedPartyRefFromDetailsPage() {
         waitForVisible(OptimusRelatedPartyCreatePage.relatedParty_RelatedPartyRef);
@@ -15,12 +18,14 @@ public class OptimusRelatedCounterPartyActions extends KeywordUtil {
     }
 
     public static void relatedCounterPartyRef(String cpRef) {
+        waitForClickable(OptimusRelatedPartyCreatePage.relatedParty_Counterparty);
         inputText(OptimusRelatedPartyCreatePage.relatedParty_Counterparty, cpRef, "Select Counterparty ref  = " + cpRef);
         waitForPresent(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_CounterpartyOptions, cpRef)));
         click(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_CounterpartyOptions, cpRef)), "Choose Counterparty Ref from dropdown options");
     }
 
     public static void relatedCounterPartyRef_Update(String cpRef) throws InterruptedException {
+        waitForClickable(OptimusRelatedPartyCreatePage.updateRelatedParty_Counterparty);
         clearInputUsingKeys(OptimusRelatedPartyCreatePage.updateRelatedParty_Counterparty);
         inputText(OptimusRelatedPartyCreatePage.updateRelatedParty_Counterparty, cpRef, "Select Counterparty ref  = " + cpRef);
         waitForPresent(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_CounterpartyOptions, cpRef)));
@@ -115,11 +120,12 @@ public class OptimusRelatedCounterPartyActions extends KeywordUtil {
         inputText(OptimusRelatedPartyCreatePage.relatedParty_UltimateShareholding, ultimateShareholding, "Enter Ultimate Shareholding ");
     }
     public static void relatedParty_SourceOfWealth(String sourceOfWealth) throws InterruptedException {
+        waitForClickable(OptimusRelatedPartyCreatePage.relatedParty_SourceOfWealth);
         inputText(OptimusRelatedPartyCreatePage.relatedParty_SourceOfWealth, sourceOfWealth, "Select source Of wealth   = " + sourceOfWealth);
-        waitForPresent(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_SourceOfWealthOptions, sourceOfWealth)));
-        click(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_SourceOfWealthOptions, sourceOfWealth)), "Choose source Of wealth from dropdown options");
-    }
+        pressEnter(OptimusRelatedPartyCreatePage.relatedParty_SourceOfWealth);
+   }
     public static void relatedParty_SourceOfWealth_Update(String sourceOfWealth) throws InterruptedException {
+        waitForClickable(OptimusRelatedPartyCreatePage.updateRelatedParty_SourceOfWealth);
         clearInputUsingKeys(OptimusRelatedPartyCreatePage.updateRelatedParty_SourceOfWealth);
         inputText(OptimusRelatedPartyCreatePage.updateRelatedParty_SourceOfWealth, sourceOfWealth, "Select source Of Wealth   = " + sourceOfWealth);
         waitForPresent(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_SourceOfWealthOptions, sourceOfWealth)));
@@ -195,8 +201,7 @@ public class OptimusRelatedCounterPartyActions extends KeywordUtil {
     public static void relatedParty_EntityType(String entityType) throws InterruptedException {
         waitForClickable(OptimusRelatedPartyCreatePage.relatedParty_EntityType);
         inputText(OptimusRelatedPartyCreatePage.relatedParty_EntityType, entityType, "Select Entity Type   = " + entityType);
-        waitForPresent(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_EntityTypeOptions, entityType)));
-        click(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_EntityTypeOptions, entityType)), "Choose entity Type from dropdown options");
+        pressEnter(OptimusRelatedPartyCreatePage.relatedParty_EntityType);
     }
 
     public static void relatedParty_EntityType_Update(String entityType) throws InterruptedException {
@@ -229,6 +234,7 @@ public class OptimusRelatedCounterPartyActions extends KeywordUtil {
     }
 
     public static void relatedParty_RegisteredAddress(String registeredAddress) throws InterruptedException {
+        delay(2000);
         waitForClickable(OptimusRelatedPartyCreatePage.relatedParty_RegisteredAddress);
         clearInputUsingKeys(OptimusRelatedPartyCreatePage.relatedParty_RegisteredAddress);
         inputText(OptimusRelatedPartyCreatePage.relatedParty_RegisteredAddress, registeredAddress, "Enter registered Address ");
@@ -266,6 +272,7 @@ public class OptimusRelatedCounterPartyActions extends KeywordUtil {
     }
 
     public static void relatedParty_OperationAddress(String operationAddress) throws InterruptedException {
+        delay(2000);
         waitForClickable(OptimusRelatedPartyCreatePage.relatedParty_OperationAddress);
         clearInputUsingKeys(OptimusRelatedPartyCreatePage.relatedParty_OperationAddress);
         inputText(OptimusRelatedPartyCreatePage.relatedParty_OperationAddress, operationAddress, "Enter operation Address ");
@@ -274,8 +281,7 @@ public class OptimusRelatedCounterPartyActions extends KeywordUtil {
     public static void relatedParty_CountryOfOperation(String countryOfOperation) throws InterruptedException {
         waitForClickable(OptimusRelatedPartyCreatePage.relatedParty_CountryOfOperation);
         inputText(OptimusRelatedPartyCreatePage.relatedParty_CountryOfOperation, countryOfOperation, "Select Country Of Operation   = " + countryOfOperation);
-        waitForPresent(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_CountryOfOperationOptions, countryOfOperation)));
-        click(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_CountryOfOperationOptions, countryOfOperation)), "Choose Country Of Operation from dropdown options");
+        pressEnter(OptimusRelatedPartyCreatePage.relatedParty_CountryOfOperation);
     }
 
     public static void relatedParty_CountryOfOperation_Update(String countryOfOperation) throws InterruptedException {
@@ -289,9 +295,8 @@ public class OptimusRelatedCounterPartyActions extends KeywordUtil {
     public static void relatedParty_OnboardingMode(String onboardingMode) throws InterruptedException {
         waitForClickable(OptimusRelatedPartyCreatePage.relatedParty_OnboardingMode);
         inputText(OptimusRelatedPartyCreatePage.relatedParty_OnboardingMode, onboardingMode, "Select onboarding Mode   = " + onboardingMode);
-        waitForPresent(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_OnboardingModeOptions, onboardingMode)));
-        click(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_OnboardingModeOptions, onboardingMode)), "Choose onboarding Mode from dropdown options");
-    }
+        pressEnter(OptimusRelatedPartyCreatePage.relatedParty_OnboardingMode);
+   }
 
     public static void relatedParty_OnboardingMode_Update(String onboardingMode) throws InterruptedException {
         waitForClickable(OptimusRelatedPartyCreatePage.updateRelatedParty_OnboardingMode);

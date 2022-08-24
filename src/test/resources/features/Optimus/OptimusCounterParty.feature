@@ -13,7 +13,7 @@ Feature: Test CounterParty feature
     And Enter Mandatory fields of New Counter Party
     And Enter Optional Fields of New Counter Party
     And Click Create Counter Party Button
-    Then Verify Counter Party Success Message
+    Then Verify Success Message on Create and Update Page
     #login with checker user and approve the CounterParty
     Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
     And Logout from Optimus
@@ -23,7 +23,7 @@ Feature: Test CounterParty feature
     And Open CounterParty main tab
     And Open CounterParty Tasks sub tab
     And Approve the CounterParty Task
-    Then Verify Counter Party Success Message
+    Then Verify Success Message on Create and Update Page
     And Logout from MO Account
     #Login and Check the Approved record
     Given Login to Optimus with Valid Credentials
@@ -50,7 +50,7 @@ Feature: Test CounterParty feature
     And Update Mandatory fields values of existing Counter Party
     And Update Optional Fields values of existing Counter Party
     And Click Update Counter Party Button
-    Then Verify Counter Party Success Message
+    Then Verify Success Message on Create and Update Page
     #login with checker user and approve the CounterParty
     Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
     And Logout from Optimus
@@ -61,7 +61,7 @@ Feature: Test CounterParty feature
     And Open CounterParty Tasks sub tab
     And Search for CounterParty with Reference
     And Approve the CounterParty Update Task
-    Then Verify Counter Party Success Message
+    Then Verify Success Message on Create and Update Page
     And Logout from MO Account
     #Login and Check the Approved record
     Given Login to Optimus with Valid Credentials
@@ -87,7 +87,7 @@ Feature: Test CounterParty feature
     And Click on Edit Link in Search Results to Load CounterParty Details
     And Take the CP Reference
     And Click Delete Counter Party Button and Confirm
-    Then Verify Counter Party Success Message
+    Then Verify Success Message on Create and Update Page
     #login with checker user and approve the CounterParty
     Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
     And Logout from Optimus
@@ -98,7 +98,7 @@ Feature: Test CounterParty feature
     And Open CounterParty Tasks sub tab
     And Search for CounterParty with Reference
     And Approve the CounterParty Update Task
-    Then Verify Counter Party Success Message
+    Then Verify Success Message on Create and Update Page
     And Logout from MO Account
     #Login and Check the Approved record
     Given Login to Optimus with Valid Credentials
@@ -139,15 +139,34 @@ Feature: Test CounterParty feature
       | QA_TestCase_Auto_Optimus_2_1_5 | CreateCounterParty |
 
   @OptimusRelatedCounterParty
-  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing CounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Create Related CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
     And Open Related Party side tab
     And Open Create New Related Party page
     And Enter field values for new Related Party
-#    And
-
+    And Enter Date And Dropdown Fields For New Related Party
+    And Click Create button to Create New Related Party
+    Then Verify Success Message on Create and Update Page
+     #login with checker user and approve the CounterParty
+    Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
+    And Logout from Optimus
+    And Input Optimus Username and Password
+    And Click Optimus Login Button
+    Then Verify user is able to login to Optimus successfully
+    And Open CounterParty main tab
+    And Open CounterParty Tasks sub tab
+    And Approve the Related Counter Party Task
+    Then Verify Success Message on Create and Update Page
+    And Logout from MO Account
+    #Login and Check the Approved record
+    Given Login to Optimus with Valid Credentials
+    And Open CounterParty main tab
+    And Open Related Party side tab
+    And Open Related Party List tab
+    And Search for Related Party Results in List
+    Then verify Related Party is updated
 
     Examples:
-      | TestCaseID                     | SheetName          |
-      | QA_TestCase_Auto_Optimus_2_2_1 | RelatedCounterParty |
+      | TestCaseID                     | SheetName          | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_2_2_1 | RelatedCounterParty | MO_CheckerAccount |
