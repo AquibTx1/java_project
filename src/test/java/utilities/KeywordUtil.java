@@ -203,6 +203,13 @@ public class KeywordUtil extends GlobalUtil {
         }
     }
 
+    public static void navigateToBack() {
+           // LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
+            getDriver().navigate().back();
+
+    }
+
+
     /**
      * Gets current url.
      *

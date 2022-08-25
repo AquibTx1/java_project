@@ -1,10 +1,10 @@
 package modules.OptimusActions;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyUpdatePage;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyListPage;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyMainPage;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyTasksPage;
+import pageFactory.OptimusPages.CounterParty.*;
+import step_definitions.RunCukesTest;
+import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 
 public class OptimusCounterPartyUpdateActions extends KeywordUtil {
@@ -30,10 +30,17 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
         click(OptimusCounterPartyListPage.counterPartyList_EditLink, "CounterParty Edit Link");
     }
 
+    public static void verifySearchResultLoad() {
+        waitForClickable(OptimusCounterPartyListPage.counterPartyList_EditLink);
+    }
+
+    public static void verifyNicknameIntSearchListContainsTXA() {
+        verifyTextContains(OptimusCounterPartyListPage.counterPartyList_NickNameInternal1, "TXA", "Nickname in search result list Text contains TXA");
+    }
+
     public static void waitForCounterPartyUpdatePageLoad() {
         waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_cpRef);
     }
-//    public static void validateCounterPartyRefData() {  }
 
     public static void updateCP_SalesForceId(String SalesForceId) throws InterruptedException {
         waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_SalesForceID);
@@ -42,16 +49,19 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_NicknameInternal(String NicknameInternal) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_NicknameInternal);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_NicknameInternal);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_NicknameInternal, NicknameInternal, "Enter Nickname Internal");
     }
 
     public static void updateCP_TIN1(String Tin1) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Tin1);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Tin1);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Tin1, Tin1, "Enter Tin1 value");
     }
 
     public static void updateCP_ClientType(String ClientType) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_ClientType);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_ClientType);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_ClientType, ClientType, "Select Client type=" + ClientType);
         waitForPresent(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_ClientTypeOptions, ClientType)));
@@ -59,6 +69,7 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_EntityType(String EntityType) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_EntityType);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_EntityType);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_EntityType, EntityType, "Select Entity type=" + EntityType);
         waitForPresent(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_EntityTypeOptions, EntityType)));
@@ -66,17 +77,20 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_RegisteredAddress(String RegisteredAddress) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_RegisteredAddress);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_RegisteredAddress);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_RegisteredAddress, RegisteredAddress, "Enter Registered Address");
     }
 
     public static void updateCP_AuthorizedPersonEmail(String AuthorizedPersonEmail) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_AuthorizedPersonEmail);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_AuthorizedPersonEmail);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_AuthorizedPersonEmail, AuthorizedPersonEmail, "Enter Authorized Person Email");
     }
 
     //Optional fields actions
     public static void updateCP_NitroClientID(String NitroClientID) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_NitroClientID);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_NitroClientID);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_NitroClientID, NitroClientID, "Enter NitroClient ID");
     }
@@ -120,19 +134,18 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     public static void updateCP_Nationality(String Nationality) throws InterruptedException {
         waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Nationality);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Nationality);
-//        scrollingToElementofAPage(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Nationality, "Scroll to element Nationality");
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Nationality, Nationality, "Enter Nationality for Update CP");
     }
 
     public static void updateCP_DateOfBirth(String DateOfBirth) throws InterruptedException {
-        waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DateOfBirth);
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DateOfBirth);
         click(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DateOfBirth, "Click Date Of Birth field");
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DateOfBirth);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DateOfBirth, DateOfBirth, "Enter Date Of Birth for Update CP");
     }
 
     public static void updateCP_Occupation(String Occupation) throws InterruptedException {
-        waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Occupation);
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Occupation);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Occupation);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Occupation, Occupation, "Select Occupation= " + Occupation);
         waitForPresent(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_OccupationOption, Occupation)));
@@ -140,13 +153,13 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_CompanyOfEmployment(String CompanyOfEmployment) throws InterruptedException {
-        waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CompanyOfEmployment);
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CompanyOfEmployment);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CompanyOfEmployment);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CompanyOfEmployment, CompanyOfEmployment, "Enter Company Of Employment for Update CP");
     }
 
     public static void updateCP_IndustryOfEmployment(String IndustryOfEmployment) throws InterruptedException {
-        waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IndustryOfEmployement);
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IndustryOfEmployement);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IndustryOfEmployement);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IndustryOfEmployement, IndustryOfEmployment, "Select Industry Of Employment= " + IndustryOfEmployment);
         waitForPresent(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IndustryOfEmployementOptions, IndustryOfEmployment)));
@@ -154,7 +167,7 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_IdentificationIssueDate(String IdentificationIssueDate) throws InterruptedException {
-        waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationIssueDate);
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationIssueDate);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationIssueDate);
         click(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationIssueDate, "Click in Identification Issue Date field for Update CP");
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationIssueDate, IdentificationIssueDate, "Enter Identification Issue Date for Update CP");
@@ -162,6 +175,7 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_IdentificationExpiryDate(String IdentificationExpiryDate) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationExpiryDate);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationExpiryDate);
         click(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationExpiryDate, "Click Identification Expiry Date for Update CP");
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationExpiryDate, IdentificationExpiryDate, "Enter Identification Expiry Date for Update CP");
@@ -169,62 +183,71 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_MobileNumber(String MobileNumber) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_MobileNumber);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_MobileNumber);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_MobileNumber, MobileNumber, "Enter MobileNumber for Update CP");
     }
 
     public static void updateCP_PEPDeclarationToggle() {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_PEPDeclaration);
         click(OptimusCounterPartyUpdatePage.updateCounterPartyPage_PEPDeclaration, "Toggle PEP Declaration");
     }
 
     public static void updateCP_PEPDeclarationRemarks(String PEPDeclarationRemarks) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_PEPDeclarationRemarks);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_PEPDeclarationRemarks);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_PEPDeclarationRemarks, PEPDeclarationRemarks, "Enter PEP Declaration Remarks for Update CP");
     }
 
     public static void updateCP_Alias(String Alias) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Alias);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Alias);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Alias, Alias, "Enter Alias for Update CP");
     }
 
     public static void updateCP_TIN2(String Tin2) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Tin2);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Tin2);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Tin2, Tin2, "Enter Tin2 value");
     }
 
     public static void updateCP_TIN3(String Tin3) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Tin3);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Tin3);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_Tin3, Tin3, "Enter Tin3 value");
     }
 
     // Company and Other Information - Optional fields
     public static void updateCP_CompanyName(String CompanyName) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CompanyName);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CompanyName);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CompanyName, CompanyName, "Enter CompanyName value");
     }
 
     public static void updateCP_FormerRegisteredName(String FormerRegisteredName) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_FormerRegisteredName);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_FormerRegisteredName);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_FormerRegisteredName, FormerRegisteredName, "Enter Former Registered Name value");
     }
 
     public static void updateCP_IdentificationNumber(String IdentificationNumber) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationNumber);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationNumber);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationNumber, IdentificationNumber, "Enter Identification Number value");
     }
 
     public static void updateCP_IdentificationType(String IdentificationType) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationType);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationType);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationType, IdentificationType, "Select Identification Type = " + IdentificationType);
-//        scrollingToElementofAPage(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationTypeOptions)), "Scroll to Element");
         waitForPresent(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationTypeOptions, IdentificationType)));
         click(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_IdentificationTypeOptions, IdentificationType)), "Choose Identification Type from dropdown options");
     }
 
     public static void updateCP_CountryOfIncorporation(String CountryOfIncorporation) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CountryOfIncorporation);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CountryOfIncorporation);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CountryOfIncorporation, CountryOfIncorporation, "Select Country Of Incorporation = " + CountryOfIncorporation);
-//        scrollingToElementofAPage(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CountryOfIncorporationOptions)), "Scroll to Element");
         waitForPresent(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CountryOfIncorporationOptions, CountryOfIncorporation)));
         click(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_CountryOfIncorporationOptions, CountryOfIncorporation)), "Choose Country Of Incorporation from dropdown options");
     }
@@ -234,6 +257,7 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_StateOfIncorporation(String StateOfIncorporation) throws InterruptedException {
+        waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_StateOfIncorporation);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_StateOfIncorporation);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_StateOfIncorporation, StateOfIncorporation, "Select State Of Incorporation = " + StateOfIncorporation);
         waitForPresent(By.xpath(String.format(OptimusCounterPartyUpdatePage.updateCounterPartyPage_StateOfIncorporationOptions, StateOfIncorporation)));
@@ -327,7 +351,6 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_OnboardedDate(String OnboardedDate) throws InterruptedException {
-//        delay(2000);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_OnboardedDate);
         click(OptimusCounterPartyUpdatePage.updateCounterPartyPage_OnboardedDate, "Enter Onboarded Date");
         pressEnter(OptimusCounterPartyUpdatePage.updateCounterPartyPage_OnboardedDate);
@@ -348,14 +371,12 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_ClientTierRemarks(String ClientTierRemarks) throws InterruptedException {
-//        delay(2000);
         waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_ClientTierRemarks);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_ClientTierRemarks);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_ClientTierRemarks, ClientTierRemarks, "Enter Client Tier Remarks");
     }
 
     public static void updateCP_RiskScore(String RiskScore) throws InterruptedException {
-//        delay(2000);
         waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_RiskScore);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_RiskScore);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_RiskScore, RiskScore, "Select Risk Score  = " + RiskScore);
@@ -364,7 +385,6 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     }
 
     public static void updateCP_RiskScoreRemarks(String RiskScoreRemarks) throws InterruptedException {
-//        delay(2000);
         waitForClickable(OptimusCounterPartyUpdatePage.updateCounterPartyPage_RiskScoreRemarks);
         clearInputUsingKeys(OptimusCounterPartyUpdatePage.updateCounterPartyPage_RiskScoreRemarks);
         inputText(OptimusCounterPartyUpdatePage.updateCounterPartyPage_RiskScoreRemarks, RiskScoreRemarks, "Enter Risk Score Remarks");
@@ -492,6 +512,14 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
         click(OptimusCounterPartyMainPage.counterPartyMain_Counterparties, "Click CounterParties side tab");
         click(OptimusCounterPartyListPage.counterParties_ListTab, "Click List tab");
     }
+    public static void openRelatedPartySideTab() {
+        click(OptimusCounterPartyMainPage.counterPartyMain_RelatedParties, "Click related parties side tab");
+    }
+    public static void openNewRelatedPartyPage() {
+        waitForVisible(OptimusCounterPartyMainPage.relatedParties_NewRelatedPartyTab);
+        click(OptimusCounterPartyMainPage.relatedParties_NewRelatedPartyTab, "Open Create Related Party List tab");
+        waitForVisible(OptimusRelatedPartyCreatePage.relatedParty_RelatedPartyRef);
+    }
 
     public static void searchCounterParty(String nickName) {
         waitForVisible(OptimusCounterPartyListPage.counterPartyList_SearchBox);
@@ -523,5 +551,10 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
     public static String noDataInResultTable() {
         waitForVisible(OptimusCounterPartyListPage.counterPartyList_NoDataTable);
         return getElementText(OptimusCounterPartyListPage.counterPartyList_NoDataTable);
+    }
+
+    public static void verifyDownloadCSVBtn() {
+        waitForClickable(OptimusCounterPartyListPage.counterPartyList_DownloadCSVBtn);
+        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
     }
 }
