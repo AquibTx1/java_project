@@ -22,7 +22,7 @@ public class SettlementMainPage {
 
     public static By newSettlement_ClickSearch = By.xpath("//button[@class='ant-btn ant-btn-icon-only ant-input-search-button']");
 
-    public static By settlementSort = By.xpath("//span[text()='Settlement Ref.']");
+    public static By settlementSort = By.xpath("//span[@class='ant-table-column-sorter-inner']");
 
 
     public static By settlementlist = By.xpath(" //span[text()='Settlement Ref.']//following::tr[2]/td[6]");

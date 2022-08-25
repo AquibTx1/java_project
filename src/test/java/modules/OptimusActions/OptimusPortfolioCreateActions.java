@@ -6,9 +6,9 @@ import pageFactory.OptimusPages.CounterParty.OptimusRelatedPartyCreatePage;
 import pageFactory.OptimusPages.Portfolio.PortfolioMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementMainPage;
 import pageFactory.OptimusPages.Portfolio.PortfolioMainPage;
+import pageFactory.OptimusPages.Settlement.SettlementUpdatePage;
 import utilities.KeywordUtil;
-
-
+import utilities.LogUtil;
 
 
 public class OptimusPortfolioCreateActions extends KeywordUtil {
@@ -27,6 +27,11 @@ public class OptimusPortfolioCreateActions extends KeywordUtil {
         inputText(PortfolioMainPage.Portfolio_createName, portfolioname, "Select Portfolioname=" + portfolioname);
 
     }
+    public static void update_PortfolioName(String portfolioname) throws InterruptedException {
+        KeywordUtil.clearInputUsingKeys(PortfolioMainPage.updateportfolioname);
+        inputText(PortfolioMainPage.updateportfolioname, portfolioname, "Updated Portfolioname=" + portfolioname);
+    }
+
 
     public static void createPortfolioStatus(String pstatus) {
         inputText(PortfolioMainPage.Portfolio_createStatus, pstatus, "Select Portfolio Status=" + pstatus);
@@ -138,4 +143,99 @@ public class OptimusPortfolioCreateActions extends KeywordUtil {
         clickJS(PortfolioMainPage.create_Portfoliobtn, "Clicked the Portfolio Button");
 
     }
+
+    public static String getPortfolioName()
+    {
+        String name=getElementText(By.xpath("//span[text()='Portfolio Number']//following::tr[2]/td[5]"));
+        LogUtil.infoLog(thisClass,"name is ="+name);
+        return  name;
+    }
+
+
+    public static String getPortfolioOwner()
+    {
+        String owner=getElementText(By.xpath("//span[text()='Portfolio Number']//following::tr[2]/td[7]"));
+        LogUtil.infoLog(thisClass,"name is ="+owner);
+        return  owner;
+    }
+
+    public static String getPortfolionumber() {
+        return getElementValueWithVisibility(PortfolioMainPage.portfolionumber);
+    }
+
+    public static void clickUpdatePortfolio() {
+        click(PortfolioMainPage.updatebtn, "Clicked the update button");
+    }
+
+    public static void update_PortfolioOwner(String portfolio_own) throws InterruptedException {
+        inputText(PortfolioMainPage.updateportfolio_owner, portfolio_own, "Updated Portfolio Owner=" +portfolio_own);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_own + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_own + "']"), "Owner Updated"+portfolio_own);
+
+    }
+
+    public static void update_PortfolioEntitycode(String portfolio_entity_code) {
+        inputText(PortfolioMainPage.Portfolio_updateentitycode, portfolio_entity_code, "Updated Portfolio Owner=" +portfolio_entity_code);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_entity_code + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_entity_code + "']"), "Entity Code Updated"+portfolio_entity_code);
+    }
+
+    public static void update_PortfolioLocation(String portfolio_location) {
+        inputText(PortfolioMainPage.Portfolio_updatedLocation, portfolio_location, "Updated Portfolio Owner=" +portfolio_location);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_location + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_location + "']"), "Location Updated"+portfolio_location);
+    }
+
+    public static void update_PortfolioBranchCode(String accounting_branch_code) {
+        inputText(PortfolioMainPage.Portfolio_updateBranchcode, accounting_branch_code, "Branch Code=" +accounting_branch_code);
+        }
+
+    public static void update_PortfolioCostCenter(String cost_center) {
+        inputText(PortfolioMainPage.Portfolio_updateCostCenter, cost_center, "Updated Cost  Center=" +cost_center);
+
+    }
+
+    public static void update_PortfolioGSTInfo(String gst_information) {
+        inputText(PortfolioMainPage.Portfolio_updateGSTInformation, gst_information, "Updated Portfolio Owner=" +gst_information);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + gst_information + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + gst_information + "']"), "Entity Code Updated"+gst_information);
+    }
+
+    public static String getPortfolioLocation() {
+        String Location=getElementText(By.xpath("//span[text()='Portfolio Number']//following::tr[2]/td[22]"));
+        LogUtil.infoLog(thisClass,"name is ="+Location);
+        return  Location;
+    }
+
+    public static String getPortfolioentitycode() {
+        String code=getElementText(By.xpath("//span[text()='Portfolio Number']//following::tr[2]/td[21]"));
+        LogUtil.infoLog(thisClass,"name is ="+code);
+        return  code;
+    }
+
+    public static void deleteRecord() {
+            click(PortfolioMainPage.Portfolio_deleterecordbtn,"Clicked on the Delete Button");
+            waitForVisible(SettlementUpdatePage.updatesettlement_yesdeletebtn);
+            click(SettlementUpdatePage.updatesettlement_yesdeletebtn,"clicked on Yes Button");
+
+    }
+//    public static String getPortfolioOwner()
+//    {
+//        String owner=getElementText(By.xpath("//span[text()='Portfolio Number']//following::tr[2]/td[6]"));
+//        LogUtil.infoLog(thisClass,"name is ="+owner);
+//        return  owner;
+//    }
+//
+
+
+
+
+
+
+
+
+
+
+
+
 }

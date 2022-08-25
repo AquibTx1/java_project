@@ -173,12 +173,10 @@ public class OptimusSettlementActions extends KeywordUtil {
     }
 
     public static void inputValue(String value) throws InterruptedException {
-        System.out.println("name is =" + value);
         inputText(SettlementMainPage.newSettlement_inputsearchtext, value, "Input the name =" + value);
         delay(3000);
         click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
     }
-
     public static void searchuser() {
         click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
     }
@@ -227,7 +225,7 @@ public class OptimusSettlementActions extends KeywordUtil {
     }
 
     public static void updateSettlement() {
-        click(SettlementMainPage.newSettlement_updatebtn, "Clicked the Edit");
+        click(SettlementMainPage.newSettlement_updatebtn, "Clicked the updat button");
     }
 
     public static void clickPortfolio() {
@@ -238,7 +236,7 @@ public class OptimusSettlementActions extends KeywordUtil {
         click(OptimusCounterPartyMainPage.counterParty_MainTab, "Clicked the Counterparty");
     }
 
-    public static void deleteSettlementRecord() {
+    public static void deleteRecord() {
         click(SettlementUpdatePage.updatesettlement_deletebtn,"Clicked on the Delet Button");
         waitForVisible(SettlementUpdatePage.updatesettlement_yesdeletebtn);
         click(SettlementUpdatePage.updatesettlement_yesdeletebtn,"clicked on Yes Button");
@@ -311,5 +309,8 @@ public class OptimusSettlementActions extends KeywordUtil {
 
     public static void clickdownloadcsv() {
         click(SettlementMainPage.newSettlement_download,"Clicked the download button");
+    }
+
+    public static void update_PortfolioEntitycode() {
     }
 }

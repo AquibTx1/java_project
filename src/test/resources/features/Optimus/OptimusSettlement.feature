@@ -40,6 +40,7 @@ Feature: Test Settlement feature
     And Click the Settlement Tab
     And Sort the Settlement Ref.
     And Click Edit Button
+    And Get the Settlement Ref id
     And Update the user detail in the Settlement list
     Then Click Update Settlement and verify the Settlement Forwarded for Approval
           #login with checker user and approve the deal processing status
@@ -77,7 +78,7 @@ Feature: Test Settlement feature
     Then Verify user is able to login to Optimus successfully
     And Click the Settlement Tab
     And Click Tasks link
-    And Input the value to be delete for approval
+    And Input the values and click Search
     And Approve the Settlement
     And Click CounterParty Tab
     And Logout from MO Account
