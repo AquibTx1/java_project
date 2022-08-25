@@ -30,6 +30,7 @@ public class OptimusCounterPartySteps {
     static String cpRef;
 //    For related Party reference using Fname with random number
     static String fname;
+    static String rpRef;
 
     @And("Open CounterParty main tab")
     public void openCounterPartyMainTab() {
@@ -902,6 +903,206 @@ public class OptimusCounterPartySteps {
             try {
                 OptimusCounterPartyCreateActions.waitRelatedPartySearchResultLoad();
                 Assert.assertEquals(OptimusCounterPartyCreateActions.getRelatedFistNameInList(), fname);
+                Assert.assertEquals(OptimusCounterPartyCreateActions.getRelatedLastNameInList(), dataMap.get("LastName"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for Existing Related Party Results in List")
+    public void searchForExistingRelatedPartyResultsInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyCreateActions.searchCounterParty(dataMap.get("FirstName"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click on Edit Link in Search Results to Load Related Party details")
+    public void clickOnEditLinkInSearchResultsToLoadRelatedPartyDetails() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusRelatedCounterPartyActions.clickEditLinkinRelatedPartySearchResult();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Take the Related Party Reference")
+    public void takeTheRelatedPartyReference() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+
+                rpRef = OptimusRelatedCounterPartyActions.getRelatedPartyRefFromDetailsPage();
+                RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Related Party Reference " +rpRef));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter Update Date And Dropdown Fields For New Related Party")
+    public void enterUpdateDateAndDropdownFieldsForNewRelatedParty() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusRelatedCounterPartyActions.relatedCounterPartyRef_Update(dataMap.get("Counterparty"));
+                OptimusRelatedCounterPartyActions.relatedParty_DateOfBirth(dataMap.get("DateOfBirth"));
+                OptimusRelatedCounterPartyActions.relatedParty_IdentificationIssueDate(dataMap.get("IdentificationIssueDate"));
+                OptimusRelatedCounterPartyActions.relatedParty_IdentificationExpiryDate(dataMap.get("IdentificationExpiryDate"));
+                OptimusRelatedCounterPartyActions.relatedParty_SourceOfFunds_Update(dataMap.get("SourceOfFunds"));
+                OptimusRelatedCounterPartyActions.relatedParty_PEP_Update();
+                OptimusRelatedCounterPartyActions.relatedParty_Appointment_Update(dataMap.get("Appointment"));
+                OptimusRelatedCounterPartyActions.relatedParty_AppointmentAppointDate(dataMap.get("AppointmentAppointDate"));
+                OptimusRelatedCounterPartyActions.relatedParty_AppointmentResignDate(dataMap.get("AppointmentResignDate"));
+                OptimusRelatedCounterPartyActions.relatedParty_ClientType_Update(dataMap.get("ClientType"));
+                OptimusRelatedCounterPartyActions.relatedParty_SourceOfWealth_Update(dataMap.get("SourceOfWealth"));
+                OptimusRelatedCounterPartyActions.relatedParty_EntityType_Update(dataMap.get("EntityType"));
+                OptimusRelatedCounterPartyActions.relatedParty_IdentificationType_Update(dataMap.get("IdentificationType"));
+                OptimusRelatedCounterPartyActions.relatedParty_CountryOfIncorporation_Update(dataMap.get("CountryOfIncorporation"));
+                OptimusRelatedCounterPartyActions.relatedParty_StateOfIncorporation_Update(dataMap.get("StateOfIncorporation"));
+                OptimusRelatedCounterPartyActions.relatedParty_CountryOfOperation_Update(dataMap.get("CountryOfOperation"));
+                OptimusRelatedCounterPartyActions.relatedParty_OnboardingMode_Update(dataMap.get("OnboardingMode"));
+                OptimusRelatedCounterPartyActions.relatedParty_PrimaryBusinessActivity_Update(dataMap.get("PrimaryBusinessActivity"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Approve the Updated Related Counter Party Task with Reference")
+    public void approveTheUpdatedRelatedCounterPartyTaskWithReference() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//Approve All tasks
+                OptimusCounterPartyCreateActions.searchTasks(rpRef);
+                OptimusCounterPartyCreateActions.selectFirstTask();
+                OptimusCounterPartyCreateActions.selectAllTasks();
+                OptimusCounterPartyCreateActions.approveAllSelectedTasks();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search Results for Related Party Reference in List")
+    public void searchResultsForRelatedPartyReferenceInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyCreateActions.searchCounterParty(rpRef);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("verify Updated Related Party is Approved")
+    public void verifyUpdatedRelatedPartyIsApproved() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusCounterPartyCreateActions.waitRelatedPartySearchResultLoad();
+                Assert.assertEquals(OptimusCounterPartyCreateActions.getRelatedFistNameInList(), fname);
+                Assert.assertEquals(OptimusCounterPartyCreateActions.getRelatedLastNameInList(), dataMap.get("LastName"));
+                RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Values verified from Search result List"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Delete Related Counter Party Button and Confirm")
+    public void clickDeleteRelatedCounterPartyButtonAndConfirm() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusRelatedCounterPartyActions.clickDeleteRelatedPartyBtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Verify Search Results of Existing Related Party")
+    public void verifySearchResultsOfExistingRelatedParty() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusRelatedCounterPartyActions.verifyEditLinkinRelatedPartySearchResult();
+                OptimusRelatedCounterPartyActions.verifyLastNameinListContains();
+                OptimusRelatedCounterPartyActions.verifyFirstNameinListContains();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

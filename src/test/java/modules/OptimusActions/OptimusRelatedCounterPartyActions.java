@@ -13,8 +13,8 @@ public class OptimusRelatedCounterPartyActions extends KeywordUtil {
     }
 
     public static String getRelatedPartyRefFromDetailsPage() {
-        waitForVisible(OptimusRelatedPartyCreatePage.relatedParty_RelatedPartyRef);
-        return getElementText(OptimusRelatedPartyCreatePage.relatedParty_RelatedPartyRef);
+        waitForClickable(OptimusRelatedPartyCreatePage.relatedParty_RelatedPartyRef);
+        return getElementValueWithVisibility(OptimusRelatedPartyCreatePage.relatedParty_RelatedPartyRef);
     }
 
     public static void relatedCounterPartyRef(String cpRef) {
@@ -128,8 +128,7 @@ public class OptimusRelatedCounterPartyActions extends KeywordUtil {
         waitForClickable(OptimusRelatedPartyCreatePage.updateRelatedParty_SourceOfWealth);
         clearInputUsingKeys(OptimusRelatedPartyCreatePage.updateRelatedParty_SourceOfWealth);
         inputText(OptimusRelatedPartyCreatePage.updateRelatedParty_SourceOfWealth, sourceOfWealth, "Select source Of Wealth   = " + sourceOfWealth);
-        waitForPresent(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_SourceOfWealthOptions, sourceOfWealth)));
-        click(By.xpath(String.format(OptimusRelatedPartyCreatePage.relatedParty_SourceOfWealthOptions, sourceOfWealth)), "Choose source Of Wealth from dropdown options");
+        pressEnter(OptimusRelatedPartyCreatePage.updateRelatedParty_SourceOfWealth);
     }
     public static void relatedParty_SourceOfWealthRemarks(String sourceOfWealth) throws InterruptedException {
         waitForClickable(OptimusRelatedPartyCreatePage.relatedParty_SourceOfWealthRemarks);
@@ -329,5 +328,29 @@ public class OptimusRelatedCounterPartyActions extends KeywordUtil {
     public static void clickCreateRelatedPartyBtn() {
         waitForClickable(OptimusRelatedPartyCreatePage.relatedParty_CreateBtn);
         click(OptimusRelatedPartyCreatePage.relatedParty_CreateBtn, "Click Create button");
+    }
+    public static void clickDeleteRelatedPartyBtn() {
+        waitForClickable(OptimusRelatedPartyCreatePage.updateRelatedParty_DeleteBtn);
+        click(OptimusRelatedPartyCreatePage.updateRelatedParty_DeleteBtn, "Click Delete button");
+        waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DeleteCounterParty_YesBtn);
+        click(OptimusCounterPartyUpdatePage.updateCounterPartyPage_DeleteCounterParty_YesBtn, "Click Yes to Confirm Delete");
+
+    }
+    public static void verifyEditLinkinRelatedPartySearchResult() throws InterruptedException {
+        waitForVisible(OptimusCounterPartyListPage.relatedPartyList_EditLink);
+    }
+    public static void clickEditLinkinRelatedPartySearchResult() throws InterruptedException {
+        waitForVisible(OptimusCounterPartyListPage.relatedPartyList_EditLink);
+        click(OptimusCounterPartyListPage.relatedPartyList_EditLink, "Click Related Party Edit Link");
+        delay(3000);
+    }
+    public static String getLastNameinRPList() {
+        return getElementText(OptimusCounterPartyListPage.relatedPartyList_LastName);
+    }
+    public static void verifyFirstNameinListContains() {
+        verifyTextContains(OptimusCounterPartyListPage.relatedPartyList_FirstName, "Fname TXA", "First Name in search result list Text contains Fname TXA");
+    }
+    public static void verifyLastNameinListContains() {
+        verifyTextContains(OptimusCounterPartyListPage.relatedPartyList_LastName, "TXA", "First Name in search result list Text contains Fname TXA");
     }
 }

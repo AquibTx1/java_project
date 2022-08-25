@@ -15,4 +15,7 @@ public class OptimusCounterPartyListPage {
     public static By counterPartyList_NoDataTable = By.cssSelector("table tbody tr td .ant-empty-description");
     public static By counterPartyList_DownloadCSVBtn = By.xpath("//div[@class='ant-table-title']/form/..//div[@class='ant-form-item-control-input-content']/a/button");
     public static By relatedPartyList_FirstName = By.xpath("//table/tbody/tr[2]/td[4]");
+    public static By relatedPartyList_LastName = By.xpath("//table/tbody/tr[2]/td[5]");
+    public static By relatedPartyList_EditLink = By.xpath("//tbody/tr[2]/td[1]/div[1]/a[1]");
+
 }

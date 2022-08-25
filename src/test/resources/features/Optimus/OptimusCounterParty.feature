@@ -126,7 +126,7 @@ Feature: Test CounterParty feature
       | QA_TestCase_Auto_Optimus_2_1_4 | CreateCounterParty |
 
   @OptimusCounterParty
-  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing CounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search CounterParty and Verify Download CSV is enabled
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
     And Open CounterParties side tab
@@ -168,5 +168,89 @@ Feature: Test CounterParty feature
     Then verify Related Party is updated
 
     Examples:
-      | TestCaseID                     | SheetName          | loginCredentials  |
+      | TestCaseID                     | SheetName           | loginCredentials  |
       | QA_TestCase_Auto_Optimus_2_2_1 | RelatedCounterParty | MO_CheckerAccount |
+
+  @OptimusRelatedCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Edit Related CounterParty
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open Related Party side tab
+    And Open Related Party List tab
+    And Search for Existing Related Party Results in List
+    And Click on Edit Link in Search Results to Load Related Party details
+    And Take the Related Party Reference
+    And Enter field values for new Related Party
+    And Enter Update Date And Dropdown Fields For New Related Party
+    And Click Create button to Create New Related Party
+    Then Verify Success Message on Create and Update Page
+     #login with checker user and approve the CounterParty
+    Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
+    And Logout from Optimus
+    And Input Optimus Username and Password
+    And Click Optimus Login Button
+    Then Verify user is able to login to Optimus successfully
+    And Open CounterParty main tab
+    And Open CounterParty Tasks sub tab
+    And Approve the Updated Related Counter Party Task with Reference
+    Then Verify Success Message on Create and Update Page
+    And Logout from MO Account
+    #Login and Check the Approved record
+    Given Login to Optimus with Valid Credentials
+    And Open CounterParty main tab
+    And Open Related Party side tab
+    And Open Related Party List tab
+    And Search Results for Related Party Reference in List
+    Then verify Updated Related Party is Approved
+
+
+    Examples:
+      | TestCaseID                     | SheetName           | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_2_2_2 | RelatedCounterParty | MO_CheckerAccount |
+
+  @OptimusRelatedCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Delete Related CounterParty
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open Related Party side tab
+    And Open Related Party List tab
+    And Search for Existing Related Party Results in List
+    And Click on Edit Link in Search Results to Load Related Party details
+    And Take the Related Party Reference
+    And Click Delete Related Counter Party Button and Confirm
+    Then Verify Success Message on Create and Update Page
+    #login with checker user and approve the CounterParty
+    Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
+    And Logout from Optimus
+    And Input Optimus Username and Password
+    And Click Optimus Login Button
+    Then Verify user is able to login to Optimus successfully
+    And Open CounterParty main tab
+    And Open CounterParty Tasks sub tab
+    And Approve the Updated Related Counter Party Task with Reference
+    Then Verify Success Message on Create and Update Page
+    And Logout from MO Account
+    #Login and Check the Approved record
+    Given Login to Optimus with Valid Credentials
+    And Open CounterParty main tab
+    And Open Related Party side tab
+    And Open Related Party List tab
+    And Search Results for Related Party Reference in List
+    Then verify CounterParty is deleted and Not shown in Search Result
+
+    Examples:
+      | TestCaseID                     | SheetName          | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_2_2_3 | RelatedCounterParty | MO_CheckerAccount |
+
+  @OptimusRelatedCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing Related CounterParty
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open Related Party side tab
+    And Open Related Party List tab
+    And Search for Existing Related Party Results in List
+    And Verify Search Results of Existing Related Party
+
+    Examples:
+      | TestCaseID                     | SheetName          |
+      | QA_TestCase_Auto_Optimus_2_2_4 | RelatedCounterParty |
