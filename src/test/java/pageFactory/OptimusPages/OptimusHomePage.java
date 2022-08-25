@@ -13,4 +13,10 @@ public class OptimusHomePage {
     public static By financePage=By.xpath("//a[text()='Finance']");
     public static By historicalPage=By.xpath("//a[text()='Historical Data']");
     public static By logoutbtn = By.xpath("//span[text()='Logout']");
+
+    public static By yesbtn = By.xpath("//button[@type='button']/span[text()='Yes']");
+    public static By Approve = By.xpath("//span[text()='Approve']");
+
+    public static By editbtn = By.xpath("(//a[text()='Edit'])[1]");
+
 }

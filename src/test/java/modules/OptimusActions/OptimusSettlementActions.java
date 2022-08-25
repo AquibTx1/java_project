@@ -17,9 +17,11 @@ import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import pageFactory.XAlphaPages.XAlphaDealInputPage;
 import pageFactory.XAlphaPages.XAlphaDealProcessingPage;
 import pageFactory.XAlphaPages.XAlphaLoginPage;
+import utilities.ConfigReader;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -171,12 +173,10 @@ public class OptimusSettlementActions extends KeywordUtil {
     }
 
     public static void inputValue(String value) throws InterruptedException {
-        System.out.println("name is =" + value);
         inputText(SettlementMainPage.newSettlement_inputsearchtext, value, "Input the name =" + value);
         delay(3000);
         click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
     }
-
     public static void searchuser() {
         click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
     }
@@ -225,7 +225,7 @@ public class OptimusSettlementActions extends KeywordUtil {
     }
 
     public static void updateSettlement() {
-        click(SettlementMainPage.newSettlement_updatebtn, "Clicked the Edit");
+        click(SettlementMainPage.newSettlement_updatebtn, "Clicked the updat button");
     }
 
     public static void clickPortfolio() {
@@ -236,7 +236,7 @@ public class OptimusSettlementActions extends KeywordUtil {
         click(OptimusCounterPartyMainPage.counterParty_MainTab, "Clicked the Counterparty");
     }
 
-    public static void deleteSettlementRecord() {
+    public static void deleteRecord() {
         click(SettlementUpdatePage.updatesettlement_deletebtn,"Clicked on the Delet Button");
         waitForVisible(SettlementUpdatePage.updatesettlement_yesdeletebtn);
         click(SettlementUpdatePage.updatesettlement_yesdeletebtn,"clicked on Yes Button");
@@ -260,5 +260,57 @@ public class OptimusSettlementActions extends KeywordUtil {
     public static String getNoData() {
         String nodata=getElementText(SettlementMainPage.newSettlement_nodata);
         return nodata;
+    }
+
+    public static String validateuser(HashMap<String, String> dataMap) {
+       // boolean flag = false;
+        String S1 = dataMap.get("Settlement Nickname External").toString();
+        String Name=(getElementText(By.xpath("//td[text()='"+S1+"']")));
+        System.out.println(Name);
+        return Name;
+    }
+
+    public static Boolean validatefile(String fileName) {
+        boolean flag = false;
+        String dirPath = "";
+        File dir = new File(dirPath);
+        File[] files = dir.listFiles();
+        if (files.length == 0 || files == null) {
+            System.out.println("The directory is empty");
+            flag = false;
+        } else {
+            for (File listFile : files) {
+                if (listFile.getName().contains(fileName)) {
+                    System.out.println(fileName + " is present");
+                    break;
+                }
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    public static boolean isfiletestDownloaded()
+    {
+        boolean flag = false;
+        File filelocation= new File("C:\\Users\\Arjun Diwan\\Downloads");
+        File[] totalfiles= filelocation.listFiles();
+        for(File file :totalfiles)
+        {
+            if(file.getName().startsWith(ConfigReader.getValue("Settlmentsheetname")))
+            {
+                break;
+            }
+            flag = true;
+        }
+        System.out.println("File is downloaded at " +filelocation);
+        return  flag;
+    }
+
+    public static void clickdownloadcsv() {
+        click(SettlementMainPage.newSettlement_download,"Clicked the download button");
+    }
+
+    public static void update_PortfolioEntitycode() {
     }
 }

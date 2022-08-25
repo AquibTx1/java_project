@@ -9,10 +9,13 @@ import modules.OptimusActions.OptimusLoginActions;
 import modules.OptimusActions.OptimusSettlementActions;
 import org.testng.Assert;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyCreatePage;
+import pageFactory.OptimusPages.Portfolio.PortfolioMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementUpdatePage;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
+import utilities.KeywordUtil;
+
 import static utilities.KeywordUtil.*;
 
 
@@ -410,7 +413,7 @@ public class OptimusSettlementSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.inputNickname(dataMap.get("Settlement Nickname Internal Updated"));
+                OptimusSettlementActions.inputNickname(refid);
                 OptimusSettlementActions.searchuser();
                 OptimusSettlementActions.selectSettlementCheckbox();
                 waitForVisible(SettlementMainPage.newSettlement_selectAll);
@@ -455,7 +458,8 @@ public class OptimusSettlementSteps {
         } else {
             try {
                 waitForVisible(SettlementMainPage.settlementlist);
-                OptimusSettlementActions.sortSettlementRef();
+                OptimusSettlementActions.inputValue(refid);
+              //  OptimusSettlementActions.sortSettlementRef();
                 Assert.assertEquals(OptimusSettlementActions.getNameSettlementList(),dataMap.get("Settlement Nickname Internal Updated").trim());
                 Assert.assertEquals(OptimusSettlementActions.getExtNameSettlementList(),dataMap.get("Settlement Nickname External Updated").trim());
             } catch (Throwable e) {
@@ -540,7 +544,7 @@ public class OptimusSettlementSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.deleteSettlementRecord();
+                OptimusSettlementActions.deleteRecord();
                 delay(3000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -620,4 +624,112 @@ public class OptimusSettlementSteps {
             }
         }
     }
+
+    @And("Navigate to list again and search the user")
+    public void navigateToListAgainAndSearchTheUser() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                KeywordUtil.navigateToBack();
+                delay(3000);
+                waitForVisible(SettlementMainPage.settlementlist);
+                OptimusSettlementActions.inputValue(refid);
+                OptimusSettlementActions.searchuser();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the existing user is available")
+    public void verifyTheExistingUserIsAvailable() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusSettlementActions.validateuser(dataMap),dataMap.get("Settlement Nickname External"));
+                //Assert.assertTrue(KeywordUtil.isWebElementVisible(SettlementMainPage.newSettlement_edit));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Input the user detail to search")
+    public void inputTheUserDetailToSearch() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.settlementlist);
+                OptimusSettlementActions.inputNickname(dataMap.get("Settlement Nickname External"));
+                OptimusSettlementActions.searchuser();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click the download csv")
+    public void clickTheDownloadCsv() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.newSettlement_download);
+                OptimusSettlementActions.clickdownloadcsv();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @Then("Verify the file is downloaded")
+    public void verifyTheFileIsDownloaded() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertTrue(OptimusSettlementActions.isfiletestDownloaded());
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+
 }
