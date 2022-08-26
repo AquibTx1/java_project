@@ -254,3 +254,16 @@ Feature: Test CounterParty feature
     Examples:
       | TestCaseID                     | SheetName          |
       | QA_TestCase_Auto_Optimus_2_2_4 | RelatedCounterParty |
+
+  @OptimusRelatedCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Verify Download CSV is enabled in Related Party
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open Related Party side tab
+    And Open Related Party List tab
+    And Search for Existing Related Party Results in List
+    Then Verify Download CSV button is clickable in the search list
+
+    Examples:
+      | TestCaseID                     | SheetName          |
+      | QA_TestCase_Auto_Optimus_2_2_5 | RelatedCounterParty |
