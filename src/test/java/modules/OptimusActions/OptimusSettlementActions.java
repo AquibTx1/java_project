@@ -1,6 +1,7 @@
 package modules.OptimusActions;
 
 import com.atlassian.jira.rest.client.api.domain.LoginInfo;
+import com.relevantcodes.extentreports.LogStatus;
 import groovy.transform.builder.InitializerStrategy;
 import modules.NitroXActions.NitroXHome;
 import modules.XAlphaActions.XAlphaDealEnquiryActions;
@@ -9,6 +10,7 @@ import pageFactory.NitroXPages.NitroXBotsPage;
 import pageFactory.NitroXPages.NitroXBuySellFuturePage;
 import pageFactory.NitroXPages.NitroXHomePage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyCreatePage;
+import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyListPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyMainPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyUpdatePage;
 import pageFactory.OptimusPages.Settlement.SettlementMainPage;
@@ -17,7 +19,9 @@ import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import pageFactory.XAlphaPages.XAlphaDealInputPage;
 import pageFactory.XAlphaPages.XAlphaDealProcessingPage;
 import pageFactory.XAlphaPages.XAlphaLoginPage;
+import step_definitions.RunCukesTest;
 import utilities.ConfigReader;
+import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
@@ -311,6 +315,53 @@ public class OptimusSettlementActions extends KeywordUtil {
         click(SettlementMainPage.newSettlement_download,"Clicked the download button");
     }
 
-    public static void update_PortfolioEntitycode() {
+    public static void createWalletAddress(String wallet_address) {
+        inputText(SettlementMainPage.newSettlement_WalletAddress, wallet_address, "Wallet address =" + wallet_address);
+
+    }
+
+    public static void createWalletMemo(String wallet_memo) {
+        inputText(SettlementMainPage.newSettlement_WalletMemo, wallet_memo, "Wallet Memo is =" + wallet_memo);
+
+    }
+
+    public static void enterWhitelistingRemarks(String remarks) {
+        inputText(SettlementMainPage.newSettlement_WhiteListingRemarks, remarks, "Wallet Memo is =" + remarks);
+    }
+
+    public static void chooseWhitelistingMethod(String w_method) {
+        inputText(SettlementMainPage.newSettlement_WhislingMethod, w_method, " Purpose =" + w_method);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + w_method + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + w_method + "']"), "Whitelisting Method selected");
+    }
+
+
+    public static void newSettlement_UpdatedSettlementType(String update_type) {
+        inputText(SettlementMainPage.newSettlement_updatedType, update_type, " updated =" + update_type);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + update_type + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + update_type + "']"), "Whitelisting Method selected");
+    }
+
+    public static void newSettlement_UpdatedMethod(String transfer_method) {
+        inputText(SettlementMainPage.newSettlement_updatemethod, transfer_method, " updated =" + transfer_method);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + transfer_method + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + transfer_method + "']"), "Updated Trnasfer Method selected");
+    }
+
+    public static void newSettlement_UpdatedNetwork(String network) {
+        inputText(SettlementMainPage.newSettlement_updatenetwork, network, " updated =" + network);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + network + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + network + "']"), "Updated Network selected");
+    }
+
+    public static void newSettlement_UpdateCustodian(String custodian) {
+        inputText(SettlementMainPage.newSettlement_updatecustodian, custodian, " updated =" + custodian);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + custodian + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + custodian + "']"), "Whitelisting Method selected");
+    }
+
+    public static void verifyDownloadCSVBtn() {
+        waitForClickable(OptimusCounterPartyListPage.counterPartyList_DownloadCSVBtn);
+        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
     }
 }

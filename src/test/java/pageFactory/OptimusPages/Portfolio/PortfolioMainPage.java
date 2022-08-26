@@ -36,7 +36,10 @@ public class PortfolioMainPage {
     public static By Portfolio_updateentitycode = By.id("update_portfolio_portfolio_entity_code");
     public static By Portfolio_Location = By.id("create_portfolio_portfolio_location");
 
-    public static By Portfolio_updatedLocation = By.id("update_portfolio_portfolio_location");
+   public static By Portfolio_updatedLocation = By.id("update_portfolio_portfolio_location");
+
+    public static String Portfolio_updatedLocationoption = "(//div[@class='rc-virtual-list-holder-inner']//div[text()='%s'])[2]";
+
     public static By Portfolio_Branchcode = By.id("create_portfolio_accounting_branch_code");
 
     public static By Portfolio_updateBranchcode = By.id("update_portfolio_accounting_branch_code");
@@ -45,20 +48,19 @@ public class PortfolioMainPage {
     public static By Portfolio_GSTInformation = By.id("create_portfolio_gst_information");
 
     public static By Portfolio_updateGSTInformation = By.id("update_portfolio_gst_information");
-    public static By create_Portfoliobtn = By.xpath("//span[text()='Create Portfolio']");
 
+    public static By Portfolio_updateHOB = By.id("update_portfolio_head_of_business");
+    public static By Portfolio_updateTradingLocation= By.id("update_portfolio_trading_location");
+    public static By create_Portfoliobtn = By.xpath("//span[text()='Create Portfolio']");
     public static By NewPortfolio_link = By.xpath("//span[text()='New Portfolio']");
     public static By yesbtn = By.xpath("//button[@type='button']/span[text()='Yes']");
     public static By newSettlement_Approve = By.xpath("//span[text()='Approve']");
-
     public static By edit = By.xpath("(//a[text()='Edit'])[1]");
-
     public static By newSettlement_download = By.xpath("//span[text()=' Download CSV ']");
     public static By newSettlement_inputsearchtext = By.xpath("//input[@placeholder='input search text']");
-
     public static By adminTab = By.xpath("//a[text()='Auth Admin']");
 
-
+    public static By Portfolio_DownloadCSVBtn = By.xpath("//div[@class='ant-table-title']/form/..//div[@class='ant-form-item-control-input-content']/a/button");
     public static By portfolionumber=By.id("update_portfolio_portfolio_number");
     public static By updateportfolioname=By.id("update_portfolio_portfolio_name");
     public static By updateportfolio_owner=By.xpath("//label[text()='Portfolio Owner']//following::input[1]");

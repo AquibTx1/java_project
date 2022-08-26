@@ -12,6 +12,7 @@ Feature: Test Settlement feature
     And Enter the Settlement Ref detail
     And Enter the Basic Information detail
     And Enter the Bank Information detail
+    And Enter the Wallet detail
     And Enter Additional Information
     Then Click Create Settlement and verify the Settlement Forwarded for Approval
           #login with checker user and approve the deal processing status
@@ -39,6 +40,7 @@ Feature: Test Settlement feature
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Click the Settlement Tab
     And Sort the Settlement Ref.
+    And Search the CounterParty to be Updated
     And Click Edit Button
     And Get the Settlement Ref id
     And Update the user detail in the Settlement list
@@ -67,6 +69,8 @@ Feature: Test Settlement feature
   Scenario Outline: "<TestCaseID>" Able to Delete a record the from the Settlement List
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Click the Settlement Tab
+    And Sort the data
+    And Search the CounterParty to be deleted
     And Click the edit link
     And Get the Settlement Ref id
     And Delete the user detail in the Settlement list and sent for Approval
