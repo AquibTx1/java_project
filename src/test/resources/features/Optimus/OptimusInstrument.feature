@@ -26,7 +26,7 @@ Feature: Test Settlement feature
       #Login and Check the Approved record
     Given Login to Optimus with Valid Credentials
     And Open the Instrument Tab
-    And Input the changes and click Search
+    And Verify the Token Created
 
     Examples:
       | TestCaseID                     | SheetName |loginCredentials  |
