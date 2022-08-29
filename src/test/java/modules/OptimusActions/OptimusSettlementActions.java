@@ -268,10 +268,10 @@ public class OptimusSettlementActions extends KeywordUtil {
 
     public static String validateuser(HashMap<String, String> dataMap) {
        // boolean flag = false;
-        String S1 = dataMap.get("Settlement Nickname External").toString();
-        String Name=(getElementText(By.xpath("//td[text()='"+S1+"']")));
-        System.out.println(Name);
-        return Name;
+        String name=getElementText(By.xpath("//span[text()='Settlement Ref.']//following::tr[2]/td[4]"));
+        LogUtil.infoLog(thisClass,"name is ="+name);
+        System.out.println("CounterParty Name"+name);
+        return  name;
     }
 
     public static Boolean validatefile(String fileName) {
@@ -363,5 +363,17 @@ public class OptimusSettlementActions extends KeywordUtil {
     public static void verifyDownloadCSVBtn() {
         waitForClickable(OptimusCounterPartyListPage.counterPartyList_DownloadCSVBtn);
         RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
+    }
+
+    public static void chooseBankswiftcode(String swift_code) {
+        inputText(SettlementMainPage.newSettlement_BankSwiftcode, swift_code, "Swift code is =" + swift_code);
+    }
+
+    public static void chooseBankABACode(String ABA_code) {
+        inputText(SettlementMainPage.newSettlement_BankABACode, ABA_code, "ABA code is =" + ABA_code);
+    }
+
+    public static void chooseBankRef(String bank_ref) {
+        inputText(SettlementMainPage.newSettlement_BankRef, bank_ref, "Choose the Bank Ref. =" + bank_ref);
     }
 }

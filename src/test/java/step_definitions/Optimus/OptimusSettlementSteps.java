@@ -25,10 +25,10 @@ public class OptimusSettlementSteps {
     public static HashMap<String, String> dataMap;
 
     public static String nick_name,refid;
-    public OptimusSettlementSteps() {
+    public OptimusSettlementSteps()
+    {
         dataMap = BaseStepDefinitions.dataMap;
     }
-
 
     @And("Click the Settlement Tab")
     public void clickTheSettlementTab()
@@ -136,7 +136,12 @@ public class OptimusSettlementSteps {
                 OptimusSettlementActions.chooseAddress(dataMap.get("Bank Address"));
                 OptimusSettlementActions.enterBankAccountNumber(dataMap.get("Bank Account Number"));
                 OptimusSettlementActions.chooseBankBeneficiaryName(dataMap.get("Bank Beneficiary Name"));
+                OptimusSettlementActions.chooseBankswiftcode(dataMap.get("Bank Swift Code"));
+                OptimusSettlementActions.chooseBankABACode(dataMap.get("Bank ABA Code"));
                 OptimusSettlementActions.chooseBankBeneficiaryaddress(dataMap.get("Bank Address"));
+                OptimusSettlementActions.chooseBankRef(dataMap.get("Bank Reference"));
+
+
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -156,9 +161,10 @@ public class OptimusSettlementSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                OptimusSettlementActions.choosePurpose(dataMap.get("Purpose"));
                 OptimusSettlementActions.enterWhitelistingRemarks(dataMap.get("Whitelisting Remarks"));
                 OptimusSettlementActions.chooseWhitelistingMethod(dataMap.get("Whitelisting Method"));
-                OptimusSettlementActions.choosePurpose(dataMap.get("Purpose"));
+
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -283,8 +289,8 @@ public class OptimusSettlementSteps {
         } else {
             try {
                 waitForVisible(SettlementMainPage.settlementlist);
-                OptimusSettlementActions.inputValue(dataMap.get("Counterparty Name"));
                 OptimusSettlementActions.sortSettlementRef();
+                OptimusSettlementActions.inputValue(dataMap.get("Counterparty Name"));
                 Assert.assertEquals(OptimusSettlementActions.getNameSettlementList(),dataMap.get("Settlement Nickname Internal"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -651,7 +657,7 @@ public class OptimusSettlementSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                Assert.assertEquals(OptimusSettlementActions.validateuser(dataMap),dataMap.get("Settlement Nickname External"));
+                Assert.assertEquals(OptimusSettlementActions.validateuser(dataMap),dataMap.get("Counterparty Name"));
                 //Assert.assertTrue(KeywordUtil.isWebElementVisible(SettlementMainPage.newSettlement_edit));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -672,7 +678,7 @@ public class OptimusSettlementSteps {
         } else {
             try {
                 waitForVisible(SettlementMainPage.settlementlist);
-                OptimusSettlementActions.inputNickname(dataMap.get("Settlement Nickname External"));
+                OptimusSettlementActions.inputNickname(dataMap.get("Counterparty Name"));
                 OptimusSettlementActions.searchuser();
 
             } catch (Throwable e) {
@@ -706,7 +712,6 @@ public class OptimusSettlementSteps {
                 BaseStepDefinitions.increaseCounter();
             }
         }
-
     }
     @Then("Verify the file is downloaded")
     public void verifyTheFileIsDownloaded() {
@@ -749,32 +754,28 @@ public class OptimusSettlementSteps {
                 }
             }
         }
-    }
-
-    @And("Enter the Wallet detail")
+    }@And("Enter the Wallet detail")
     public void enterTheWalletDetail() {
         {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                OptimusSettlementActions.createWalletAddress(dataMap.get("Wallet Address"));
-                OptimusSettlementActions.createWalletMemo(dataMap.get("Wallet Memo"));
+            if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+                BaseStepDefinitions.skipThisStep();
+            } else {
+                try {
+                    OptimusSettlementActions.createWalletAddress(dataMap.get("Wallet Address"));
+                    OptimusSettlementActions.createWalletMemo(dataMap.get("Wallet Memo"));
 
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
+                } catch (Throwable e) {
+                    GlobalUtil.e = e;
+                    GlobalUtil.errorMsg = e.getMessage();
+                    Assert.fail(e.getMessage());
+                }
+                //increase the step counter by 1
+                if (BaseStepDefinitions.getSITflag()) {
+                    BaseStepDefinitions.increaseCounter();
+                }
             }
         }
-    }
-    }
-
-    @And("Search the CounterParty to be Updated")
+    }@And("Search the CounterParty to be Updated")
     public void searchTheCounterPartyToBeUpdated() {
         {
             if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -793,10 +794,7 @@ public class OptimusSettlementSteps {
                 }
             }
         }
-
-    }
-
-    @And("Search the CounterParty to be deleted")
+    }@And("Search the CounterParty to be deleted")
     public void searchTheCounterPartyToBeDeleted() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();

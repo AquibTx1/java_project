@@ -51,6 +51,10 @@ public class SettlementMainPage {
     public static By newSettlement_BankName=By.id("create_settlement_bank_name");
     public static By newSettlement_BankAddress=By.id("create_settlement_bank_address");
     public static By newSettlement_BankBeneficiaryName=By.id("create_settlement_bank_beneficiary_name");
+
+    public static By newSettlement_BankSwiftcode=By.id("create_settlement_bank_swift_code");
+    public static By newSettlement_BankABACode=By.id("create_settlement_bank_aba_code");
+    public static By newSettlement_BankRef=By.id("create_settlement_bank_reference");
     public static By newSettlement_BankAccountNumber=By.id("create_settlement_bank_account_number");
     public static By newSettlement_WalletAddress=By.id("create_settlement_wallet_address");
     public static By newSettlement_WalletMemo=By.id("create_settlement_wallet_memo");
