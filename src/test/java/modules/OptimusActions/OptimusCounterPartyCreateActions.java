@@ -433,11 +433,12 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         click(OptimusCounterPartyTasksPage.tasks_CpSelectAllBtn, "Select All tasks on page");
     }
 
-    public static void approveAllSelectedTasks() {
+    public static void approveAllSelectedTasks() throws InterruptedException {
         waitForVisible(OptimusCounterPartyTasksPage.tasks_CpApproveBtn);
         click(OptimusCounterPartyTasksPage.tasks_CpApproveBtn, "Click Approve All button");
         waitForVisible(OptimusCounterPartyTasksPage.tasks_CpApprovePopUp);
         click(OptimusCounterPartyTasksPage.tasks_CpApproveAll_YesBtn, "Approve all Click yes button");
+        delay(2000);
     }
 
     public static void verifySuccessMessage() {
