@@ -2,6 +2,7 @@ package step_definitions.Optimus.Instrument;
 
 import io.cucumber.java.en.And;
 import modules.OptimusActions.OptimusInstrumentActions;
+import modules.OptimusActions.OptimusPortfolioCreateActions;
 import modules.OptimusActions.OptimusSettlementActions;
 import org.testng.Assert;
 import pageFactory.OptimusPages.Instrument.InstrumentMainPage;
@@ -12,12 +13,14 @@ import utilities.GlobalUtil;
 
 import java.util.HashMap;
 
+import static utilities.KeywordUtil.waitForClickable;
 import static utilities.KeywordUtil.waitForVisible;
 
 public class OptimusInstrumentSteps {
 
     public static HashMap<String, String> dataMap;
 
+    public static String refid_instrument;
     public OptimusInstrumentSteps() {
         dataMap = BaseStepDefinitions.dataMap;
     }
@@ -139,8 +142,6 @@ public class OptimusInstrumentSteps {
         } else {
             try {
                 waitForVisible(SettlementMainPage.newSettlement_inputsearchtext);
-                OptimusSettlementActions.inputValue(dataMap.get("Asset Name"));
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -160,6 +161,7 @@ public class OptimusInstrumentSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                OptimusSettlementActions.inputValue(refid_instrument);
                 OptimusSettlementActions.selectSettlementCheckbox();
                 waitForVisible(SettlementMainPage.newSettlement_selectAll);
                 OptimusSettlementActions.selectAllSettlementbtn();
@@ -203,10 +205,173 @@ public class OptimusInstrumentSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                waitForVisible(InstrumentMainPage.Instrument_token);
                 OptimusInstrumentActions.clickTokenLink();
                 waitForVisible(SettlementMainPage.newSettlement_edit);
                 OptimusSettlementActions.sortSettlementRef();
+                OptimusSettlementActions.inputValue(dataMap.get("Asset Code"));
+                Assert.assertEquals(OptimusInstrumentActions.getAssetCode(),dataMap.get("Asset Code"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Edit the Existing fields")
+    public void editTheExistingFields() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.newSettlement_edit);
+                OptimusSettlementActions.clickEditSettlement();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Click Update Instrument")
+    public void clickUpdateInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(InstrumentMainPage.refid);
+                refid_instrument = OptimusInstrumentActions.getInstrumentRefid();
+                OptimusInstrumentActions.updateAssetName(dataMap.get("Asset Name"));
+                OptimusInstrumentActions.updateAssetCode(dataMap.get("Asset Code"));
+                OptimusInstrumentActions.updateAssetType(dataMap.get("Asset Type"));
+                OptimusInstrumentActions.updateAssetSubType(dataMap.get("Asset Sub-Type"));
+                OptimusInstrumentActions.updateDecimalConvention(dataMap.get("Decimal Convention"));
+                OptimusInstrumentActions.updateGST(dataMap.get("GST"));
+                OptimusInstrumentActions.updateBNetwork(dataMap.get("Blockchain Network"));
+                OptimusInstrumentActions.clickUpdateInstrument();
+                OptimusSettlementActions.waitForSuccessMsgToAppear();
+                OptimusSettlementActions.waitForSuccessMsgToDisappear();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Verify the Token Updated")
+    public void verifyTheTokenUpdated() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(InstrumentMainPage.Instrument_token);
+                OptimusInstrumentActions.clickTokenLink();
+                waitForVisible(SettlementMainPage.newSettlement_edit);
+                OptimusSettlementActions.sortSettlementRef();
+                OptimusSettlementActions.inputValue(refid_instrument);
+                Assert.assertEquals(OptimusInstrumentActions.getAssetCode(),dataMap.get("Asset Code"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search the Instrument to be Updated")
+    public void searchTheInstrumentToBeUpdated() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
                 OptimusSettlementActions.inputValue(dataMap.get("Asset Name"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search the Instrument to be deleted")
+    public void searchTheInstrumentToBeDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(dataMap.get("Asset Code"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click delete Instrument")
+    public void clickDeleteInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(InstrumentMainPage.refid);
+                refid_instrument = OptimusInstrumentActions.getInstrumentRefid();
+                OptimusInstrumentActions.deleteRecord();
+                OptimusSettlementActions.waitForSuccessMsgToAppear();
+                OptimusSettlementActions.waitForSuccessMsgToDisappear();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Verify the Token Deleted")
+    public void verifyTheTokenDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(InstrumentMainPage.Instrument_token);
+                OptimusInstrumentActions.clickTokenLink();
+                waitForVisible(SettlementMainPage.newSettlement_edit);
+                OptimusSettlementActions.sortSettlementRef();
+                OptimusSettlementActions.inputValue(refid_instrument);
+                Assert.assertEquals(OptimusSettlementActions.getNoData(),"No Data");
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
