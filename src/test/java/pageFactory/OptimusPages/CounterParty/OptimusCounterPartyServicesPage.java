@@ -5,8 +5,10 @@ import org.openqa.selenium.By;
 public class OptimusCounterPartyServicesPage {
     public static By ServicesCp_CreatePage = By.xpath("//div[@class='ant-tabs-nav-list']/div[2]/div/span");
     public static By servicesCp_ListPage = By.xpath("//div[@class='ant-tabs-nav-list']/div/div[contains(text(),'Service List')]");
+    public static By servicesCP_EditLink_ListPage = By.xpath("//tbody/tr[2]/td[2]/div[1]/a[1]");
     public static By servicesCP_FeeRate_ListPage = By.xpath("//tbody/tr[2]/td[9]");
     public static By servicesCP_ServiceName_ListPage = By.xpath("//tbody/tr[2]/td[6]");
+    public static By servicesCP_ServiceReference_ListPage = By.xpath("//table/tbody/tr[2]/td[3]");
     public static By ServiceCp_Reference = By.xpath("//input[@placeholder='service_ref']");
     public static By ServiceCp_CpRefID = By.id("create_service_counterparty_id");
     public static By ServiceCp_CpRefID_Update = By.id("update_service_counterparty_id");

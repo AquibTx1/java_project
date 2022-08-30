@@ -16,6 +16,12 @@ public class OptimusServiceCounterPartyActions {
         click(OptimusCounterPartyMainPage.counterPartyMain_Services, "Click Main Services tab in side panel");
     }
 
+    public static void clickEditLinkinResult() {
+        waitForClickable(OptimusCounterPartyServicesPage.servicesCP_EditLink_ListPage);
+        click(OptimusCounterPartyServicesPage.servicesCP_EditLink_ListPage, "Click Edit Link in List page to load details");
+        waitForVisible(OptimusCounterPartyServicesPage.ServiceCp_Reference);
+    }
+
     public static void clickServicesCreateTab() {
         waitForClickable(OptimusCounterPartyServicesPage.ServicesCp_CreatePage);
         click(OptimusCounterPartyServicesPage.ServicesCp_CreatePage, "Click Create New Service tab");
@@ -32,10 +38,18 @@ public class OptimusServiceCounterPartyActions {
         waitForVisible((OptimusCounterPartyServicesPage.servicesCP_FeeRate_ListPage));
         return getElementText(OptimusCounterPartyServicesPage.servicesCP_FeeRate_ListPage);
     }
-
+    public static String getServiceReferenceFromResultList() {
+        waitForVisible((OptimusCounterPartyServicesPage.servicesCP_ServiceReference_ListPage));
+        return getElementText(OptimusCounterPartyServicesPage.servicesCP_ServiceReference_ListPage);
+    }
     public static String getServiceNameFromResultList() {
         waitForVisible((OptimusCounterPartyServicesPage.servicesCP_ServiceName_ListPage));
         return getElementText(OptimusCounterPartyServicesPage.servicesCP_ServiceName_ListPage);
+    }
+
+    public static String getServiceNameFromDetailsPage() {
+        waitForVisible((OptimusCounterPartyServicesPage.serviceCp_ServiceName));
+        return getElementText(OptimusCounterPartyServicesPage.serviceCp_ServiceName);
     }
 
     public static String service_GetServiceReferenceID() {

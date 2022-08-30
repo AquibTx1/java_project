@@ -609,8 +609,8 @@ public class OptimusCounterPartySteps {
         }
     }
 
-    @And("Click Delete Counter Party Button and Confirm")
-    public void clickDeleteCounterPartyButtonAndConfirm() {
+    @And("Click Delete Optimus Button and Confirm")
+    public void clickDeleteOptimusButtonAndConfirm() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
@@ -647,8 +647,8 @@ public class OptimusCounterPartySteps {
         }
     }
 
-    @Then("verify CounterParty is deleted and Not shown in Search Result")
-    public void verifyCounterPartyIsDeletedAndNotShownInSearchResult() {
+    @Then("verify Item is deleted and Not shown in Search Result")
+    public void verifyItemIsDeletedAndNotShownInSearchResult() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
