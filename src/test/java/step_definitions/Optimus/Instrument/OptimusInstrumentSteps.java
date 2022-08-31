@@ -438,4 +438,84 @@ public class OptimusInstrumentSteps {
             }
         }
     }
+
+    @And("Click the Trading Instrument")
+    public void clickTheTradingInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.clickTradingInstruments();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open New Trading Instrument")
+    public void openNewTradingInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(InstrumentMainPage.Instrument_NewTradingInstrument);
+                OptimusInstrumentActions.clickNewTradingInstrument();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter the details in Trading Instrument")
+    public void enterTheDetailsInTradingInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.createExchange(dataMap.get("Exchange"));
+                OptimusInstrumentActions.createExchangeSymbol(dataMap.get("Exchange Symbol"));
+                OptimusInstrumentActions.createAltCoin(dataMap.get("Alt Coin"));
+                OptimusInstrumentActions.createQuoteCoin(dataMap.get("Quote Coin"));
+                OptimusInstrumentActions.createInsDerivateType(dataMap.get("Instrument Derivative Type"));
+                OptimusInstrumentActions.createMarginType(dataMap.get("Margin Type"));
+                OptimusInstrumentActions.createDeliveryDate(dataMap.get("Delivery Date"));
+                OptimusInstrumentActions.createPricePrecision(dataMap.get("Price Precision"));
+                OptimusInstrumentActions.createSizePrecision(dataMap.get("Size Precision"));
+                OptimusInstrumentActions.createMinOrderSize(dataMap.get("Min. Order Size"));
+                OptimusInstrumentActions.createMaxOrder(dataMap.get("Max. Order Size"));
+                OptimusInstrumentActions.createLotSize(dataMap.get("Lot Size"));
+                OptimusInstrumentActions.createTickSize(dataMap.get("Tick Size"));
+                //OptimusInstrumentActions.createMinOrderNotional(dataMap.get("Min. Order Notional"));
+                OptimusInstrumentActions.createMaxOrder(dataMap.get("Max. Orders"));
+                OptimusInstrumentActions.createMinPrice(dataMap.get("Min. Price"));
+                OptimusInstrumentActions.createMaxPrice(dataMap.get("Max. Price"));
+                OptimusInstrumentActions.createContarctSize(dataMap.get("Contract Size"));
+                OptimusInstrumentActions.createContractAsset(dataMap.get("Contract Asset"));
+                OptimusInstrumentActions.createSetAsset(dataMap.get("Settlement Asset"));
+                OptimusInstrumentActions.createTradingStatus(dataMap.get("Status"));
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 }
