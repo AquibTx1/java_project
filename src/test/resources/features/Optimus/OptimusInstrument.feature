@@ -1,4 +1,5 @@
-Feature: Test Settlement feature
+
+Feature: Test Instrument feature
 
   Background: Login to Optimus
     Given Login to Optimus with Valid Credentials
@@ -20,7 +21,7 @@ Feature: Test Settlement feature
     And Open the Instrument Tab
     And Click Tasks link
     And Navigate to Instrument Task
-    And Input the Asset
+    And Input the Asset Code
     And Approve the Asset created
     And Logout from MO Account
       #Login and Check the Approved record
@@ -91,3 +92,25 @@ Feature: Test Settlement feature
     Examples:
       | TestCaseID                     | SheetName |loginCredentials  |
       | QA_TestCase_Auto_Optimus_5_1_3 | Instrument | MO_CheckerAccount|
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to Search a record the from the Instrument List
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Tokens link
+    And Search the existing Instrument
+    Then Verify the Instrument
+
+    Examples:
+      | TestCaseID                      | SheetName |loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_1_4 | Instrument | MO_CheckerAccount|
+
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to Download list from Portfolio
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Tokens link
+    And Click the download csv
+    Then Verify the file is downloaded
+    Examples:
+      | TestCaseID                      | SheetName |loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_1_5 | Instrument | MO_CheckerAccount|

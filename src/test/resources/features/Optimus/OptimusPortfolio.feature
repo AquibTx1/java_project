@@ -1,4 +1,4 @@
-Feature: Test Settlement feature
+Feature: Test Portfolio feature as mentioned in Test Case
 
   Background: Login to Optimus
     Given Login to Optimus with Valid Credentials

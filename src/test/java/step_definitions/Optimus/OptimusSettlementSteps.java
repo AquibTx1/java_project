@@ -699,7 +699,7 @@ public class OptimusSettlementSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                waitForVisible(SettlementMainPage.newSettlement_download);
+                waitForVisible(SettlementMainPage.newSettlement_edit);
                 OptimusSettlementActions.clickdownloadcsv();
 
             } catch (Throwable e) {

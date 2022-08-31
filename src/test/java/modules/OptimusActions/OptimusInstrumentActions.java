@@ -156,4 +156,11 @@ public class OptimusInstrumentActions  extends KeywordUtil {
         waitForVisible(SettlementUpdatePage.updatesettlement_yesdeletebtn);
         click(SettlementUpdatePage.updatesettlement_yesdeletebtn,"clicked on Yes Button");
     }
+
+    public static String getAssetName() {
+        String Asset_name=getElementText(By.xpath("//span[text()='Instrument Ref.']//following::tr[2]/td[4]"));
+        LogUtil.infoLog(thisClass,"Asset name available in the list ="+Asset_name);
+        return  Asset_name;
+
+    }
 }

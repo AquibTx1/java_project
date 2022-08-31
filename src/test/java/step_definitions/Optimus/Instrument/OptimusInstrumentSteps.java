@@ -1,19 +1,17 @@
 package step_definitions.Optimus.Instrument;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import modules.OptimusActions.OptimusInstrumentActions;
-import modules.OptimusActions.OptimusPortfolioCreateActions;
 import modules.OptimusActions.OptimusSettlementActions;
 import org.testng.Assert;
 import pageFactory.OptimusPages.Instrument.InstrumentMainPage;
-import pageFactory.OptimusPages.Portfolio.PortfolioMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementMainPage;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
 
 import java.util.HashMap;
 
-import static utilities.KeywordUtil.waitForClickable;
 import static utilities.KeywordUtil.waitForVisible;
 
 public class OptimusInstrumentSteps {
@@ -165,8 +163,6 @@ public class OptimusInstrumentSteps {
                 OptimusSettlementActions.selectSettlementCheckbox();
                 waitForVisible(SettlementMainPage.newSettlement_selectAll);
                 OptimusSettlementActions.selectAllSettlementbtn();
-
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -222,7 +218,6 @@ public class OptimusInstrumentSteps {
             }
         }
     }
-
     @And("Edit the Existing fields")
     public void editTheExistingFields() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -372,6 +367,66 @@ public class OptimusInstrumentSteps {
                 OptimusSettlementActions.inputValue(refid_instrument);
                 Assert.assertEquals(OptimusSettlementActions.getNoData(),"No Data");
 
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Input the Asset Code")
+    public void inputTheAssetCode() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(dataMap.get("Asset Code"));
+                OptimusSettlementActions.selectSettlementCheckbox();
+                waitForVisible(SettlementMainPage.newSettlement_selectAll);
+                OptimusSettlementActions.selectAllSettlementbtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+    @And("Search the existing Instrument")
+    public void searchTheExistingInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.newSettlement_edit);
+                OptimusSettlementActions.inputValue(dataMap.get("Asset Name"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the Instrument")
+    public void verifyTheInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusInstrumentActions.getAssetName(),dataMap.get("Asset Name"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
