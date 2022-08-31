@@ -4,10 +4,7 @@ import com.google.common.base.Verify;
 import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import modules.OptimusActions.OptimusCounterPartyCreateActions;
-import modules.OptimusActions.OptimusCounterPartyUpdateActions;
-import modules.OptimusActions.OptimusLoginActions;
-import modules.OptimusActions.OptimusRelatedCounterPartyActions;
+import modules.OptimusActions.*;
 import org.testng.Assert;
 import step_definitions.BaseStepDefinitions;
 import step_definitions.RunCukesTest;
@@ -289,7 +286,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.openListTab();
+                OptimusMainActions.openListTab();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -327,7 +324,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(nicknameInt);
+                OptimusMainActions.searchForItem(nicknameInt);
                 OptimusCounterPartyCreateActions.checkCounterPart_FirstResultListLoad();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -398,10 +395,10 @@ public class OptimusCounterPartySteps {
         } else {
             try {
 //Approve All tasks
-                OptimusCounterPartyCreateActions.searchTasks(nicknameInt);
-                OptimusCounterPartyCreateActions.selectFirstTask();
-                OptimusCounterPartyCreateActions.selectAllTasks();
-                OptimusCounterPartyCreateActions.approveAllSelectedTasks();
+                OptimusMainActions.searchTasks(nicknameInt);
+                OptimusMainActions.selectFirstTask();
+                OptimusMainActions.selectAllTasks();
+                OptimusMainActions.approveAllSelectedTasks();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -421,9 +418,9 @@ public class OptimusCounterPartySteps {
         } else {
             try {
 //Approve All tasks
-                OptimusCounterPartyCreateActions.selectFirstTask();
-                OptimusCounterPartyCreateActions.selectAllTasks();
-                OptimusCounterPartyCreateActions.approveAllSelectedTasks();
+                OptimusMainActions.selectFirstTask();
+                OptimusMainActions.selectAllTasks();
+                OptimusMainActions.approveAllSelectedTasks();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -575,7 +572,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(cpRef);
+                OptimusMainActions.searchForItem(cpRef);
                 OptimusCounterPartyCreateActions.checkCounterPart_FirstResultListLoad();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -595,7 +592,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(dataMap.get("SalesForceID"));
+                OptimusMainActions.searchForItem(dataMap.get("SalesForceID"));
                 OptimusCounterPartyCreateActions.checkCounterPart_FirstResultListLoad();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -634,7 +631,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchTasks(cpRef);
+                OptimusMainActions.searchTasks(cpRef);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -841,10 +838,10 @@ public class OptimusCounterPartySteps {
         } else {
             try {
 //Approve All tasks
-                OptimusCounterPartyCreateActions.searchTasks(fname);
-                OptimusCounterPartyCreateActions.selectFirstTask();
-                OptimusCounterPartyCreateActions.selectAllTasks();
-                OptimusCounterPartyCreateActions.approveAllSelectedTasks();
+                OptimusMainActions.searchTasks(fname);
+                OptimusMainActions.selectFirstTask();
+                OptimusMainActions.selectAllTasks();
+                OptimusMainActions.approveAllSelectedTasks();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -882,7 +879,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(fname);
+                OptimusMainActions.searchForItem(fname);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -922,7 +919,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(dataMap.get("FirstName"));
+                OptimusMainActions.searchForItem(dataMap.get("FirstName"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -1018,10 +1015,10 @@ public class OptimusCounterPartySteps {
         } else {
             try {
 //Approve All tasks
-                OptimusCounterPartyCreateActions.searchTasks(rpRef);
-                OptimusCounterPartyCreateActions.selectFirstTask();
-                OptimusCounterPartyCreateActions.selectAllTasks();
-                OptimusCounterPartyCreateActions.approveAllSelectedTasks();
+                OptimusMainActions.searchTasks(rpRef);
+                OptimusMainActions.selectFirstTask();
+                OptimusMainActions.selectAllTasks();
+                OptimusMainActions.approveAllSelectedTasks();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -1040,7 +1037,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(rpRef);
+                OptimusMainActions.searchForItem(rpRef);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

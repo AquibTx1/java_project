@@ -4,6 +4,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import modules.OptimusActions.OptimusCounterPartyCreateActions;
+import modules.OptimusActions.OptimusMainActions;
 import modules.OptimusActions.OptimusRelatedCounterPartyActions;
 import modules.OptimusActions.OptimusServiceCounterPartyActions;
 import org.testng.Assert;
@@ -133,10 +134,10 @@ public class OptimusCounterPartyServiceSteps {
         } else {
             try {
 //Approve All tasks
-                OptimusCounterPartyCreateActions.searchTasks(sname);
-                OptimusCounterPartyCreateActions.selectFirstTask();
-                OptimusCounterPartyCreateActions.selectAllTasks();
-                OptimusCounterPartyCreateActions.approveAllSelectedTasks();
+                OptimusMainActions.searchTasks(sname);
+                OptimusMainActions.selectFirstTask();
+                OptimusMainActions.selectAllTasks();
+                OptimusMainActions.approveAllSelectedTasks();
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -175,7 +176,7 @@ public class OptimusCounterPartyServiceSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(sname);
+                OptimusMainActions.searchForItem(sname);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -234,7 +235,7 @@ public class OptimusCounterPartyServiceSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(dataMap.get("ServiceName"));
+                OptimusMainActions.searchForItem(dataMap.get("ServiceName"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -293,10 +294,10 @@ public class OptimusCounterPartyServiceSteps {
         } else {
             try {
 //Approve All tasks
-                OptimusCounterPartyCreateActions.searchTasks(sRef);
-                OptimusCounterPartyCreateActions.selectFirstTask();
-                OptimusCounterPartyCreateActions.selectAllTasks();
-                OptimusCounterPartyCreateActions.approveAllSelectedTasks();
+                OptimusMainActions.searchTasks(sRef);
+                OptimusMainActions.selectFirstTask();
+                OptimusMainActions.selectAllTasks();
+                OptimusMainActions.approveAllSelectedTasks();
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -316,7 +317,7 @@ public class OptimusCounterPartyServiceSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(sRef);
+                OptimusMainActions.searchForItem(sRef);
                 OptimusCounterPartyCreateActions.waitRelatedPartySearchResultLoad();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -336,7 +337,7 @@ public class OptimusCounterPartyServiceSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyCreateActions.searchCounterParty(dataMap.get("ServiceName"));
+                OptimusMainActions.searchForItem(dataMap.get("ServiceName"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -389,6 +390,27 @@ public class OptimusCounterPartyServiceSteps {
                 Assert.assertEquals(OptimusServiceCounterPartyActions.getServiceNameFromResultList(), sname);
                 Assert.assertEquals(OptimusServiceCounterPartyActions.getFeeRateFromResultList(), dataMap.get("FeeRate"));
                 RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Values verified from Search result List"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Verify Search Results of Existing Services of Counter Party")
+    public void verifySearchResultsOfExistingServicesOfCounterParty() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusRelatedCounterPartyActions.verifyEditLinkinRelatedPartySearchResult();
+                Assert.assertTrue(OptimusServiceCounterPartyActions.getServiceNameFromResultList().contains(dataMap.get("ServiceName")), "Service Name contains TXA Service Name");
+                Assert.assertTrue(OptimusServiceCounterPartyActions.getFeeRateFromResultList().contains(dataMap.get("FeeRate")), "Service Fee rate contains TXFeeRate");
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

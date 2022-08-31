@@ -1,6 +1,7 @@
 package modules.OptimusActions;
 
 import org.openqa.selenium.By;
+import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyListPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyMainPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyServicesPage;
 import pageFactory.OptimusPages.CounterParty.OptimusRelatedPartyCreatePage;
@@ -22,6 +23,7 @@ public class OptimusServiceCounterPartyActions {
         waitForVisible(OptimusCounterPartyServicesPage.ServiceCp_Reference);
     }
 
+
     public static void clickServicesCreateTab() {
         waitForClickable(OptimusCounterPartyServicesPage.ServicesCp_CreatePage);
         click(OptimusCounterPartyServicesPage.ServicesCp_CreatePage, "Click Create New Service tab");
@@ -35,18 +37,17 @@ public class OptimusServiceCounterPartyActions {
     }
 
     public static String getFeeRateFromResultList() {
-        waitForVisible((OptimusCounterPartyServicesPage.servicesCP_FeeRate_ListPage));
+        waitForVisible(OptimusCounterPartyServicesPage.servicesCP_FeeRate_ListPage);
         return getElementText(OptimusCounterPartyServicesPage.servicesCP_FeeRate_ListPage);
     }
     public static String getServiceReferenceFromResultList() {
-        waitForVisible((OptimusCounterPartyServicesPage.servicesCP_ServiceReference_ListPage));
+        waitForVisible(OptimusCounterPartyServicesPage.servicesCP_ServiceReference_ListPage);
         return getElementText(OptimusCounterPartyServicesPage.servicesCP_ServiceReference_ListPage);
     }
     public static String getServiceNameFromResultList() {
-        waitForVisible((OptimusCounterPartyServicesPage.servicesCP_ServiceName_ListPage));
+        waitForVisible(OptimusCounterPartyServicesPage.servicesCP_ServiceName_ListPage);
         return getElementText(OptimusCounterPartyServicesPage.servicesCP_ServiceName_ListPage);
     }
-
     public static String getServiceNameFromDetailsPage() {
         waitForVisible((OptimusCounterPartyServicesPage.serviceCp_ServiceName));
         return getElementText(OptimusCounterPartyServicesPage.serviceCp_ServiceName);
