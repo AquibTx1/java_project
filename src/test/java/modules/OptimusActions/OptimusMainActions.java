@@ -1,7 +1,10 @@
 package modules.OptimusActions;
 
+import com.relevantcodes.extentreports.LogStatus;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyListPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyTasksPage;
+import step_definitions.RunCukesTest;
+import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 
 public class OptimusMainActions extends KeywordUtil {
@@ -42,6 +45,9 @@ public class OptimusMainActions extends KeywordUtil {
         delay(2000);
     }
 
-
+    public static void verifyDownloadCSVBtn() {
+        waitForClickable(OptimusCounterPartyListPage.counterPartyList_DownloadCSVBtn);
+        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
+    }
 
 }

@@ -138,7 +138,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName          |
       | QA_TestCase_Auto_Optimus_2_1_5 | CreateCounterParty |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Create Related CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -171,7 +171,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName           | loginCredentials  |
       | QA_TestCase_Auto_Optimus_2_2_1 | RelatedCounterParty | MO_CheckerAccount |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Edit Related CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -208,7 +208,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName           | loginCredentials  |
       | QA_TestCase_Auto_Optimus_2_2_2 | RelatedCounterParty | MO_CheckerAccount |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Delete Related CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -242,7 +242,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName           | loginCredentials  |
       | QA_TestCase_Auto_Optimus_2_2_3 | RelatedCounterParty | MO_CheckerAccount |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing Related CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -255,7 +255,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName           |
       | QA_TestCase_Auto_Optimus_2_2_4 | RelatedCounterParty |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Verify Download CSV is enabled in Related Party
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -268,7 +268,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName           |
       | QA_TestCase_Auto_Optimus_2_2_5 | RelatedCounterParty |
 
-  @OptimusServicesCounterParty
+  @OptimusCounterParty @OptimusServicesCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Create Services in CounterParty Optimus
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -303,7 +303,7 @@ Feature: Test CounterParty feature
 
 
 
-  @OptimusServicesCounterParty
+  @OptimusCounterParty @OptimusServicesCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Edit Services in CounterParty Optimus
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -340,7 +340,7 @@ Feature: Test CounterParty feature
       | QA_TestCase_Auto_Optimus_2_3_2 | ServicesCounterParty | MO_CheckerAccount |
 
 
-  @OptimusServicesCounterParty
+  @OptimusCounterParty @OptimusServicesCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Delete Services in CounterParty Optimus
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -374,7 +374,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName            | loginCredentials  |
       | QA_TestCase_Auto_Optimus_2_3_3 | ServicesCounterParty | MO_CheckerAccount |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing Service of CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -387,7 +387,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName           |
       | QA_TestCase_Auto_Optimus_2_3_4 | ServicesCounterParty |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing CP Service and Verify Download button is Active
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab

@@ -690,7 +690,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusCounterPartyUpdateActions.verifyDownloadCSVBtn();
+                OptimusMainActions.verifyDownloadCSVBtn();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

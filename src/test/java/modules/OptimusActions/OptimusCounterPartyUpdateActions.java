@@ -553,8 +553,5 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
         return getElementText(OptimusCounterPartyListPage.counterPartyList_NoDataTable);
     }
 
-    public static void verifyDownloadCSVBtn() {
-        waitForClickable(OptimusCounterPartyListPage.counterPartyList_DownloadCSVBtn);
-        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
-    }
+
 }
