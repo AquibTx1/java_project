@@ -13,18 +13,18 @@ public class OptimusInstrumentActions  extends KeywordUtil {
 
     static Class<OptimusInstrumentActions> thisClass = OptimusInstrumentActions.class;
 
-
+    public static String newsymbol;
 
     public static void clickInstrumentTab() {
         click(InstrumentMainPage.Instrument_MainTab, "Clicked the Instrument  Tab");
     }
 
     public static void clickTokenLink() {
-        click(InstrumentMainPage.Instrument_token, "Clicked the Instrument Token");
+        click(InstrumentMainPage.Instrument_token, "Clicked the Token Token");
     }
 
     public static void clickNewToken() {
-        click(InstrumentMainPage.Instrument_Newtoken, "Clicked the New Instrument");
+        click(InstrumentMainPage.Instrument_Newtoken, "Clicked the New Token");
     }
 
 
@@ -181,7 +181,8 @@ public class OptimusInstrumentActions  extends KeywordUtil {
     }
 
     public static void createExchangeSymbol(String exchange_symbol) {
-        inputText(InstrumentMainPage.Instrument_ExchangeSymbol, exchange_symbol, "Select Exchange Symbol=" + exchange_symbol);
+        newsymbol=exchange_symbol+KeywordUtil.generateRandomNumber200to500();
+        inputText(InstrumentMainPage.Instrument_ExchangeSymbol, newsymbol, "Select Exchange Symbol=" + exchange_symbol);
 
     }
 
@@ -189,7 +190,6 @@ public class OptimusInstrumentActions  extends KeywordUtil {
         inputText(InstrumentMainPage.Instrument_AltCoin, alt_coin, "Select Exchange =" + alt_coin);
         waitForVisible(By.xpath("(//div[@class='rc-virtual-list-holder-inner']//div[text()='"+alt_coin+"'])[1]"));
         KeywordUtil.click(By.xpath("(//div[@class='rc-virtual-list-holder-inner']//div[text()='"+alt_coin+"'])[1]"), "Alt Coin Type selected"+alt_coin);
-
     }
 
     public static void createQuoteCoin(String quote_coin) {
@@ -214,7 +214,8 @@ public class OptimusInstrumentActions  extends KeywordUtil {
     }
 
     public static void createDeliveryDate(String delivery_date) throws InterruptedException {
-        inputText(InstrumentMainPage.Instrument_DeliveryDate, delivery_date, "Delivery Date =" + delivery_date);
+        String date=delivery_date+KeywordUtil.getCurrentDateTime();
+        inputText(InstrumentMainPage.Instrument_DeliveryDate, date, "Delivery Date =" + date);
         delay(2000);
 
     }
@@ -297,5 +298,92 @@ public class OptimusInstrumentActions  extends KeywordUtil {
     }
 
     public static void createMinOrderNotional(String s) {
+    }
+
+    public static String getexchangeSymbol() {
+        String es=getElementText(By.xpath("//span[text()='Instrument Ref.']//following::tr[2]/td[6]"));
+        LogUtil.infoLog(thisClass,"Exchange Symbol entered is ="+es);
+        return  es;
+    }
+
+    public static void updateExchange(String exchange) {
+        inputText(InstrumentMainPage.Instrument_updateExchange, exchange, "Select Exchange =" + exchange);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + exchange + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + exchange + "']"), "Exchange Type selected"+exchange);
+
+
+    }
+
+    public static void updateAltcoin(String alt_coin) {
+
+        inputText(InstrumentMainPage.Instrument_updateAltCoin, alt_coin, "Select Exchange =" + alt_coin);
+        waitForVisible(By.xpath("(//div[@class='rc-virtual-list-holder-inner']//div[text()='"+alt_coin+"'])[1]"));
+        KeywordUtil.click(By.xpath("(//div[@class='rc-virtual-list-holder-inner']//div[text()='"+alt_coin+"'])[1]"), "Alt Coin Type updated"+alt_coin);
+
+    }
+
+    public static void updateQuoteCoin(String quote_coin) {
+        inputText(InstrumentMainPage.Instrument_updateQuoteCoin, quote_coin, "Select Exchange =" + quote_coin);
+        waitForVisible(By.xpath("(//div[@class='rc-virtual-list-holder-inner']//div[text()='"+quote_coin+"'])[1]"));
+        KeywordUtil.click(By.xpath("(//div[@class='rc-virtual-list-holder-inner']//div[text()='"+quote_coin+"'])[1]"), "Quote Coin Type updated"+quote_coin);
+
+    }
+
+    public static void updateDerivateType(String instrument_derivative_type) {
+        inputText(InstrumentMainPage.Instrument_updateInstrumentType, instrument_derivative_type, "Select Exchange =" + instrument_derivative_type);
+        waitForVisible(By.xpath("(//div[@class='rc-virtual-list-holder-inner']//div[text()='"+instrument_derivative_type+"'])[1]"));
+        KeywordUtil.click(By.xpath("(//div[@class='rc-virtual-list-holder-inner']//div[text()='"+instrument_derivative_type+"'])[1]"), "Derivative Type Updated"+instrument_derivative_type);
+
+    }
+
+    public static void updateMarginType(String margin_type) {
+        inputText(InstrumentMainPage.Instrument_updateMarginType, margin_type, "Select Exchange =" + margin_type);
+        waitForVisible(By.xpath("(//div[@class='rc-virtual-list-holder-inner']//div[text()='"+margin_type+"'])[1]"));
+        KeywordUtil.click(By.xpath("(//div[@class='rc-virtual-list-holder-inner']//div[text()='"+margin_type+"'])[1]"), "Margin  Type Updated"+margin_type);
+
+
+    }
+
+    public static void updateDeliveryDate(String delivery_date) throws InterruptedException {
+        clearInputUsingKeys(InstrumentMainPage.Instrument_updateDeliveryDate);
+        String date=delivery_date+KeywordUtil.getCurrentDateTime();
+        inputText(InstrumentMainPage.Instrument_updateDeliveryDate, date, "Updated Delivery Date is =" + date);
+        delay(2000);
+
+    }
+
+    public static void updatePricePrecision(String price_precision) throws InterruptedException {
+        clearInputUsingKeys(InstrumentMainPage.Instrument_updatePricePrecision);
+        inputText(InstrumentMainPage.Instrument_updatePricePrecision, price_precision, "Update Price Precision=" + price_precision);
+        delay(2000);
+    }
+
+    public static void updateSizePrecision(String size_precision) throws InterruptedException {
+        clearInputUsingKeys(InstrumentMainPage.Instrument_updateSizePrecision);
+        inputText(InstrumentMainPage.Instrument_updateSizePrecision, size_precision, "Updated Precision=" + size_precision);
+        delay(2000);
+    }
+
+    public static void updateMinOrderSize(String min_order) throws InterruptedException {
+        clearInputUsingKeys(InstrumentMainPage.Instrument_updateMinOrderSize);
+        inputText(InstrumentMainPage.Instrument_updateMinOrderSize, min_order, "Updated Min. Order=" + min_order);
+        delay(2000);
+    }
+
+    public static void updateMaxOrder(String max_ordersize) throws InterruptedException {
+        clearInputUsingKeys(InstrumentMainPage.Instrument_updateMaxOrderSize);
+        inputText(InstrumentMainPage.Instrument_updateMaxOrderSize, max_ordersize, "Updated Max Order  =" + max_ordersize);
+        delay(2000);
+    }
+
+    public static void updateLotSize(String lot_size) throws InterruptedException {
+        clearInputUsingKeys(InstrumentMainPage.Instrument_updateLotSize);
+        inputText(InstrumentMainPage.Instrument_updateLotSize, lot_size, "Updated Lot Size =" + lot_size);
+
+    }
+
+    public static void updateTickSize(String tick_size) throws InterruptedException {
+        clearInputUsingKeys(InstrumentMainPage.Instrument_updateTickSize);
+        inputText(InstrumentMainPage.Instrument_updateTickSize, tick_size, "Updated Tick Size=" + tick_size);
     }
 }

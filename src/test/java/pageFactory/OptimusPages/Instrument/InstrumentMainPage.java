@@ -40,18 +40,33 @@ public class InstrumentMainPage {
     public static By Instrument_TradingInstruments= By.xpath("//a[text()='Trading Instruments']");
     public static By Instrument_NewTradingInstrument= By.xpath("//span[text()='New Trading Instrument']");
     public static By Instrument_Exchange= By.id("create_instrument_exchange_id");
+    public static By Instrument_updateExchange= By.id("update_instrument_exchange_id");
+
     public static By Instrument_ExchangeSymbol= By.id("create_instrument_exchange_symbol");
     public static By Instrument_AltCoin= By.id("create_instrument_alt_coin");
+    public static By Instrument_updateAltCoin= By.id("update_instrument_alt_coin");
+
     public static By Instrument_QuoteCoin= By.id("create_instrument_quote_coin");
+    public static By Instrument_updateQuoteCoin= By.id("update_instrument_quote_coin");
     public static By Instrument_InstrumentType= By.id("create_instrument_instrument_type");
+    public static By Instrument_updateInstrumentType= By.id("update_instrument_instrument_type");
     public static By Instrument_MarginType= By.id("create_instrument_margin_type");
+    public static By Instrument_updateMarginType= By.id("update_instrument_margin_type");
     public static By Instrument_DeliveryDate= By.id("create_instrument_delivery_date");
+    public static By Instrument_updateDeliveryDate= By.id("update_instrument_delivery_date");
     public static By Instrument_PricePrecision= By.id("create_instrument_price_precision");
+    public static By Instrument_updatePricePrecision= By.id("update_instrument_price_precision");
     public static By Instrument_SizePrecision= By.id("create_instrument_size_precision");
+    public static By Instrument_updateSizePrecision= By.id("update_instrument_size_precision");
     public static By Instrument_MinOrderSize= By.id("create_instrument_min_order_size");
+    public static By Instrument_updateMinOrderSize= By.id("update_instrument_min_order_size");
+
     public static By Instrument_MaxOrderSize= By.id("create_instrument_max_order_size");
+    public static By Instrument_updateMaxOrderSize= By.id("update_instrument_max_order_size");
     public static By Instrument_LotSize= By.id("create_instrument_lot_size");
+    public static By Instrument_updateLotSize= By.id("update_instrument_lot_size");
     public static By Instrument_TickSize= By.id("create_instrument_tick_size");
+    public static By Instrument_updateTickSize= By.id("update_instrument_tick_size");
     public static By Instrument_Min_Order= By.id("create_instrument_min_order_notional");
     public static By Instrument_Max_Order= By.id("create_instrument_max_num_orders");
     public static By Instrument_Min_Price= By.id("create_instrument_min_price");
