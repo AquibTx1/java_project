@@ -5,6 +5,7 @@ import pageFactory.OptimusPages.Account.OptimusAccountCreatePage;
 import pageFactory.OptimusPages.Account.OptimusAccountMainPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyMainPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyServicesPage;
+import step_definitions.RunCukesTest;
 import utilities.KeywordUtil;
 
 public class OptimusAccountActions extends KeywordUtil {
@@ -25,8 +26,13 @@ public class OptimusAccountActions extends KeywordUtil {
         waitForVisible(OptimusAccountMainPage.account_EditLink_List);
     }
 
-    public static void editLinkinResultPresent() {
+    public static void waitForEditLinkinResult() {
         waitForVisible(OptimusAccountMainPage.account_EditLink_List);
+    }
+
+    public static void clickEditLinkinResult() {
+        click(OptimusAccountMainPage.account_EditLink_List, "Edit Link clicked, in Search result");
+        waitForVisible(OptimusAccountCreatePage.account_MainAccountID);
     }
 
     public static String getAccountNameFromList() {
@@ -34,6 +40,10 @@ public class OptimusAccountActions extends KeywordUtil {
         return getElementText(OptimusAccountMainPage.account_AccountName_List);
     }
 
+    public static String account_GetAccountIDFromList() {
+        waitForVisible(OptimusAccountMainPage.account_AccountID_List);
+        return getElementText(OptimusAccountMainPage.account_AccountID_List);
+    }
     public static String getAccountLoginFromList() {
         waitForVisible(OptimusAccountMainPage.account_AccountLogin_List);
         return getElementText(OptimusAccountMainPage.account_AccountLogin_List);
@@ -45,8 +55,8 @@ public class OptimusAccountActions extends KeywordUtil {
     }
 
     public static String get_account_AccountID() {
-        waitForVisible(OptimusAccountCreatePage.account_AccountID);
-        return getElementText(OptimusAccountCreatePage.account_AccountID);
+        waitForPresent(OptimusAccountCreatePage.account_AccountID);
+        return getElementValueWithVisibility(OptimusAccountCreatePage.account_AccountID);
     }
 
     public static void account_MainAccountID(String mainAccountID) throws InterruptedException {
@@ -98,7 +108,10 @@ public class OptimusAccountActions extends KeywordUtil {
         clearInputUsingKeys(OptimusAccountCreatePage.account_AccountName);
         inputText(OptimusAccountCreatePage.account_AccountName, account, "Enter account_AccountName ");
     }
-
+    public static String getAccountNameFromDetails() {
+        waitForVisible(OptimusAccountCreatePage.account_AccountName);
+        return getElementText(OptimusAccountCreatePage.account_AccountName);
+    }
     public static void account_AccountLogin(String account) throws InterruptedException {
         waitForClickable(OptimusAccountCreatePage.account_AccountLogin);
         clearInputUsingKeys(OptimusAccountCreatePage.account_AccountLogin);

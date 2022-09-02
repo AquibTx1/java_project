@@ -41,8 +41,8 @@ public class OptimusMainActions extends KeywordUtil {
         waitForVisible(OptimusCounterPartyTasksPage.tasks_CpApproveBtn);
         click(OptimusCounterPartyTasksPage.tasks_CpApproveBtn, "Click Approve All button");
         waitForVisible(OptimusCounterPartyTasksPage.tasks_CpApprovePopUp);
-        click(OptimusCounterPartyTasksPage.tasks_CpApproveAll_YesBtn, "Approve all Click yes button");
         delay(2000);
+        click(OptimusCounterPartyTasksPage.tasks_CpApproveAll_YesBtn, "Approve all Click yes button");
     }
 
     public static void verifyDownloadCSVBtn() {

@@ -20,7 +20,7 @@ public class OptimusAccountsSteps {
 
     String mainAccID;
     String accName;
-    String accLogin;
+    String accID;
 
     @And("Open Account main tab")
     public void openAccountMainTab() {
@@ -85,7 +85,7 @@ public class OptimusAccountsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusMainActions.searchForItem(dataMap.get("AccountName"));
+                OptimusMainActions.searchForItem(dataMap.get("AccountLogin"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -104,7 +104,7 @@ public class OptimusAccountsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusAccountActions.editLinkinResultPresent();
+                OptimusAccountActions.waitForEditLinkinResult();
                 Assert.assertTrue(OptimusAccountActions.getAccountNameFromList().contains(dataMap.get("AccountName")), "Account contains TXAAccount Name");
                 Assert.assertTrue(OptimusAccountActions.getAccountLoginFromList().contains(dataMap.get("AccountLogin")), "Account contains TXAAccountLogin");
             } catch (Throwable e) {
@@ -278,10 +278,152 @@ public class OptimusAccountsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusAccountActions.editLinkinResultPresent();
+                OptimusAccountActions.waitForEditLinkinResult();
                 Assert.assertEquals(OptimusAccountActions.getAccountNameFromList(), accName, "Account Name Matches");
                 Assert.assertTrue(OptimusAccountActions.getAccountNameFromList().contains(dataMap.get("AccountName")), "Account contains TXAAccount Name");
                 Assert.assertTrue(OptimusAccountActions.getAccountLoginFromList().contains(dataMap.get("AccountLogin")), "Account contains TXAAccountLogin");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click on Edit Link in Search Results to Load Account details")
+    public void clickOnEditLinkInSearchResultsToLoadAccountDetails() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.waitForEditLinkinResult();
+                OptimusAccountActions.clickEditLinkinResult();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Take Account ID for Reference")
+    public void takeAccountIDForReference() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                accID = OptimusAccountActions.get_account_AccountID();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter Dropdown Fields to Update Account")
+    public void enterDropdownFieldsToUpdateAccount() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.account_AccountSource_update(dataMap.get("AccountSource"));
+                OptimusAccountActions.account_AccountType_update(dataMap.get("AccountType"));
+                OptimusAccountActions.account_Function_update(dataMap.get("Function"));
+                OptimusAccountActions.account_Permission_update(dataMap.get("Permission"));
+                OptimusAccountActions.account_Entity_update(dataMap.get("Entity"));
+                OptimusAccountActions.account_WalletController_update(dataMap.get("WalletController"));
+                OptimusAccountActions.account_PortfolioNumber_update(dataMap.get("PortfolioNumber"));
+                OptimusAccountActions.account_CounterpartyRef_update(dataMap.get("CounterpartyRef"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for Account ID in tasks to approve")
+    public void searchForAccountIDInTasksToApprove() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusMainActions.searchTasks(accID);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for Updated Account in List")
+    public void searchForUpdatedAccountInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusMainActions.searchForItem(accID);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Account ID in search results")
+    public void verifyAccountIDInSearchResults() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.waitForEditLinkinResult();
+                Assert.assertEquals(OptimusAccountActions.account_GetAccountIDFromList(), accID, "Account ID Matches");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Take Account Name for reference")
+    public void takeAccountNameForReference() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                accName = OptimusAccountActions.getAccountNameFromDetails();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
