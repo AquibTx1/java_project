@@ -299,5 +299,4 @@ public class OptimusAccountActions extends KeywordUtil {
         click(OptimusAccountCreatePage.account_Delete_btn, "Clicking Delete Account button");
     }
 
-
 }

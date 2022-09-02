@@ -265,7 +265,7 @@ public class OptimusCounterPartySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-//Verify Success Message of create counter party
+//Verify Success Message of create and update pages
                 OptimusCounterPartyCreateActions.waitForSuccessMessage();
                 Assert.assertEquals(OptimusCounterPartyCreateActions.getSuccessMessageText(), "Success!", "Expected and Actual matching");
             } catch (Throwable e) {

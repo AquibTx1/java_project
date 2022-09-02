@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import modules.OptimusActions.*;
 import org.testng.Assert;
+import pageFactory.OptimusPages.Account.OptimusNitroAccountPage;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
 import utilities.KeywordUtil;
@@ -21,6 +22,8 @@ public class OptimusAccountsSteps {
     String mainAccID;
     String accName;
     String accID;
+    String accIDinNotif;
+    String nitroAccountName;
 
     @And("Open Account main tab")
     public void openAccountMainTab() {
@@ -424,6 +427,87 @@ public class OptimusAccountsSteps {
         } else {
             try {
                 accName = OptimusAccountActions.getAccountNameFromDetails();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open Create New Nitro Accounts Page")
+    public void openCreateNewNitroAccountsPage() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountNitroActions.clickCreateNewNitro_btn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open Nitro Accounts side tab")
+    public void openNitroAccountsSideTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusMainActions.clickNitroSideTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter details in Nitro Account")
+    public void enterDetailsInNitroAccount() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                nitroAccountName = dataMap.get("AccountName") + KeywordUtil.generateRandomNumber200to500();
+                OptimusAccountNitroActions.nitroAccount_AccountName(nitroAccountName);
+                OptimusAccountNitroActions.nitroAccount_Exchange(dataMap.get("Exchange"));
+                OptimusAccountNitroActions.nitroAccount_APIAccess(dataMap.get("APIAccess"));
+                OptimusAccountNitroActions.nitroAccount_APISecret(dataMap.get("APISecret"));
+                OptimusAccountNitroActions.nitroAccount_AccountType(dataMap.get("AccountType"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Take Nitro Account ID from Success Message")
+    public void takeNitroAccountIDFromSuccessMessage() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                accIDinNotif = OptimusAccountNitroActions.getAccountIDFromNotif();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

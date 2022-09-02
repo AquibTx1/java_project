@@ -1,6 +1,7 @@
 package modules.OptimusActions;
 
 import com.relevantcodes.extentreports.LogStatus;
+import pageFactory.OptimusPages.Account.OptimusAccountMainPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyListPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyTasksPage;
 import step_definitions.RunCukesTest;
@@ -48,6 +49,10 @@ public class OptimusMainActions extends KeywordUtil {
     public static void verifyDownloadCSVBtn() {
         waitForClickable(OptimusCounterPartyListPage.counterPartyList_DownloadCSVBtn);
         RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
+    }
+
+    public static void clickNitroSideTab() {
+        click(OptimusAccountMainPage.account_NitroAccount_SideTab, "Clicking Nitro Account Side tab");
     }
 
 }
