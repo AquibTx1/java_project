@@ -306,6 +306,12 @@ public class OptimusInstrumentActions  extends KeywordUtil {
         return  es;
     }
 
+    public static String getAltcoin() {
+        String es=getElementText(By.xpath("//span[text()='Instrument Ref.']//following::tr[2]/td[7]"));
+        LogUtil.infoLog(thisClass,"Exchange Symbol entered is ="+es);
+        return  es;
+    }
+
     public static void updateExchange(String exchange) {
         inputText(InstrumentMainPage.Instrument_updateExchange, exchange, "Select Exchange =" + exchange);
         waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + exchange + "']"));

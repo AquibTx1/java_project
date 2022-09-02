@@ -84,7 +84,7 @@ Feature: Test Instrument feature
     And Input the Asset
     And Approve the Asset created
     And Logout from MO Account
-      #Login and Check the Approved record
+       #Login and Check the Check the deleted  record
     Given Login to Optimus with Valid Credentials
     And Open the Instrument Tab
     And Verify the Token Deleted
@@ -179,3 +179,59 @@ Feature: Test Instrument feature
     Examples:
       | TestCaseID                     | SheetName |loginCredentials  |
       | QA_TestCase_Auto_Optimus_5_2_2 | InstrumentTrading | MO_CheckerAccount|
+
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to Delete the Existing Trading Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Trading Instrument
+    And Sort the data
+    And Search the Exchange Symbol to be deleted
+    And Edit the Existing fields
+    And Click delete Instrument
+     #Login Again with MO Account
+    Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
+    And Logout from Optimus
+    And Input Optimus Username and Password
+    And Click Optimus Login Button
+    Then Verify user is able to login to Optimus successfully
+    And Open the Instrument Tab
+    And Click Tasks link
+    And Navigate to Instrument Task
+    And Input the Instrument Ref. id
+    And Approve the Task
+    And Wait for sometime
+    And Logout from MO Account
+#      #Login and Check the Check the deleted  record
+    Given Login to Optimus with Valid Credentials
+    And Open the Instrument Tab
+    And Click the Trading Instrument
+    And Verify the Trading Instrument deleted
+
+
+    Examples:
+      | TestCaseID                     | SheetName |loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_2_2 | InstrumentTrading | MO_CheckerAccount|
+
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to Search a record the from the Instrument List
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Trading Instrument
+    And Search the existing Trading Instrument
+    Then Verify the Trading Instrument
+
+    Examples:
+      | TestCaseID                      | SheetName |loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_2_3 | InstrumentTrading | MO_CheckerAccount|
+
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to Download list from Portfolio
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Trading Instrument
+    And Click the download csv
+    Then Verify the file is downloaded
+    Examples:
+      | TestCaseID                      | SheetName |loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_2_4 | InstrumentTrading | MO_CheckerAccount|

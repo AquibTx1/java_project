@@ -727,4 +727,86 @@ public class OptimusInstrumentSteps {
             }
         }
     }
+
+    @And("Search the Exchange Symbol to be deleted")
+    public void searchTheExchangeSymbolToBeDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(dataMap.get("Exchange Symbol"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Verify the Trading Instrument deleted")
+    public void verifyTheTradingInstrumentDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.newSettlement_edit);
+                OptimusSettlementActions.sortSettlementRef();
+                OptimusSettlementActions.inputValue(refid_instrument);
+                Assert.assertEquals(OptimusSettlementActions.getNoData(),"No Data");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Search the existing Trading Instrument")
+    public void searchTheExistingTradingInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(dataMap.get("Alt Coin"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @Then("Verify the Trading Instrument")
+    public void verifyTheTradingInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusInstrumentActions.getAltcoin(),dataMap.get("Alt Coin"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
 }
