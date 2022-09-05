@@ -17,6 +17,9 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         click(XAlphaDealEnquiryPage.dealEnquiryTab, "Click deal enquiry tab");
     }
 
+    public static void clickDeaTradeDocumentsTab() {
+        click(XAlphaDealEnquiryPage.tradedocumentsTab, "Click Trade Doc. tab");
+    }
     public static void waitFordealEnquiry_navbar() {
         waitForVisible(XAlphaDealEnquiryPage.dealEnquiry_navbar);
     }
@@ -306,6 +309,10 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         click(XAlphaDealEnquiryPage.dealEnquiry_LoadDealBtn, "Click load deal button");
     }
 
+    public static void clickLoadDealBtnTradeDocument() {
+        click(XAlphaDealEnquiryPage.tradedocuments_LoadDealBtn, "Click load deal button");
+    }
+
     public static void closeSuccessNotification() {
         click(XAlphaDealEnquiryPage.dealEnquiry_LoadDealNotifXBtn, "Close the success notification");
     }
@@ -425,4 +432,57 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     }
 
+    public static void inputDealRefid_TradeDocuments(String dealRefId) {
+        System.out.println("inputDealRef=" + dealRefId);
+        inputText(XAlphaDealEnquiryPage.TradeDocuments_dealRef, dealRefId, "Input deal reference=" + dealRefId);
+
+    }
+
+    public static void clickExpandbutton() {
+        click(XAlphaDealEnquiryPage.tradedocuments_expandbtn,"Clicked the Expand Button");
+    }
+
+    public static void selectEditDraft() throws InterruptedException {
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_editdraft);
+    }
+
+    public static void selecReview() throws InterruptedException {
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox);
+        delay(2000);
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox2);
+    }
+
+    public static void selectPrepareEmail() {
+        click(XAlphaDealEnquiryPage.tradedocuments_emailbtn,"Clicked the Prepare Email button");
+    }
+
+    public static void clearAllFileds() throws InterruptedException
+    {
+
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_To);
+        delay(3000);
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_CC);
+        delay(3000);
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_BCC);
+    }
+
+    public static void closeSettlementReview() {
+        click(XAlphaDealEnquiryPage.tradedocuments_closebtn,"Clicked the Close Button");
+    }
+
+    public static void inputSendername(String name) {
+        inputText(XAlphaDealEnquiryPage.tradedocuments_Toinputfield, name, "Sender Name Entered =" + name);
+        pressEnter(XAlphaDealEnquiryPage.tradedocuments_Toinputfield);
+    }
+
+    public static void ChooseSendmail() {
+        click(XAlphaDealEnquiryPage.tradedocuments_sendbtn,"Clicked the Send Button");
+    }
+
+    public static String getConfirmationStatus() {
+
+        String status = KeywordUtil.getElementText(By.xpath("//span[text()='Deal Ref']//following::tbody[1]/tr[2]/td[9]/span/div/div[1]"));
+        LogUtil.infoLog(thisClass, "referencePrice=" + status);
+        return status;
+    }
 }

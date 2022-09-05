@@ -6,6 +6,8 @@ public class XAlphaDealEnquiryPage {
 
     //deal Enquiry
     public static By dealEnquiryTab = By.linkText("Deal Enquiry");
+
+    public static By tradedocumentsTab = By.linkText("Trade Documents");
     public static By dealEnquiry_navbar = By.linkText("deals");
     public static By dealEnquiry_loading = By.xpath("//span[@class='ant-spin-dot ant-spin-dot-spin']");
 
@@ -85,4 +87,36 @@ public class XAlphaDealEnquiryPage {
     //deal details
     public static By dealDetail_dealRef = By.xpath("//input[@placeholder='Deal Ref']");
 
+    //Trade Documents
+
+    public static By TradeDocuments_dealRef = By.xpath("//label[text()='Deal Ref.']//following::input[1]");
+
+    public static By tradedocuments_expandbtn = By.xpath("//button[@aria-label='Expand row']");
+
+    public static By tradedocuments_confirmation = By.xpath("//div[text()='Confirmation']");
+
+    public static By tradedocuments_editdraft = By.xpath("//span[text()='Confirmation']//following::table[2]/tbody/tr[2]/td[7]/div/button");
+
+    public static By tradedocuments_reviewPage = By.xpath("//span[text()='hide details']");
+
+    public static By tradedocuments_reviewPagecheckbox = By.xpath("//span[text()='Add Instruction ']/following::span[2]");
+    public static By tradedocuments_reviewPagecheckbox2 = By.xpath("//label[@class='ant-checkbox-wrapper ant-checkbox-wrapper-in-form-item']/span[1]");
+
+    public static By tradedocuments_emailbtn = By.xpath("//span[text()='Prepare Email']");
+
+    public static By tradedocuments_sender = By.xpath("//input[@id='sender']");
+
+    public static By tradedocuments_To = By.xpath("//input[@id='recipients']//following::span[3]");
+    public static By tradedocuments_CC = By.xpath("//input[@id='cc']//following::span[3]");
+    public static By tradedocuments_BCC = By.xpath("//input[@id='bcc']//following::span[3]");
+
+    public static By tradedocuments_LoadDealBtn = By.xpath("//span[text()='Load']");
+
+    public static By tradedocuments_resetbtn = By.xpath("//span[text()='Reset Form']");
+
+    public static By tradedocuments_closebtn = By.xpath("//button[@aria-label='Close']");
+
+    public static By tradedocuments_Toinputfield = By.xpath("//input[@id='recipients']");
+
+    public static By tradedocuments_sendbtn = By.xpath("//span[@aria-label='send']");
 }
