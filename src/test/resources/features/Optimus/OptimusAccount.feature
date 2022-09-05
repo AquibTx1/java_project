@@ -151,3 +151,81 @@ Feature: Test CounterParty feature
     Examples:
       | TestCaseID                     | SheetName    |
       | QA_TestCase_Auto_Optimus_6_2_1 | NitroAccount |
+
+  @OptimusAccount
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Edit Existing Nitro Account
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open Account main tab
+    And Open Nitro Accounts side tab
+    And Search for existing Nitro Account in List
+    And Click Edit button for Nitro Account
+    And Edit details in Nitro Account
+    And Take Account Name from Nitro Account
+    And Click Create button to create Account
+    And Take Nitro Account ID from Success Message
+    Then Verify Success Message on Create and Update Page
+
+    Examples:
+      | TestCaseID                     | SheetName    |
+      | QA_TestCase_Auto_Optimus_6_2_2 | NitroAccount |
+
+  @OptimusAccount
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Edit Existing IP Binding of Nitro Account
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open Account main tab
+    And Open Nitro Accounts side tab
+    And Search for existing Nitro Account in List
+    And Take Account Name from Nitro Account List
+    And Click Edit IP Binding button for Nitro Account
+    And Edit IP Binding details in Nitro Account
+    And Click Create button to create Account
+    And Search for updated Nitro Account in List
+    And Click Edit IP Binding button for Nitro Account
+    Then Verify Values of IP Binding is Updated For Nitro Account
+
+    Examples:
+      | TestCaseID                     | SheetName    |
+      | QA_TestCase_Auto_Optimus_6_2_3 | NitroAccount |
+
+
+  @OptimusAccount
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Unlock and Run Broker for Nitro Account
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open Account main tab
+    And Open Nitro Accounts side tab
+    And Search for existing Nitro Account in List
+    And Click Unlock button in List for Nitro Account
+    And Click Run Broker button in List for Nitro Account
+    Then Verify Success Message on Create and Update Page
+
+    Examples:
+      | TestCaseID                     | SheetName    |
+      | QA_TestCase_Auto_Optimus_6_2_4 | NitroAccount |
+
+  @OptimusAccount @debug
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Unlock and Run Balance Listener for Nitro Account
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open Account main tab
+    And Open Nitro Accounts side tab
+    And Search for existing Nitro Account in List
+    And Click Unlock button in List for Nitro Account
+    And Click Run Balance Listener button in List for Nitro Account
+    Then Verify Success Message on Create and Update Page
+
+    Examples:
+      | TestCaseID                     | SheetName    |
+      | QA_TestCase_Auto_Optimus_6_2_5 | NitroAccount |
+
+  @OptimusAccount
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Unlock and Run Order Listener for Nitro Account
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open Account main tab
+    And Open Nitro Accounts side tab
+    And Search for existing Nitro Account in List
+    And Click Unlock button in List for Nitro Account
+    And Click Run Order Listener button in List for Nitro Account
+    Then Verify Success Message on Create and Update Page
+
+    Examples:
+      | TestCaseID                     | SheetName    |
+      | QA_TestCase_Auto_Optimus_6_2_6 | NitroAccount |
