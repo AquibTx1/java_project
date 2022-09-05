@@ -72,7 +72,4 @@ public class OptimusRelatedPartyCreatePage {
     public static By relatedParty_ResetBtn = By.xpath("//button[@type='button']/span[contains(text(),'Reset')]");
     public static By updateRelatedParty_DeleteBtn = By.cssSelector("button.ant-btn.ant-btn-danger.ant-btn-block");
 
-
-
-
 }

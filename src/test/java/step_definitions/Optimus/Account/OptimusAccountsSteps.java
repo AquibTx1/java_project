@@ -1,0 +1,522 @@
+package step_definitions.Optimus.Account;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import modules.OptimusActions.*;
+import org.testng.Assert;
+import pageFactory.OptimusPages.Account.OptimusNitroAccountPage;
+import step_definitions.BaseStepDefinitions;
+import utilities.GlobalUtil;
+import utilities.KeywordUtil;
+
+import java.util.HashMap;
+
+public class OptimusAccountsSteps {
+
+    public static HashMap<String, String> dataMap;
+
+    public OptimusAccountsSteps() {
+        dataMap = BaseStepDefinitions.dataMap;
+    }
+
+    String mainAccID;
+    String accName;
+    String accID;
+    String accIDinNotif;
+    String nitroAccountName;
+
+    @And("Open Account main tab")
+    public void openAccountMainTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.openAccountMainTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open Accounts side tab")
+    public void openAccountsSideTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.openAccountsSideTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open Accounts List tab")
+    public void openAccountsListTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.openAccountListTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for existing Account in List")
+    public void searchForExistingAccountInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusMainActions.searchForItem(dataMap.get("AccountLogin"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Search Results of Existing Accounts")
+    public void verifySearchResultsOfExistingAccounts() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.waitForEditLinkinResult();
+                Assert.assertTrue(OptimusAccountActions.getAccountNameFromList().contains(dataMap.get("AccountName")), "Account contains TXAAccount Name");
+                Assert.assertTrue(OptimusAccountActions.getAccountLoginFromList().contains(dataMap.get("AccountLogin")), "Account contains TXAAccountLogin");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open Create New Accounts Page")
+    public void openCreateNewAccountsPage() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.openAccountCreateTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter Mandatory And Text Fields in Accounts")
+    public void enterMandatoryAndTextFieldsInAccounts() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                mainAccID = dataMap.get("MainAccountID") + KeywordUtil.generateRandomNumber200to500();
+                OptimusAccountActions.account_MainAccountID(mainAccID);
+                OptimusAccountActions.account_Exchange(dataMap.get("Exchange"));
+                accName = dataMap.get("AccountName") + KeywordUtil.generateRandomNumber200to500();
+                OptimusAccountActions.account_AccountName(accName);
+                OptimusAccountActions.account_AccountLogin(dataMap.get("AccountLogin"));
+                OptimusAccountActions.account_Owner(dataMap.get("Owner"));
+                OptimusAccountActions.account_Comment(dataMap.get("Comment"));
+                OptimusAccountActions.account_Channel1(dataMap.get("Channel1"));
+                OptimusAccountActions.account_Address1(dataMap.get("Address1"));
+                OptimusAccountActions.account_Memo1(dataMap.get("Memo1"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter Dropdown Fields for Account")
+    public void enterDropdownFieldsForAccount() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.account_AccountSource(dataMap.get("AccountSource"));
+                OptimusAccountActions.account_AccountType(dataMap.get("AccountType"));
+                OptimusAccountActions.account_Function(dataMap.get("Function"));
+                OptimusAccountActions.account_Permission(dataMap.get("Permission"));
+                OptimusAccountActions.account_Entity(dataMap.get("Entity"));
+                OptimusAccountActions.account_WalletController(dataMap.get("WalletController"));
+                OptimusAccountActions.account_PortfolioNumber(dataMap.get("PortfolioNumber"));
+                OptimusAccountActions.account_CounterpartyRef(dataMap.get("CounterpartyRef"));
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Create button to create Account")
+    public void clickCreateButtonToCreateAccount() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.click_Account_Create_btn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for Account tasks to approve")
+    public void searchForAccountTasksToApprove() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusMainActions.searchTasks(accName);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Approve searched tasks")
+    public void approveSearchedTasks() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusMainActions.selectFirstTask();
+                OptimusMainActions.selectAllTasks();
+                OptimusMainActions.approveAllSelectedTasks();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for created Account in List")
+    public void searchForCreatedAccountInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusMainActions.searchForItem(accName);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Search Results of added or updated Accounts")
+    public void verifySearchResultsOfAddedOrUpdatedAccounts() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.waitForEditLinkinResult();
+                Assert.assertEquals(OptimusAccountActions.getAccountNameFromList(), accName, "Account Name Matches");
+                Assert.assertTrue(OptimusAccountActions.getAccountNameFromList().contains(dataMap.get("AccountName")), "Account contains TXAAccount Name");
+                Assert.assertTrue(OptimusAccountActions.getAccountLoginFromList().contains(dataMap.get("AccountLogin")), "Account contains TXAAccountLogin");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click on Edit Link in Search Results to Load Account details")
+    public void clickOnEditLinkInSearchResultsToLoadAccountDetails() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.waitForEditLinkinResult();
+                OptimusAccountActions.clickEditLinkinResult();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Take Account ID for Reference")
+    public void takeAccountIDForReference() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                accID = OptimusAccountActions.get_account_AccountID();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter Dropdown Fields to Update Account")
+    public void enterDropdownFieldsToUpdateAccount() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.account_AccountSource_update(dataMap.get("AccountSource"));
+                OptimusAccountActions.account_AccountType_update(dataMap.get("AccountType"));
+                OptimusAccountActions.account_Function_update(dataMap.get("Function"));
+                OptimusAccountActions.account_Permission_update(dataMap.get("Permission"));
+                OptimusAccountActions.account_Entity_update(dataMap.get("Entity"));
+                OptimusAccountActions.account_WalletController_update(dataMap.get("WalletController"));
+                OptimusAccountActions.account_PortfolioNumber_update(dataMap.get("PortfolioNumber"));
+                OptimusAccountActions.account_CounterpartyRef_update(dataMap.get("CounterpartyRef"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for Account ID in tasks to approve")
+    public void searchForAccountIDInTasksToApprove() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusMainActions.searchTasks(accID);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for Updated Account in List")
+    public void searchForUpdatedAccountInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusMainActions.searchForItem(accID);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Account ID in search results")
+    public void verifyAccountIDInSearchResults() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.waitForEditLinkinResult();
+                Assert.assertEquals(OptimusAccountActions.account_GetAccountIDFromList(), accID, "Account ID Matches");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Take Account Name for reference")
+    public void takeAccountNameForReference() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                accName = OptimusAccountActions.getAccountNameFromDetails();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open Create New Nitro Accounts Page")
+    public void openCreateNewNitroAccountsPage() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountNitroActions.clickCreateNewNitro_btn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open Nitro Accounts side tab")
+    public void openNitroAccountsSideTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusMainActions.clickNitroSideTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter details in Nitro Account")
+    public void enterDetailsInNitroAccount() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                nitroAccountName = dataMap.get("AccountName") + KeywordUtil.generateRandomNumber200to500();
+                OptimusAccountNitroActions.nitroAccount_AccountName(nitroAccountName);
+                OptimusAccountNitroActions.nitroAccount_Exchange(dataMap.get("Exchange"));
+                OptimusAccountNitroActions.nitroAccount_APIAccess(dataMap.get("APIAccess"));
+                OptimusAccountNitroActions.nitroAccount_APISecret(dataMap.get("APISecret"));
+                OptimusAccountNitroActions.nitroAccount_AccountType(dataMap.get("AccountType"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Take Nitro Account ID from Success Message")
+    public void takeNitroAccountIDFromSuccessMessage() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                accIDinNotif = OptimusAccountNitroActions.getAccountIDFromNotif();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+}

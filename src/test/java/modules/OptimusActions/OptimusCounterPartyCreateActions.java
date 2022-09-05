@@ -416,29 +416,6 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         waitForVisible(OptimusCounterPartyTasksPage.tasks_CounterPartyTab);
     }
 
-    public static void searchTasks(String searchText) {
-        click(OptimusCounterPartyTasksPage.tasks_CpSearchBox, "Click Search box");
-        inputText(OptimusCounterPartyTasksPage.tasks_CpSearchBox, searchText, "Searching Tasks");
-        click(OptimusCounterPartyTasksPage.tasks_CpSearchBtn, "Click Search button");
-        waitForVisible(OptimusCounterPartyTasksPage.tasks_CpSearchResult1);
-    }
-
-    public static void selectFirstTask() {
-        waitForVisible(OptimusCounterPartyTasksPage.tasks_CpSearchResult1);
-        click(OptimusCounterPartyTasksPage.tasks_CpSearchResult1_Checkbox, "Click first result check box");
-    }
-
-    public static void selectAllTasks() {
-        waitForVisible(OptimusCounterPartyTasksPage.tasks_CpSelectAllBtn);
-        click(OptimusCounterPartyTasksPage.tasks_CpSelectAllBtn, "Select All tasks on page");
-    }
-
-    public static void approveAllSelectedTasks() {
-        waitForVisible(OptimusCounterPartyTasksPage.tasks_CpApproveBtn);
-        click(OptimusCounterPartyTasksPage.tasks_CpApproveBtn, "Click Approve All button");
-        waitForVisible(OptimusCounterPartyTasksPage.tasks_CpApprovePopUp);
-        click(OptimusCounterPartyTasksPage.tasks_CpApproveAll_YesBtn, "Approve all Click yes button");
-    }
 
     public static void verifySuccessMessage() {
         waitForVisible(OptimusCounterPartyTasksPage.tasks_SuccessMessage);
@@ -446,16 +423,6 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
 
     public static String getSuccessMessage() {
         return getElementText(OptimusCounterPartyTasksPage.tasks_SuccessMessage);
-    }
-
-    public static void openListTab() {
-        click(OptimusCounterPartyListPage.counterParties_ListTab, "Click List tab");
-    }
-
-    public static void searchCounterParty(String nickName) throws InterruptedException {
-        waitForClickable(OptimusCounterPartyListPage.counterPartyList_SearchBox);
-        inputText(OptimusCounterPartyListPage.counterPartyList_SearchBox, nickName, "Enter Search Criteria");
-        click(OptimusCounterPartyListPage.counterPartyList_SearchBtn, "Click Search button");
     }
 
     public static void checkCounterPart_FirstResultListLoad() {

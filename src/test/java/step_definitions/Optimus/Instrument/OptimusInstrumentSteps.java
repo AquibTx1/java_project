@@ -1,65 +1,37 @@
-package step_definitions.Optimus;
-
+package step_definitions.Optimus.Instrument;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import modules.NitroXActions.NitroXBotsAction;
-import modules.OptimusActions.*;
+import modules.OptimusActions.OptimusInstrumentActions;
+import modules.OptimusActions.OptimusSettlementActions;
 import org.testng.Assert;
-import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyCreatePage;
-import pageFactory.OptimusPages.Portfolio.PortfolioMainPage;
+import pageFactory.OptimusPages.Instrument.InstrumentMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementMainPage;
-import pageFactory.OptimusPages.Settlement.SettlementUpdatePage;
 import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
-import utilities.KeywordUtil;
-
-import static utilities.KeywordUtil.*;
-
 
 import java.util.HashMap;
 
+import static utilities.KeywordUtil.delay;
+import static utilities.KeywordUtil.waitForVisible;
 
-public class OptimusSettlementSteps {
+public class OptimusInstrumentSteps {
 
     public static HashMap<String, String> dataMap;
 
-    public static String nick_name,refid;
-    public OptimusSettlementSteps()
-    {
+    public static String refid_instrument;
+    public OptimusInstrumentSteps() {
         dataMap = BaseStepDefinitions.dataMap;
     }
 
-    @And("Click the Settlement Tab")
-    public void clickTheSettlementTab()
-    {
+    @And("Open the Instrument Tab")
+    public void openTheInstrumentTab() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                waitForVisible(SettlementMainPage.settlement_MainTab);
-                OptimusSettlementActions.clickSettlement();
-                waitForVisible(SettlementMainPage.settlementlink);
-                OptimusSettlementActions.clickSettlementLink();
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-    @And("Choose New Settlement")
-    public void chooseNewSettlement() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                OptimusSettlementActions.choosenewSettlement();
-                waitForVisible(SettlementMainPage.newSettlement_CounterpartyID);
+                waitForVisible(InstrumentMainPage.Instrument_MainTab);
+                OptimusInstrumentActions.clickInstrumentTab();
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -73,14 +45,14 @@ public class OptimusSettlementSteps {
         }
     }
 
-    @And("Enter the Settlement Ref detail")
-    public void enterTheSettlementRefDetail() {
+    @And("Click the Tokens link")
+    public void clickTheTokensLink() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.newSettlement_CounterParty(dataMap.get("Counterparty Name"));
-
+                waitForVisible(InstrumentMainPage.Instrument_token);
+                OptimusInstrumentActions.clickTokenLink();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -92,28 +64,24 @@ public class OptimusSettlementSteps {
             }
         }
     }
-
-    @And("Enter the Basic Information detail")
-    public void enterTheBasicInformationDetail() {
+    @And("Enter All the field detail")
+    public void enterAllTheFieldDetail() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.newSettlement_ExternalNickName(dataMap.get("Settlement Nickname External"));
-
-                OptimusSettlementActions.newSettlement_InternalNickName(dataMap.get("Settlement Nickname Internal"));
-
-                OptimusSettlementActions.chooseSettlementType(dataMap.get("Settlement Type"));
-
-                OptimusSettlementActions.chooseCurrency(dataMap.get("Currency"));
-
-                OptimusSettlementActions.chooseTransferMethod(dataMap.get("Transfer Method"));
-                OptimusSettlementActions.chooseNetwork(dataMap.get("Network"));
-                OptimusSettlementActions.chooseCustodian(dataMap.get("Custodian"));
-                //to be used in MO Account
-               nick_name= OptimusSettlementActions.getSettlement_Nickname_Internal();
-                System.out.println(nick_name);
-
+                waitForVisible(InstrumentMainPage.Instrument_assetName);
+                OptimusInstrumentActions.createAssetName(dataMap.get("Asset Name"));
+                OptimusInstrumentActions.createAssetCode(dataMap.get("Asset Code"));
+                OptimusInstrumentActions.createAssetType(dataMap.get("Asset Type"));
+                OptimusInstrumentActions.createAssetSubType(dataMap.get("Asset Sub-Type"));
+                OptimusInstrumentActions.createDecimalConvention(dataMap.get("Decimal Convention"));
+                OptimusInstrumentActions.createGST(dataMap.get("GST"));
+                OptimusInstrumentActions.createBlockchainNetwork(dataMap.get("Blockchain Network"));
+                OptimusInstrumentActions.createYOR(dataMap.get("Year of Release"));
+                OptimusInstrumentActions.createCountrty(dataMap.get("Country"));
+                OptimusInstrumentActions.createStatus(dataMap.get("Status"));
+                OptimusInstrumentActions.createNotes(dataMap.get("Notes"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -125,106 +93,36 @@ public class OptimusSettlementSteps {
             }
         }
     }
-
-    @And("Enter the Bank Information detail")
-    public void enterTheBankInformationDetail() {
+    @And("Click Create Instrument")
+    public void clickCreateInstrument() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.chooseBankName(dataMap.get("Bank Name"));
-                OptimusSettlementActions.chooseAddress(dataMap.get("Bank Address"));
-                OptimusSettlementActions.enterBankAccountNumber(dataMap.get("Bank Account Number"));
-                OptimusSettlementActions.chooseBankBeneficiaryName(dataMap.get("Bank Beneficiary Name"));
-                OptimusSettlementActions.chooseBankswiftcode(dataMap.get("Bank Swift Code"));
-                OptimusSettlementActions.chooseBankABACode(dataMap.get("Bank ABA Code"));
-                OptimusSettlementActions.chooseBankBeneficiaryaddress(dataMap.get("Bank Address"));
-                OptimusSettlementActions.chooseBankRef(dataMap.get("Bank Reference"));
-
-
-
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-
-    @And("Enter Additional Information")
-    public void enterAdditionalInformation() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                OptimusSettlementActions.choosePurpose(dataMap.get("Purpose"));
-                OptimusSettlementActions.enterWhitelistingRemarks(dataMap.get("Whitelisting Remarks"));
-                OptimusSettlementActions.chooseWhitelistingMethod(dataMap.get("Whitelisting Method"));
-
-
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-
-    @Then("Click Create Settlement and verify the Settlement Forwarded for Approval")
-    public void clickCreateSettlementAndVerify() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                OptimusSettlementActions.clickCreateSettlement();
+                OptimusInstrumentActions.clickCreateInstrument();
                 OptimusSettlementActions.waitForSuccessMsgToAppear();
-                OptimusSettlementActions.waitForSuccessMsgToDisappear();
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-    @And("Logout from Optimus")
-    public void logoutFromOptimus()
-    {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-              OptimusSettlementActions.logoutFromOptimus();
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-    @And("Click Tasks link")
-    public void clickTasksLink() {
+               // OptimusSettlementActions.waitForSuccessMsgToDisappear();
 
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+    @And("Open New Token")
+    public void openNewToken() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.clickTaskslink();
+                waitForVisible(InstrumentMainPage.Instrument_Newtoken);
+                OptimusInstrumentActions.clickNewToken();
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -237,14 +135,33 @@ public class OptimusSettlementSteps {
         }
     }
 
-    @And("Navigate to Settlement Task")
-    public void navigateToSettlementTask() {
+    @And("Navigate to Instrument Task")
+    public void navigateToInstrumentTask() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.inputNickname(dataMap.get("Settlement Nickname Internal"));
-                OptimusSettlementActions.searchuser();
+                waitForVisible(SettlementMainPage.newSettlement_inputsearchtext);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Input the Asset")
+    public void inputTheAsset() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(refid_instrument);
                 OptimusSettlementActions.selectSettlementCheckbox();
                 waitForVisible(SettlementMainPage.newSettlement_selectAll);
                 OptimusSettlementActions.selectAllSettlementbtn();
@@ -259,9 +176,8 @@ public class OptimusSettlementSteps {
             }
         }
     }
-
-    @And("Approve the Settlement")
-    public void approveTheSettlement() {
+    @And("Approve the Asset created")
+    public void approveTheAssetCreated() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
@@ -269,7 +185,6 @@ public class OptimusSettlementSteps {
                 OptimusSettlementActions.selectApprovebtn();
                 OptimusSettlementActions.waitForSuccessMsgToAppear();
                 OptimusSettlementActions.waitForSuccessMsgToDisappear();
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -282,16 +197,18 @@ public class OptimusSettlementSteps {
         }
     }
 
-    @Then("Verify the Settlement is approved")
-    public void verifyTheSettlementIsApproved() {
+    @And("Verify the Token Created")
+    public void verifyTheTokenCreated() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                waitForVisible(SettlementMainPage.settlementlist);
+                waitForVisible(InstrumentMainPage.Instrument_token);
+                OptimusInstrumentActions.clickTokenLink();
+                waitForVisible(SettlementMainPage.newSettlement_edit);
                 OptimusSettlementActions.sortSettlementRef();
-                OptimusSettlementActions.inputValue(dataMap.get("Counterparty Name"));
-                Assert.assertEquals(OptimusSettlementActions.getNameSettlementList(),dataMap.get("Settlement Nickname Internal"));
+                OptimusSettlementActions.inputValue(dataMap.get("Asset Code"));
+                Assert.assertEquals(OptimusInstrumentActions.getAssetCode(),dataMap.get("Asset Code"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -303,70 +220,8 @@ public class OptimusSettlementSteps {
             }
         }
     }
-
-    @And("Logout from MO Account")
-    public void logoutFromMOAccount() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                OptimusSettlementActions.refreshPage();
-                delay(5000);
-                OptimusSettlementActions.clickLogout();
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-
-    @And("Click the Settlement link")
-    public void clickTheSettlementLink() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                OptimusSettlementActions.clickSettlementLink();
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-
-    @And("Sort the Settlement Ref.")
-    public void sortTheSettlementRef()
-    {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                waitForVisible(SettlementMainPage.settlementlist);
-                OptimusSettlementActions.sortSettlementRef();
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-    @And("Click Edit Button")
-    public void clickEditButton() {
-
+    @And("Edit the Existing fields")
+    public void editTheExistingFields() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
@@ -383,63 +238,25 @@ public class OptimusSettlementSteps {
                 BaseStepDefinitions.increaseCounter();
             }
         }
-    }
-    @And("Update the user detail in the Settlement list")
-    public void updateTheUserDetailInTheSettlementList()
-    {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                waitForPresent(SettlementMainPage.newSettlement_updatedNicknameInternal);
-                OptimusSettlementActions.newSettlement_UpdatedExternalNickName(dataMap.get("Settlement Nickname External Updated"));
-                OptimusSettlementActions.newSettlement_UpdatedInternalNickName(dataMap.get("Settlement Nickname Internal Updated"));
-                OptimusSettlementActions.newSettlement_UpdatedSettlementType(dataMap.get("Settlement Type"));
-                OptimusSettlementActions.newSettlement_UpdatedMethod(dataMap.get("Transfer Method"));
-                OptimusSettlementActions.newSettlement_UpdatedNetwork(dataMap.get("Network"));
-                OptimusSettlementActions.newSettlement_UpdateCustodian(dataMap.get("Custodian"));
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
+
     }
 
-    @And("Input the values and click Search")
-    public void inputTheValuesAndClickSearch() {
+    @And("Click Update Instrument")
+    public void clickUpdateInstrument() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.inputNickname(refid);
-                OptimusSettlementActions.searchuser();
-                OptimusSettlementActions.selectSettlementCheckbox();
-                waitForVisible(SettlementMainPage.newSettlement_selectAll);
-                OptimusSettlementActions.selectAllSettlementbtn();
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-
-    @Then("Click Update Settlement and verify the Settlement Forwarded for Approval")
-    public void clickUpdateSettlementAndVerifyTheSettlementForwardedForApproval() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                OptimusSettlementActions.updateSettlement();
+                waitForVisible(InstrumentMainPage.refid);
+                refid_instrument = OptimusInstrumentActions.getInstrumentRefid();
+                OptimusInstrumentActions.updateAssetName(dataMap.get("Asset Name"));
+                OptimusInstrumentActions.updateAssetCode(dataMap.get("Asset Code"));
+                OptimusInstrumentActions.updateAssetType(dataMap.get("Asset Type"));
+                OptimusInstrumentActions.updateAssetSubType(dataMap.get("Asset Sub-Type"));
+                OptimusInstrumentActions.updateDecimalConvention(dataMap.get("Decimal Convention"));
+                OptimusInstrumentActions.updateGST(dataMap.get("GST"));
+                OptimusInstrumentActions.updateBNetwork(dataMap.get("Blockchain Network"));
+                OptimusInstrumentActions.clickUpdateInstrument();
                 OptimusSettlementActions.waitForSuccessMsgToAppear();
                 OptimusSettlementActions.waitForSuccessMsgToDisappear();
             } catch (Throwable e) {
@@ -454,17 +271,18 @@ public class OptimusSettlementSteps {
         }
     }
 
-    @Then("Verify the Settlement is updated")
-    public void verifyTheSettlementIsUpdated() {
+    @And("Verify the Token Updated")
+    public void verifyTheTokenUpdated() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                waitForVisible(SettlementMainPage.settlementlist);
-                OptimusSettlementActions.inputValue(refid);
-              //  OptimusSettlementActions.sortSettlementRef();
-                Assert.assertEquals(OptimusSettlementActions.getNameSettlementList(),dataMap.get("Settlement Nickname Internal Updated").trim());
-                Assert.assertEquals(OptimusSettlementActions.getExtNameSettlementList(),dataMap.get("Settlement Nickname External Updated").trim());
+                waitForVisible(InstrumentMainPage.Instrument_token);
+                OptimusInstrumentActions.clickTokenLink();
+                waitForVisible(SettlementMainPage.newSettlement_edit);
+                OptimusSettlementActions.sortSettlementRef();
+                OptimusSettlementActions.inputValue(refid_instrument);
+                Assert.assertEquals(OptimusInstrumentActions.getAssetCode(),dataMap.get("Asset Code"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -477,57 +295,13 @@ public class OptimusSettlementSteps {
         }
     }
 
-    @And("Click Portfolio Tab")
-    public void clickPortfolioTab() {
+    @And("Search the Instrument to be Updated")
+    public void searchTheInstrumentToBeUpdated() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.clickPortfolio();
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-
-    }
-
-    @And("Click CounterParty Tab")
-    public void clickCounterPartyTab() {
-
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                OptimusSettlementActions.clickCounterPartyTab();
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-
-    }
-
-    @And("Click the edit link")
-    public void clickTheEditLink() {
-
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                waitForVisible(SettlementMainPage.settlementlist);
-                OptimusSettlementActions.clickEditSettlement();
-                waitForVisible(SettlementUpdatePage.updatesettlement_refid);
+                OptimusSettlementActions.inputValue(dataMap.get("Asset Name"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -540,15 +314,13 @@ public class OptimusSettlementSteps {
         }
     }
 
-    @And("Delete the user detail in the Settlement list and sent for Approval")
-    public void deleteTheUserDetailInTheSettlementList()
-    {
+    @And("Search the Instrument to be deleted")
+    public void searchTheInstrumentToBeDeleted() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.deleteRecord();
-                delay(3000);
+                OptimusSettlementActions.inputValue(dataMap.get("Asset Code"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -561,14 +333,61 @@ public class OptimusSettlementSteps {
         }
     }
 
-    @And("Input the value to be delete for approval")
-    public void inputTheValueToBeDeleteForApproval() {
+    @And("Click delete Instrument")
+    public void clickDeleteInstrument() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusSettlementActions.inputValue(refid);
-                OptimusSettlementActions.searchuser();
+                waitForVisible(InstrumentMainPage.refid);
+                refid_instrument = OptimusInstrumentActions.getInstrumentRefid();
+                OptimusInstrumentActions.deleteRecord();
+                OptimusSettlementActions.waitForSuccessMsgToAppear();
+                OptimusSettlementActions.waitForSuccessMsgToDisappear();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Verify the Token Deleted")
+    public void verifyTheTokenDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(InstrumentMainPage.Instrument_token);
+                OptimusInstrumentActions.clickTokenLink();
+                waitForVisible(SettlementMainPage.newSettlement_edit);
+                OptimusSettlementActions.sortSettlementRef();
+                OptimusSettlementActions.inputValue(refid_instrument);
+                Assert.assertEquals(OptimusSettlementActions.getNoData(),"No Data");
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Input the Asset Code")
+    public void inputTheAssetCode() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(dataMap.get("Asset Code"));
                 OptimusSettlementActions.selectSettlementCheckbox();
                 waitForVisible(SettlementMainPage.newSettlement_selectAll);
                 OptimusSettlementActions.selectAllSettlementbtn();
@@ -583,16 +402,14 @@ public class OptimusSettlementSteps {
             }
         }
     }
-
-    @And("Get the Settlement Ref id")
-    public void getTheSettlementRefId()
-    {
+    @And("Search the existing Instrument")
+    public void searchTheExistingInstrument() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                refid=OptimusSettlementActions.getSettlmentrefid();
-                System.out.println(refid);
+                waitForVisible(SettlementMainPage.newSettlement_edit);
+                OptimusSettlementActions.inputValue(dataMap.get("Asset Name"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -605,16 +422,340 @@ public class OptimusSettlementSteps {
         }
     }
 
-    @Then("Verify the Settlement is deleted")
-    public void verifyTheSettlementIsDeleted() {
+    @Then("Verify the Instrument")
+    public void verifyTheInstrument() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                waitForVisible(SettlementMainPage.settlementlist);
+                Assert.assertEquals(OptimusInstrumentActions.getAssetName(),dataMap.get("Asset Name"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click the Trading Instrument")
+    public void clickTheTradingInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(InstrumentMainPage.Instrument_TradingInstruments);
+                OptimusInstrumentActions.clickTradingInstruments();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Open New Trading Instrument")
+    public void openNewTradingInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(InstrumentMainPage.Instrument_NewTradingInstrument);
+                OptimusInstrumentActions.clickNewTradingInstrument();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter the details in Trading Instrument")
+    public void enterTheDetailsInTradingInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.createExchange(dataMap.get("Exchange"));
+                OptimusInstrumentActions.createExchangeSymbol(dataMap.get("Exchange Symbol"));
+                OptimusInstrumentActions.createAltCoin(dataMap.get("Alt Coin"));
+                OptimusInstrumentActions.createQuoteCoin(dataMap.get("Quote Coin"));
+                OptimusInstrumentActions.createInsDerivateType(dataMap.get("Instrument Derivative Type"));
+                OptimusInstrumentActions.createMarginType(dataMap.get("Margin Type"));
+                OptimusInstrumentActions.createDeliveryDate(dataMap.get("Delivery Date"));
+                OptimusInstrumentActions.createPricePrecision(dataMap.get("Price Precision"));
+                OptimusInstrumentActions.createSizePrecision(dataMap.get("Size Precision"));
+                OptimusInstrumentActions.createMinOrderSize(dataMap.get("Min. Order Size"));
+                OptimusInstrumentActions.createMaxOrder(dataMap.get("Max. Order Size"));
+                OptimusInstrumentActions.createLotSize(dataMap.get("Lot Size"));
+                OptimusInstrumentActions.createTickSize(dataMap.get("Tick Size"));
+                //OptimusInstrumentActions.createMinOrderNotional(dataMap.get("Min. Order Notional"));
+                OptimusInstrumentActions.createMaxOrder(dataMap.get("Max. Orders"));
+                OptimusInstrumentActions.createMinPrice(dataMap.get("Min. Price"));
+                OptimusInstrumentActions.createMaxPrice(dataMap.get("Max. Price"));
+                OptimusInstrumentActions.createContarctSize(dataMap.get("Contract Size"));
+                OptimusInstrumentActions.createContractAsset(dataMap.get("Contract Asset"));
+                OptimusInstrumentActions.createSetAsset(dataMap.get("Settlement Asset"));
+                OptimusInstrumentActions.createTradingStatus(dataMap.get("Status"));
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Input the Exchange value")
+    public void inputTheExchangeValue() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(OptimusInstrumentActions.newsymbol);
+                OptimusSettlementActions.selectSettlementCheckbox();
+                waitForVisible(SettlementMainPage.newSettlement_selectAll);
+                OptimusSettlementActions.selectAllSettlementbtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Verify the Trading Instrument Approved")
+    public void verifyTheTradingInstrumentApproved() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.newSettlement_edit);
                 OptimusSettlementActions.sortSettlementRef();
-                OptimusSettlementActions.inputValue(refid);
-                OptimusSettlementActions.clickSearch();
+                OptimusSettlementActions.inputValue(OptimusInstrumentActions.newsymbol);
+                Assert.assertEquals(OptimusInstrumentActions.getexchangeSymbol(),OptimusInstrumentActions.newsymbol);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Approve the Task")
+    public void approveTheTask() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.selectSettlementCheckbox();
+                waitForVisible(SettlementMainPage.newSettlement_selectAll);
+                OptimusSettlementActions.selectAllSettlementbtn();
+                OptimusSettlementActions.selectApprovebtn();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Wait for sometime")
+    public void waitForSometime() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                delay(40000);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Search the Exchange Symbol to be Updated")
+    public void searchTheExchangeSymbolToBeUpdated() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(dataMap.get("Exchange Symbol"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Update existing Trading Instrument fields")
+    public void updateExistingTradingInstrumentFields() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(InstrumentMainPage.refid);
+                refid_instrument = OptimusInstrumentActions.getInstrumentRefid();
+                OptimusInstrumentActions.updateExchange(dataMap.get("Exchange"));
+                OptimusInstrumentActions.updateAltcoin(dataMap.get("Alt Coin"));
+                OptimusInstrumentActions.updateQuoteCoin(dataMap.get("Quote Coin"));
+                OptimusInstrumentActions.updateDerivateType(dataMap.get("Instrument Derivative Type"));
+                OptimusInstrumentActions.updateMarginType(dataMap.get("Margin Type"));
+                OptimusInstrumentActions.updateDeliveryDate(dataMap.get("Delivery Date"));
+                OptimusInstrumentActions.updatePricePrecision(dataMap.get("Price Precision"));
+                OptimusInstrumentActions.updateSizePrecision(dataMap.get("Size Precision"));
+                OptimusInstrumentActions.updateMinOrderSize(dataMap.get("Min. Order Size"));
+                OptimusInstrumentActions.updateMaxOrder(dataMap.get("Max. Order Size"));
+                OptimusInstrumentActions.updateLotSize(dataMap.get("Lot Size"));
+                OptimusInstrumentActions.updateTickSize(dataMap.get("Tick Size"));
+                OptimusInstrumentActions.clickUpdateInstrument();
+                OptimusSettlementActions.waitForSuccessMsgToAppear();
+//                OptimusInstrumentActions.createContarctSize(dataMap.get("Contract Size"));
+//                OptimusInstrumentActions.createContractAsset(dataMap.get("Contract Asset"));
+//                OptimusInstrumentActions.createSetAsset(dataMap.get("Settlement Asset"));
+//                OptimusInstrumentActions.createTradingStatus(dataMap.get("Status"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Input the Instrument Ref. id")
+    public void inputTheInstrumentRefId() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(refid_instrument);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @And("Search the record")
+    public void searchTheRecord() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+    @And("Verify the Trading Instrument Updated")
+    public void verifyTheTradingInstrumentUpdated() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.newSettlement_edit);
+                OptimusSettlementActions.sortSettlementRef();
+                OptimusSettlementActions.inputValue(refid_instrument);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search the Exchange Symbol to be deleted")
+    public void searchTheExchangeSymbolToBeDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(dataMap.get("Exchange Symbol"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Verify the Trading Instrument deleted")
+    public void verifyTheTradingInstrumentDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForVisible(SettlementMainPage.newSettlement_edit);
+                OptimusSettlementActions.sortSettlementRef();
+                OptimusSettlementActions.inputValue(refid_instrument);
                 Assert.assertEquals(OptimusSettlementActions.getNoData(),"No Data");
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -626,19 +767,16 @@ public class OptimusSettlementSteps {
                 BaseStepDefinitions.increaseCounter();
             }
         }
+
     }
 
-    @And("Navigate to list again and search the user")
-    public void navigateToListAgainAndSearchTheUser() {
+    @And("Search the existing Trading Instrument")
+    public void searchTheExistingTradingInstrument() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                KeywordUtil.navigateToBack();
-                delay(3000);
-                waitForVisible(SettlementMainPage.settlementlist);
-                OptimusSettlementActions.inputValue(refid);
-                OptimusSettlementActions.searchuser();
+                OptimusSettlementActions.inputValue(dataMap.get("Alt Coin"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -649,16 +787,16 @@ public class OptimusSettlementSteps {
                 BaseStepDefinitions.increaseCounter();
             }
         }
+
     }
 
-    @Then("Verify the existing user is available")
-    public void verifyTheExistingUserIsAvailable() {
+    @Then("Verify the Trading Instrument")
+    public void verifyTheTradingInstrument() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                Assert.assertEquals(OptimusSettlementActions.validateuser(dataMap),dataMap.get("Counterparty Name"));
-                //Assert.assertTrue(KeywordUtil.isWebElementVisible(SettlementMainPage.newSettlement_edit));
+                Assert.assertEquals(OptimusInstrumentActions.getAltcoin(),dataMap.get("Alt Coin"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -669,170 +807,6 @@ public class OptimusSettlementSteps {
                 BaseStepDefinitions.increaseCounter();
             }
         }
-    }
 
-    @And("Input the user detail to search")
-    public void inputTheUserDetailToSearch() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                waitForVisible(SettlementMainPage.settlementlist);
-                OptimusSettlementActions.inputNickname(dataMap.get("Counterparty Name"));
-                OptimusSettlementActions.searchuser();
-
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-
-    @And("Click the download csv")
-    public void clickTheDownloadCsv() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                waitForVisible(SettlementMainPage.newSettlement_edit);
-                OptimusSettlementActions.clickdownloadcsv();
-
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-    @Then("Verify the file is downloaded")
-    public void verifyTheFileIsDownloaded() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                OptimusPortfolioCreateActions.verifyDownloadCSVBtn();
-                //Assert.assertTrue(OptimusSettlementActions.isfiletestDownloaded());
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-
-
-    @And("Sort the data")
-    public void sortTheData() {
-        {
-            if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-                BaseStepDefinitions.skipThisStep();
-            } else {
-                try {
-                    waitForVisible(SettlementMainPage.newSettlement_edit);
-                    OptimusSettlementActions.sortSettlementRef();
-                } catch (Throwable e) {
-                    GlobalUtil.e = e;
-                    GlobalUtil.errorMsg = e.getMessage();
-                    Assert.fail(e.getMessage());
-                }
-                //increase the step counter by 1
-                if (BaseStepDefinitions.getSITflag()) {
-                    BaseStepDefinitions.increaseCounter();
-                }
-            }
-        }
-    }@And("Enter the Wallet detail")
-    public void enterTheWalletDetail() {
-        {
-            if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-                BaseStepDefinitions.skipThisStep();
-            } else {
-                try {
-                    OptimusSettlementActions.createWalletAddress(dataMap.get("Wallet Address"));
-                    OptimusSettlementActions.createWalletMemo(dataMap.get("Wallet Memo"));
-
-                } catch (Throwable e) {
-                    GlobalUtil.e = e;
-                    GlobalUtil.errorMsg = e.getMessage();
-                    Assert.fail(e.getMessage());
-                }
-                //increase the step counter by 1
-                if (BaseStepDefinitions.getSITflag()) {
-                    BaseStepDefinitions.increaseCounter();
-                }
-            }
-        }
-    }@And("Search the CounterParty to be Updated")
-    public void searchTheCounterPartyToBeUpdated() {
-        {
-            if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-                BaseStepDefinitions.skipThisStep();
-            } else {
-                try {
-                    OptimusSettlementActions.inputValue(dataMap.get("Counterparty Name"));
-                } catch (Throwable e) {
-                    GlobalUtil.e = e;
-                    GlobalUtil.errorMsg = e.getMessage();
-                    Assert.fail(e.getMessage());
-                }
-                //increase the step counter by 1
-                if (BaseStepDefinitions.getSITflag()) {
-                    BaseStepDefinitions.increaseCounter();
-                }
-            }
-        }
-    }@And("Search the CounterParty to be deleted")
-    public void searchTheCounterPartyToBeDeleted() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                OptimusSettlementActions.inputValue(dataMap.get("Counterparty Name"));
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-
-    @And("Search the Existing record")
-    public void searchTheExistingRecord() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                waitForVisible(PortfolioMainPage.edit);
-                OptimusSettlementActions.inputValue(dataMap.get("Portfolio Name"));
-            }
-            catch (Throwable e)
-            {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
     }
 }
-

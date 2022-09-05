@@ -5,7 +5,7 @@ Feature: Test CounterParty feature
 
 
   @OptimusCounterParty
-  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Edit existing CounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Create CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
     And Open CounterParties side tab
@@ -39,7 +39,7 @@ Feature: Test CounterParty feature
       | QA_TestCase_Auto_Optimus_2_1_1 | CreateCounterParty | MO_CheckerAccount |
 
   @OptimusCounterParty
-  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and create CounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Edit Existing CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
     And Open CounterParties side tab
@@ -86,7 +86,7 @@ Feature: Test CounterParty feature
     And Search for Existing CounterParty Results in List
     And Click on Edit Link in Search Results to Load CounterParty Details
     And Take the CP Reference
-    And Click Delete Counter Party Button and Confirm
+    And Click Delete Optimus Button and Confirm
     Then Verify Success Message on Create and Update Page
     #login with checker user and approve the CounterParty
     Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
@@ -106,7 +106,7 @@ Feature: Test CounterParty feature
     And Open CounterParties side tab
     And Open CounterParty List tab
     And Search for CounterParty Results in List by Ref
-    Then verify CounterParty is deleted and Not shown in Search Result
+    Then verify Item is deleted and Not shown in Search Result
 
     Examples:
       | TestCaseID                     | SheetName          | loginCredentials  |
@@ -138,7 +138,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName          |
       | QA_TestCase_Auto_Optimus_2_1_5 | CreateCounterParty |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Create Related CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -171,7 +171,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName           | loginCredentials  |
       | QA_TestCase_Auto_Optimus_2_2_1 | RelatedCounterParty | MO_CheckerAccount |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Edit Related CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -208,7 +208,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName           | loginCredentials  |
       | QA_TestCase_Auto_Optimus_2_2_2 | RelatedCounterParty | MO_CheckerAccount |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Delete Related CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -236,13 +236,13 @@ Feature: Test CounterParty feature
     And Open Related Party side tab
     And Open Related Party List tab
     And Search Results for Related Party Reference in List
-    Then verify CounterParty is deleted and Not shown in Search Result
+    Then verify Item is deleted and Not shown in Search Result
 
     Examples:
-      | TestCaseID                     | SheetName          | loginCredentials  |
+      | TestCaseID                     | SheetName           | loginCredentials  |
       | QA_TestCase_Auto_Optimus_2_2_3 | RelatedCounterParty | MO_CheckerAccount |
 
-  @OptimusRelatedCounterParty
+  @OptimusCounterParty @OptimusRelatedCounterParty
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing Related CounterParty
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -252,5 +252,150 @@ Feature: Test CounterParty feature
     And Verify Search Results of Existing Related Party
 
     Examples:
-      | TestCaseID                     | SheetName          |
+      | TestCaseID                     | SheetName           |
       | QA_TestCase_Auto_Optimus_2_2_4 | RelatedCounterParty |
+
+  @OptimusCounterParty @OptimusRelatedCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Verify Download CSV is enabled in Related Party
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open Related Party side tab
+    And Open Related Party List tab
+    And Search for Existing Related Party Results in List
+    Then Verify Download CSV button is clickable in the search list
+
+    Examples:
+      | TestCaseID                     | SheetName           |
+      | QA_TestCase_Auto_Optimus_2_2_5 | RelatedCounterParty |
+
+  @OptimusCounterParty @OptimusServicesCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Create Services in CounterParty Optimus
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open Services side tab in Counterparty
+    And Open Create New Services counterparty page
+    And Enter field values for Service in Counter Party
+    And Enter Date And Dropdown Fields For New Service in Counter Party
+    And Click Create button to Create New Service CounterParty
+    Then Verify Success Message on Create and Update Page
+     #login with checker user and approve the CounterParty
+    Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
+    And Logout from Optimus
+    And Input Optimus Username and Password
+    And Click Optimus Login Button
+    Then Verify user is able to login to Optimus successfully
+    And Open CounterParty main tab
+    And Open CounterParty Tasks sub tab
+    And Approve the Services Task in Counter Party
+    Then Verify Success Message on Create and Update Page
+    And Logout from MO Account
+    #Login and Check the Approved record
+    Given Login to Optimus with Valid Credentials
+    And Open CounterParty main tab
+    And Open Services side tab in Counterparty
+    And Open Services CP List tab
+    And Search for New Service in Result List
+    Then verify Services exists in List
+
+    Examples:
+      | TestCaseID                     | SheetName            | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_2_3_1 | ServicesCounterParty | MO_CheckerAccount |
+
+
+
+  @OptimusCounterParty @OptimusServicesCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Edit Services in CounterParty Optimus
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open Services side tab in Counterparty
+    And Open Services CP List tab
+    And Search for existing Service in List
+    And Click on Edit Link in Search Results to Load Service details
+    And Take the Service Reference from details page
+    And Enter field values for Service in Counter Party
+    And Enter Date And Dropdown Fields For Edit Service in Counter Party
+    And Click Create button to Create New Service CounterParty
+    Then Verify Success Message on Create and Update Page
+     #login with checker user and approve the CounterParty
+    Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
+    And Logout from Optimus
+    And Input Optimus Username and Password
+    And Click Optimus Login Button
+    Then Verify user is able to login to Optimus successfully
+    And Open CounterParty main tab
+    And Open CounterParty Tasks sub tab
+    And Approve the Services Task from Reference in Counter Party
+    Then Verify Success Message on Create and Update Page
+    And Logout from MO Account
+    #Login and Check the Approved record
+    Given Login to Optimus with Valid Credentials
+    And Open CounterParty main tab
+    And Open Services side tab in Counterparty
+    And Open Services CP List tab
+    And Search for Service in Result List
+    Then verify Updated and Approved Service shown in Search Result
+
+    Examples:
+      | TestCaseID                     | SheetName            | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_2_3_2 | ServicesCounterParty | MO_CheckerAccount |
+
+
+  @OptimusCounterParty @OptimusServicesCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Delete Services in CounterParty Optimus
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open Services side tab in Counterparty
+    And Open Services CP List tab
+    And Search for existing Service in List
+    And Click on Edit Link in Search Results to Load Service details
+    And Take the Service Reference from details page
+    And Click Delete Optimus Button and Confirm
+    Then Verify Success Message on Create and Update Page
+     #login with checker user and approve the CounterParty
+    Given Read "Optimus" and "OptimusLogin" and "<loginCredentials>" from test data
+    And Logout from Optimus
+    And Input Optimus Username and Password
+    And Click Optimus Login Button
+    Then Verify user is able to login to Optimus successfully
+    And Open CounterParty main tab
+    And Open CounterParty Tasks sub tab
+    And Approve the Services Task from Reference in Counter Party
+    Then Verify Success Message on Create and Update Page
+    And Logout from MO Account
+    #Login and Check the Approved record
+    Given Login to Optimus with Valid Credentials
+    And Open CounterParty main tab
+    And Open Services side tab in Counterparty
+    And Open Services CP List tab
+    And Search for Service in Result List
+    Then verify Item is deleted and Not shown in Search Result
+
+    Examples:
+      | TestCaseID                     | SheetName            | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_2_3_3 | ServicesCounterParty | MO_CheckerAccount |
+
+  @OptimusCounterParty @OptimusRelatedCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing Service of CounterParty
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open Services side tab in Counterparty
+    And Open Related Party List tab
+    And Search for existing Service in List
+    And Verify Search Results of Existing Services of Counter Party
+
+    Examples:
+      | TestCaseID                     | SheetName           |
+      | QA_TestCase_Auto_Optimus_2_3_4 | ServicesCounterParty |
+
+  @OptimusCounterParty @OptimusRelatedCounterParty
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Existing CP Service and Verify Download button is Active
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open CounterParty main tab
+    And Open Services side tab in Counterparty
+    And Open Related Party List tab
+    And Search for existing Service in List
+    Then Verify Download CSV button is clickable in the search list
+
+    Examples:
+      | TestCaseID                     | SheetName           |
+      | QA_TestCase_Auto_Optimus_2_3_5 | ServicesCounterParty |

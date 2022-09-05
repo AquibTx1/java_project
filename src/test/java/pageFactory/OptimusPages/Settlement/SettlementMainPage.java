@@ -38,6 +38,11 @@ public class SettlementMainPage {
     //    Mandatory Field
     public static By newSettlement_NicknameInternal = By.id("create_settlement_settlement_nickname_internal");
     public static By newSettlement_updatedNicknameInternal = By.id("update_settlement_settlement_nickname_internal");
+
+    public static By newSettlement_updatedType = By.id("update_settlement_settlement_type");
+    public static By newSettlement_updatemethod = By.id("update_settlement_transfer_method");
+    public static By newSettlement_updatenetwork = By.id("update_settlement_network");
+    public static By newSettlement_updatecustodian = By.id("update_settlement_custodian");
     public static By newSettlement_Type=By.id("create_settlement_settlement_type");
     public static By newSettlement_Currency=By.id("create_settlement_currency");
     public static By newSettlement_Transfermethod=By.id("create_settlement_transfer_method");
@@ -46,13 +51,20 @@ public class SettlementMainPage {
     public static By newSettlement_BankName=By.id("create_settlement_bank_name");
     public static By newSettlement_BankAddress=By.id("create_settlement_bank_address");
     public static By newSettlement_BankBeneficiaryName=By.id("create_settlement_bank_beneficiary_name");
+
+    public static By newSettlement_BankSwiftcode=By.id("create_settlement_bank_swift_code");
+    public static By newSettlement_BankABACode=By.id("create_settlement_bank_aba_code");
+    public static By newSettlement_BankRef=By.id("create_settlement_bank_reference");
     public static By newSettlement_BankAccountNumber=By.id("create_settlement_bank_account_number");
     public static By newSettlement_WalletAddress=By.id("create_settlement_wallet_address");
     public static By newSettlement_WalletMemo=By.id("create_settlement_wallet_memo");
     public static By newSettlement_purpose=By.id("create_settlement_purpose");
     public static By newSettlement_WhislingMethod=By.id("create_settlement_whitelisting_method");
     public static By newSettlement_WalletRemarks=By.id("create_settlement_wallet_remarks");
+
+    public static By newSettlement_WhiteListingRemarks=By.id("create_settlement_whitelisting_remarks");
     public static By newSettlement_Settlementstatus=By.id("create_settlement_settlement_status");
+
     public static By newSettlement_createSettlementbtn = By.xpath("//span[text()='Create Settlement']");
     public static By CreateSettlement_SuccessMsg=By.xpath("//div[text()='Success!']");
     public static By newSettlement_updatebtn=By.xpath("//span[text()='Update Settlement']");

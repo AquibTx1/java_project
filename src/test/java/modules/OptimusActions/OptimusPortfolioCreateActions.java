@@ -1,22 +1,27 @@
 package modules.OptimusActions;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyCreatePage;
+import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyListPage;
+import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyUpdatePage;
 import pageFactory.OptimusPages.CounterParty.OptimusRelatedPartyCreatePage;
 import pageFactory.OptimusPages.Portfolio.PortfolioMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementMainPage;
 import pageFactory.OptimusPages.Portfolio.PortfolioMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementUpdatePage;
+import step_definitions.RunCukesTest;
+import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
+
+import java.util.HashMap;
 
 
 public class OptimusPortfolioCreateActions extends KeywordUtil {
 
 
     static Class<OptimusPortfolioCreateActions> thisClass = OptimusPortfolioCreateActions.class;
-
-
 
     public static void createPortfolioType(String porttype) {
         inputText(PortfolioMainPage.Portfolio_createPortfoliotype,porttype,"Portfolio Type"+porttype);
@@ -31,20 +36,16 @@ public class OptimusPortfolioCreateActions extends KeywordUtil {
         KeywordUtil.clearInputUsingKeys(PortfolioMainPage.updateportfolioname);
         inputText(PortfolioMainPage.updateportfolioname, portfolioname, "Updated Portfolioname=" + portfolioname);
     }
-
-
     public static void createPortfolioStatus(String pstatus) {
         inputText(PortfolioMainPage.Portfolio_createStatus, pstatus, "Select Portfolio Status=" + pstatus);
         waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + pstatus + "']"));
         KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + pstatus + "']"), "Portfolio status selected");
     }
-
     public static void create_PortfolioOwner(String powner) {
         inputText(PortfolioMainPage.Portfolio_createOwner, powner, "Select Portfolio Status=" + powner);
         waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + powner + "']"));
         KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + powner + "']"), "Portfolio Owner selected");
     }
-
     public static void createHead(String phead) {
 
         inputText(PortfolioMainPage.Portfolio_createHead, phead, "Select Portfolio Status=" + phead);
@@ -147,43 +148,39 @@ public class OptimusPortfolioCreateActions extends KeywordUtil {
     public static String getPortfolioName()
     {
         String name=getElementText(By.xpath("//span[text()='Portfolio Number']//following::tr[2]/td[5]"));
-        LogUtil.infoLog(thisClass,"name is ="+name);
+        LogUtil.infoLog(thisClass,"Portfolio name is ="+name);
         return  name;
     }
-
-
     public static String getPortfolioOwner()
     {
         String owner=getElementText(By.xpath("//span[text()='Portfolio Number']//following::tr[2]/td[7]"));
         LogUtil.infoLog(thisClass,"name is ="+owner);
         return  owner;
     }
-
     public static String getPortfolionumber() {
         return getElementValueWithVisibility(PortfolioMainPage.portfolionumber);
     }
-
     public static void clickUpdatePortfolio() {
         click(PortfolioMainPage.updatebtn, "Clicked the update button");
     }
-
     public static void update_PortfolioOwner(String portfolio_own) throws InterruptedException {
         inputText(PortfolioMainPage.updateportfolio_owner, portfolio_own, "Updated Portfolio Owner=" +portfolio_own);
         waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_own + "']"));
         KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_own + "']"), "Owner Updated"+portfolio_own);
 
     }
-
     public static void update_PortfolioEntitycode(String portfolio_entity_code) {
         inputText(PortfolioMainPage.Portfolio_updateentitycode, portfolio_entity_code, "Updated Portfolio Owner=" +portfolio_entity_code);
         waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_entity_code + "']"));
         KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_entity_code + "']"), "Entity Code Updated"+portfolio_entity_code);
     }
 
-    public static void update_PortfolioLocation(String portfolio_location) {
-        inputText(PortfolioMainPage.Portfolio_updatedLocation, portfolio_location, "Updated Portfolio Owner=" +portfolio_location);
-        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_location + "']"));
-        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + portfolio_location + "']"), "Location Updated"+portfolio_location);
+    public static void update_PortfolioLocation(String portfolio_location) throws InterruptedException {
+        clearInputUsingKeys(PortfolioMainPage.Portfolio_updatedLocation);
+        inputText(PortfolioMainPage.Portfolio_updatedLocation,portfolio_location,"Portfolio Updated Location"+portfolio_location);
+        waitForPresent(By.xpath(String.format(PortfolioMainPage.Portfolio_updatedLocationoption, portfolio_location)));
+        click(By.xpath(String.format(PortfolioMainPage.Portfolio_updatedLocationoption, portfolio_location)), "Choose Portfolio Location");
+
     }
 
     public static void update_PortfolioBranchCode(String accounting_branch_code) {
@@ -194,7 +191,6 @@ public class OptimusPortfolioCreateActions extends KeywordUtil {
         inputText(PortfolioMainPage.Portfolio_updateCostCenter, cost_center, "Updated Cost  Center=" +cost_center);
 
     }
-
     public static void update_PortfolioGSTInfo(String gst_information) {
         inputText(PortfolioMainPage.Portfolio_updateGSTInformation, gst_information, "Updated Portfolio Owner=" +gst_information);
         waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + gst_information + "']"));
@@ -212,30 +208,37 @@ public class OptimusPortfolioCreateActions extends KeywordUtil {
         LogUtil.infoLog(thisClass,"name is ="+code);
         return  code;
     }
-
     public static void deleteRecord() {
             click(PortfolioMainPage.Portfolio_deleterecordbtn,"Clicked on the Delete Button");
             waitForVisible(SettlementUpdatePage.updatesettlement_yesdeletebtn);
             click(SettlementUpdatePage.updatesettlement_yesdeletebtn,"clicked on Yes Button");
 
     }
-//    public static String getPortfolioOwner()
-//    {
-//        String owner=getElementText(By.xpath("//span[text()='Portfolio Number']//following::tr[2]/td[6]"));
-//        LogUtil.infoLog(thisClass,"name is ="+owner);
-//        return  owner;
-//    }
-//
 
+    public static void update_HeadofBusiness(String head) {
+        inputText(PortfolioMainPage.Portfolio_updateHOB, head, "Updated Portfolio Owner=" +head);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + head + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + head + "']"), "New Head Updated"+head);
 
+    }
 
+    public static void update_TradingLocation(String TL) {
+        inputText(PortfolioMainPage.Portfolio_updateTradingLocation, TL, "Updated Portfolio Owner=" +TL);
+        waitForVisible(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + TL + "']"));
+        KeywordUtil.click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()='" + TL + "']"), "NEw Trading Location Updated"+TL);
 
+    }
 
+    public static String validateuser(HashMap<String, String> dataMap) {
+        // boolean flag = false;
+        String S1 = dataMap.get("Portfolio Name").toString();
+        String Name=(getElementText(By.xpath("//td[text()='"+S1+"']")));
+        System.out.println(Name);
+        return Name;
+    }
 
-
-
-
-
-
-
+    public static void verifyDownloadCSVBtn() {
+        waitForClickable(PortfolioMainPage.Portfolio_DownloadCSVBtn);
+        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
+    }
 }
