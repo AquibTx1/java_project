@@ -3,6 +3,7 @@ package modules.OptimusActions;
 import org.openqa.selenium.By;
 import pageFactory.OptimusPages.Account.OptimusAccountCreatePage;
 import pageFactory.OptimusPages.Account.OptimusAccountMainPage;
+import pageFactory.OptimusPages.Account.OptimusNitroAccountPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyMainPage;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyServicesPage;
 import step_definitions.RunCukesTest;
@@ -297,6 +298,69 @@ public class OptimusAccountActions extends KeywordUtil {
 
     public static void click_Account_Delete_btn() {
         click(OptimusAccountCreatePage.account_Delete_btn, "Clicking Delete Account button");
+    }
+
+    public static void click_Configurations_SideTab() {
+        click(OptimusAccountMainPage.account_Configurations_SideTab, "Clicking Configurations Side tab");
+        waitForVisible(OptimusAccountMainPage.account_Configurations_RecordingAccounts_tab);
+    }
+
+    public static void click_Configurations_RecordingAccounts_Tab() {
+        click(OptimusAccountMainPage.account_Configurations_RecordingAccounts_tab, "Clicking Recording Accounts Configurations tab");
+        waitForVisible(OptimusAccountMainPage.accountConfigurations_Recording_AccountName_List);
+    }
+
+    public static void click_Configurations_RecordingWalletAddress_Tab() {
+        click(OptimusAccountMainPage.account_Configurations_RecordingWalletAddress_tab, "Clicking Recording Wallet Address Configurations Side tab");
+    }
+
+    public static void click_CreateAccount_ConfigurationAccounts() {
+        click(OptimusAccountMainPage.account_Configurations_AddAccount_List, "Clicking Add Account button on list page");
+        waitForPresent(OptimusNitroAccountPage.nitroAccount_Create_ModalWindow);
+    }
+    public static void accountConfigurations_Search(String item) {
+        waitForClickable(OptimusAccountMainPage.account_Configurations_SearchBox);
+        inputText(OptimusAccountMainPage.account_Configurations_SearchBox, item, "Search input Account = " + item);
+        click(OptimusAccountMainPage.account_Configuration_Search_Btn, "Click search button to search");
+    }
+    public static void accountConfigurations_Recording_Exchange(String item) {
+        waitForClickable(OptimusAccountMainPage.accountConfigurations_Recording_Exchange);
+        inputText(OptimusAccountMainPage.accountConfigurations_Recording_Exchange, item, "Select Recording Account Exchange = " + item);
+        waitForPresent(By.xpath(String.format(OptimusAccountMainPage.accountConfigurations_Recording_Exchange_Options, item)));
+        click(By.xpath(String.format(OptimusAccountMainPage.accountConfigurations_Recording_Exchange_Options, item)), "Choose Recording account Exchange dropdown options");
+    }
+    public static void accountConfigurations_Recording_AccountName(String item) {
+        waitForClickable(OptimusAccountMainPage.accountConfigurations_Recording_AccountName);
+        inputText(OptimusAccountMainPage.accountConfigurations_Recording_AccountName, item, "Select Recording Account name = " + item);
+        waitForPresent(By.xpath(String.format(OptimusAccountMainPage.accountConfigurations_Recording_AccountName_Options, item)));
+        click(By.xpath(String.format(OptimusAccountMainPage.accountConfigurations_Recording_AccountName_Options, item)), "Choose Recording account name dropdown options");
+    }
+    public static void accountConfigurations_Recording_ProductName(String item) {
+        waitForClickable(OptimusAccountMainPage.accountConfigurations_Recording_ProductName);
+        inputText(OptimusAccountMainPage.accountConfigurations_Recording_ProductName, item, "Select Product Name Account  = " + item);
+        pressEnter(OptimusAccountMainPage.accountConfigurations_Recording_ProductName);
+//        waitForPresent(By.xpath(String.format(OptimusAccountMainPage.accountConfigurations_Recording_ProductName_Options, item)));
+//        click(By.xpath(String.format(OptimusAccountMainPage.accountConfigurations_Recording_ProductName_Options, item)), "Choose Product Name account dropdown options");
+    }
+
+    public static void clickCreateBtn_RecordingAccount() {
+        click(OptimusAccountMainPage.accountConfigurations_Recording_AddRecording_CreateBtn, "Click Create Recording Account");
+        waitForInVisibile(OptimusNitroAccountPage.nitroAccount_Create_ModalWindow);
+    }
+
+    public static void deleteAccount_ConfigurationAccounts() {
+        click(OptimusAccountMainPage.accountConfigurations_Recording_CloseDeleteAccount_List, "Clicking Delete Account button on list page");
+        click(OptimusAccountMainPage.account_Configurations_OKDeleteAccount_popUp_List, "Clicking OK to confirm Delete Account on list page");
+    }
+
+    public static String getRecordingAccountNameFromRecordingList() {
+        waitForVisible(OptimusAccountMainPage.accountConfigurations_Recording_AccountName_List);
+        return getElementText(OptimusAccountMainPage.accountConfigurations_Recording_AccountName_List);
+    }
+
+    public static String getProductAccountNameFromRecordingList() {
+        waitForVisible(OptimusAccountMainPage.accountConfigurations_Recording_AccountName_List);
+        return getElementText(OptimusAccountMainPage.accountConfigurations_Recording_AccountName_List);
     }
 
 }

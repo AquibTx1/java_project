@@ -17,17 +17,27 @@ public class OptimusAccountNitroActions {
 
     public static void clickCreateNewNitro_btn() {
         click(OptimusNitroAccountPage.nitroAccount_CreateNew_ListBtn, "Click Create New Nitro Account button");
-        waitForPresent(OptimusNitroAccountPage.nitroAccount_Create_ModalWindow);
+        waitForVisible(OptimusNitroAccountPage.nitroAccount_Create_ModalWindow);
     }
 
     public static void clickEditNitro_Listbtn() {
         click(OptimusNitroAccountPage.nitroAccount_Edit_ListBtn, "Click Edit Existing Nitro Account button");
-        waitForPresent(OptimusNitroAccountPage.nitroAccount_Create_ModalWindow);
+        waitForVisible(OptimusNitroAccountPage.nitroAccount_Create_ModalWindow);
     }
 
     public static void click_NitroAccount_IPBindingBtn() {
         click(OptimusNitroAccountPage.nitroAccount_IPBindingBtn, "Click nitroAccount IPBindingBtn button");
-        waitForPresent(OptimusNitroAccountPage.nitroAccount_Create_ModalWindow);
+        waitForVisible(OptimusNitroAccountPage.nitroAccount_Create_ModalWindow);
+    }
+    public static void click_ConfigurationSettings_ListBtn() {
+        click(OptimusNitroAccountPage.nitroAccount_ConfigurationSettings_List, "Click nitroAccount Configuration button in List");
+        waitForVisible(OptimusNitroAccountPage.nitroAccount_Create_ModalWindow);
+    }
+    public static void viewConfigurationSettings_modal() {
+        waitForVisible(OptimusNitroAccountPage.nitroAccount_Country_ConfigurationSettings_Modal);
+        waitForVisible(OptimusNitroAccountPage.nitroAccount_Exchange_ConfigurationSettings_Modal);
+        waitForVisible(OptimusNitroAccountPage.nitroAccount_Account_ConfigurationSettings_Modal);
+        waitForVisible(OptimusNitroAccountPage.nitroAccount_PersistBtn_ConfigurationSettings_Modal);
     }
 
     public static void click_NitroAccount_Modal_Close() {

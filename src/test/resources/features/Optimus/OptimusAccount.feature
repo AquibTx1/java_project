@@ -195,22 +195,24 @@ Feature: Test CounterParty feature
     And Open Nitro Accounts side tab
     And Search for existing Nitro Account in List
     And Click Unlock button in List for Nitro Account
-    And Click Run Broker button in List for Nitro Account
-    Then Verify Success Message on Create and Update Page
+#    And Click Run Broker button in List for Nitro Account
+#    Then Verify Success Message on Create and Update Page
+    Then Click Lock button in Nitro Account List
 
     Examples:
       | TestCaseID                     | SheetName    |
       | QA_TestCase_Auto_Optimus_6_2_4 | NitroAccount |
 
-  @OptimusAccount @debug
+  @OptimusAccount
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Unlock and Run Balance Listener for Nitro Account
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open Account main tab
     And Open Nitro Accounts side tab
     And Search for existing Nitro Account in List
     And Click Unlock button in List for Nitro Account
-    And Click Run Balance Listener button in List for Nitro Account
-    Then Verify Success Message on Create and Update Page
+#    And Click Run Balance Listener button in List for Nitro Account
+#    Then Verify Success Message on Create and Update Page
+    Then Click Lock button in Nitro Account List
 
     Examples:
       | TestCaseID                     | SheetName    |
@@ -223,9 +225,51 @@ Feature: Test CounterParty feature
     And Open Nitro Accounts side tab
     And Search for existing Nitro Account in List
     And Click Unlock button in List for Nitro Account
-    And Click Run Order Listener button in List for Nitro Account
-    Then Verify Success Message on Create and Update Page
+#    And Click Run Order Listener button in List for Nitro Account
+#    Then Verify Success Message on Create and Update Page
+    Then Click Lock button in Nitro Account List
 
     Examples:
       | TestCaseID                     | SheetName    |
       | QA_TestCase_Auto_Optimus_6_2_6 | NitroAccount |
+
+  @OptimusAccount
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and view the configuration for Nitro Account
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open Account main tab
+    And Open Nitro Accounts side tab
+    And Search for existing Nitro Account in List
+    And Click View Configuration button in List for Nitro Account
+    Then Verify Configuration Settings is shown
+
+    Examples:
+      | TestCaseID                     | SheetName    |
+      | QA_TestCase_Auto_Optimus_6_2_7 | NitroAccount |
+
+  @OptimusAccount
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search for existing Nitro Account
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open Account main tab
+    And Open Nitro Accounts side tab
+    And Search for existing Nitro Account in List
+    And Verify Nitro Account Name in Search Result
+
+    Examples:
+      | TestCaseID                     | SheetName    |
+      | QA_TestCase_Auto_Optimus_6_2_8 | NitroAccount |
+
+  @OptimusAccount @debug
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Create Recording Accounts Configurations in Account
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open Account main tab
+    And Open Configurations side tab in Accounts
+    And open Recording Accounts tab in Configurations under Accounts
+    And Open Create New Recording Accounts Page
+    And Enter details in Recording Account
+    And Click Create button to create Recording Account
+    And Verify Success Message on Create and Update Page
+
+    Examples:
+      | TestCaseID                     | SheetName    |
+      | QA_TestCase_Auto_Optimus_6_3_4 | NitroAccount |
+

@@ -17,6 +17,11 @@ public class OptimusNitroAccountPage {
     public static By nitroAccount_IPBindingBtn = By.xpath("//tbody/tr[2]/td/div/button[@type='button']/span[@aria-label='desktop']");
     public static By nitroAccount_AddExternal_IPBinging_Search = By.xpath("//input[@type='search'][@class='ant-select-selection-search-input']");
     public static By nitroAccount_IPBinding_List = By.cssSelector(".ant-modal-body .ant-spin-container > ul > li:nth-child(1) > span:nth-child(2)");
+    public static By nitroAccount_ConfigurationSettings_List = By.xpath("//tbody/tr[2]/td[7]/div[1]/button[3]/span[@aria-label='setting']");
+    public static By nitroAccount_Country_ConfigurationSettings_Modal = By.xpath("//div[@class='ant-modal-content']/div[2]/..//div[@class='ant-select-selector']/span/input[@type='search']");
+    public static By nitroAccount_Exchange_ConfigurationSettings_Modal = By.xpath("//span[@class='ant-divider-inner-text'][contains(text(),'Exchange Config')]");
+    public static By nitroAccount_Account_ConfigurationSettings_Modal = By.xpath("//span[@class='ant-divider-inner-text'][contains(text(),'Account Config')]");
+    public static By nitroAccount_PersistBtn_ConfigurationSettings_Modal = By.xpath("//button[@type='button']/span[contains(text(),'Persist')]");
     public static By nitroAccount_AccountName_List = By.xpath("//tbody/tr[2]/td[2]");
     public static By nitroAccount_Modalwindow_Close = By.className("ant-modal-close-x");
     public static By nitroAccount_ModalWindow_IP_ClearBtn = By.xpath("//button[@type='button']/span[contains(text(),'Clear')]");

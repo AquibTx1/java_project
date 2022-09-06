@@ -268,7 +268,6 @@ public class OptimusCounterPartySteps {
 //Verify Success Message of create and update pages
                 OptimusCounterPartyCreateActions.waitForSuccessMessage();
                 Assert.assertEquals(OptimusCounterPartyCreateActions.getSuccessMessageText(), "Success!", "Expected and Actual matching");
-                OptimusAccountNitroActions.click_NitroAccount_UnlockSwitch_List();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
