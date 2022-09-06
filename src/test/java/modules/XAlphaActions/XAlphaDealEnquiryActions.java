@@ -7,6 +7,7 @@ import pageFactory.XAlphaPages.XAlphaDealInputPage;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class XAlphaDealEnquiryActions extends KeywordUtil {
@@ -18,6 +19,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     }
 
     public static void clickDeaTradeDocumentsTab() {
+
         click(XAlphaDealEnquiryPage.tradedocumentsTab, "Click Trade Doc. tab");
     }
     public static void waitFordealEnquiry_navbar() {
@@ -417,7 +419,6 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     }
 
     public static void validatestatus() {
-
         List<WebElement> all_rows = getDriver().findElements(By.xpath("//th[text()='Settled']/../../following-sibling::tbody/tr"));
         boolean Settledstatus = false;
         List<WebElement> all_cols = getDriver().findElements(By.xpath("//th[text()='Settled']/../../following-sibling::tbody/tr/td[7]"));
@@ -446,6 +447,9 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_editdraft);
     }
 
+    public static void selectEditInvoiceDraft() throws InterruptedException {
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_editinvoiceDraft);
+    }
     public static void selecReview() throws InterruptedException {
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox);
         delay(2000);
@@ -458,7 +462,6 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     public static void clearAllFileds() throws InterruptedException
     {
-
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_To);
         delay(3000);
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_CC);
@@ -482,7 +485,38 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     public static String getConfirmationStatus() {
 
         String status = KeywordUtil.getElementText(By.xpath("//span[text()='Deal Ref']//following::tbody[1]/tr[2]/td[9]/span/div/div[1]"));
-        LogUtil.infoLog(thisClass, "referencePrice=" + status);
+        LogUtil.infoLog(thisClass, "Confirmation Status is =" + status);
         return status;
+    }
+
+    public static String getInvoiceStatus() {
+
+        String status = KeywordUtil.getElementText(By.xpath("//span[text()='Deal Ref']//following::tbody[1]/tr[2]/td[10]/span"));
+        LogUtil.infoLog(thisClass, "Confirmation Status is =" + status);
+        return status;
+    }
+    public static String getInvoiceDetail() {
+        String nodata= getElementText(By.xpath("//div[text()='No Data']"));
+        LogUtil.infoLog(thisClass, "Invoice Detail =" + nodata);
+        return nodata;
+    }
+
+    public static void selectInvoiceTab() {
+        try {
+            hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_invoiceTab);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static void selectgenerateInvoice() {
+        click(XAlphaDealEnquiryPage.tradedocuments_generateinvoicebtn,"Clicked the Generate Invoice Button");
+    }
+
+    public static void goBacktoMainWindow() throws InterruptedException {
+        ArrayList<String> newTb = new ArrayList<String>(getDriver().getWindowHandles());
+        //switch to new tab
+
+        getDriver().switchTo().window(newTb.get(0));
     }
 }

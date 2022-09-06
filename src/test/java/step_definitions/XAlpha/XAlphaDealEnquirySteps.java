@@ -390,6 +390,8 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 XAlphaDealEnquiryActions.clickUpdateDealBtn();
+                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
+                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1117,8 +1119,9 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 XAlphaDealEnquiryActions.clickExpandbutton();
-                waitForVisible(XAlphaDealEnquiryPage.tradedocuments_confirmation);
-                waitForVisible(XAlphaDealEnquiryPage.tradedocuments_editdraft);
+                XAlphaDealEnquiryActions.waitForLoadingIconToAppear();
+                XAlphaDealEnquiryActions.waitForLoadingIconToDisappear();
+                //waitForVisible(XAlphaDealEnquiryPage.tradedocuments_editdraft);
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1165,7 +1168,7 @@ public class XAlphaDealEnquirySteps {
             try {
               XAlphaDealEnquiryActions.selectPrepareEmail();
               XAlphaDealEnquiryActions.waitForLoadingIconToAppear();
-              XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+              XAlphaDealEnquiryActions.waitForLoadingIconToDisappear();
               delay(5000);
               XAlphaDealEnquiryActions.clearAllFileds();
             } catch (Throwable e) {
@@ -1213,6 +1216,146 @@ public class XAlphaDealEnquirySteps {
             try {
                   String confirmation_status=  XAlphaDealEnquiryActions.getConfirmationStatus();
                   Assert.assertEquals(confirmation_status,"sent");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Again click the Trade Documents Tab")
+    public void againClickTheTradeDocumentsTab() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+
+                XAlphaDealEnquiryActions.clickDeaTradeDocumentsTab();
+                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
+                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the Invoice Tab is Empty")
+    public void verifyTheInvoiceTabIsEmpty() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.selectInvoiceTab();
+                Assert.assertEquals(XAlphaDealEnquiryActions.getInvoiceDetail(),"No Data");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Invoice Tab")
+    public void clickInvoiceTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.selectInvoiceTab();
+                waitForPresent(XAlphaDealEnquiryPage.tradedocuments_editinvoiceDraft);
+                XAlphaDealEnquiryActions.selectEditInvoiceDraft();
+                waitForPresent(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox);
+                XAlphaDealEnquiryActions.selecReview();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Edit and generate Invoice")
+    public void editAndGenerateInvoice() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.selectgenerateInvoice();
+                delay(60000);
+                XAlphaDealEnquiryActions.goBacktoMainWindow();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("And Select Prepare Email and send")
+    public void andSelectPrepareEmailAndSend() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                waitForClickable(XAlphaDealEnquiryPage.tradedocuments_emailbtn);
+                XAlphaDealEnquiryActions.selectPrepareEmail();
+                XAlphaDealEnquiryActions.waitForLoadingIconToAppear();
+                XAlphaDealEnquiryActions.waitForLoadingIconToDisappear();
+                delay(5000);
+                XAlphaDealEnquiryActions.clearAllFileds();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the Invoice status")
+    public void verifyTheInvoiceStatus() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                String status=  XAlphaDealEnquiryActions.getInvoiceStatus();
+                Assert.assertEquals(status,"sent");
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

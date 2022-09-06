@@ -97,6 +97,7 @@ public class XAlphaDealEnquiryPage {
 
     public static By tradedocuments_editdraft = By.xpath("//span[text()='Confirmation']//following::table[2]/tbody/tr[2]/td[7]/div/button");
 
+    public static By tradedocuments_editinvoiceDraft = By.xpath("//span[text()='Trade Value Date']//following::table[2]/tbody[1]/tr[2]/td[7]/div/button");
     public static By tradedocuments_reviewPage = By.xpath("//span[text()='hide details']");
 
     public static By tradedocuments_reviewPagecheckbox = By.xpath("//span[text()='Add Instruction ']/following::span[2]");
@@ -119,4 +120,8 @@ public class XAlphaDealEnquiryPage {
     public static By tradedocuments_Toinputfield = By.xpath("//input[@id='recipients']");
 
     public static By tradedocuments_sendbtn = By.xpath("//span[@aria-label='send']");
+
+    public static By tradedocuments_generateinvoicebtn = By.xpath("//span[text()='Generate Invoice']");
+
+    public static By tradedocuments_invoiceTab = By.xpath("//div[text()='Invoice']");
 }
