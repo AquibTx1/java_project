@@ -33,8 +33,8 @@ Feature: Test Trade Documents
       | SheetName   | TestCaseID                          | Direction | Status    |
       | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_101 | Buy       | Confirmed |
 
-  @TradeDocuments
-  Scenario Outline: "<TestCaseID>"_Not Able to Complete Flow of Invoice for FX-Spot Deal
+  @TradeDocuments2
+  Scenario Outline: "<TestCaseID>"_Able to Complete Flow of Invoice for FX-Spot Deal
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal input tab
@@ -62,14 +62,13 @@ Feature: Test Trade Documents
    And And Select Prepare Email and send
     And Choose Sender name and send mail
     Then Verify the Invoice status
-
-
     Examples:
       | SheetName   | TestCaseID                          | Direction | Status    |
       | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_102| Buy       | Confirmed |
+      | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_103| Buy       | Confirmed |
 
   @TradeDocuments
-  Scenario Outline: "<TestCaseID>"_Not Able to Complete Flow of Invoice for FX-Spot Deal
+  Scenario Outline: "<TestCaseID>"Able to Complete Flow of Invoice for FX-Spot Deal With Add Instruction
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
     And Navigate to deal input tab
@@ -92,7 +91,7 @@ Feature: Test Trade Documents
     And Click update deal button
     And Again click the Trade Documents Tab
     And Expand the Current Deal Type
-    And Click Invoice Tab
+    And Click Invoice Tab and Add instruction
     And Edit and generate Invoice
     And And Select Prepare Email and send
     And Choose Sender name and send mail
@@ -100,4 +99,5 @@ Feature: Test Trade Documents
 
     Examples:
       | SheetName   | TestCaseID                          | Direction | Status    |
-      | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_103| Buy       | Confirmed |
+      | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_104| Buy       | Confirmed |
+      | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_105| Buy       | Confirmed |

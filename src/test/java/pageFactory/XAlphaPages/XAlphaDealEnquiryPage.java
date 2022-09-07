@@ -101,12 +101,18 @@ public class XAlphaDealEnquiryPage {
     public static By tradedocuments_reviewPage = By.xpath("//span[text()='hide details']");
 
     public static By tradedocuments_reviewPagecheckbox = By.xpath("//span[text()='Add Instruction ']/following::span[2]");
+
+    public static By tradedocuments_addinstructions = By.xpath("//span[text()='Add Instruction ']");
+    //span[text()='1 - CRYPTO (USDT)']
+
+    public static By tradedocuments_addReview = By.xpath("//span[text()='1 - CRYPTO (USDT)']");
     public static By tradedocuments_reviewPagecheckbox2 = By.xpath("//label[@class='ant-checkbox-wrapper ant-checkbox-wrapper-in-form-item']/span[1]");
 
+    public static By tradedocuments_reviewPagecheckbox3 = By.xpath("(//span[text()='Add Instruction ']//following::label[@class='ant-checkbox-wrapper ant-checkbox-wrapper-in-form-item'])[1]");
+
+    public static By tradedocuments_reviewPagecheckbox4 = By.xpath("(//span[text()='Add Instruction ']//following::label[@class='ant-checkbox-wrapper ant-checkbox-wrapper-in-form-item'])[2]");
     public static By tradedocuments_emailbtn = By.xpath("//span[text()='Prepare Email']");
-
     public static By tradedocuments_sender = By.xpath("//input[@id='sender']");
-
     public static By tradedocuments_To = By.xpath("//input[@id='recipients']//following::span[3]");
     public static By tradedocuments_CC = By.xpath("//input[@id='cc']//following::span[3]");
     public static By tradedocuments_BCC = By.xpath("//input[@id='bcc']//following::span[3]");
@@ -118,10 +124,9 @@ public class XAlphaDealEnquiryPage {
     public static By tradedocuments_closebtn = By.xpath("//button[@aria-label='Close']");
 
     public static By tradedocuments_Toinputfield = By.xpath("//input[@id='recipients']");
-
     public static By tradedocuments_sendbtn = By.xpath("//span[@aria-label='send']");
-
     public static By tradedocuments_generateinvoicebtn = By.xpath("//span[text()='Generate Invoice']");
-
     public static By tradedocuments_invoiceTab = By.xpath("//div[text()='Invoice']");
+
+    public static By tradedocuments_addcomments = By.xpath("//textarea[@id='addnInstr']");
 }

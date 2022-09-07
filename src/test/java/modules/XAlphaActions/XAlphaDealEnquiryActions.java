@@ -439,7 +439,8 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     }
 
-    public static void clickExpandbutton() {
+    public static void clickExpandbutton() throws InterruptedException {
+        delay(4000);
         click(XAlphaDealEnquiryPage.tradedocuments_expandbtn,"Clicked the Expand Button");
     }
 
@@ -455,6 +456,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         delay(2000);
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox2);
     }
+
 
     public static void selectPrepareEmail() {
         click(XAlphaDealEnquiryPage.tradedocuments_emailbtn,"Clicked the Prepare Email button");
@@ -518,5 +520,23 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         //switch to new tab
 
         getDriver().switchTo().window(newTb.get(0));
+    }
+
+    public static void addInstructions() throws InterruptedException {
+        hoverOnElement(XAlphaDealEnquiryPage.tradedocuments_addinstructions);
+        delay(2000);
+        click(XAlphaDealEnquiryPage.tradedocuments_addReview,"Clicked ion Add Review");
+
+    }
+
+
+    public static void addComments() {
+        inputText(XAlphaDealEnquiryPage.tradedocuments_addcomments, "Tx-Automate Test Data", "Added Comments");
+    }
+
+    public static void selectallReview() throws InterruptedException {
+
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox3);
+
     }
 }
