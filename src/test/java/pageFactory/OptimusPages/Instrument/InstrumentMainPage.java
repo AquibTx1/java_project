@@ -77,6 +77,19 @@ public class InstrumentMainPage {
     public static By Instrument_Tradingstatus= By.id("create_instrument_status");
     public static By Instrument_Tradingnotes= By.id("create_instrument_notes");
 
+    public static By InstrumentFutures_SideTab = By.xpath("//span/a[text()='Futures']");
+    public static By instrumentFutures_Exchange_dropdown_List = By.id("exchange_list");
+    public static By instrumentFuture_ExchangeName_List = By.xpath("//tbody/tr[2]/td[1]");
+    public static By instrumentFuture_ExchangeSymbol_List = By.xpath("//tbody/tr[2]/td[3]");
+    public static By intrumentTokenPrices_SideTab = By.xpath("//ul/li/span/a[contains(text(),'Token Prices')]");
+    public static By intrumentTokenPrices_SearchBase_List = By.xpath("//input[@placeholder='search base']");
+    public static By intrumentTokenPrices_SearchQuote_List = By.xpath("//input[@placeholder='search quote']");
+    public static By intrumentTokenPrices_SearchStartDate_List = By.xpath("//input[@placeholder='Start date']");
+    public static By intrumentTokenPrices_SearchEndDate_List = By.xpath("//input[@placeholder='End date']");
+    public static By intrumentTokenPrices_SearchTime_List = By.className("ant-select-selection-overflow");
+    public static By intrumentTokenPrices_Base_List = By.xpath("//tbody/tr[2]/td[1]");
+    public static By intrumentTokenPrices_Quote_List = By.xpath("//tbody/tr[2]/td[2]");
+    public static By intrumentTokenPrices_Date_List = By.xpath("//tbody/tr[2]/td[4]");
 
 
 

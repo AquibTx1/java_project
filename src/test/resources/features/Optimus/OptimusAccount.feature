@@ -258,7 +258,7 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName    |
       | QA_TestCase_Auto_Optimus_6_2_8 | NitroAccount |
 
-  @OptimusAccount @debug
+  @OptimusAccount
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Create Recording Accounts Configurations in Account
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open Account main tab
@@ -273,3 +273,29 @@ Feature: Test CounterParty feature
       | TestCaseID                     | SheetName    |
       | QA_TestCase_Auto_Optimus_6_3_4 | NitroAccount |
 
+  @OptimusAccount
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Recording Accounts Configurations in Account
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open Account main tab
+    And Open Configurations side tab in Accounts
+    And open Recording Accounts tab in Configurations under Accounts
+    And Search for Existing Recording Account in List
+    Then Verify Recording Account is created and shown in List Page
+
+    Examples:
+      | TestCaseID                     | SheetName    |
+      | QA_TestCase_Auto_Optimus_6_3_5 | NitroAccount |
+
+  @OptimusAccount
+  Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Delete Recording Accounts Configurations in Account
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open Account main tab
+    And Open Configurations side tab in Accounts
+    And open Recording Accounts tab in Configurations under Accounts
+    And Search for Existing Recording Account in List
+    And Delete the Searched Recording Account in List
+    Then Verify Success Message on Create and Update Page
+
+    Examples:
+      | TestCaseID                     | SheetName    |
+      | QA_TestCase_Auto_Optimus_6_3_6 | NitroAccount |

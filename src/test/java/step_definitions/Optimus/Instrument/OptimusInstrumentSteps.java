@@ -447,9 +447,7 @@ public class OptimusInstrumentSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                waitForVisible(InstrumentMainPage.Instrument_TradingInstruments);
                 OptimusInstrumentActions.clickTradingInstruments();
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -468,9 +466,7 @@ public class OptimusInstrumentSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                waitForVisible(InstrumentMainPage.Instrument_NewTradingInstrument);
                 OptimusInstrumentActions.clickNewTradingInstrument();
-
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -695,7 +691,7 @@ public class OptimusInstrumentSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-
+                OptimusSettlementActions.inputValue(dataMap.get("Search"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -797,6 +793,69 @@ public class OptimusInstrumentSteps {
         } else {
             try {
                 Assert.assertEquals(OptimusInstrumentActions.getAltcoin(),dataMap.get("Alt Coin"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Click the Futures Side Tab Under Instrument")
+    public void clickTheFuturesSideTabUnderInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.clickInstrument_Futures_SideTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Select Exchange from Search Dropdown")
+    public void selectExchangeFromSearchDropdown() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.search_Futures_Exchange_dropdown_List(dataMap.get("Exchange"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @Then("Verify Search Results of Existing Futures with Contains")
+    public void verifySearchResultsOfExistingFuturesWithContains() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusInstrumentActions.get_Exchange_FutureSearchList(), dataMap.get("Exchange1"), "Text Matches" );
+                Assert.assertEquals(OptimusInstrumentActions.get_ExchangeSymbol_FutureSearchList(), dataMap.get("Search"), "Text Matches" );
+//                Assert.assertTrue(OptimusInstrumentActions.get_Exchange_FutureSearchList().contains(dataMap.get("Exchange").toLowerCase()));
+//                Assert.assertTrue(OptimusInstrumentActions.get_ExchangeSymbol_FutureSearchList().contains(dataMap.get("Search").toLowerCase()));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

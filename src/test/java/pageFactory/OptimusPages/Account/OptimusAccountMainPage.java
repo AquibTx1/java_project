@@ -37,5 +37,5 @@ public class OptimusAccountMainPage {
     public static By accountConfigurations_Recording_ProductName = By.id("add_recording_acc_nitro_account_id");
     public static String accountConfigurations_Recording_ProductName_Options = "//div[@class='rc-virtual-list-holder-inner']//div[text()='%s";
     public static By accountConfigurations_Recording_AddRecording_CreateBtn = By.xpath("//button[@type='submit']/span[contains(text(),'Add Account')]");
-    
+
 }

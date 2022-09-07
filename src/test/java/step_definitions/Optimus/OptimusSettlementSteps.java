@@ -713,8 +713,8 @@ public class OptimusSettlementSteps {
             }
         }
     }
-    @Then("Verify the file is downloaded")
-    public void verifyTheFileIsDownloaded() {
+    @Then("Verify the File downloaded CSV Button")
+    public void verifyTheFileDownloadCSVButton() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {

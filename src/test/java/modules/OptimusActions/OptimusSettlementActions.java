@@ -177,9 +177,10 @@ public class OptimusSettlementActions extends KeywordUtil {
     }
 
     public static void inputValue(String value) throws InterruptedException {
+        waitForClickable(SettlementMainPage.newSettlement_inputsearchtext);
         inputText(SettlementMainPage.newSettlement_inputsearchtext, value, "Input the name =" + value);
         delay(3000);
-        click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");
+        click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clickedd");
     }
     public static void searchuser() {
         click(SettlementMainPage.newSettlement_ClickSearch,"Search Button clicked");

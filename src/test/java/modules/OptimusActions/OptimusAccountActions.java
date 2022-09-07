@@ -350,6 +350,7 @@ public class OptimusAccountActions extends KeywordUtil {
 
     public static void deleteAccount_ConfigurationAccounts() {
         click(OptimusAccountMainPage.accountConfigurations_Recording_CloseDeleteAccount_List, "Clicking Delete Account button on list page");
+        waitForPresent(OptimusAccountMainPage.account_Configurations_OKDeleteAccount_popUp_List);
         click(OptimusAccountMainPage.account_Configurations_OKDeleteAccount_popUp_List, "Clicking OK to confirm Delete Account on list page");
     }
 

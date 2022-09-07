@@ -987,4 +987,23 @@ public class OptimusAccountsSteps {
             }
         }
     }
+
+    @And("Delete the Searched Recording Account in List")
+    public void deleteTheSearchedRecordingAccountInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.deleteAccount_ConfigurationAccounts();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 }
