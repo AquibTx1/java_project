@@ -846,16 +846,14 @@ public class OptimusInstrumentSteps {
 
     }
 
-    @Then("Verify Search Results of Existing Futures with Contains")
-    public void verifySearchResultsOfExistingFuturesWithContains() {
+    @Then("Verify Search Results of Existing Futures")
+    public void verifySearchResultsOfExistingFutures() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
                 Assert.assertEquals(OptimusInstrumentActions.get_Exchange_FutureSearchList(), dataMap.get("Exchange1"), "Text Matches" );
                 Assert.assertEquals(OptimusInstrumentActions.get_ExchangeSymbol_FutureSearchList(), dataMap.get("Search"), "Text Matches" );
-//                Assert.assertTrue(OptimusInstrumentActions.get_Exchange_FutureSearchList().contains(dataMap.get("Exchange").toLowerCase()));
-//                Assert.assertTrue(OptimusInstrumentActions.get_ExchangeSymbol_FutureSearchList().contains(dataMap.get("Search").toLowerCase()));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -867,5 +865,180 @@ public class OptimusInstrumentSteps {
             }
         }
 
+    }
+
+    @And("Select Base from Search Dropdown")
+    public void selectBaseFromSearchDropdown() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.instrumentTokenPrices_SearchBase_List(dataMap.get("Base"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Select Quote from Search Dropdown")
+    public void selectQuoteFromSearchDropdown() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.instrumentTokenPrices_SearchQuote_List(dataMap.get("Quote"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Select Date from Search Dropdown")
+    public void selectDateFromSearchDropdown() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.instrumentTokenPrices_SearchDate_List(dataMap.get("Date"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Select Time from Search Dropdown")
+    public void selectTimeFromSearchDropdown() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.instrumentTokenPrices_SearchTime_List(dataMap.get("Time"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @Then("Verify Base in Search Results of Existing Token Prices")
+    public void verifyBaseInSearchResultsOfExistingTokenPrices() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusInstrumentActions.get_Base_TokenPriceSearchList(), dataMap.get("Base"), "Text Matches");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Quote in Search Results of Existing Token Prices")
+    public void verifyQuoteInSearchResultsOfExistingTokenPrices() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusInstrumentActions.get_Quote_TokenPriceSearchList(), dataMap.get("Quote"), "Text Matches");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify DateTime in Search Results of Existing Token Prices")
+    public void verifyDateTimeInSearchResultsOfExistingTokenPrices() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusInstrumentActions.get_DateTime_TokenPriceSearchList(), dataMap.get("Exchange"), "Text Matches");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click the Token Price Side Tab Under Instrument")
+    public void clickTheTokenPriceSideTabUnderInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.clickInstrument_TokenPrices_SideTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify downloaded CSV Button in Instrument")
+    public void verifyDownloadedCSVButtonInInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.verifyDownloadCSVBtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
     }
 }
