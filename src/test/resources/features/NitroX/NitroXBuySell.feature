@@ -146,7 +146,7 @@ Feature: Test buys sell features
     And Click Sell Button and Verify the Success Message
     And Cancel First Open Sell Order
     Then Verify Cancel Order Success Message
-    Then Verify First Order Removed From Orders List
+#    Then Verify First Order Removed From Orders List
     Examples:
       | SheetName     | TestCaseID                  |
       | NitroXBuySell | QA_TestCase_Auto_NitroX_018 |
