@@ -837,6 +837,7 @@ public class NitroXHomeSteps {
         } else {
             //execute the step when checkSkipExecutionFlags() returns false
             try {
+                delay(10000);
                 NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice());
                 NitroXHome.InputQuantity(dataMap);
             } catch (Throwable e) {

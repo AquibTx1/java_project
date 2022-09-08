@@ -1,4 +1,3 @@
-
 Feature: Test Instrument feature
 
   Background: Login to Optimus
@@ -30,8 +29,8 @@ Feature: Test Instrument feature
     And Verify the Token Created
 
     Examples:
-      | TestCaseID                     | SheetName |loginCredentials  |
-      | QA_TestCase_Auto_Optimus_5_1_1 | Instrument | MO_CheckerAccount|
+      | TestCaseID                     | SheetName  | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_1_1 | Instrument | MO_CheckerAccount |
 
   @OptimusInstrument
   Scenario Outline: "<TestCaseID>" Able to Login and Update the Created Instrument
@@ -60,8 +59,8 @@ Feature: Test Instrument feature
     And Verify the Token Updated
 
     Examples:
-      | TestCaseID                     | SheetName |loginCredentials  |
-      | QA_TestCase_Auto_Optimus_5_1_2 | Instrument | MO_CheckerAccount|
+      | TestCaseID                     | SheetName  | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_1_2 | Instrument | MO_CheckerAccount |
 
   @OptimusInstrument
   Scenario Outline: "<TestCaseID>" Able to Login and delete the Created Instrument
@@ -90,8 +89,9 @@ Feature: Test Instrument feature
     And Verify the Token Deleted
 
     Examples:
-      | TestCaseID                     | SheetName |loginCredentials  |
-      | QA_TestCase_Auto_Optimus_5_1_3 | Instrument | MO_CheckerAccount|
+      | TestCaseID                     | SheetName  | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_1_3 | Instrument | MO_CheckerAccount |
+
   @OptimusInstrument
   Scenario Outline: "<TestCaseID>" Able to Search a record the from the Instrument List
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
@@ -101,8 +101,8 @@ Feature: Test Instrument feature
     Then Verify the Instrument
 
     Examples:
-      | TestCaseID                      | SheetName |loginCredentials  |
-      | QA_TestCase_Auto_Optimus_5_1_4 | Instrument | MO_CheckerAccount|
+      | TestCaseID                     | SheetName  | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_1_4 | Instrument | MO_CheckerAccount |
 
   @OptimusInstrument
   Scenario Outline: "<TestCaseID>" Able to Download list from Portfolio
@@ -110,10 +110,10 @@ Feature: Test Instrument feature
     And Open the Instrument Tab
     And Click the Tokens link
     And Click the download csv
-    Then Verify the file is downloaded
+    Then Verify the File downloaded CSV Button
     Examples:
-      | TestCaseID                      | SheetName |loginCredentials  |
-      | QA_TestCase_Auto_Optimus_5_1_5 | Instrument | MO_CheckerAccount|
+      | TestCaseID                     | SheetName  | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_1_5 | Instrument | MO_CheckerAccount |
 
 
   @OptimusInstrument
@@ -144,8 +144,8 @@ Feature: Test Instrument feature
     And Verify the Trading Instrument Approved
 
     Examples:
-      | TestCaseID                     | SheetName |loginCredentials  |
-      | QA_TestCase_Auto_Optimus_5_2_1 | InstrumentTrading | MO_CheckerAccount|
+      | TestCaseID                     | SheetName         | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_2_1 | InstrumentTrading | MO_CheckerAccount |
 
 
   @OptimusInstrument
@@ -177,8 +177,8 @@ Feature: Test Instrument feature
     And Verify the Trading Instrument Updated
 
     Examples:
-      | TestCaseID                     | SheetName |loginCredentials  |
-      | QA_TestCase_Auto_Optimus_5_2_2 | InstrumentTrading | MO_CheckerAccount|
+      | TestCaseID                     | SheetName         | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_2_2 | InstrumentTrading | MO_CheckerAccount |
 
   @OptimusInstrument
   Scenario Outline: "<TestCaseID>" Able to Delete the Existing Trading Instrument
@@ -210,8 +210,8 @@ Feature: Test Instrument feature
 
 
     Examples:
-      | TestCaseID                     | SheetName |loginCredentials  |
-      | QA_TestCase_Auto_Optimus_5_2_2 | InstrumentTrading | MO_CheckerAccount|
+      | TestCaseID                     | SheetName         | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_2_3 | InstrumentTrading | MO_CheckerAccount |
 
   @OptimusInstrument
   Scenario Outline: "<TestCaseID>" Able to Search a record the from the Instrument List
@@ -222,16 +222,41 @@ Feature: Test Instrument feature
     Then Verify the Trading Instrument
 
     Examples:
-      | TestCaseID                      | SheetName |loginCredentials  |
-      | QA_TestCase_Auto_Optimus_5_2_3 | InstrumentTrading | MO_CheckerAccount|
+      | TestCaseID                     | SheetName         | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_2_4 | InstrumentTrading | MO_CheckerAccount |
 
   @OptimusInstrument
-  Scenario Outline: "<TestCaseID>" Able to Download list from Portfolio
+  Scenario Outline: "<TestCaseID>" Able to Download list from Instrument
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open the Instrument Tab
     And Click the Trading Instrument
     And Click the download csv
-    Then Verify the file is downloaded
+    Then Verify the File downloaded CSV Button
     Examples:
-      | TestCaseID                      | SheetName |loginCredentials  |
-      | QA_TestCase_Auto_Optimus_5_2_4 | InstrumentTrading | MO_CheckerAccount|
+      | TestCaseID                     | SheetName         | loginCredentials  |
+      | QA_TestCase_Auto_Optimus_5_2_5 | InstrumentTrading | MO_CheckerAccount |
+
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to Search the Existing Futures from  list of Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Futures Side Tab Under Instrument
+    And Select Exchange from Search Dropdown
+    And Search the record
+    Then Verify Search Results of Existing Futures with Contains
+    Examples:
+      | TestCaseID                     | SheetName         |
+      | QA_TestCase_Auto_Optimus_5_3_1 | Instrument |
+      | QA_TestCase_Auto_Optimus_5_3_2 | Instrument |
+
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to check Download CSV button in Search List of Futures under Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Futures Side Tab Under Instrument
+    And Select Exchange from Search Dropdown
+    And Search the record
+    Then Verify the File downloaded CSV Button
+    Examples:
+      | TestCaseID                     | SheetName         |
+      | QA_TestCase_Auto_Optimus_5_3_3 | Instrument |

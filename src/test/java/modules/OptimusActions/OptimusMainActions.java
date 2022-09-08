@@ -17,6 +17,7 @@ public class OptimusMainActions extends KeywordUtil {
     }
     public static void searchForItem(String itemName) throws InterruptedException {
         waitForClickable(OptimusCounterPartyListPage.counterPartyList_SearchBox);
+        clearInputUsingKeys(OptimusCounterPartyListPage.counterPartyList_SearchBox);
         inputText(OptimusCounterPartyListPage.counterPartyList_SearchBox, itemName, "Enter Search Criteria");
         click(OptimusCounterPartyListPage.counterPartyList_SearchBtn, "Click Search button");
     }

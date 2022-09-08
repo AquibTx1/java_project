@@ -7,8 +7,13 @@ Feature: Test deal enquiry feature
   Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing FX-Spot Deal in Deal Inquiry
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
+    And Navigate to deal input tab
+    And Choose FX Spot
+    And Provide FX Spot deal input details
+    And Click create deal button
+    Then Verify the deal success message
     And Navigate to deal enquiry tab
-    And Load a deal wrt processing type and deal type
+    And Load a deal wrt deal reference id from deal input
     And Open first deal in the row
     And Change processing status
     And Click update deal button
@@ -25,9 +30,27 @@ Feature: Test deal enquiry feature
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_020 | Confirmed  | Pending   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_026 | Confirmed  | Cancelled |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_027 | Pending    | Cancelled |
+
+  @XAlphaDealEnquiryFXSpot
+  Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing FX-Spot Deal in Deal Inquiry
+    Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
+    When Move to X-Alpha page
+    And Navigate to deal enquiry tab
+    And Load a deal wrt processing type and deal type
+    And Open first deal in the row
+    And Change processing status
+    And Click update deal button
+    Then Verify the deal updated success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id
+    Then Verify the processing type
+
+    Examples:
+      | SheetName   | TestCaseID                  | FromStatus | ToStatus  |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_030 | Cancelled  | Pending   |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_031 | Cancelled  | Confirmed |
       | XAlphaDeals | QA_TestCase_Auto_XAlpha_032 | Cancelled  | Processed |
+
 
   @XAlphaDealEnquiryFXSpot
   Scenario Outline: "<TestCaseID>" Able to Edit Status "<FromStatus>" to "<ToStatus>" of an Existing FX-Spot Deal in Deal Inquiry
