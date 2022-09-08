@@ -685,6 +685,7 @@ public class NitroXHomeSteps {
                         waitForVisible(NitroXHomePage.price);
                         NitroXHome.InputthePrice(bidPrice + generateRandomNumber20to40());
                         NitroXHome.ClearOrderQuantity();
+                        delay(8000);
                         NitroXHome.InputCustomQuantity(dataMap);
                         NitroXHome.ClickSellButton();
 
@@ -718,6 +719,7 @@ public class NitroXHomeSteps {
                     NitroXHome.ClearInputPrice();
                     NitroXHome.InputthePrice(NitroXHome.getLowestAskPrice() - generateRandomNumber20to40());
                     NitroXHome.ClearOrderQuantity();
+                    delay(8000);
                     NitroXHome.InputCustomQuantity(dataMap);
                     NitroXHome.ClickBuyButton();
 

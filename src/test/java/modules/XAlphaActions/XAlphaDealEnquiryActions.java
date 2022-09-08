@@ -14,6 +14,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     static Class thisClass = XAlphaDealEnquiryActions.class;
 
+    public static String tran_inst,invoice_transinstr;
     public static void clickDealEnquiryTab() {
         click(XAlphaDealEnquiryPage.dealEnquiryTab, "Click deal enquiry tab");
     }
@@ -483,14 +484,12 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     public static void ChooseSendmail() {
         click(XAlphaDealEnquiryPage.tradedocuments_sendbtn,"Clicked the Send Button");
     }
-
     public static String getConfirmationStatus() {
 
         String status = KeywordUtil.getElementText(By.xpath("//span[text()='Deal Ref']//following::tbody[1]/tr[2]/td[9]/span/div/div[1]"));
         LogUtil.infoLog(thisClass, "Confirmation Status is =" + status);
         return status;
     }
-
     public static String getInvoiceStatus() {
 
         String status = KeywordUtil.getElementText(By.xpath("//span[text()='Deal Ref']//following::tbody[1]/tr[2]/td[10]/span"));
@@ -528,15 +527,32 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         click(XAlphaDealEnquiryPage.tradedocuments_addReview,"Clicked ion Add Review");
 
     }
-
-
     public static void addComments() {
         inputText(XAlphaDealEnquiryPage.tradedocuments_addcomments, "Tx-Automate Test Data", "Added Comments");
     }
-
     public static void selectallReview() throws InterruptedException {
 
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox3);
 
+    }
+    public static void selectAddedInstructionreview() throws InterruptedException {
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_addedinstruction);
+    }
+    public static String getTransferInstructions() {
+        String tran_inst = KeywordUtil.getElementText(XAlphaDealEnquiryPage.tradedocuments_confirmationTransferinstr);
+        LogUtil.infoLog(thisClass, "Transfer Instruction is =" + tran_inst);
+        return tran_inst;
+    }
+
+    public static String getTransferInstructionsInvoce() {
+        String invoice_transinstr = KeywordUtil.getElementText(XAlphaDealEnquiryPage.tradedocuments_InvoiceTransferinstr);
+        LogUtil.infoLog(thisClass, "Invoice  Transfer Instruction is =" + invoice_transinstr);
+        return invoice_transinstr;
+    }
+
+    public static String getStatusforbothTradeDoc() {
+        String status = KeywordUtil.getElementText(XAlphaDealEnquiryPage.TradeDocuments_dealRefconfirmationstatus);
+        LogUtil.infoLog(thisClass, "Status for both Deals  is =" + status);
+        return status;
     }
 }
