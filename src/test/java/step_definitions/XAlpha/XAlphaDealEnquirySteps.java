@@ -23,7 +23,7 @@ public class XAlphaDealEnquirySteps {
 
     public static HashMap<String, String> dataMap = new HashMap<String, String>();
 
-    public static String dealRefId, dealInput_FeeAmount_autoPopulated;
+    public static String dealRefId, dealInput_FeeAmount_autoPopulated,transfer_instr,transerinstr_invoice;
 
     public XAlphaDealEnquirySteps() {
         //constructor of the class to load datamap from BaseStepDefinitions
@@ -1145,8 +1145,10 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                transfer_instr=XAlphaDealEnquiryActions.getTransferInstructions();
                 XAlphaDealEnquiryActions.selectEditDraft();
                 waitForPresent(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox);
+
                 XAlphaDealEnquiryActions.selecReview();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1284,6 +1286,7 @@ public class XAlphaDealEnquirySteps {
             try {
                 XAlphaDealEnquiryActions.selectInvoiceTab();
                 waitForPresent(XAlphaDealEnquiryPage.tradedocuments_editinvoiceDraft);
+                transerinstr_invoice=XAlphaDealEnquiryActions.getTransferInstructionsInvoce();
                 XAlphaDealEnquiryActions.selectEditInvoiceDraft();
                 waitForPresent(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox);
                 XAlphaDealEnquiryActions.selecReview();
@@ -1356,8 +1359,10 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                waitForVisible(XAlphaDealEnquiryPage.tradedocuments_LoadDealBtn);
                 String status=  XAlphaDealEnquiryActions.getInvoiceStatus();
                 Assert.assertEquals(status,"sent");
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1396,7 +1401,6 @@ public class XAlphaDealEnquirySteps {
             }
         }
     }
-
     @And("Add the comments")
     public void addTheComments() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
@@ -1404,6 +1408,113 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 XAlphaDealEnquiryActions.addComments();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("click Review Again")
+    public void clickReviewAgain() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.selectallReview();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click the Added Instruction")
+    public void clickTheAddedInstruction() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.selectAddedInstructionreview();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Validate TransferInstruction is same")
+    public void validateTransferInstructionIsSame() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(transfer_instr,transerinstr_invoice);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the Confirmation and Invoice Status")
+    public void verifyTheConfirmationAndInvoiceStatus() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                delay(5000);
+            Assert.assertEquals(XAlphaDealEnquiryActions.getStatusforbothTradeDoc(),"void");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
+    }
+
+    @And("Again Change processing status")
+    public void againChangeProcessingStatus() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                delay(7000); //to load settled Settlement Details sub-section
+                //update processing status
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_TradeDocuments"));
+                delay(3000);
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus_TradeDocuments"));
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

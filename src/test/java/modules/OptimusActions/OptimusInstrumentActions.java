@@ -1,10 +1,13 @@
 package modules.OptimusActions;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyCreatePage;
 import pageFactory.OptimusPages.Instrument.InstrumentMainPage;
 import pageFactory.OptimusPages.Portfolio.PortfolioMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementUpdatePage;
+import step_definitions.RunCukesTest;
+import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
@@ -415,29 +418,73 @@ public class OptimusInstrumentActions  extends KeywordUtil {
     }
 
     public static void clickInstrument_TokenPrices_SideTab() throws InterruptedException {
-        waitForVisible(InstrumentMainPage.intrumentTokenPrices_SideTab);
-        click(InstrumentMainPage.intrumentTokenPrices_SideTab,"Open Intrument Token Prices_SideTab");
-        waitForVisible(InstrumentMainPage.intrumentTokenPrices_Base_List);
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_SideTab);
+        click(InstrumentMainPage.instrumentTokenPrices_SideTab,"Open Instrument Token Prices_SideTab");
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
 //        delay(5000);
     }
 
-    public static void intrumentTokenPrices_SearchBase_List(String item) {
-        waitForVisible(InstrumentMainPage.intrumentTokenPrices_SearchBase_List);
-        inputText(InstrumentMainPage.intrumentTokenPrices_SearchBase_List, item, "Enter Search criteria in Search Base");
-        waitForVisible(InstrumentMainPage.intrumentTokenPrices_Base_List);
+    public static void instrumentTokenPrices_SearchBase_List(String item) {
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_SearchBase_List);
+        inputText(InstrumentMainPage.instrumentTokenPrices_SearchBase_List, item, "Enter Search criteria in Search Base");
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
     }
 
-    public static void intrumentTokenPrices_SearchQuote_List(String item) {
-        waitForVisible(InstrumentMainPage.intrumentTokenPrices_SearchQuote_List);
-        inputText(InstrumentMainPage.intrumentTokenPrices_SearchQuote_List, item, "Enter Search criteria in Search Quote");
-        waitForVisible(InstrumentMainPage.intrumentTokenPrices_Base_List);
+    public static void instrumentTokenPrices_SearchQuote_List(String item) {
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_SearchQuote_List);
+        inputText(InstrumentMainPage.instrumentTokenPrices_SearchQuote_List, item, "Enter Search criteria in Search Quote");
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
     }
 
-    public static void intrumentTokenPrices_SearchDate_List(String startDate, String endDate) {
-        waitForVisible(InstrumentMainPage.intrumentTokenPrices_SearchStartDate_List);
-        inputText(InstrumentMainPage.intrumentTokenPrices_SearchStartDate_List, startDate, "Enter Search criteria in Start Date");
-        inputText(InstrumentMainPage.intrumentTokenPrices_SearchEndDate_List, endDate, "Enter Search criteria in End Date");
-        waitForVisible(InstrumentMainPage.intrumentTokenPrices_Base_List);
+    public static void instrumentTokenPrices_SearchDate_List(String date) throws InterruptedException {
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_SearchStartDate_List);
+        clearInputUsingKeys(InstrumentMainPage.instrumentTokenPrices_SearchStartDate_List);
+        inputText(InstrumentMainPage.instrumentTokenPrices_SearchStartDate_List, date, "Enter Search criteria in Start Date");
+        pressEnter(InstrumentMainPage.instrumentTokenPrices_SearchStartDate_List);
+
+        clearInputUsingKeys(InstrumentMainPage.instrumentTokenPrices_SearchEndDate_List);
+        inputText(InstrumentMainPage.instrumentTokenPrices_SearchEndDate_List, date, "Enter Search criteria in End Date");
+        pressEnter(InstrumentMainPage.instrumentTokenPrices_SearchEndDate_List);
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
     }
+
+    public static void instrumentTokenPrices_SearchTime_List(String time) throws InterruptedException {
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_SearchTime_List);
+        clearInputUsingKeys(InstrumentMainPage.instrumentTokenPrices_SearchTime_List);
+        inputText(InstrumentMainPage.instrumentTokenPrices_SearchTime_List, time, "Enter Search criteria in Time");
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
+    }
+
+    public static String get_Base_TokenPriceSearchList() throws InterruptedException {
+        delay(3000);
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Quote_List);
+        String text = getElementText(InstrumentMainPage.instrumentTokenPrices_Base_List);
+        LogUtil.infoLog(thisClass, "Base Value text contains " +text);
+        return text;
+    }
+
+    public static String get_Quote_TokenPriceSearchList() {
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Quote_List);
+        String text = getElementText(InstrumentMainPage.instrumentTokenPrices_Quote_List);
+        LogUtil.infoLog(thisClass, "Quote Value text contains " +text);
+        return text;
+    }
+    public static String get_DateTime_TokenPriceSearchList() {
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Date_List);
+        String text = getElementText(InstrumentMainPage.instrumentTokenPrices_Date_List);
+        LogUtil.infoLog(thisClass, "Date time Value text contains " +text);
+        return text;
+    }
+    public static void verifyDownloadCSVBtn() {
+        waitForClickable(InstrumentMainPage.instrumentTokenPrices_DownloadCSVBtn_List);
+        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
+    }
+
+    public static void clickInstrument_FiatPrices_SideTab() throws InterruptedException {
+        waitForVisible(InstrumentMainPage.instrument_FiatPrices_SideTab);
+        click(InstrumentMainPage.instrument_FiatPrices_SideTab,"Open Instrument Token Prices_SideTab");
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
+    }
+
 
 }
