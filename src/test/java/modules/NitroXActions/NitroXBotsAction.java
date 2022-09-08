@@ -394,6 +394,14 @@ public class NitroXBotsAction {
     {
             waitForVisible(NitroXBotsPage.instrumenttype);
             inputText(NitroXBotsPage.instrumenttype,dataMap.get("Mode"),"Mode Selected");
+
+    }
+
+    public static void selectmodePairTradingBot(HashMap<String, String> dataMap)
+    {
+        waitForVisible(NitroXBotsPage.instrumenttype);
+        inputText(NitroXBotsPage.instrumenttype,dataMap.get("Mode"),"Mode Selected");
+        pressEnter(NitroXBotsPage.instrumenttype);
     }
     public static void inputTradingAccount(HashMap<String, String> dataMap) {
         try {
