@@ -303,6 +303,7 @@ public class NitroXHomeSteps {
         } else {
             try {
                 NitroXHome.ClearInputPrice();
+                delay(10000);
                 NitroXHome.InputOpenOrderBidPrice();
                 NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
@@ -484,7 +485,7 @@ public class NitroXHomeSteps {
                 NitroXHome.scrollToOrdersPlaced();
                 NitroXHome.waitForInvisibleOrderSubmittedMsg();
                 NitroXHome.clickDealtOrdersTab();
-                delay(5000);
+                delay(10000);
                 Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
                 //Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXHome.getOrderFormPrice());
                 Assert.assertEquals(NitroXHome.getQuantityofNthDealtOrder(1), NitroXHome.getOrderFormQuantity());
@@ -649,6 +650,7 @@ public class NitroXHomeSteps {
                 // get the highest bid price and also store it in a variable to use later
                 NitroXHome.scrollToBidPrices();
                 NitroXHome.ClearInputPrice();
+                delay(10000);
                 NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice());
                 NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
