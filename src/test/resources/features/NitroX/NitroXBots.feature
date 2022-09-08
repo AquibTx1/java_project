@@ -87,11 +87,32 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_028 |
       | NitroXBots  | QA_TestCase_Auto_NitroX_029 |
 
+      @NitroXBot
+  Scenario Outline: <TestCaseID>_Start New Pair_Trading BOT For Buy and Sell Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Verify total Bots before starting the Pair_Trading Bot execution
+    And Click start Bot and select the Service,Method and Choose Bot Quantity
+    And Choose Side,Quantity,and Slice_Size
+    And Choose AccountId,Base,Quote and Side in Pair leg and submit
+    And Verify Pair_Trading Bot in Total Filtered on homePage
+#    Then Click Total Filtered Bots tab & check the Bot in Detail and Config for Pair_Trading Bot
+#    Then Verify the Order in Dealt Order for PairTrading Bot
+#    And Click Total Filtered Bots tab & check the Bot in Detail and Config for Leg Pair_Trading Bot
+#    Then Verify the Order in Dealt Order for PairTrading Bot
+
+    Examples:
+      | SheetName  |  TestCaseID                  |
+     | NitroXBots  | QA_TestCase_Auto_NitroX_030 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_031 |
+#     | NitroXBots  | QA_TestCase_Auto_NitroX_032 |
+#      | NitroXBots  | QA_TestCase_Auto_NitroX_033 |
+
   @NitroXBot
   Scenario Outline: <TestCaseID>_Pause Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Pause all the Bots
+    And Stop All the Bots on Homepage
     And Verify total Bots Before staring the Buy execution
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
@@ -109,6 +130,7 @@ Feature: Test Bots features on NitroX HomePage
     Scenario Outline: <TestCaseID>_Resume Existing Execution_Bot for Buy Order-SpotMode
       Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
       When Choose Mode, Trading Account, Base and Quote Currency
+      And Stop All the Bots on Homepage
       And Click Start Bot ,Select the Service,Method and Input Bot Quantity
       And Select Buy Order and Select the MinTime and MaxTime Break
       And Input the Quantity
@@ -127,6 +149,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And submit the order
@@ -142,7 +165,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Pause all the Bots
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
@@ -157,6 +180,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
@@ -171,6 +195,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
@@ -184,6 +209,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Stop Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
@@ -197,6 +223,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
@@ -213,6 +240,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
@@ -229,7 +257,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT for SpotMode Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Pause all the Bots
+    And Stop All the Bots on Homepage
     And Click Start Bot and select the Service,Method and Input Bot Quantity
     And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
     And submit the order
@@ -247,7 +275,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT for SpotMode Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Pause all the Bots
+    And Stop All the Bots on Homepage
     And Click Start Bot and select the Service,Method and Input Bot Quantity
     And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
     And submit the order
@@ -265,7 +293,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit PairTrading BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Pause all the Bots
+    And Stop All the Bots on Homepage
     And Click start Bot and select the Service,Method and Choose Bot Quantity
     And Choose Side,Quantity,and Slice_Size
     And Choose AccountId,Base,Quote and Side in Pair leg and submit
@@ -282,7 +310,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit PairTrading BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Pause all the Bots
+    And Stop All the Bots on Homepage
     And Click start Bot and select the Service,Method and Choose Bot Quantity
     And Choose Side,Quantity,and Slice_Size
     And Choose AccountId,Base,Quote and Side in Pair leg and submit
@@ -298,7 +326,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Duplicate the Execution_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Pause all the Bots
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the Time, Quantity and Submit the Order
@@ -315,7 +343,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Duplicate the Sniper_Bot for Buy Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
-    And Pause all the Bots
+    And Stop All the Bots on Homepage
     And Click Start Bot and select the Service,Method and Input Bot Quantity
     And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
     And submit the order
@@ -344,7 +372,7 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_071 |
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Duplicate TWAP BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
@@ -361,7 +389,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_072 |
 
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Pause Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -380,7 +408,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_090 |
 
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Resume The Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -400,7 +428,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_091 |
 
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -418,7 +446,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_092 |
 
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -436,7 +464,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_093 |
 
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Restart Existing running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -454,7 +482,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_094 |
 
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -471,7 +499,7 @@ Feature: Test Bots features on NitroX HomePage
     Examples:
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_095 |
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Stop Existing Running Execution_Bot for Buy Order-SpotMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -487,7 +515,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID               |
       | NitroXBots  | QA_TestCase_Auto_NitroX_096 |
 
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Count list of Running Bots
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -498,7 +526,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_020 |
 
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Verify Empty Bot List
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode,Trading Account
@@ -509,7 +537,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_021 |
 
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_Count list of Running Bots
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
@@ -520,7 +548,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_022 |
 
-  @NitroXBot
+  @NitroXBotEdit
   Scenario Outline: <TestCaseID>_No Bot in List for Base and Quote
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
@@ -531,23 +559,3 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_023 |
 
-#  @NitroXBot
-#  Scenario Outline: <TestCaseID>_Start New Pair_Trading BOT For Buy and Sell Order
-#    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
-#    When Choose Mode, Trading Account, Base and Quote Currency
-#    And Verify total Bots before starting the Pair_Trading Bot execution
-#    And Click start Bot and select the Service,Method and Choose Bot Quantity
-#    And Choose Side,Quantity,and Slice_Size
-#    And Choose AccountId,Base,Quote and Side in Pair leg and submit
-#    And Verify Pair_Trading Bot in Total Filtered on homePage
-#    Then Click Total Filtered Bots tab & check the Bot in Detail and Config for Pair_Trading Bot
-#    Then Verify the Order in Dealt Order for PairTrading Bot
-#    And Click Total Filtered Bots tab & check the Bot in Detail and Config for Leg Pair_Trading Bot
-#    Then Verify the Order in Dealt Order for PairTrading Bot
-#
-#    Examples:
-#      | SheetName  |  TestCaseID                  |
-##      | NitroXBots  | QA_TestCase_Auto_NitroX_030 |
-###      | NitroXBots  | QA_TestCase_Auto_NitroX_031 |
-#     | NitroXBots  | QA_TestCase_Auto_NitroX_032 |
-###      | NitroXBots  | QA_TestCase_Auto_NitroX_033 |
