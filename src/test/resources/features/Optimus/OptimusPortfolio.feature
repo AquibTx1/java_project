@@ -1,4 +1,4 @@
-Feature: Test Settlement feature
+Feature: Test Portfolio feature as mentioned in Test Case
 
   Background: Login to Optimus
     Given Login to Optimus with Valid Credentials
@@ -37,10 +37,11 @@ Feature: Test Settlement feature
       | QA_TestCase_Auto_Optimus_4_1_1 | Portfolio | MO_CheckerAccount|
 
   @OptimusPortfolio
-  Scenario Outline: "<TestCaseID>" Able to Login and Edit existing Portfolio
+  Scenario Outline: "<TestCaseID>" Able to Login and Edit existing Portfolio Created
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Click the Portfolio Tab
-#    And Sort the Portfolio
+    And Sort the Portfolio
+    And Search the Portfolio to be Updated
     And Click Edit Button
     And Update the user detail in the Portfolio list
     Then Click Update Portfolio and verify the Settlement Forwarded for Approval
@@ -69,6 +70,8 @@ Feature: Test Settlement feature
   Scenario Outline: "<TestCaseID>" Able to Login and Delete existing Portfolio
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Click the Portfolio Tab
+    And Sort the Portfolio
+    And Search the Portfolio to be deleted
     And Click Edit Button
     And Get the Portfolio ref id
     Then Delete the Portfolio record and login with MO Account for Approval
@@ -84,12 +87,33 @@ Feature: Test Settlement feature
     And Approve the Settlement
     And Click CounterParty Tab
     And Logout from MO Account
-    #Login and Check the Approved record
+#    Login and Check the Approved record
 
-#    Given Login to Optimus with Valid Credentials
-#    And Click the Portfolio Tab
-#    Then Verify the Portfolio is updated
+    Given Login to Optimus with Valid Credentials
+    And Click the Portfolio Tab
+    Then Verify the Portfolio is deleted
 
     Examples:
       | TestCaseID                      | SheetName |loginCredentials  |
       | QA_TestCase_Auto_Optimus_4_1_3 | Portfolio | MO_CheckerAccount|
+
+  @OptimusPortfolio
+  Scenario Outline: "<TestCaseID>" Able to Search a record the from the Portfolio List
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Click the Portfolio Tab
+    And Search the Existing record
+    Then Verify the record is available
+
+    Examples:
+      | TestCaseID                      | SheetName |loginCredentials  |
+      | QA_TestCase_Auto_Optimus_4_1_4 | Portfolio | MO_CheckerAccount|
+
+  @OptimusPortfolio
+  Scenario Outline: "<TestCaseID>" Able to Download list from Portfolio
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Click the Portfolio Tab
+    And Click the download csv
+    Then Verify the file is downloaded
+    Examples:
+      | TestCaseID                      | SheetName |loginCredentials  |
+      | QA_TestCase_Auto_Optimus_4_1_5 | Portfolio | MO_CheckerAccount|

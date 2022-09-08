@@ -34,7 +34,7 @@ public class OptimusPortfolioSteps {
         } else {
             try {
                 waitForVisible(PortfolioMainPage.Portfolio_MainTab);
-            OptimusPortfolioCreateActions.clickPortfolioMainTab();
+             OptimusPortfolioCreateActions.clickPortfolioMainTab();
             OptimusPortfolioCreateActions.clickPortfoliolink();
                 waitForVisible(PortfolioMainPage.edit);
             } catch (Throwable e) {
@@ -284,8 +284,9 @@ public class OptimusPortfolioSteps {
             try {
                 waitForVisible(PortfolioMainPage.portfolionumber);
                 portfolio_number = OptimusPortfolioCreateActions.getPortfolionumber();
-                OptimusPortfolioCreateActions.update_PortfolioName(dataMap.get("Portfolio Name"));
                 OptimusPortfolioCreateActions.update_PortfolioOwner(dataMap.get("Portfolio Owner"));
+                OptimusPortfolioCreateActions.update_HeadofBusiness(dataMap.get("Head of Business"));
+                OptimusPortfolioCreateActions.update_TradingLocation(dataMap.get("Trading Location"));
                 scrollingToElementofAPage(PortfolioMainPage.Portfolio_updateentitycode,"Scrolled to Account Info");
                 OptimusPortfolioCreateActions.update_PortfolioEntitycode(dataMap.get("Portfolio Entity Code"));
                 OptimusPortfolioCreateActions.update_PortfolioLocation(dataMap.get("Portfolio Location"));
@@ -362,6 +363,7 @@ public class OptimusPortfolioSteps {
                 BaseStepDefinitions.skipThisStep();
             } else {
                 try {
+                    waitForVisible(SettlementMainPage.newSettlement_edit);
                     OptimusSettlementActions.sortSettlementRef();
                 } catch (Throwable e) {
                     GlobalUtil.e = e;
@@ -384,6 +386,7 @@ public class OptimusPortfolioSteps {
                 BaseStepDefinitions.skipThisStep();
             } else {
                 try {
+                    OptimusSettlementActions.sortSettlementRef();
                     OptimusSettlementActions.inputValue(dataMap.get("Portfolio Name"));
                     Assert.assertEquals(OptimusPortfolioCreateActions.getPortfolioName(),dataMap.get("Portfolio Name").trim());
                 } catch (Throwable e) {
@@ -397,9 +400,7 @@ public class OptimusPortfolioSteps {
                 }
             }
         }
-
     }
-
     @And("Get the Portfolio ref id")
     public void getThePortfolioRefId() {
         {
@@ -420,7 +421,6 @@ public class OptimusPortfolioSteps {
             }
         }
     }
-
     @Then("Delete the Portfolio record and login with MO Account for Approval")
     public void deleteThePortfolioRecordAndLoginWithMOAccountForApproval() {
         {
@@ -464,5 +464,85 @@ public class OptimusPortfolioSteps {
                 BaseStepDefinitions.increaseCounter();
             }
         }
+    }
+
+    @And("Search the Portfolio to be Updated")
+    public void searchThePortfolioToBeUpdated() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(dataMap.get("Portfolio Name"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search the Portfolio to be deleted")
+    public void searchThePortfolioToBeDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(dataMap.get("Portfolio Name"));
+                OptimusSettlementActions.searchuser();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the Portfolio is deleted")
+    public void verifyThePortfolioIsDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusSettlementActions.inputValue(portfolio_number);
+                OptimusSettlementActions.searchuser();
+                Assert.assertEquals(OptimusSettlementActions.getNoData(),"No Data");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the record is available")
+    public void verifyTheRecordIsAvailable() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertTrue(OptimusPortfolioCreateActions.getPortfolioName().contains("Test_Portfolio_Name26"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+
     }
 }
