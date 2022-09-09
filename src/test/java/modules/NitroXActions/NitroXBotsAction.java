@@ -796,7 +796,7 @@ public class NitroXBotsAction {
                     scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                     NitroXBotsAction.clickStart();
                     NitroXBotsAction.waitforBotWindow();
-                    NitroXBotsAction.inputService(dataMap.get("Service"));
+                   // NitroXBotsAction.inputService(dataMap.get("Service"));
                     NitroXBotsAction.inputMethod(dataMap.get("Method"));
                     NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                     waitForVisible(NitroXBotsPage.orderdirection);
@@ -823,7 +823,7 @@ public class NitroXBotsAction {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
-                NitroXBotsAction.inputService(dataMap.get("Service"));
+                //NitroXBotsAction.inputService(dataMap.get("Service"));
                 NitroXBotsAction.inputMethod(dataMap.get("Method"));
                 NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                 NitroXBotsAction.inputTargetAccountPosition(dataMap);
@@ -849,7 +849,7 @@ public class NitroXBotsAction {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
-                NitroXBotsAction.inputService(dataMap.get("Service"));
+               //NitroXBotsAction.inputService(dataMap.get("Service"));
                 NitroXBotsAction.inputMethod(dataMap.get("Method"));
                 NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                 NitroXBotsAction.inputTargetAccountPosition(dataMap);
@@ -874,7 +874,7 @@ public class NitroXBotsAction {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
-                NitroXBotsAction.inputService(dataMap.get("Service"));
+               // NitroXBotsAction.inputService(dataMap.get("Service"));
                 NitroXBotsAction.inputMethod(dataMap.get("Method"));
                 NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                 waitForVisible(NitroXBotsPage.orderdirection);
