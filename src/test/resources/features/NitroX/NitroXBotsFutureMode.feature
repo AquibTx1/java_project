@@ -144,6 +144,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Pause Existing Running Execution_Bot for Buy Order-FutureMode
   Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
   When Choose Mode, Trading Account and Instrument
+  And Stop All the Bots on Homepage
   And Verify total Bots Before staring the Buy execution
   And Click Start Bot ,Select the Service,Method and Input Bot Quantity
   And Input the value in Account Position
@@ -160,6 +161,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Resume Existing Execution_Bot for Buy Order--FutureMode
   Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
   When Choose Mode, Trading Account and Instrument
+    And Stop All the Bots on Homepage
   And Verify total Bots Before staring the Buy execution
   And Click Start Bot ,Select the Service,Method and Input Bot Quantity
   And Input the value in Account Position
@@ -178,6 +180,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Running Execution_Bot for Buy Order--FutureMode
   Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
   When Choose Mode, Trading Account and Instrument
+    And Stop All the Bots on Homepage
   And Verify total Bots Before staring the Buy execution
   And Click Start Bot ,Select the Service,Method and Input Bot Quantity
   And Input the value in Account Position
@@ -194,6 +197,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Restart Existing Running Execution_Bot for Buy Order--FutureMode
   Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
   When Choose Mode, Trading Account and Instrument
+    And Stop All the Bots on Homepage
   And Verify total Bots Before staring the Buy execution
   And Click Start Bot ,Select the Service,Method and Input Bot Quantity
   And Input the value in Account Position
@@ -434,9 +438,11 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode and Trading Account
-    And Check if No Current running Bot fo FutureMode
-    And Close the total filtered
+#    And Check if No Current running Bot fo FutureMode
+#    And Close the total filtered
     And Choose the instrument
+    And wait for Ten Seconds
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Input the value in Account Position
     And submit the order
@@ -450,12 +456,14 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_097 |
 
   @NitroXBotFutureMode
-  Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy Order-FutureMode
+  Scenario Outline: <TestCaseID>_Edit and Pause the Execution_Bot for Buy Order-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode and Trading Account
-    And Check if No Current running Bot fo FutureMode
-    And Close the total filtered
+#    And Check if No Current running Bot fo FutureMode
+#    And Close the total filtered
     And Choose the instrument
+    And wait for Ten Seconds
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Input the value in Account Position
     And submit the order
@@ -470,12 +478,15 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_098 |
 
   @NitroXBotFutureMode
-  Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT  Buy Order-FutureMode
+  Scenario Outline: <TestCaseID>_Edit and Pause the SNIPER_BOT  Buy Order-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode and Trading Account
-    And Check if No Current running Bot fo FutureMode
-    And Close the total filtered
+
+#    And Check if No Current running Bot fo FutureMode
+#    And Close the total filtered
     And Choose the instrument
+    And wait for Ten Seconds
+    And Stop All the Bots on Homepage
     And Click Start Bot and select the Service,Method and Input Bot Quantity
     And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
     And submit the order
@@ -493,9 +504,10 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Edit the SNIPER_BOT  Buy Order-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode and Trading Account
-    And Check if No Current running Bot fo FutureMode
-    And Close the total filtered
+#    And Check if No Current running Bot fo FutureMode
+#    And Close the total filtered
     And Choose the instrument
+    And wait for Ten Seconds
     And Click Start Bot and select the Service,Method and Input Bot Quantity
     And Select Buy Order ,Side and Min,Max Price and MaxSlippageThreashold
     And submit the order
@@ -554,6 +566,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Duplicate the Execution_Bot for Buy Order-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account and Instrument
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the value in Account Position
@@ -620,6 +633,7 @@ Feature: Test Bots features on NitroX HomePage
     And Logout and again login & select Mode,Trading account
     And Click total filtered bots and click the latest running bot and create duplicate Bot
     And Input any field with new value and again submit for Twap Bot
+    And wait for Ten Seconds
     And Click total filtered
     And Choose latest bot
     Then Verify the Config Tab for modified field in Twap Bot
@@ -681,7 +695,7 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_109 |
 
-  @NitroXBotFutureMode110
+  @NitroXBotFutureMode
   Scenario Outline: <TestCaseID>_Restart Existing Paused Execution_Bot for Buy Order-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account and Instrument
@@ -766,7 +780,7 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_114 |
 
   @NitroXBotFutureMode
-  Scenario Outline: <TestCaseID>_Edit the Execution_Bot for Buy -FutureMode
+  Scenario Outline: <TestCaseID>_Edit and Pause the Execution_Bot for Buy -FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account and Instrument
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
@@ -871,6 +885,7 @@ Feature: Test Bots features on NitroX HomePage
     And Logout and again login & select Mode,Trading account
     And Click total filtered bots and click the latest running bot and create duplicate Bot
     And Input any field with new value and again submit
+    And wait for Ten Seconds
     Then Verify duplicate bot is created
     Then Verify the Config Tab for modified field
 
@@ -889,6 +904,7 @@ Feature: Test Bots features on NitroX HomePage
     And Logout and again login & select Mode,Trading account
     And Click total filtered bots and click the latest running bot and create duplicate Bot
     And Input any field with new value and again submit for Sniper Bot
+    And wait for Ten Seconds
     Then Verify duplicate bot is created
     Then Verify the Config Tab for modified field in Sniper Bot
 
@@ -909,6 +925,7 @@ Feature: Test Bots features on NitroX HomePage
     And Logout and again login & select Mode,Trading account
     And Click total filtered bots and click the latest running bot and create duplicate Bot
     And Input any field with new value and again submit for PairTrading Bot
+    And wait for Ten Seconds
     Then Verify duplicate bot is created
     Then Verify the Config Tab for modified field in PairTrading Bot
 
@@ -927,6 +944,7 @@ Feature: Test Bots features on NitroX HomePage
     And Logout and again login & select Mode,Trading account
     And Click total filtered bots and click the latest running bot and create duplicate Bot
     And Input any field with new value and again submit for Twap Bot
+    And wait for Ten Seconds
     Then Verify duplicate bot is created
     Then Verify the Config Tab for modified field in Twap Bot
     Examples:

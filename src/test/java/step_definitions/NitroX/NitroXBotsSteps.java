@@ -1478,7 +1478,6 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.inputSliceSize(dataMap.get("UpdatedSliceSize"));
                 NitroXBotsAction.clickSubmit();
-                delay(3000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1544,7 +1543,7 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.selecttotalBots();
                 waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
-                delay(12000);
+                delay(15000);
                 NitroXBotsAction.selectLatestBotName();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -2079,6 +2078,7 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.inputTradingAccount(dataMap);
+                NitroXBotsAction.inputBaseCurrency(dataMap);
                 NitroXBotsAction.inputQuoteCurrency(dataMap);
                 NitroXBotsAction.selectSubPairSide(dataMap);
                 scrollingToElementofAPage(NitroXBotsPage.submitbtn, "Scrolled to Submit Button");
@@ -2112,7 +2112,7 @@ public class NitroXBotsSteps {
                     NitroXBotsAction.stopBots();
                     NitroXHome.waitForNotifMsg();
                     waitForInVisibile(NitroXHomePage.bottomRightNotifText);
-                    delay(10000);
+                    delay(15000);
                 }
 
             } catch (Throwable e) {
@@ -2135,6 +2135,7 @@ public class NitroXBotsSteps {
             } else {
                 try {
                     waitForVisible(NitroXBotsPage.totalfilered);
+                    delay(5000);
                     NitroXBotsAction.validateFutureModeBots(dataMap);
                 } catch (Throwable e) {
                     GlobalUtil.e = e;
@@ -2178,7 +2179,7 @@ public class NitroXBotsSteps {
             try {
                 NitroXBuySellFutureAction.selectmode(dataMap);
                 NitroXBuySellFutureAction.inputTradingAccount(dataMap);
-                delay(3000);
+                delay(5000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2336,8 +2337,9 @@ public class NitroXBotsSteps {
             try {
                 NitroXHome.waitForNotifMsg();
                 waitForInVisibile(NitroXHomePage.bottomRightNotifText);
-                NitroXBotsAction.closeBot();
+//                NitroXBotsAction.closeBot();
                 NitroXBotsAction.refreshPage();
+                delay(8000);
               NitroXBotsAction.selecttotalBots();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -2402,6 +2404,25 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.stopalltheBot();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("wait for Ten Seconds")
+    public void waitForTenSeconds() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+               delay(10000);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
