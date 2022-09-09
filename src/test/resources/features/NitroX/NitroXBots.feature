@@ -87,7 +87,7 @@ Feature: Test Bots features on NitroX HomePage
       | NitroXBots  | QA_TestCase_Auto_NitroX_028 |
       | NitroXBots  | QA_TestCase_Auto_NitroX_029 |
 
-      @NitroXBot
+  @NitroXBot
   Scenario Outline: <TestCaseID>_Start New Pair_Trading BOT For Buy and Sell Order
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account, Base and Quote Currency
@@ -105,8 +105,8 @@ Feature: Test Bots features on NitroX HomePage
       | SheetName  |  TestCaseID                  |
      | NitroXBots  | QA_TestCase_Auto_NitroX_030 |
       | NitroXBots  | QA_TestCase_Auto_NitroX_031 |
-#     | NitroXBots  | QA_TestCase_Auto_NitroX_032 |
-#      | NitroXBots  | QA_TestCase_Auto_NitroX_033 |
+     | NitroXBots  | QA_TestCase_Auto_NitroX_032 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_033 |
 
   @NitroXBot
   Scenario Outline: <TestCaseID>_Pause Existing Running Execution_Bot for Buy Order-SpotMode
