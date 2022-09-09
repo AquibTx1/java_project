@@ -933,7 +933,9 @@ public class OptimusInstrumentSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
+                OptimusInstrumentActions.clearSearchTime();
                 OptimusInstrumentActions.instrumentTokenPrices_SearchTime_List(dataMap.get("Time"));
+                OptimusInstrumentActions.clickReload();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

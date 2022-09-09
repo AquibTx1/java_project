@@ -86,7 +86,11 @@ public class InstrumentMainPage {
     public static By instrumentTokenPrices_SearchQuote_List = By.xpath("//input[@placeholder='search quote']");
     public static By instrumentTokenPrices_SearchStartDate_List = By.xpath("//input[@placeholder='Start date']");
     public static By instrumentTokenPrices_SearchEndDate_List = By.xpath("//input[@placeholder='End date']");
-    public static By instrumentTokenPrices_SearchTime_List = By.xpath("//input[@class='ant-select-selection-search-input']");
+    public static By instrumentTokenPrices_SearchTime_List = By.xpath("//div[@class='ant-select-selection-search']/input[@aria-autocomplete='list'][@class='ant-select-selection-search-input']//parent::div//parent::div//parent::div[@class='ant-select-selection-overflow']//parent::div[@class='ant-select-selector']");
+    public static By instrumentTokenPrices_SearchTimeInput_List = By.xpath("(//input[@class='ant-select-selection-search-input'])[1]");
+    public static By instrumentTokenPrices_ClearSearchTime_List = By.xpath("//span[@aria-label='close']");
+
+    public static By  instrumentTokenPrices_Reload_List = By.xpath("//button/span[@class='anticon anticon-reload']");
     public static By instrumentTokenPrices_Base_List = By.xpath("//tbody/tr[2]/td[1]");
     public static By instrumentTokenPrices_Quote_List = By.xpath("//tbody/tr[2]/td[2]");
     public static By instrumentTokenPrices_Date_List = By.xpath("//tbody/tr[2]/td[4]");
