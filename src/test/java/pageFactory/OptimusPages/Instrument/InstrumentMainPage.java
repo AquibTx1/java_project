@@ -130,7 +130,6 @@ public class InstrumentMainPage {
     public static By instrumentPriceAlert_Balance_AssetStatus_Create = By.xpath("//div[@class='ant-select-selector']/span[@class='ant-select-selection-item']");
     public static By instrumentPriceAlert_Balance_Operator_Create = By.id("create_alert_opr");
     public static By instrumentPriceAlert_Balance_Amount_Create = By.id("create_alert_amount");
-    public static By instrumentPriceAlert_Balance_Account_Create = By.id("create_alert_account_id");
     public static By instrumentPriceAlert_Balance_Comment_Create = By.id("create_alert_account_id");
 
 
