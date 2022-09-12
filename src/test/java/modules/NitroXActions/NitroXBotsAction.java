@@ -214,6 +214,13 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Closed  the config Tab");
     }
 
+    public static void CloseConfig2()
+    {
+        KeywordUtil.click(NitroXBotsPage.closeconfigbtn2,  " Closed Clicked");
+        LogUtil.infoLog(thisClass, "Closed  the config Tab");
+    }
+
+
     public static void CloseBotDetail() {
         KeywordUtil.click(NitroXBotsPage.closebotdetailbtn,  " BOT Detail Closed");
         LogUtil.infoLog(thisClass, "Closed  the Bot Detail");
@@ -921,5 +928,12 @@ public class NitroXBotsAction {
     public static void pressenter()
     {
         KeywordUtil.pressEnter(NitroXHomePage.tradingaccount);
+    }
+
+    public static void movetoListandStopBots() throws InterruptedException {
+        waitForVisible(NitroXBotsPage.allbots);
+        click(NitroXBotsPage.allbots,"Selected All Bots");
+        scrollingToElementofAPage(NitroXBotsPage.stopbots,"Scrolled to Stop All Bots ");
+        click(NitroXBotsPage.stopbots,"Stopped all Bots");
     }
 }

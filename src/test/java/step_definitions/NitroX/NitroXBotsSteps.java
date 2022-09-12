@@ -1065,7 +1065,6 @@ public class NitroXBotsSteps {
                 Assert.assertTrue(NitroXHome.getNotifMsg().contains("1 bots have been queued to be paused."));
                 waitForInVisibile(NitroXHomePage.bottomRightNotifText);
                 NitroXBotsAction.stopCurrentRunningBot();
-                NitroXBotsAction.closeBot();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1371,8 +1370,8 @@ public class NitroXBotsSteps {
                 waitForVisible(NitroXBotsPage.totalfilered);
                 NitroXBotsAction.selecttotalBots();
                 waitForVisible(NitroXBotsPage.BotTime);
-                NitroXBotsAction.sortStartTime();
                 delay(15000);
+                NitroXBotsAction.sortStartTime();
                 NitroXBotsAction.selectLatestBotName();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1395,7 +1394,9 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.selectConfig();
                 Assert.assertEquals(Double.toString(NitroXBotsAction.getOrderAmount()), dataMap.get("New Order Amount"));
-
+                NitroXBotsAction.CloseConfig2();
+                delay(2000);
+                NitroXBotsAction.stopCurrentRunningBot();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1437,6 +1438,9 @@ public class NitroXBotsSteps {
                 Assert.assertEquals(NitroXBotsAction.getAmountfromBotDetailSnipper(), dataMap.get("S_UpdatedTotalAmount"));
                 NitroXBotsAction.selectConfig();
                 Assert.assertEquals(NitroXBotsAction.getBotDetailSide(),dataMap.get("Side"));
+                NitroXBotsAction.CloseConfig2();
+                delay(2000);
+                NitroXBotsAction.movetoListandStopBots();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1498,6 +1502,9 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.selectConfig();
                 Assert.assertEquals(NitroXBotsAction.getSliceSize(), dataMap.get("UpdatedSliceSize"));
+                NitroXBotsAction.CloseConfig2();
+                delay(2000);
+                NitroXBotsAction.movetoListandStopBots();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1541,9 +1548,9 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.refreshPage();
                 delay(2000);
                 NitroXBotsAction.selecttotalBots();
+                delay(15000);
                 waitForVisible(NitroXBotsPage.BotTime);
                 NitroXBotsAction.sortStartTime();
-                delay(15000);
                 NitroXBotsAction.selectLatestBotName();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1587,8 +1594,9 @@ public class NitroXBotsSteps {
             try {
                 NitroXBotsAction.selectConfig();
                Assert.assertEquals(Double.toString(NitroXBotsAction.getBotDetailQuantity()),dataMap.get("T_UpdatedQuantity"));
-               NitroXBotsAction.CloseConfig();
-               NitroXBotsAction.stopCurrentRunningBot();
+                NitroXBotsAction.CloseConfig2();
+                delay(2000);
+                NitroXBotsAction.movetoListandStopBots();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1783,7 +1791,7 @@ public class NitroXBotsSteps {
                     NitroXBotsAction.sortStartTime();
                     NitroXBotsAction.selectCheckBoxList();
                     NitroXBotsAction.stopBots();
-                    delay(7000);
+                    delay(10000);
                 }
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -1887,8 +1895,9 @@ public class NitroXBotsSteps {
                 Assert.assertEquals(NitroXBotsAction.getTotalAmountfromBotDetailSnipper(), dataMap.get("S_UpdatedTotalAmount"));
                 NitroXBotsAction.selectConfig();
                 Assert.assertEquals(NitroXBotsAction.getBotDetailSide(),dataMap.get("Side"));
-                NitroXBotsAction.CloseConfig();
-                NitroXBotsAction.stopCurrentRunningBot();
+                NitroXBotsAction.CloseConfig2();
+                delay(2000);
+                NitroXBotsAction.movetoListandStopBots();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
