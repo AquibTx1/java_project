@@ -109,8 +109,9 @@ public class NitroXBotsPage {
     public static By startnewbot=By.xpath("//div[text()='Start New Bot']");
     public static By botsuccessMsg=By.xpath("//div[text()='1 Bot(s) were suceessfully started.']");
 
-    public static By closeconfigbtn=By.xpath("(//button[@class='ant-modal-close'])[2]");
+    public static By closeconfigbtn=By.xpath("//button[@class='ant-modal-close']");
 
+    public static By closeconfigbtn2=By.xpath("(//button[contains(@class,'ant-modal-close')])[2]");
     public static By closebotdetailbtn=By.xpath("(//button[@class='ant-modal-close'])[1]");
 
     public static By DealtOrderTab = By.xpath("//div[text()='Dealt Orders']");

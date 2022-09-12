@@ -262,7 +262,7 @@ Feature: Test Instrument feature
       | QA_TestCase_Auto_Optimus_5_3_3 | Instrument |
 
   @OptimusInstrument
-  Scenario Outline: "<TestCaseID>" Able to Search the Existing Token Prices from  list of Instrument
+  Scenario Outline: "<TestCaseID>" Able to Search the Existing Token Prices with Base from  list of Instrument
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open the Instrument Tab
     And Click the Token Price Side Tab Under Instrument
@@ -274,7 +274,7 @@ Feature: Test Instrument feature
       | QA_TestCase_Auto_Optimus_5_4_1 | Instrument |
 
   @OptimusInstrument
-  Scenario Outline: "<TestCaseID>" Able to Search the Existing Token Prices from  list of Instrument
+  Scenario Outline: "<TestCaseID>" Able to Search the Existing Token Prices with Quote from  list of Instrument
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open the Instrument Tab
     And Click the Token Price Side Tab Under Instrument
@@ -286,29 +286,18 @@ Feature: Test Instrument feature
       | QA_TestCase_Auto_Optimus_5_4_2 | Instrument |
 
   @OptimusInstrument
-  Scenario Outline: "<TestCaseID>" Able to Search the Existing Token Prices from  list of Instrument
+  Scenario Outline: "<TestCaseID>" Able to Search the Existing Token Prices with Date from  list of Instrument
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open the Instrument Tab
     And Click the Token Price Side Tab Under Instrument
     And Select Date from Search Dropdown
-#    And Select Time from Search Dropdown
+    And Select Time from Search Dropdown
     Then Verify DateTime in Search Results of Existing Token Prices
 
     Examples:
       | TestCaseID                     | SheetName  |
       | QA_TestCase_Auto_Optimus_5_4_3 | Instrument |
-
-  @OptimusInstrument
-  Scenario Outline: "<TestCaseID>" Able to Search the Existing Token Prices from  list of Instrument
-    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
-    And Open the Instrument Tab
-    And Click the Token Price Side Tab Under Instrument
-#    And Select Time from Search Dropdown
-    Then Verify DateTime in Search Results of Existing Token Prices
-
-    Examples:
-      | TestCaseID | SheetName |
-##      | QA_TestCase_Auto_Optimus_5_4_4 | Instrument |
+      | QA_TestCase_Auto_Optimus_5_4_4 | Instrument |
 
   @OptimusInstrument
   Scenario Outline: "<TestCaseID>" Able to Search the Existing Token Prices from  list of Instrument
@@ -322,3 +311,23 @@ Feature: Test Instrument feature
       | TestCaseID                     | SheetName  |
       | QA_TestCase_Auto_Optimus_5_4_5 | Instrument |
 
+
+  @OptimusInstrument @debug
+  Scenario Outline: "<TestCaseID>" Able to Search the Existing Fiat Prices from  list of Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Fiat Price Side Tab Under Instrument
+    And Select Base from Search Dropdown
+    And Select Quote from Search Dropdown
+    And Select Date from Search Dropdown
+    And Select Time from Search Dropdown
+    Then Verify Base in Search Results of Existing Token Prices
+    Then Verify Quote in Search Results of Existing Token Prices
+    Then Verify DateTime in Search Results of Existing Token Prices
+    Then Verify downloaded CSV Button in Instrument
+
+    Examples:
+      | TestCaseID                     | SheetName  |
+      | QA_TestCase_Auto_Optimus_5_6_1 | Instrument |
+      | QA_TestCase_Auto_Optimus_5_6_2 | Instrument |
+      | QA_TestCase_Auto_Optimus_5_6_3 | Instrument |

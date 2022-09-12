@@ -1,15 +1,20 @@
 package modules.OptimusActions;
 
 import com.relevantcodes.extentreports.LogStatus;
+import modules.XAlphaActions.XAlphaDealEnquiryActions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import pageFactory.OptimusPages.CounterParty.OptimusCounterPartyCreatePage;
 import pageFactory.OptimusPages.Instrument.InstrumentMainPage;
 import pageFactory.OptimusPages.Portfolio.PortfolioMainPage;
 import pageFactory.OptimusPages.Settlement.SettlementUpdatePage;
+import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import step_definitions.RunCukesTest;
 import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
+
+import java.util.List;
 
 public class OptimusInstrumentActions  extends KeywordUtil {
 
@@ -422,6 +427,7 @@ public class OptimusInstrumentActions  extends KeywordUtil {
         click(InstrumentMainPage.instrumentTokenPrices_SideTab,"Open Instrument Token Prices_SideTab");
         waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
 //        delay(5000);
+        waitForInVisibile(XAlphaDealEnquiryPage.dealEnquiry_loading);
     }
 
     public static void instrumentTokenPrices_SearchBase_List(String item) {
@@ -437,7 +443,7 @@ public class OptimusInstrumentActions  extends KeywordUtil {
     }
 
     public static void instrumentTokenPrices_SearchDate_List(String date) throws InterruptedException {
-        waitForVisible(InstrumentMainPage.instrumentTokenPrices_SearchStartDate_List);
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
         clearInputUsingKeys(InstrumentMainPage.instrumentTokenPrices_SearchStartDate_List);
         inputText(InstrumentMainPage.instrumentTokenPrices_SearchStartDate_List, date, "Enter Search criteria in Start Date");
         pressEnter(InstrumentMainPage.instrumentTokenPrices_SearchStartDate_List);
@@ -445,16 +451,32 @@ public class OptimusInstrumentActions  extends KeywordUtil {
         clearInputUsingKeys(InstrumentMainPage.instrumentTokenPrices_SearchEndDate_List);
         inputText(InstrumentMainPage.instrumentTokenPrices_SearchEndDate_List, date, "Enter Search criteria in End Date");
         pressEnter(InstrumentMainPage.instrumentTokenPrices_SearchEndDate_List);
+        delay(10000);
         waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
     }
 
     public static void instrumentTokenPrices_SearchTime_List(String time) throws InterruptedException {
-        waitForVisible(InstrumentMainPage.instrumentTokenPrices_SearchTime_List);
-        clearInputUsingKeys(InstrumentMainPage.instrumentTokenPrices_SearchTime_List);
-        inputText(InstrumentMainPage.instrumentTokenPrices_SearchTime_List, time, "Enter Search criteria in Time");
+        delay(10000);
+        waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
+        click(InstrumentMainPage.instrumentTokenPrices_SearchTime_List, "Clicking Time box");
+        inputText(InstrumentMainPage.instrumentTokenPrices_SearchTimeInput_List, time, "Enter Search criteria in Time");
+        delay(3000);
+        pressEnter(InstrumentMainPage.instrumentTokenPrices_SearchTimeInput_List);
+        pressTabKey(InstrumentMainPage.instrumentTokenPrices_SearchTimeInput_List);
         waitForVisible(InstrumentMainPage.instrumentTokenPrices_Base_List);
     }
 
+    public static void clearSearchTime() throws InterruptedException {
+        List<WebElement> clearTime = getListElements(InstrumentMainPage.instrumentTokenPrices_ClearSearchTime_List, 2, "Clearing time");
+        for (WebElement element : clearTime) {
+            element.click();
+        }
+    }
+    public static void clickReload() throws InterruptedException {
+        click(InstrumentMainPage.instrumentTokenPrices_Reload_List, "Clicking Reload");
+        XAlphaDealEnquiryActions.waitForLoadingIconToAppearAndDisappear();
+        delay(50000);
+    }
     public static String get_Base_TokenPriceSearchList() throws InterruptedException {
         delay(3000);
         waitForVisible(InstrumentMainPage.instrumentTokenPrices_Quote_List);
