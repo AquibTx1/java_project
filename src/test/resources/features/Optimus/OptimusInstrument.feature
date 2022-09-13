@@ -377,7 +377,7 @@ Feature: Test Instrument feature
       | QA_TestCase_Auto_Optimus_5_7_1_1 | Instrument |
 
   @OptimusInstrument
-  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and Select Auto in Arbitrage section of Instrument
+  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and Select Update Now in Arbitrage section of Instrument
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open the Instrument Tab
     And Click the Alert Price Side Tab Under Instrument
@@ -388,3 +388,63 @@ Feature: Test Instrument feature
     Examples:
       | TestCaseID                       | SheetName  |
       | QA_TestCase_Auto_Optimus_5_7_1_2 | Instrument |
+
+
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and Select Arbitrage Threshold button in Arbitrage section of Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Alert Price Side Tab Under Instrument
+    And Click to open Arbitrage Sub tab
+    And Click Arbitrage Threshold button on Arbitrage tab
+    Then Verify Arbitrage Threshold modal is open
+
+    Examples:
+      | TestCaseID                       | SheetName  |
+      | QA_TestCase_Auto_Optimus_5_7_1_3 | Instrument |
+
+
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and create New Price Alert in Price section of Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Alert Price Side Tab Under Instrument
+    And Click to open Price Sub tab
+    And Click Create button on Price tab page
+    And Enter All the field detail of Price Alert on Create Price modal
+    And Click submit button
+    Then Search the New Price Alert in the Price List
+    Then Verify the Alert Price Pair is Created and Available in List
+    Then Verify the Alert Price Comment is Created and Available in List
+
+    Examples:
+      | TestCaseID                       | SheetName  |
+      | QA_TestCase_Auto_Optimus_5_7_2_1 | InstrumentPriceAlert |
+
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and Search Existing Price alert in  Price Alert section of Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Alert Price Side Tab Under Instrument
+    And Click to open Price Sub tab
+    And Search the Price Alert in the Price List
+    Then Verify the Alert Price Pair is Created and Available in List
+    Then Verify the Alert Price Comment is Created and Available in List
+
+    Examples:
+      | TestCaseID                       | SheetName  |
+      | QA_TestCase_Auto_Optimus_5_7_2_2 | InstrumentPriceAlert |
+
+  @OptimusInstrument @debug
+  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and Search Existing Price alert in  Price Alert section of Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Alert Price Side Tab Under Instrument
+    And Click to open Price Sub tab
+    And Search the Price Alert in the Price List
+    And Click Reset button in Instrument
+    Then Verify the Search box is Reset in Instrument
+
+    Examples:
+      | TestCaseID                       | SheetName  |
+      | QA_TestCase_Auto_Optimus_5_7_2_3 | InstrumentPriceAlert |

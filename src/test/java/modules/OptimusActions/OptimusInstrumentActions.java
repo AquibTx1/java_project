@@ -565,4 +565,109 @@ public class OptimusInstrumentActions  extends KeywordUtil {
         click(InstrumentMainPage.instrument_PriceAlert_ArbitrageThresholds, "Click Arbitrage Threshhold to open its modal");
     }
 
+    public static String get_Instrument_PriceAlert_ArbitrageThreshold_Modal() {
+        waitForVisible(InstrumentMainPage.instrument_PriceAlert_ArbitrageThresholds_Modal);
+        String header = getElementText(InstrumentMainPage.instrument_PriceAlert_ArbitrageThresholds_Modal);
+        click(InstrumentMainPage.instrument_PriceAlert_ArbitrageThresholds_ModalCancel, "Modal is closed on clickng Cancel");
+        return header;
+    }
+
+    public static void open_Instrument_PriceAlert_Price_SubTab() {
+        waitForVisible(InstrumentMainPage.instrument_PriceAlert_Price_SubTab);
+        click(InstrumentMainPage.instrument_PriceAlert_Price_SubTab, "Click Price tab under Price Alert");
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Price_Create);
+    }
+
+    public static void instrumentPriceAlert_Price_Search(String item) {
+        inputText(InstrumentMainPage.instrumentPriceAlert_Price_SearchBox, item, "Search Price item = " + item);
+    }
+
+    public static String get_InstrumentPriceAlert_Price_Search_Text() {
+        return getElementText(InstrumentMainPage.instrumentPriceAlert_Price_SearchBox);
+    }
+
+    public static String get_InstrumentPriceAlert_Price_Pair_List() {
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Price_Pair_List);
+        return getElementText(InstrumentMainPage.instrumentPriceAlert_Price_Pair_List);
+    }
+
+    public static String get_InstrumentPriceAlert_Price_Comment_List() {
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Price_Comment_List);
+        return getElementText(InstrumentMainPage.instrumentPriceAlert_Price_Comment_List);
+    }
+
+    public static void instrumentPriceAlert_Price_Reset() {
+        click(InstrumentMainPage.instrumentPriceAlert_Price_Reset, "Click Reset to reset filter");
+    }
+
+    public static void instrumentPriceAlert_Price_Delete() {
+        click(InstrumentMainPage.instrumentPriceAlert_Price_Delete, "Click Delete to Delete Price alert");
+    }
+
+    // Balance alert Tab
+    public static void open_Instrument_PriceAlert_Balance_SubTab() {
+        waitForVisible(InstrumentMainPage.instrument_PriceAlert_Balance);
+        click(InstrumentMainPage.instrument_PriceAlert_Balance, "Click Balance tab under Price Alert");
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox);
+    }
+    public static void instrumentPriceAlert_Balance_Search(String item1, String item2) {
+        inputText(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox, item1, "Search Balance Price Account ID = " + item1);
+        inputText(InstrumentMainPage.instrumentPriceAlert_Balance_DataAsset_SearchBox, item2, "Search Balance Price Data Asset ID = " + item2);
+    }
+
+    public static String get_InstrumentPriceAlert_Balance_Search_AccountID() {
+        return getElementText(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox);
+    }
+    public static String get_InstrumentPriceAlert_Balance_Search_DataAsset() {
+        return getElementText(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox);
+    }
+
+    public static void instrumentPriceAlert_Balance_Reset() {
+        click(InstrumentMainPage.instrumentPriceAlert_Balance_Reset, "Click Reset to reset Balance filters");
+    }
+
+    public static void instrumentPriceAlert_Balance_Delete() {
+        click(InstrumentMainPage.instrumentPriceAlert_Balance_Delete_List, "Click Delete to Delete Balance Price alert");
+    }
+
+
+    public static void open_InstrumentPriceAlert_Price_Create() {
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Price_Create);
+        click(InstrumentMainPage.instrumentPriceAlert_Price_Create, "Click Create in Price tab");
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Price_Modal);
+    }
+
+    public static void instrumentPriceAlert_Price_Exchange(String item) {
+        inputText(InstrumentMainPage.instrumentPriceAlert_Price_Exchange, item, "Input Exchange=" + item);
+//        waitForVisible(By.xpath(InstrumentMainPage.instrumentPriceAlert_Price_Exchange_Options));
+        pressEnter(InstrumentMainPage.instrumentPriceAlert_Price_Exchange);
+    }
+
+    public static void instrumentPriceAlert_Price_Pair(String item) {
+        inputText(InstrumentMainPage.instrumentPriceAlert_Price_Pair, item, "Input Pair=" + item);
+    }
+
+    public static void instrumentPriceAlert_Price_IsItAMagicPair(String item) throws InterruptedException {
+        hoverOnElementandClick(InstrumentMainPage.instrumentPriceAlert_Price_IsItAMagicPair);
+        delay(2000);
+        click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()=' "+item+" ']"), "Clicked " +item);
+    }
+
+    public static void instrumentPriceAlert_Price_Operator(String item) throws InterruptedException {
+        hoverOnElementandClick(InstrumentMainPage.instrumentPriceAlert_Price_Operator);
+        click(By.xpath("//div[@class='rc-virtual-list-holder-inner']//div[text()=' " + item + " ']"), "Clicked " +item);
+    }
+
+    public static void instrumentPriceAlert_Price_Price(String item) {
+        inputText(InstrumentMainPage.instrumentPriceAlert_Price_Price, item, "Input Price=" + item);
+    }
+
+    public static void instrumentPriceAlert_Price_Comment(String item) {
+        inputText(InstrumentMainPage.instrumentPriceAlert_Price_Comment, item, "Input Comment=" + item);
+    }
+    public static void click_InstrumentPriceAlert_Price_Submit() {
+        click(InstrumentMainPage.instrumentPriceAlert_Price_Submit, "Click Submit button");
+    }
+
+
 }
