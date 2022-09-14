@@ -602,7 +602,10 @@ public class OptimusInstrumentActions  extends KeywordUtil {
 
     public static void instrumentPriceAlert_Price_Delete() {
         click(InstrumentMainPage.instrumentPriceAlert_Price_Delete, "Click Delete to Delete Price alert");
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Price_Delete_YesBtn);
+        click(InstrumentMainPage.instrumentPriceAlert_Price_Delete_YesBtn, "Click Yes to Delete");
     }
+
 
     // Balance alert Tab
     public static void open_Instrument_PriceAlert_Balance_SubTab() {
@@ -610,16 +613,37 @@ public class OptimusInstrumentActions  extends KeywordUtil {
         click(InstrumentMainPage.instrument_PriceAlert_Balance, "Click Balance tab under Price Alert");
         waitForVisible(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox);
     }
-    public static void instrumentPriceAlert_Balance_Search(String item1, String item2) {
+
+    public static void open_Instrument_PriceAlert_Create_Balance() {
+//        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Balance_Create);
+        click(InstrumentMainPage.instrumentPriceAlert_Balance_Create, "Click Balance tab under Price Alert");
+//        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Balance_Create_popUp);
+    }
+
+    public static void instrumentPriceAlert_Balance_Search(String item1, String item2) throws InterruptedException {
+        delay(5000);
+        hoverOnElementandClick(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox);
         inputText(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox, item1, "Search Balance Price Account ID = " + item1);
+//        waitForVisible(By.xpath(String.format(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox_Options, item1)));
+        pressEnter(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox);
+//        hoverOnElementandClick(By.xpath(String.format(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox_Options, item1)));
+//        click(By.xpath(String.format(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox_Options, item1)), "Select value" +item1);
+        delay(2000);
+        hoverOnElementandClick(InstrumentMainPage.instrumentPriceAlert_Balance_DataAsset_SearchBox);
         inputText(InstrumentMainPage.instrumentPriceAlert_Balance_DataAsset_SearchBox, item2, "Search Balance Price Data Asset ID = " + item2);
+        pressEnter(InstrumentMainPage.instrumentPriceAlert_Balance_DataAsset_SearchBox);
+//        waitForVisible(By.xpath(String.format(InstrumentMainPage.instrumentPriceAlert_Balance_DataAsset_SearchBox_Options, item2)));
+//        click(By.xpath(String.format(InstrumentMainPage.instrumentPriceAlert_Balance_DataAsset_SearchBox_Options, item2)), "Select value" +item2);
+        pressTabKey(InstrumentMainPage.instrumentPriceAlert_Balance_DataAsset_SearchBox);
     }
 
     public static String get_InstrumentPriceAlert_Balance_Search_AccountID() {
-        return getElementText(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox);
+        return getElementText(By.xpath(String.format("//input[@id='filter_data_account_ids']//parent::div//parent::div//parent::div[@class='ant-select-selection-overflow']")));
+//        return getElementText(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox);
     }
     public static String get_InstrumentPriceAlert_Balance_Search_DataAsset() {
-        return getElementText(InstrumentMainPage.instrumentPriceAlert_Balance_AccountID_SearchBox);
+        return getElementText(By.xpath(String.format("//input[@id='filter_data_assets']//parent::div//parent::div//parent::div[@class='ant-select-selection-overflow']")));
+//        return getElementText(InstrumentMainPage.instrumentPriceAlert_Balance_DataAsset_SearchBox);
     }
 
     public static void instrumentPriceAlert_Balance_Reset() {
@@ -628,6 +652,8 @@ public class OptimusInstrumentActions  extends KeywordUtil {
 
     public static void instrumentPriceAlert_Balance_Delete() {
         click(InstrumentMainPage.instrumentPriceAlert_Balance_Delete_List, "Click Delete to Delete Balance Price alert");
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Balance_Delete_YesBtn);
+        click(InstrumentMainPage.instrumentPriceAlert_Balance_Delete_YesBtn, "Click Yes to confirm delete");
     }
 
 
@@ -668,6 +694,60 @@ public class OptimusInstrumentActions  extends KeywordUtil {
     public static void click_InstrumentPriceAlert_Price_Submit() {
         click(InstrumentMainPage.instrumentPriceAlert_Price_Submit, "Click Submit button");
     }
+
+    public static void instrumentPriceAlert_Balance_Account_Create(String item) throws InterruptedException {
+        click(InstrumentMainPage.instrumentPriceAlert_Balance_Account_Create, "Clicking Account in create modal");
+        inputText(InstrumentMainPage.instrumentPriceAlert_Balance_Account_Create, item, "Input Balance Account=" + item);
+//        pressEnter(InstrumentMainPage.instrumentPriceAlert_Balance_Account_Create);
+        waitForVisible(By.xpath(String.format(InstrumentMainPage.instrumentPriceAlert_Balance_Account_Create_Options, item)));
+        click(By.xpath(String.format(InstrumentMainPage.instrumentPriceAlert_Balance_Account_Create_Options, item)), "Balance Asset selected");
+
+    }
+
+    public static void instrumentPriceAlert_Balance_Asset_Create(String item) {
+        click(InstrumentMainPage.instrumentPriceAlert_Balance_Asset_Create, "Input Balance Asset=" + item);
+        inputText(InstrumentMainPage.instrumentPriceAlert_Balance_Asset_Create, item, "Input Balance Asset=" + item);
+//        pressEnter(InstrumentMainPage.instrumentPriceAlert_Balance_Asset_Create);
+        waitForVisible(By.xpath(String.format(InstrumentMainPage.instrumentPriceAlert_Balance_Asset_Create_Options, item)));
+        click(By.xpath(String.format(InstrumentMainPage.instrumentPriceAlert_Balance_Asset_Create_Options, item)), "Balance Asset selected");
+    }
+
+    public static void instrumentPriceAlert_Balance_Operator_Create(String item) throws InterruptedException {
+        hoverOnElementandClick(InstrumentMainPage.instrumentPriceAlert_Balance_Operator_Create);
+        waitForVisible(By.xpath(InstrumentMainPage.instrumentPriceAlert_Balance_Operator_Create_Options));
+        click(By.xpath(String.format(InstrumentMainPage.instrumentPriceAlert_Balance_Operator_Create_Options, item)), "Balance Operator selected");
+    }
+
+    public static void instrumentPriceAlert_Balance_Amount_Create(String item) {
+        inputText(InstrumentMainPage.instrumentPriceAlert_Balance_Amount_Create, item, "Input Balance Operator=" + item);
+    }
+
+    public static void instrumentPriceAlert_Balance_Comment_Create(String item) {
+        inputText(InstrumentMainPage.instrumentPriceAlert_Balance_Comment_Create, item, "Input Balance comment=" + item);
+    }
+
+    public static String get_InstrumentPriceAlert_Balance_Account_List() {
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Balance_Account_List);
+        return getElementText(InstrumentMainPage.instrumentPriceAlert_Balance_Account_List);
+    }
+
+    public static String get_InstrumentPriceAlert_Balance_Asset_List() {
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Balance_Asset_List);
+        return getElementText(InstrumentMainPage.instrumentPriceAlert_Balance_Asset_List);
+    }
+
+    public static String get_InstrumentPriceAlert_Balance_Comment_List() {
+        waitForVisible(InstrumentMainPage.instrumentPriceAlert_Balance_Comment_List);
+        return getElementText(InstrumentMainPage.instrumentPriceAlert_Balance_Comment_List);
+    }
+
+
+
+
+
+
+
+
 
 
 }

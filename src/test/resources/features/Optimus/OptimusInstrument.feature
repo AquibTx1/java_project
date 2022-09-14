@@ -403,7 +403,7 @@ Feature: Test Instrument feature
       | TestCaseID                       | SheetName  |
       | QA_TestCase_Auto_Optimus_5_7_1_3 | Instrument |
 
-
+# Price ALert
   @OptimusInstrument
   Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and create New Price Alert in Price section of Instrument
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
@@ -422,7 +422,7 @@ Feature: Test Instrument feature
       | QA_TestCase_Auto_Optimus_5_7_2_1 | InstrumentPriceAlert |
 
   @OptimusInstrument
-  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and Search Existing Price alert in  Price Alert section of Instrument
+  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and Search Existing Price alert in Price Alert section of Instrument
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open the Instrument Tab
     And Click the Alert Price Side Tab Under Instrument
@@ -435,7 +435,7 @@ Feature: Test Instrument feature
       | TestCaseID                       | SheetName  |
       | QA_TestCase_Auto_Optimus_5_7_2_2 | InstrumentPriceAlert |
 
-  @OptimusInstrument @debug
+  @OptimusInstrument
   Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and Search Existing Price alert in  Price Alert section of Instrument
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open the Instrument Tab
@@ -448,3 +448,53 @@ Feature: Test Instrument feature
     Examples:
       | TestCaseID                       | SheetName  |
       | QA_TestCase_Auto_Optimus_5_7_2_3 | InstrumentPriceAlert |
+
+  @OptimusInstrument
+  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and Delete Existing Price alert in  Price Alert section of Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Alert Price Side Tab Under Instrument
+    And Click to open Price Sub tab
+    And Search the Price Alert in the Price List
+    And Take the Price Pair of item to be deleted
+    And Click Delete button of Price Alert in Instrument
+    Then Search for Deleted Price Alert by pair
+    Then verify Item is deleted and Not shown in Search Result
+
+    Examples:
+      | TestCaseID                       | SheetName  |
+      | QA_TestCase_Auto_Optimus_5_7_2_4 | InstrumentPriceAlert |
+
+#    Balance Alert
+
+  @OptimusInstrument @debug
+  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and create New Balance Alert in Price section of Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Alert Price Side Tab Under Instrument
+    And Click to open Balance Sub tab
+    And Click Create button on Balance Alert tab page
+    And Enter All the field detail of Balance Alert on Create Balance modal
+    And Click submit button
+    Then Search the Balance Alert in the Price List
+    Then Verify the Alert Balance Account ID And Asset is Created and Available in List
+    Then Verify the Alert Balance Comment is Created and Available in List
+
+    Examples:
+      | TestCaseID                       | SheetName  |
+      | QA_TestCase_Auto_Optimus_5_7_3_1 | InstrumentPriceAlert |
+
+  @OptimusInstrument @debug1
+  Scenario Outline: "<TestCaseID>" Able to Open Alert Prices list and Search Existing Balance alert by Account ID and Asset in Price Alert section of Instrument
+    Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
+    And Open the Instrument Tab
+    And Click the Alert Price Side Tab Under Instrument
+    And Click to open Balance Sub tab
+    Then Search the Balance Alert in the Price List
+    Then Verify the Alert Balance Account ID And Asset is Created and Available in List
+
+    Examples:
+      | TestCaseID                       | SheetName  |
+      | QA_TestCase_Auto_Optimus_5_7_3_2 | InstrumentPriceAlert |
+      | QA_TestCase_Auto_Optimus_5_7_3_3 | InstrumentPriceAlert |
+

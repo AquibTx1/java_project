@@ -11,18 +11,20 @@ import step_definitions.BaseStepDefinitions;
 import utilities.GlobalUtil;
 import utilities.KeywordUtil;
 
+import javax.naming.directory.SearchControls;
 import java.util.HashMap;
 import java.util.Random;
 
-import static utilities.KeywordUtil.delay;
-import static utilities.KeywordUtil.waitForVisible;
+import static utilities.KeywordUtil.*;
 
 public class OptimusInstrumentSteps {
 
     public static HashMap<String, String> dataMap;
 
     public static String refid_instrument;
-    public static String PriceComment;
+    public static String PriceAlertItem;
+    public static String BalanceAlertItem, balanceText;
+
     public OptimusInstrumentSteps() {
         dataMap = BaseStepDefinitions.dataMap;
     }
@@ -1281,9 +1283,9 @@ public class OptimusInstrumentSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                PriceComment = dataMap.get("Price_Pair") + KeywordUtil.generateRandomNumber200to500();
+                PriceAlertItem = dataMap.get("Price_Pair") + KeywordUtil.generateRandomNumber200to500();
                 OptimusInstrumentActions.instrumentPriceAlert_Price_Exchange(dataMap.get("Price_Exchange"));
-                OptimusInstrumentActions.instrumentPriceAlert_Price_Pair(PriceComment);
+                OptimusInstrumentActions.instrumentPriceAlert_Price_Pair(PriceAlertItem);
                 OptimusInstrumentActions.instrumentPriceAlert_Price_IsItAMagicPair(dataMap.get("Price_IsItAMagicPair"));
                 OptimusInstrumentActions.instrumentPriceAlert_Price_Operator(dataMap.get("Price_Operator"));
                 OptimusInstrumentActions.instrumentPriceAlert_Price_Price(dataMap.get("Price_Price"));
@@ -1307,7 +1309,7 @@ public class OptimusInstrumentSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusInstrumentActions.instrumentPriceAlert_Price_Search(PriceComment);
+                OptimusInstrumentActions.instrumentPriceAlert_Price_Search(PriceAlertItem);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -1326,7 +1328,7 @@ public class OptimusInstrumentSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                Assert.assertTrue((OptimusInstrumentActions.get_InstrumentPriceAlert_Price_Pair_List()).contains(PriceComment), "Pair Text Matches");
+                Assert.assertTrue((OptimusInstrumentActions.get_InstrumentPriceAlert_Price_Pair_List()).contains(PriceAlertItem), "Pair Text Matches");
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -1405,6 +1407,266 @@ public class OptimusInstrumentSteps {
         } else {
             try {
                 Assert.assertEquals(OptimusInstrumentActions.get_InstrumentPriceAlert_Price_Search_Text(), "");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Take the Price Pair of item to be deleted")
+    public void takeThePricePairOfItemToBeDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                PriceAlertItem = OptimusInstrumentActions.get_InstrumentPriceAlert_Price_Pair_List();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Search for Deleted Price Alert by pair")
+    public void searchForDeletedPriceAlertByPair() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.instrumentPriceAlert_Price_Search(PriceAlertItem);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Delete button of Price Alert in Instrument")
+    public void clickDeleteButtonOfPriceAlertInInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.instrumentPriceAlert_Price_Delete();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click to open Balance Sub tab")
+    public void clickToOpenBalanceSubTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.open_Instrument_PriceAlert_Balance_SubTab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Create button on Balance Alert tab page")
+    public void clickCreateButtonOnBalanceAlertTabPage() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.open_Instrument_PriceAlert_Create_Balance();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Enter All the field detail of Balance Alert on Create Balance modal")
+    public void enterAllTheFieldDetailOfBalanceAlertOnCreateBalanceModal() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                BalanceAlertItem = dataMap.get("Balance_Comment") + KeywordUtil.generateRandomNumber200to500();
+                OptimusInstrumentActions.instrumentPriceAlert_Balance_Account_Create(dataMap.get("Balance_Account"));
+                OptimusInstrumentActions.instrumentPriceAlert_Balance_Asset_Create(dataMap.get("Balance_Asset"));
+                OptimusInstrumentActions.instrumentPriceAlert_Balance_Operator_Create(dataMap.get("Balance_Operator"));
+                OptimusInstrumentActions.instrumentPriceAlert_Balance_Amount_Create(dataMap.get("Balance_Amount"));
+                OptimusInstrumentActions.instrumentPriceAlert_Balance_Comment_Create(BalanceAlertItem);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Search the Balance Alert in the Price List")
+    public void searchTheBalanceAlertInThePriceList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.instrumentPriceAlert_Balance_Search(dataMap.get("Balance_Account"),dataMap.get("Balance_Asset"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the Alert Balance Account ID And Asset is Created and Available in List")
+    public void verifyTheAlertBalanceAccountIDAndAssetIsCreatedAndAvailableInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusInstrumentActions.get_InstrumentPriceAlert_Balance_Account_List(), dataMap.get("Balance_Account"));
+                Assert.assertEquals(OptimusInstrumentActions.get_InstrumentPriceAlert_Balance_Asset_List(), dataMap.get("Search"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+
+    @Then("Verify the Alert Balance Comment is Created and Available in List")
+    public void verifyTheAlertBalanceCommentIsCreatedAndAvailableInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusInstrumentActions.get_InstrumentPriceAlert_Balance_Comment_List(), BalanceAlertItem);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Reset button in Balance Alert under Instrument")
+    public void clickResetButtonInBalanceAlertUnderInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.instrumentPriceAlert_Balance_Reset();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify the Empty Search box is Reset in Instrument")
+    public void verifyTheEmptySearchBoxIsResetInInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                String text = OptimusInstrumentActions.get_InstrumentPriceAlert_Balance_Search_AccountID();
+                Assert.assertEquals(text,  "");
+                text = OptimusInstrumentActions.get_InstrumentPriceAlert_Balance_Search_DataAsset();
+                Assert.assertEquals(text, "");
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Take the Balance Alert Details of item to be deleted")
+    public void takeTheBalanceAlertDetailsOfItemToBeDeleted() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                balanceText = OptimusInstrumentActions.get_InstrumentPriceAlert_Balance_Comment_List();
+//                 OptimusInstrumentActions.get_InstrumentPriceAlert_Balance_Account_List() ;
+//                 OptimusInstrumentActions.get_InstrumentPriceAlert_Balance_Asset_List() ;
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Delete button of Balance Alert in Instrument")
+    public void clickDeleteButtonOfBalanceAlertInInstrument() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusInstrumentActions.instrumentPriceAlert_Balance_Delete();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
