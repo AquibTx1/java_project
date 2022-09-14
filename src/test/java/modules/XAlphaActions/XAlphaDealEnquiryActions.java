@@ -8,6 +8,7 @@ import utilities.KeywordUtil;
 import utilities.LogUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class XAlphaDealEnquiryActions extends KeywordUtil {
@@ -490,6 +491,13 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         LogUtil.infoLog(thisClass, "Confirmation Status is =" + status);
         return status;
     }
+
+    public static String getConfirmationStatusExdeal() {
+
+        String status = KeywordUtil.getElementText(By.xpath("//span[text()='Deal Ref']//following::tbody[1]/tr[2]/td[9]/span"));
+        LogUtil.infoLog(thisClass, "Confirmation Status is =" + status);
+        return status;
+    }
     public static String getInvoiceStatus() {
 
         String status = KeywordUtil.getElementText(By.xpath("//span[text()='Deal Ref']//following::tbody[1]/tr[2]/td[10]/span"));
@@ -512,6 +520,10 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     public static void selectgenerateInvoice() {
         click(XAlphaDealEnquiryPage.tradedocuments_generateinvoicebtn,"Clicked the Generate Invoice Button");
+    }
+
+    public static void selectgenerateOrderExdeal() {
+        click(XAlphaDealEnquiryPage.tradedocuments_generateorderbtn,"Clicked the Generate Order Button");
     }
 
     public static void goBacktoMainWindow() throws InterruptedException {
@@ -554,5 +566,27 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         String status = KeywordUtil.getElementText(XAlphaDealEnquiryPage.TradeDocuments_dealRefconfirmationstatus);
         LogUtil.infoLog(thisClass, "Status for both Deals  is =" + status);
         return status;
+    }
+
+    public static void chooseIsCompletebutton() {
+        try {
+            hoverOnElementandClick(XAlphaDealEnquiryPage.dealEnquiry_iscompletebtn);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static void addcomments() {
+        inputText(XAlphaDealEnquiryPage.tradedocuments_comments,"TX_Testing for Automation","Comments added");
+
+    }
+
+    public static void clickSettingIcon() throws InterruptedException {
+
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_settingicon);
+    }
+
+    public static void removeFields() throws InterruptedException {
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_entity);
     }
 }

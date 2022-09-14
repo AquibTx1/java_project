@@ -84,6 +84,8 @@ public class XAlphaDealEnquiryPage {
     public static By dealEnquiry_StartDate = By.id("filter_form_start");
     public static By dealEnquiry_EndDate = By.id("filter_form_end");
 
+    public static By dealEnquiry_iscompletebtn = By.id("deal_type_data.is_complete");
+
     //deal details
     public static By dealDetail_dealRef = By.xpath("//input[@placeholder='Deal Ref']");
 
@@ -99,6 +101,16 @@ public class XAlphaDealEnquiryPage {
     public static By tradedocuments_InvoiceTransferinstr = By.xpath("//span[text()='Trade Value Date']//following::table[2]/tbody[1]/tr[2]/td[4]/div/span[3]");
     public static By tradedocuments_editinvoiceDraft = By.xpath("//span[text()='Trade Value Date']//following::table[2]/tbody[1]/tr[2]/td[7]/div/button");
     public static By tradedocuments_reviewPage = By.xpath("//span[text()='hide details']");
+
+    public static By tradedocuments_fullreport = By.xpath("//div[text()='Full Report']");
+
+    public static By tradedocuments_settingicon = By.xpath("//span[@aria-label='setting']");
+
+    public static By tradedocuments_comments = By.xpath("//input[contains(@class,'ant-input _additional-comment')]");
+
+    public static By tradedocuments_usermenu = By.xpath("//div[text()='User']");
+
+    public static By tradedocuments_entity = By.xpath("(//span[text()='Entity'])[1]");
     public static By tradedocuments_reviewPagecheckbox = By.xpath("//span[text()='Add Instruction ']/following::span[2]");
     public static By tradedocuments_addinstructions = By.xpath("//span[text()='Add Instruction ']");
     //span[text()='1 - CRYPTO (USDT)']
@@ -118,6 +130,7 @@ public class XAlphaDealEnquiryPage {
     public static By tradedocuments_Toinputfield = By.xpath("//input[@id='recipients']");
     public static By tradedocuments_sendbtn = By.xpath("//span[@aria-label='send']");
     public static By tradedocuments_generateinvoicebtn = By.xpath("//span[text()='Generate Invoice']");
+    public static By tradedocuments_generateorderbtn = By.xpath("//span[text()='Generate Order']");
     public static By tradedocuments_invoiceTab = By.xpath("//div[text()='Invoice']");
     public static By tradedocuments_addcomments = By.xpath("//textarea[@id='addnInstr']");
 
