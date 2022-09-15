@@ -1712,5 +1712,29 @@ public class XAlphaDealEnquirySteps {
             }
         }
     }
+
+    @And("Add Instructions and Comments for Execution deal")
+    public void addInstructionsAndCommentsForExecutionDeal() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.addInstructionsExDeal();
+                XAlphaDealEnquiryActions.addTitle();
+                XAlphaDealEnquiryActions.addSubTitle();
+                XAlphaDealEnquiryActions.addAddress();
+                XAlphaDealEnquiryActions.selecfirstReview();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 }
 

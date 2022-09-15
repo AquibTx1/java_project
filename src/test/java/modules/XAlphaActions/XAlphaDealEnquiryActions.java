@@ -459,6 +459,9 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox2);
     }
 
+    public static void selecfirstReview() throws InterruptedException {
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox);
+    }
 
     public static void selectPrepareEmail() {
         click(XAlphaDealEnquiryPage.tradedocuments_emailbtn,"Clicked the Prepare Email button");
@@ -539,6 +542,12 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         click(XAlphaDealEnquiryPage.tradedocuments_addReview,"Clicked ion Add Review");
 
     }
+
+    public static void addInstructionsExDeal() throws InterruptedException {
+        hoverOnElement(XAlphaDealEnquiryPage.tradedocuments_addinstructions);
+        delay(2000);
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_newinstructions);
+    }
     public static void addComments() {
         inputText(XAlphaDealEnquiryPage.tradedocuments_addcomments, "Tx-Automate Test Data", "Added Comments");
     }
@@ -588,5 +597,24 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     public static void removeFields() throws InterruptedException {
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_entity);
+    }
+
+    public static void addTitle() throws InterruptedException {
+        inputText(XAlphaDealEnquiryPage.tradedocuments_title,"TX-Title ","Added Testing Title");
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_confirmbtn1);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Title Added");
+
+    }
+
+    public static void addSubTitle() throws InterruptedException {
+        inputText(XAlphaDealEnquiryPage.tradedocuments_subtitle,"TX-Sub Title ","Added Testing Sub Title");
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_confirmbtn2);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Sub Title Added");
+    }
+
+    public static void addAddress() throws InterruptedException {
+        inputText(XAlphaDealEnquiryPage.tradedocuments_address,"TX-Title-Address ","Added Testing Title");
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_confirmbtn3);
+        LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Adrress Added");
     }
 }

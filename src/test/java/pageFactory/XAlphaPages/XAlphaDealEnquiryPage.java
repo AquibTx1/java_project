@@ -106,13 +106,22 @@ public class XAlphaDealEnquiryPage {
 
     public static By tradedocuments_settingicon = By.xpath("//span[@aria-label='setting']");
 
+    public static By tradedocuments_confirmbtn1 = By.xpath("(//span[@class='anticon anticon-check'])[1]");
+    public static By tradedocuments_confirmbtn2 = By.xpath("(//span[@class='anticon anticon-check'])[2]");
+    public static By tradedocuments_confirmbtn3 = By.xpath("(//span[@class='anticon anticon-check'])[3]");
+
     public static By tradedocuments_comments = By.xpath("//input[contains(@class,'ant-input _additional-comment')]");
 
     public static By tradedocuments_usermenu = By.xpath("//div[text()='User']");
 
+    public static By tradedocuments_title = By.xpath("//input[@placeholder='Title']");
+    public static By tradedocuments_subtitle = By.xpath("//input[@placeholder='Sub-title']");
+    public static By tradedocuments_address = By.xpath("//textarea[@placeholder='Address']");
     public static By tradedocuments_entity = By.xpath("(//span[text()='Entity'])[1]");
     public static By tradedocuments_reviewPagecheckbox = By.xpath("//span[text()='Add Instruction ']/following::span[2]");
     public static By tradedocuments_addinstructions = By.xpath("//span[text()='Add Instruction ']");
+
+    public static By tradedocuments_newinstructions = By.xpath("//span[text()=' New Instruction']");
     //span[text()='1 - CRYPTO (USDT)']
     public static By tradedocuments_addReview = By.xpath("//span[text()='1 - CRYPTO (USDT)']");
     public static By tradedocuments_reviewPagecheckbox2 = By.xpath("//label[@class='ant-checkbox-wrapper ant-checkbox-wrapper-in-form-item']/span[1]");
