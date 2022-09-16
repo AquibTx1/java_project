@@ -4,6 +4,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import modules.NitroXActions.NitroXBotsAction;
+import modules.OptimusActions.OptimusPortfolioCreateActions;
 import modules.XAlphaActions.XAlphaDealInputActions;
 import modules.XAlphaActions.XAlphaDealEnquiryActions;
 import org.testng.Assert;
@@ -1093,8 +1094,8 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 XAlphaDealEnquiryActions.clickDeaTradeDocumentsTab();
-                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
-                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+                XAlphaDealEnquiryActions.waitForLoadingIconToAppear();
+                XAlphaDealEnquiryActions.waitForLoadingIconToDisappear();
                 waitForVisible(XAlphaDealEnquiryPage.TradeDocuments_dealRef);
                 XAlphaDealEnquiryActions.inputDealRefid_TradeDocuments(XAlphaDealInputSteps.dealRefId);
                 XAlphaDealEnquiryActions.clickLoadDealBtnTradeDocument();
@@ -1193,7 +1194,7 @@ public class XAlphaDealEnquirySteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                XAlphaDealEnquiryActions.inputSendername(dataMap.get("Sender").trim());
+                XAlphaDealEnquiryActions.inputSendername(dataMap.get("Sender"));
                 waitForPresent(XAlphaDealEnquiryPage.tradedocuments_sendbtn);
                 XAlphaDealEnquiryActions.ChooseSendmail();
                 XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
@@ -1241,8 +1242,8 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 XAlphaDealEnquiryActions.clickDeaTradeDocumentsTab();
-                XAlphaDealEnquiryActions.waitForSuccessMsgToAppear();
-                XAlphaDealEnquiryActions.waitForSuccessMsgToDisappear();
+                XAlphaDealEnquiryActions.waitForLoadingIconToAppear();
+                XAlphaDealEnquiryActions.waitForLoadingIconToDisappear();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1363,7 +1364,7 @@ public class XAlphaDealEnquirySteps {
                 waitForVisible(XAlphaDealEnquiryPage.tradedocuments_LoadDealBtn);
                 String status=  XAlphaDealEnquiryActions.getInvoiceStatus();
                 Assert.assertEquals(status,"sent");
-
+                //Assert.assertTrue();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1490,6 +1491,7 @@ public class XAlphaDealEnquirySteps {
             try {
                 delay(5000);
             Assert.assertEquals(XAlphaDealEnquiryActions.getStatusforbothTradeDoc(),"void");
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

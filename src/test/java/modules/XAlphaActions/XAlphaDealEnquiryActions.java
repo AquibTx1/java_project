@@ -1,9 +1,13 @@
 package modules.XAlphaActions;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pageFactory.OptimusPages.Portfolio.PortfolioMainPage;
 import pageFactory.XAlphaPages.XAlphaDealEnquiryPage;
 import pageFactory.XAlphaPages.XAlphaDealInputPage;
+import step_definitions.RunCukesTest;
+import utilities.HTMLReportUtil;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
@@ -616,5 +620,10 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
         inputText(XAlphaDealEnquiryPage.tradedocuments_address,"TX-Title-Address ","Added Testing Title");
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_confirmbtn3);
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Adrress Added");
+    }
+
+    public static void verifyDownloadBtn() {
+        waitForClickable(XAlphaDealEnquiryPage.tradedocuments_resetbtn);
+        RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
     }
 }
