@@ -460,11 +460,15 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
     public static void selecReview() throws InterruptedException {
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox);
         delay(2000);
-        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox2);
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_addedinstruction);
     }
 
     public static void selecfirstReview() throws InterruptedException {
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_reviewPagecheckbox);
+    }
+
+    public static void AddInstrReview() throws InterruptedException {
+        hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_addedinstruction);
     }
 
     public static void selectPrepareEmail() {
@@ -605,6 +609,7 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     public static void addTitle() throws InterruptedException {
         inputText(XAlphaDealEnquiryPage.tradedocuments_title,"TX-Title ","Added Testing Title");
+        delay(2000);
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_confirmbtn1);
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Title Added");
 
@@ -612,18 +617,20 @@ public class XAlphaDealEnquiryActions extends KeywordUtil {
 
     public static void addSubTitle() throws InterruptedException {
         inputText(XAlphaDealEnquiryPage.tradedocuments_subtitle,"TX-Sub Title ","Added Testing Sub Title");
+        delay(2000);
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_confirmbtn2);
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Sub Title Added");
     }
 
     public static void addAddress() throws InterruptedException {
         inputText(XAlphaDealEnquiryPage.tradedocuments_address,"TX-Title-Address ","Added Testing Title");
+        delay(2000);
         hoverOnElementandClick(XAlphaDealEnquiryPage.tradedocuments_confirmbtn3);
         LogUtil.infoLog(XAlphaDealEnquiryPage.class, "Adrress Added");
     }
 
     public static void verifyDownloadBtn() {
-        waitForClickable(XAlphaDealEnquiryPage.tradedocuments_resetbtn);
+        waitForClickable(XAlphaDealEnquiryPage.tradedocuments_mailbtn);
         RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Download CSV button is enabled and clickable"));
     }
 }

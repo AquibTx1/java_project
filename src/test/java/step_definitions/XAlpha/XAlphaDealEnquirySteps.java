@@ -1362,9 +1362,10 @@ public class XAlphaDealEnquirySteps {
         } else {
             try {
                 waitForVisible(XAlphaDealEnquiryPage.tradedocuments_LoadDealBtn);
+                delay(5000);
                 String status=  XAlphaDealEnquiryActions.getInvoiceStatus();
                 Assert.assertEquals(status,"sent");
-                //Assert.assertTrue();
+                XAlphaDealEnquiryActions.verifyDownloadBtn();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -1726,6 +1727,47 @@ public class XAlphaDealEnquirySteps {
                 XAlphaDealEnquiryActions.addSubTitle();
                 XAlphaDealEnquiryActions.addAddress();
                 XAlphaDealEnquiryActions.selecfirstReview();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+    @And("Select Instruction review")
+    public void selectInstructionReview() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.AddInstrReview();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Add Instructions and click Review")
+    public void addInstructionsAndClickReview() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.addInstructions();
+                XAlphaDealEnquiryActions.selecReview();
+                XAlphaDealEnquiryActions.selectallReview();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

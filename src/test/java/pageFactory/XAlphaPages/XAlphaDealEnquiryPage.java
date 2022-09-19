@@ -106,9 +106,9 @@ public class XAlphaDealEnquiryPage {
 
     public static By tradedocuments_settingicon = By.xpath("//span[@aria-label='setting']");
 
-    public static By tradedocuments_confirmbtn1 = By.xpath("(//span[@class='anticon anticon-check'])[1]");
-    public static By tradedocuments_confirmbtn2 = By.xpath("(//span[@class='anticon anticon-check'])[2]");
-    public static By tradedocuments_confirmbtn3 = By.xpath("(//span[@class='anticon anticon-check'])[3]");
+    public static By tradedocuments_confirmbtn1 = By.xpath("(//input[@placeholder='Title']//following::span[@class='anticon anticon-check'])[1]");
+    public static By tradedocuments_confirmbtn2 = By.xpath("(//input[@placeholder='Title']//following::span[@class='anticon anticon-check'])[2]");
+    public static By tradedocuments_confirmbtn3 = By.xpath("(//input[@placeholder='Title']//following::span[@class='anticon anticon-check'])[3]");
 
     public static By tradedocuments_comments = By.xpath("//input[contains(@class,'ant-input _additional-comment')]");
 
@@ -135,6 +135,8 @@ public class XAlphaDealEnquiryPage {
     public static By tradedocuments_BCC = By.xpath("//input[@id='bcc']//following::span[3]");
     public static By tradedocuments_LoadDealBtn = By.xpath("//span[text()='Load']");
     public static By tradedocuments_resetbtn = By.xpath("//span[text()='Reset Form']");
+
+    public static By tradedocuments_mailbtn = By.xpath("//span[@aria-label='download']");
     public static By tradedocuments_closebtn = By.xpath("//button[@aria-label='Close']");
     public static By tradedocuments_Toinputfield = By.xpath("//input[@id='recipients']");
     public static By tradedocuments_sendbtn = By.xpath("//span[@aria-label='send']");
