@@ -1007,13 +1007,75 @@ public class OptimusAccountsSteps {
         }
     }
 
-    @And("Click the Fiat Price Side Tab Under Instrument")
-    public void clickTheFiatPriceSideTabUnderInstrument() {
+    @And("open Recording Wallet Address tab in Configurations under Accounts")
+    public void openRecordingWalletAddressTabInConfigurationsUnderAccounts() {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusInstrumentActions.clickInstrument_FiatPrices_SideTab();
+                OptimusAccountActions.click_Configurations_RecordingWalletAddress_Tab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Search for {string} Existing Recording Wallet in List")
+    public void searchForExistingRecordingWalletInList(String item) {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusAccountActions.accountConfigurations_RecordingWallet_Search(item);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Search Result in list")
+    public void verifySearchResultInList() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                Assert.assertEquals(OptimusAccountActions.get_accountConfigurations_RecordingWallet_NoData_List(), "No Data");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @Then("Verify Search Result has {string} in list")
+    public void verifySearchResultHasInList(String item) {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                if (item.equalsIgnoreCase("No Data")) {
+                    Assert.assertEquals(OptimusAccountActions.get_accountConfigurations_RecordingWallet_NoData_List(), item);
+                }
+                else {
+                    Assert.assertEquals(OptimusAccountActions.get_accountConfigurations_RecordingWallet_Chain_List(), item);
+                }
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

@@ -874,7 +874,6 @@ Feature: Test Bots features on NitroX HomePage
     And Click total filtered bots and choose latest bot and pause it
     And Input any field with new value and again submit for PairTrading Bot
     Then Verify the Bot is updated
-    And wait for Ten Seconds
     Then Verify the Config Tab for modified field in PairTrading Bot
 
     Examples:
@@ -884,6 +883,7 @@ Feature: Test Bots features on NitroX HomePage
   Scenario Outline: <TestCaseID>_Duplicate the Execution_Bot for Buy Order-FutureMode
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     When Choose Mode, Trading Account and Instrument
+    And Stop All the Bots on Homepage
     And Click Start Bot ,Select the Service,Method and Input Bot Quantity
     And Select Buy Order and Select the MinTime and MaxTime Break
     And Input the value in Account Position
