@@ -21,7 +21,7 @@ public class OptimusReferenceSteps {
 
     public static HashMap<String, String> dataMap;
 
-    static String ref_Name = null, ref_Description = null;
+    static String ref_Name, ref_Description;
 
     public OptimusReferenceSteps()    {
         dataMap = BaseStepDefinitions.dataMap;
@@ -52,7 +52,7 @@ public class OptimusReferenceSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusReferencesMainActions.open_Reference_SubTab(tabName);
+                OptimusReferencesMainActions.open_Reference_SubTab(dataMap.get("SearchIndex"), dataMap.get("Page"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -71,7 +71,7 @@ public class OptimusReferenceSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusReferencesMainActions.click_New_ReferenceType_SubTab_Page();
+                OptimusReferencesMainActions.click_New_ReferenceType_SubTab_Page(dataMap.get("SearchIndex"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -93,7 +93,6 @@ public class OptimusReferenceSteps {
 //                Generating Names and Description with Random Number
                 ref_Name = dataMap.get("Name") + KeywordUtil.generateRandomNumber200to500();
                 ref_Description = dataMap.get("Description") + KeywordUtil.generateRandomNumber200to500();
-
                 OptimusReferencesMainActions.input_New_ReferenceType_Name(dataMap.get("Index"), ref_Name);
                 OptimusReferencesMainActions.input_New_ReferenceType_Description(dataMap.get("Index"), ref_Description);
 
@@ -108,6 +107,52 @@ public class OptimusReferenceSteps {
             }
         }
     }
+
+
+    @And("Get Name from the Reference Details")
+    public void getNameFromTheReferenceDetails() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                ref_Name = OptimusReferencesMainActions.get_Name_ReferenceDetails();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+
+    @And("Update Detail fields of Reference Type")
+    public void updateDetailFieldsOfReferenceType() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+//                Generating Names and Description with Random Number
+                ref_Name = dataMap.get("Name") + KeywordUtil.generateRandomNumber200to500();
+                ref_Description = dataMap.get("Description") + KeywordUtil.generateRandomNumber200to500();
+                OptimusReferencesMainActions.input_Update_ReferenceType_Name(ref_Name);
+                OptimusReferencesMainActions.input_Update_ReferenceType_Description(ref_Description);
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
 
     @And("Click Create Reference Type Button")
     public void clickCreateReferenceTypeButton() {
@@ -154,7 +199,7 @@ public class OptimusReferenceSteps {
         } else {
             try {
 //Approve All tasks
-                OptimusReferencesMainActions.referenceTask_MOCheckerSearch(ref_Name);
+//                OptimusReferencesMainActions.referenceTask_MOCheckerSearch(ref_Name);
                 OptimusReferencesMainActions.select_FirstReferenceTasks();
                 OptimusReferencesMainActions.select_All_ReferenceTasks();
                 OptimusReferencesMainActions.approve_AllSelected_ReferenceTasks();
@@ -176,7 +221,7 @@ public class OptimusReferenceSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusReferencesMainActions.open_Reference_ListTab();
+                OptimusReferencesMainActions.open_Reference_ListTab(dataMap.get("SearchIndex"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -189,45 +234,23 @@ public class OptimusReferenceSteps {
         }
     }
 
-    @And("Search for Reference Results in List")
-    public void searchForReferenceResultsInList() {
+    @Then("verify Reference is {string}")
+    public void verifyReferenceIs(String status) {
         if (BaseStepDefinitions.checkSkipExecutionFlags()) {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                if(ref_Name != null)
-                    OptimusReferencesMainActions.reference_List_SearchBox(ref_Name);
-                else
-                    OptimusReferencesMainActions.reference_List_SearchBox(dataMap.get("Name"));
-            } catch (Throwable e) {
-                GlobalUtil.e = e;
-                GlobalUtil.errorMsg = e.getMessage();
-                Assert.fail(e.getMessage());
-            }
-            //increase the step counter by 1
-            if (BaseStepDefinitions.getSITflag()) {
-                BaseStepDefinitions.increaseCounter();
-            }
-        }
-    }
-
-    @Then("verify Reference is Created or Updated")
-    public void verifyReferenceIsCreatedOrUpdated() {
-        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
-            BaseStepDefinitions.skipThisStep();
-        } else {
-            try {
-                if (ref_Name != null) {
-                    RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Compare Name Element "));
-                    Assert.assertEquals(OptimusReferencesMainActions.get_Name_ReferenceList(), ref_Name);
-                    RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Compare Description Element"));
-                    Assert.assertEquals(OptimusReferencesMainActions.get_Description_ReferenceList(), ref_Description);
+                if (status.equalsIgnoreCase("Existing")) {
+                    RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("From Data, Compare Name Element "));
+                    Assert.assertTrue(OptimusReferencesMainActions.get_Name_ReferenceList(dataMap.get("SearchIndex")).contains(dataMap.get("Name")), "Condition Matches");
+                    RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("From Data, Compare Description Element"));
+                    Assert.assertTrue(OptimusReferencesMainActions.get_Description_ReferenceList(dataMap.get("SearchIndex")).contains(dataMap.get("Description")), "Condition Matches");
                 }
                 else {
                     RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Compare Name Element "));
-                    Assert.assertTrue(OptimusReferencesMainActions.get_Name_ReferenceList().contains(dataMap.get("Name")), "Condition Matches");
+                    Assert.assertEquals(OptimusReferencesMainActions.get_Name_ReferenceList(dataMap.get("SearchIndex")), ref_Name);
                     RunCukesTest.logger.log(LogStatus.INFO, HTMLReportUtil.infoStringGreyColor("Compare Description Element"));
-                    Assert.assertTrue(OptimusReferencesMainActions.get_Description_ReferenceList().contains(dataMap.get("Description")), "Condition Matches");
+                    Assert.assertEquals(OptimusReferencesMainActions.get_Description_ReferenceList(dataMap.get("SearchIndex")), ref_Description);
                 }
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -240,4 +263,86 @@ public class OptimusReferenceSteps {
             }
         }
     }
+
+    @And("Click on Edit Link to Load References Details")
+    public void clickOnEditLinkToLoadReferencesDetails() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                    OptimusReferencesMainActions.click_ReferenceList_Editbtn(dataMap.get("SearchIndex"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Click Update Reference Type Button")
+    public void clickUpdateReferenceTypeButton() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusReferencesMainActions.click_ReferenceType_Updatebtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Delete Reference Type From Details")
+    public void DeleteReferenceTypeFromDetails() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                OptimusReferencesMainActions.click_ReferenceType_Deletebtn();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+
+    @And("Search For The {string} Reference Results in List")
+    public void searchForTheReferenceResultsInList(String search) {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                if(search.equalsIgnoreCase("Existing"))
+                    OptimusReferencesMainActions.reference_List_SearchBox(dataMap.get("SearchIndex"), dataMap.get("Name"));
+                else
+                    OptimusReferencesMainActions.reference_List_SearchBox(dataMap.get("SearchIndex"), ref_Name);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+
 }

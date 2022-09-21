@@ -51,77 +51,91 @@ public class OptimusReferencesMainActions extends KeywordUtil {
     }
 
 
-    public static void reference_List_SearchBox(String item) {
-        waitForVisible(OptimusReferenceMasterPage.reference_List_SearchBox);
-        inputText(OptimusReferenceMasterPage.reference_List_SearchBox, item, "Enter Ref typeSearch for Tab Name");
-        click(OptimusReferenceMasterPage.reference_List_SearchBtn, "Click Ref type Search button");
+    public static void reference_List_SearchBox(String searchIndex,String item) {
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_SearchBox_SearchIndex, searchIndex)));
+        inputText(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_SearchBox_SearchIndex, searchIndex)), item, "Enter Ref type in Search");
+        click(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_SearchBtn_SearchIndex, searchIndex)), "Click Ref type Search button");
     }
 
-    public static void open_Reference_SubTab(String tabName) {
+    public static void open_Reference_SubTab(String searchIndex, String tabName) {
         waitForVisible(OptimusReferenceMasterPage.reference_MainSearch);
         click(By.xpath(String.format(OptimusReferenceMasterPage.reference_SubTab, tabName)), "Click on Reference sub tab " + tabName);
-        waitForVisible(OptimusReferenceMasterPage.reference_SubTab_List);
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_SubTab_List_SearchIndex, searchIndex)));
     }
 
-    public static void open_Reference_ListTab() {
+    public static void open_Reference_ListTab(String searchIndex) {
         waitForVisible(OptimusReferenceMasterPage.reference_MainSearch);
-        click(OptimusReferenceMasterPage.reference_SubTab_List, "Click on Reference sub tab ");
-        waitForVisible(OptimusReferenceMasterPage.reference_List_SearchBox);
+        click(By.xpath(String.format(OptimusReferenceMasterPage.reference_SubTab_List_SearchIndex, searchIndex)), "Click on Reference sub tab ");
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_SearchBox_SearchIndex, searchIndex)));
     }
 
-    public static void click_New_ReferenceType_SubTab_Page() {
-        waitForVisible(OptimusReferenceMasterPage.reference_SubTab_NewEdit_Page);
-        click(OptimusReferenceMasterPage.reference_SubTab_NewEdit_Page, "click to open New or Edit Reference Type page");
+    public static void click_New_ReferenceType_SubTab_Page(String searchIndex) {
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_SubTab_NewEdit_Page_SearchIndex, searchIndex)));
+        click(By.xpath(String.format(OptimusReferenceMasterPage.reference_SubTab_NewEdit_Page_SearchIndex, searchIndex)), "click to open New Reference Type page");
     }
 
-    public static void input_New_ReferenceType_Name(String index, String text) throws InterruptedException {
-        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Name, index)));
-        clearInputUsingKeys(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Name, index)));
-        inputText(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Name, index)), text, "Enter Name for Reference sub tab " + text);
+    public static void input_New_ReferenceType_Name(String tabIndex, String text) throws InterruptedException {
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Name_TabIndex, tabIndex)));
+        inputText(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Name_TabIndex, tabIndex)), text, "Enter Name for Reference sub tab " + text);
     }
 
-
-    public static void input_New_ReferenceType_Description(String index, String text) throws InterruptedException {
-        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Description, index)));
-        clearInputUsingKeys(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Description, index)));
-        inputText(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Description, index)), text, "Enter Name for Reference sub tab " + text);
+    public static void input_New_ReferenceType_Description(String tabIndex, String text) throws InterruptedException {
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Description_TabIndex, tabIndex)));
+        inputText(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Description_TabIndex, tabIndex)), text, "Enter Name for Reference sub tab " + text);
     }
 
-    public static void referenceType_Submit_Createbtn(String index) throws InterruptedException {
-        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Submit_CreateBtn, index)));
-        click(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Submit_CreateBtn, index)), "Clicked Submit button");
+    public static void input_Update_ReferenceType_Name(String text) throws InterruptedException {
+        waitForVisible(OptimusReferenceMasterPage.reference_Name_Update);
+        clearInputUsingKeys(OptimusReferenceMasterPage.reference_Name_Update);
+        inputText(OptimusReferenceMasterPage.reference_Name_Update, text, "Update Name for Reference sub tab " + text);
     }
 
-    public static void input_New_ReferenceType_Deletebtn(String index) throws InterruptedException {
+    public static void input_Update_ReferenceType_Description(String text) throws InterruptedException {
+        waitForVisible(OptimusReferenceMasterPage.reference_Description_Update);
+        clearInputUsingKeys(OptimusReferenceMasterPage.reference_Description_Update);
+        inputText(OptimusReferenceMasterPage.reference_Description_Update, text, "Update Description for Reference sub tab " + text);
+    }
+    public static void referenceType_Submit_Createbtn(String tabIndex) throws InterruptedException {
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Submit_CreateBtn_TabIndex, tabIndex)));
+        click(By.xpath(String.format(OptimusReferenceMasterPage.reference_New_Submit_CreateBtn_TabIndex, tabIndex)), "Clicked Submit button");
+    }
+
+    public static void click_ReferenceType_Deletebtn() throws InterruptedException {
         waitForVisible(OptimusReferenceMasterPage.reference_New_DeleteBtn);
         click(OptimusReferenceMasterPage.reference_New_DeleteBtn, "Clicked Delete button");
         click(OptimusReferenceMasterPage.reference_New_Delete_YesBtn, "Clicked Yes to delete Item");
     }
 
-    public static void input_New_ReferenceType_Updatebtn(String index) throws InterruptedException {
-        waitForVisible(OptimusReferenceMasterPage.reference_New_UpdateBtn);
-        click(OptimusReferenceMasterPage.reference_New_UpdateBtn, "Clicked Update button");
+    public static void click_ReferenceType_Updatebtn() throws InterruptedException {
+        waitForVisible(OptimusReferenceMasterPage.reference_NewEdit_UpdateBtn);
+        click(OptimusReferenceMasterPage.reference_NewEdit_UpdateBtn, "Clicked Update button");
     }
 
-    public static void click_ReferenceList_Editbtn(String index) throws InterruptedException {
-        waitForVisible(OptimusReferenceMasterPage.reference_New_UpdateBtn);
-        click(OptimusReferenceMasterPage.reference_New_UpdateBtn, "Clicked Edit button in List");
+    public static void click_ReferenceList_Editbtn(String searchIndex) throws InterruptedException {
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_Edit_SearchIndex, searchIndex)));
+        click(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_Edit_SearchIndex, searchIndex)), "Clicked Edit button in List");
     }
 
 
-    public static String get_Name_ReferenceList() {
-        waitForVisible(OptimusReferenceMasterPage.reference_List_Name);
-        String text = getElementText(OptimusReferenceMasterPage.reference_List_Name);
+    public static String get_Name_ReferenceList(String searchIndex) {
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_Name_SearchIndex, searchIndex)));
+        String text = getElementText(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_Name_SearchIndex, searchIndex)));
         LogUtil.infoLog(thisClass, "Element Text is =" + text);
         return text;
     }
 
-    public static String get_Description_ReferenceList() {
-        waitForVisible(OptimusReferenceMasterPage.reference_List_Description);
-        String text = getElementText(OptimusReferenceMasterPage.reference_List_Description);
+    public static String get_Description_ReferenceList(String searchIndex) {
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_Description_SearchIndex, searchIndex)));
+        String text = getElementText(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_Description_SearchIndex, searchIndex)));
         LogUtil.infoLog(thisClass, "Element text is =" + text);
         return text;
     }
 
+    public static String get_Name_ReferenceDetails() {
+        waitForVisible(OptimusReferenceMasterPage.reference_Name_Update);
+        String text = getElementValueWithVisibility(OptimusReferenceMasterPage.reference_Name_Update);
+        LogUtil.infoLog(thisClass, "Element Text is =" + text);
+        return text;
+    }
 
 }
