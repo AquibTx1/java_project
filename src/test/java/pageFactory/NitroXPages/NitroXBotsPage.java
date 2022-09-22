@@ -79,6 +79,8 @@ public class NitroXBotsPage {
     public static By starttime=By.xpath("//th[text()='Service ID']//following::tr[1]/td[7]");
 
     public static By BotTime=By.xpath("//th[text()='Service ID']//following-sibling::th[5]");
+
+    public static By advancesettingbtn=By.xpath("//button[@role='switch']");
     public static By service_id=By.xpath("//th[text()='Service ID']//following::tr[1]/td[2]");
 
     public static By config=By.xpath("//div[text()='Bot Details']/following::div[11]");

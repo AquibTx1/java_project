@@ -2436,6 +2436,29 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+
+    @And("Input Side,Quantity and Stop and Triger condition")
+    public void inputSideQuantityAndStopAndTrigerCondition() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.selectSide(dataMap);
+                NitroXBotsAction.inputPairBotQuantity(dataMap.get("Quantity"));
+                NitroXBotsAction.selectAdvancedSetting();
+                NitroXBotsAction.inputTrigerCondtion();
+               // NitroXBotsAction.inputStopCondtion();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
 }
 
 

@@ -936,4 +936,8 @@ public class NitroXBotsAction {
         scrollingToElementofAPage(NitroXBotsPage.stopbots,"Scrolled to Stop All Bots ");
         click(NitroXBotsPage.stopbots,"Stopped all Bots");
     }
+
+    public static void selectAdvancedSetting() throws InterruptedException {
+        click(NitroXBotsPage.advancesettingbtn,"Clicked on Advanced Setting");
+    }
 }
