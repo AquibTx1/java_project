@@ -575,8 +575,30 @@ Feature: Test Bots features on NitroX HomePage
     And submit the order
     Then Verify Bot Count in Total Filtered
     And Click total filtered bots and click the detail bot
-    Then Verify new Bot in detail and config
-    Then Verify the Buy Order in Dealt Order
+#    Then Verify new Bot in detail and config
+#    Then Verify the Buy Order in Dealt Order
+    Examples:
+      | SheetName   |  TestCaseID                  |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_124 |
+      | NitroXBots  | QA_TestCase_Auto_NitroX_125 |
+
+
+  @NitroXParticipationBot22
+  Scenario Outline: <TestCaseID>_Start Participation_Bot for Buy Order
+    Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
+    When Choose Mode, Trading Account, Base and Quote Currency
+    And Pause all the Bots
+    And Verify total Bots Before staring the Buy execution
+    And Click Start Bot ,Select the Service,Method and Input Bot Quantity
+    And Input Side,Quantity and Stop and Triger condition
+    And submit the order
+    Then Verify Bot Count in Total Filtered
+    And Pause the Bot
+    And Edit the Participation Bot fields
+    Then Verify the Bot is updated
+    Then Verify updated fields in config
+#    Then Verify new Bot in detail and config
+#    Then Verify the Buy Order in Dealt Order
     Examples:
       | SheetName   |  TestCaseID                  |
       | NitroXBots  | QA_TestCase_Auto_NitroX_124 |

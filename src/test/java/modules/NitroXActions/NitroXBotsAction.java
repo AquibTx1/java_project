@@ -309,6 +309,13 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Ordered Amount is=" + orderamount);
         return Double.parseDouble(orderamount.replace(",", ""));
     }
+
+    public static double getThresholdPrice()
+    {
+        String price = getElementText(By.xpath("//span[text()='threshold_price']//following::span[1]"));
+        LogUtil.infoLog(thisClass, "Ordered Amount is=" + price);
+        return Double.parseDouble(price);
+    }
     public static String getSide()
     {
         String side=getElementText(By.xpath("//span[text()='Recent Dealt Orders']/following::table[01]/tbody[01]/tr[02]/td[02]/span"));
@@ -940,4 +947,12 @@ public class NitroXBotsAction {
     public static void selectAdvancedSetting() throws InterruptedException {
         click(NitroXBotsPage.advancesettingbtn,"Clicked on Advanced Setting");
     }
+
+    public static void inputupdatedThresholdPrice() throws InterruptedException {
+        waitForVisible(NitroXBotsPage.threshold_priceupdated);
+        clearInputUsingKeys(NitroXBotsPage.threshold_priceupdated);
+        inputText(NitroXBotsPage.threshold_priceupdated,"2","Updated Threshold Price Entered");
+    }
+
+
 }

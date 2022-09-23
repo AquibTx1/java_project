@@ -2459,6 +2459,46 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+
+    @And("Edit the Participation Bot fields")
+    public void editTheParticipationBotFields() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                //NitroXBotsAction.inputupdatedThresholdPrice();
+                NitroXBotsAction.clickSubmit();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @Then("Verify updated fields in config")
+    public void verifyUpdatedFieldsInConfig() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.selectConfig();
+               // Assert.assertEquals(Double.toString(NitroXBotsAction.getThresholdPrice()), "2");
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
 }
 
 
