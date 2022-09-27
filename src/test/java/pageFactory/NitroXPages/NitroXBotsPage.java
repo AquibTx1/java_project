@@ -161,6 +161,7 @@ public class NitroXBotsPage {
     public static By DealRef=By.id("bot_config_form_config_deal_ref");
     public static By instrumenttype=By.id("bot_config_form_config_pair_leg_instrument_type");
 
+    public static By threshold_priceupdated=By.id("bot_config_form_config_threshold_price");
     public static By accountid=By.id("bot_config_form_config_pair_leg_account_id");
 
     public static By basecurrency=By.id("bot_config_form_config_pair_leg_base");

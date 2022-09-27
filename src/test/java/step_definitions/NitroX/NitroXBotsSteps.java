@@ -2446,8 +2446,9 @@ public class NitroXBotsSteps {
                 NitroXBotsAction.selectSide(dataMap);
                 NitroXBotsAction.inputPairBotQuantity(dataMap.get("Quantity"));
                 NitroXBotsAction.selectAdvancedSetting();
-                NitroXBotsAction.inputTrigerCondtion();
+                //NitroXBotsAction.inputTrigerCondtion();
                // NitroXBotsAction.inputStopCondtion();
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -2466,7 +2467,7 @@ public class NitroXBotsSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                //NitroXBotsAction.inputupdatedThresholdPrice();
+                NitroXBotsAction.inputupdatedThresholdPrice();
                 NitroXBotsAction.clickSubmit();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -2487,7 +2488,48 @@ public class NitroXBotsSteps {
         } else {
             try {
                 NitroXBotsAction.selectConfig();
-               // Assert.assertEquals(Double.toString(NitroXBotsAction.getThresholdPrice()), "2");
+               Assert.assertEquals(NitroXBotsAction.getBotDetailSide(),dataMap.get("Side"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Input any value for Participation Bot")
+    public void inputAnyValueForParticipationBot() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+            NitroXBotsAction.inputupdatedThresholdPrice();
+            NitroXBotsAction.inputPairBotQuantity(dataMap.get("S_UpdatedTotalAmount"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @Then("Verify config tab for Participation bot")
+    public void verifyConfigTabForParticipationBot() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXBotsAction.selectConfig();
+                Assert.assertEquals(Double.toString(NitroXBotsAction.getThresholdPrice()),"2.0");
+
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

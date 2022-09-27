@@ -313,7 +313,7 @@ public class NitroXBotsAction {
     public static double getThresholdPrice()
     {
         String price = getElementText(By.xpath("//span[text()='threshold_price']//following::span[1]"));
-        LogUtil.infoLog(thisClass, "Ordered Amount is=" + price);
+        LogUtil.infoLog(thisClass, "Threshold Price is=" + price);
         return Double.parseDouble(price);
     }
     public static String getSide()
