@@ -28,7 +28,7 @@ public class OptimusReferenceMasterPage {
     public static By reference_Name_Update = By.id("update_reference_name");
     public static String reference_New_Description_TabIndex = "//main/div/div/div[2]/div/div[%s]/div/div[2]/div/div[2]/div/form/div/div[2]/div/div[2]/div/div/textarea";
     public static By reference_Description_Update = By.id("update_reference_description");
-    public static String reference_New_Submit_CreateBtn_TabIndex = "//main/div/div/div[2]/div/div[%s]/div/div[2]/div/div[2]/div/form/div[3]/div/button";
+    public static String reference_New_Submit_CreateBtn_TabIndex = "//main/div/div/div[2]/div/div[%s]/div/div[2]/div/div[2]/div/form/div[3]/div/button/span[contains(text(),'Create')]";
     public static By reference_New_DeleteBtn = By.xpath("//button/span[contains(text(),'Delete')]");
     public static By reference_New_Delete_YesBtn = By.xpath("//div[@class='ant-popover-inner-content']/div[2]/button[2]/span[text()='Yes']");
 

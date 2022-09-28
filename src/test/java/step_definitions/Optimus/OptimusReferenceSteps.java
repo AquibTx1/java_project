@@ -345,4 +345,22 @@ public class OptimusReferenceSteps {
     }
 
 
+    @And("Main Reference Search for Reference Type Tab")
+    public void mainReferenceSearchForReferenceTypeTab() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                    OptimusReferencesMainActions.reference_MainSearch_Tab(dataMap.get("Page"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 }

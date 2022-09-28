@@ -15,15 +15,19 @@ public class OptimusReferencesMainActions extends KeywordUtil {
         delay(3000);
     }
 
-    public static void open_Reference_SideTab() {
+    public static void open_Reference_SideTab() throws InterruptedException {
+//        delay(15000);
         waitForVisible(OptimusReferenceMasterPage.reference_SideTab);
         click(OptimusReferenceMasterPage.reference_SideTab, "Click References side tab");
         waitForVisible(OptimusReferenceMasterPage.reference_MainSearch);
     }
 
-    public static void reference_MainSearch_Tab(String item) {
+    public static void reference_MainSearch_Tab(String item) throws InterruptedException {
+        KeywordUtil.hardRefresh();
+        delay(2000);
         waitForVisible(OptimusReferenceMasterPage.reference_MainSearch);
         inputText(OptimusReferenceMasterPage.reference_MainSearch, item, "Enter Search for Tab Name");
+        delay(2000);
         click(OptimusReferenceMasterPage.reference_MainSearchBtn, "Click Master Search button");
     }
 
