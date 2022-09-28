@@ -7,7 +7,7 @@ public class OptimusReferenceMasterPage {
     public static By referenceTasksTab_MO_Checker = By.xpath("//span[text()='Reference Tasks']");
     public static By referenceTasksTab_SearchBox_Checker = By.xpath("//div[@class='ant-tabs ant-tabs-top']/div[2]/div/div[2]//descendant::input[@placeholder='input search text']");
     public static By referenceTasksTab_SearchBtn_Checker = By.xpath("//div[@class='ant-tabs-content ant-tabs-content-top']/div[2]//form[@class='ant-form ant-form-inline _title_form_d4fpm_1']//button/span[@aria-label='search']");
-    public static By referenceTasksTab_TaskCheckbox_Checker = By.xpath("//div[@class='_workflow_task_list_d4fpm_1']/div[1]/div/div/div[2]/label/span");
+    public static By referenceTasksTab_TaskCheckbox_Checker = By.xpath("(//div[@class='_workflow_task_list_d4fpm_1']/div[1]/div/div/div[2]/label/span)[2]");
     public static By referenceTasksTab_SelectAll_Checker = By.xpath("//div[@class='_workflow_task_list_d4fpm_1']/form/button/span[contains(text(),'Select All Applicable')]");
     public static By referenceTasksTab_Checker_ApproveBtn = By.xpath("//div[@class='_workflow_task_list_d4fpm_1']/form/div/button/span[contains(text(),'Approve')]");
     public static By referenceTasksTab_Checker_ApproveAll_YesBtn = By.xpath("//div[@class='ant-popover-inner-content']/div[@class='ant-popover-buttons']/button/span[contains(text(),'Yes')]");
