@@ -9,9 +9,10 @@ public class OptimusReferencesMainActions extends KeywordUtil {
 
     static Class<OptimusReferencesMainActions> thisClass = OptimusReferencesMainActions.class;
 
-    public static void open_ReferenceTasksTab_MO_Checker() {
+    public static void open_ReferenceTasksTab_MO_Checker() throws InterruptedException {
         waitForVisible(OptimusReferenceMasterPage.referenceTasksTab_MO_Checker);
         click(OptimusReferenceMasterPage.referenceTasksTab_MO_Checker, "Click References Tasks tab with Mo Account");
+        delay(3000);
     }
 
     public static void open_Reference_SideTab() {
