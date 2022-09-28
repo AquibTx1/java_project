@@ -880,4 +880,129 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+
+    @And("Select OTC Price")
+    public void selectOTCPrice() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.selectOTCPrice();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Select Base and Input Quantity ,DeliveryTime")
+    public void selectBaseAndInputQuantityDeliveryTime() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                waitForVisible(NitroXHomePage.OTCPriceWindow);
+                NitroXHome.inputOTCPriceQuantity();
+                NitroXHome.inputOTCPriceTime();
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+
+    @And("Click Calculate")
+    public void clickCalculate() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.selectCalculate();
+                waitForPresent(NitroXHomePage.OTCTimedate);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Verify the Ask and Bid Price displayed")
+    public void verifyTheAskAndBidPriceDisplayed() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.validateOTCPrice();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Input Participation and No Reference")
+    public void inputParticipationAndReferenceAsNA() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.inputOTCPriceParticipation();
+                NitroXHome.selectRefrence();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Select Quote from OTC Window")
+    public void selectQuoteFromOTCWindow() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.selectQuote();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
 }
