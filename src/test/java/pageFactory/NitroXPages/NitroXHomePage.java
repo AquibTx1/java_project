@@ -86,7 +86,15 @@ public class NitroXHomePage {
 
     public static By OTCpriceReference=By.xpath("//span[text()='N/A']");
 
+    public static String OTCpriceReferencenew="//*[@id='otc_price_form_ref_mode']/label[%s]";
+
+    public static String reference_List_Edit_SearchIndex = "(//tbody/tr[2]/td[1]/div[1]/a)[%s]";
     public static By OTCQuotebtn=By.xpath("//span[text()='Quote']");
+
+    public static String OTCRefcoin="//*[@id='otc_price_form_ref_coin']/label[%s]";
     public static By OTCaskbidprice=By.xpath("//div[text()='Ask']//following::div[1]");
     public static By OTCTimedate=By.xpath("//div[text()='Time']");
+
+    public static By OTCRefrange=By.id("otc_price_form_ref_exchange");
+
 }

@@ -81,6 +81,9 @@ public class NitroXHome {
     public static void waitForLiveChart() {
         waitForPresent(NitroXHomePage.liveFrame);
     }
+
+
+
     public String getBaseCurrency() {
         return getElementText(NitroXHomePage.Basecurrency);
     }
@@ -444,17 +447,29 @@ public class NitroXHome {
         click(NitroXHomePage.OTCpriceReference,"Clicked on Calculate Button");
     }
 
+    public static void click_Reference(String searchIndex) throws InterruptedException {
+        click(By.xpath(String.format(NitroXHomePage.OTCpriceReferencenew, searchIndex)), "Clicked Reference");
+        LogUtil.infoLog(thisClass, "Reference Selected ");
+    }
+
     public static void validateOTCPrice() {
         isWebElementPresent(NitroXHomePage.OTCaskbidprice,"Ask Bid Price Values");
         String askprice=getElementText(NitroXHomePage.OTCaskbidprice);
         LogUtil.infoLog(thisClass, "Ask/Bid Price displayed ="+askprice);
     }
 
-    public static void selectQuote() {
-            click(NitroXHomePage.OTCQuotebtn,"Clicked on Quote Button");
-
+    public static void selectQuote(String searchIndex) {
+        click(By.xpath(String.format(NitroXHomePage.OTCRefcoin, searchIndex)), "Clicked Reference Coin");
+        LogUtil.infoLog(thisClass, "Quote is Selected ");
+            //click(NitroXHomePage.OTCQuotebtn,"Clicked on Quote Button");
     }
 
+
+    public static void selectRefRange(HashMap<String,String> dataMap) {
+        waitForVisible(NitroXHomePage.OTCRefrange);
+        KeywordUtil.inputText(NitroXHomePage.OTCRefrange, dataMap.get("Range"), "Range Entered.");
+        KeywordUtil.pressEnter(NitroXHomePage.OTCRefrange);
+    }
 
 
 }

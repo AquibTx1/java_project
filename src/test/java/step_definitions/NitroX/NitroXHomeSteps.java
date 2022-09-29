@@ -973,7 +973,8 @@ public class NitroXHomeSteps {
             //execute the step when checkSkipExecutionFlags() returns false
             try {
                 NitroXHome.inputOTCPriceParticipation();
-                NitroXHome.selectRefrence();
+                //NitroXHome.selectRefrence();
+                NitroXHome.click_Reference(dataMap.get("Reference"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
@@ -993,7 +994,27 @@ public class NitroXHomeSteps {
         } else {
             //execute the step when checkSkipExecutionFlags() returns false
             try {
-                NitroXHome.selectQuote();
+                NitroXHome.selectQuote(dataMap.get("Reference Coin"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Select Reference Range")
+    public void selectReferenceRange() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+               NitroXHome.selectRefRange(dataMap);
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();
