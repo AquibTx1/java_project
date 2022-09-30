@@ -91,10 +91,11 @@ public class OptimusReferenceSteps {
         } else {
             try {
 //                Generating Names and Description with Random Number
-                ref_Name = dataMap.get("Name") + KeywordUtil.generateRandomNumber200to500();
-                ref_Description = dataMap.get("Description") + KeywordUtil.generateRandomNumber200to500();
-                OptimusReferencesMainActions.input_New_ReferenceType_Name(dataMap.get("Index"), ref_Name);
-                OptimusReferencesMainActions.input_New_ReferenceType_Description(dataMap.get("Index"), ref_Description);
+                int randomNum = KeywordUtil.generateRandomNumber200to500();
+                ref_Name = dataMap.get("Name") + randomNum;
+                ref_Description = dataMap.get("Description") + randomNum;
+                OptimusReferencesMainActions.input_New_ReferenceType_Name(dataMap.get("SearchIndex"), ref_Name);
+                OptimusReferencesMainActions.input_New_ReferenceType_Description(dataMap.get("SearchIndex"), ref_Description);
 
             } catch (Throwable e) {
                 GlobalUtil.e = e;
@@ -160,7 +161,7 @@ public class OptimusReferenceSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                OptimusReferencesMainActions.referenceType_Submit_Createbtn(dataMap.get("Index"));
+                OptimusReferencesMainActions.referenceType_Submit_Createbtn(dataMap.get("SearchIndex"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -351,7 +352,7 @@ public class OptimusReferenceSteps {
             BaseStepDefinitions.skipThisStep();
         } else {
             try {
-                    OptimusReferencesMainActions.reference_MainSearch_Tab(dataMap.get("Page"));
+                    OptimusReferencesMainActions.reference_MainSearch_Tab(dataMap.get("Page"), dataMap.get("SearchIndex"));
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();

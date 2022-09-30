@@ -19,7 +19,7 @@ public class OptimusReferenceMasterPage {
 
     public static String reference_List_SearchBox_SearchIndex = "(//form[@class='ant-form ant-form-inline']//descendant::input[@placeholder='input search text'])[%s]";
     public static String reference_List_SearchBtn_SearchIndex = "(//form[@class='ant-form ant-form-inline']//descendant::span[@class='ant-input-group-addon']/button)[%s]";
-    public static By reference_List_Search_ReloadBtn = By.xpath("//button/span[@aria-label='reload']");
+    public static String reference_List_Search_ReloadBtn = "(//button/span[@aria-label='reload'])[%s]";
     public static String reference_List_Edit_SearchIndex = "(//tbody/tr[2]/td[1]/div[1]/a)[%s]";
     public static String reference_List_Name_SearchIndex = "(//tbody/tr[2]/td[2])[%s]";
     public static String reference_List_Description_SearchIndex = "(//tbody/tr[2]/td[3])[%s]";

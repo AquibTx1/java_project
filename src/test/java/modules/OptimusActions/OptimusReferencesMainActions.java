@@ -22,14 +22,18 @@ public class OptimusReferencesMainActions extends KeywordUtil {
         waitForVisible(OptimusReferenceMasterPage.reference_MainSearch);
     }
 
-    public static void reference_MainSearch_Tab(String item) throws InterruptedException {
+    public static void reference_MainSearch_Tab(String item, String searchIndex) throws InterruptedException {
         KeywordUtil.hardRefresh();
         delay(2000);
         waitForVisible(OptimusReferenceMasterPage.reference_MainSearch);
         inputText(OptimusReferenceMasterPage.reference_MainSearch, item, "Enter Search for Tab Name");
         delay(2000);
         click(OptimusReferenceMasterPage.reference_MainSearchBtn, "Click Master Search button");
+        delay(2000);
+        click(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_Search_ReloadBtn, searchIndex)), "Clicking Reload to load list");
+        waitForVisible(By.xpath(String.format(OptimusReferenceMasterPage.reference_List_Search_ReloadBtn, searchIndex)));
     }
+
 
     public static void referenceTask_MOCheckerSearch(String item) {
         waitForVisible(OptimusReferenceMasterPage.referenceTasksTab_SearchBox_Checker);
