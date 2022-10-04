@@ -33,7 +33,7 @@ Feature: Test Trade Documents
       | SheetName   | TestCaseID                          | Direction | Status    |
       | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_101 | Buy       | Confirmed |
 
-  @TradeDocuments102
+  @TradeDocuments
   Scenario Outline: "<TestCaseID>"_Able to Complete Flow of Invoice for FX-Spot Deal
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
