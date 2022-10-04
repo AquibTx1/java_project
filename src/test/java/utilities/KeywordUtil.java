@@ -33,7 +33,7 @@ public class KeywordUtil extends GlobalUtil {
      * The constant cucumberTagName.
      */
     public static String cucumberTagName;
-    private static final int DEFAULT_WAIT_SECONDS = 20;
+    private static final int DEFAULT_WAIT_SECONDS = 50;
     public static String os = System.getProperty("os.name").toLowerCase();
     /**
      * The constant FAIL.
@@ -203,6 +203,13 @@ public class KeywordUtil extends GlobalUtil {
         }
     }
 
+    public static void navigateToBack() {
+           // LogUtil.infoLog(KeywordUtil.class, KeywordUtil.lastAction);
+            getDriver().navigate().back();
+
+    }
+
+
     /**
      * Gets current url.
      *
@@ -299,7 +306,7 @@ public class KeywordUtil extends GlobalUtil {
      * @return the boolean
      */
     public static boolean waitForInVisibile(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+        WebDriverWait wait = new WebDriverWait(getDriver(), 50);
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
@@ -744,6 +751,18 @@ public class KeywordUtil extends GlobalUtil {
         WebElement element = getDriver().findElement(by);
         Actions act = new Actions(getDriver());
         act.moveToElement(element).build().perform();
+
+        Thread.sleep(3000);
+
+        return true;
+
+    }
+
+    public static boolean hoverOnElementandClick(By by) throws InterruptedException {
+
+        WebElement element = getDriver().findElement(by);
+        Actions act = new Actions(getDriver());
+        act.moveToElement(element).click().perform();
 
         Thread.sleep(3000);
 
@@ -1566,6 +1585,15 @@ public class KeywordUtil extends GlobalUtil {
         Random random = new Random();
         int low = 20;
         int high = 40;
+        int result = random.nextInt(high - low) + low;
+        LogUtil.infoLog(KeywordUtil.class, "Random number=" + result);
+        return result;
+    }
+
+    public static int generateRandomNumber200to500() {
+        Random random = new Random();
+        int low = 150;
+        int high = 600;
         int result = random.nextInt(high - low) + low;
         LogUtil.infoLog(KeywordUtil.class, "Random number=" + result);
         return result;

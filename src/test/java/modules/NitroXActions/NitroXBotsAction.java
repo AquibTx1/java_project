@@ -214,6 +214,13 @@ public class NitroXBotsAction {
         LogUtil.infoLog(thisClass, "Closed  the config Tab");
     }
 
+    public static void CloseConfig2()
+    {
+        KeywordUtil.click(NitroXBotsPage.closeconfigbtn2,  " Closed Clicked");
+        LogUtil.infoLog(thisClass, "Closed  the config Tab");
+    }
+
+
     public static void CloseBotDetail() {
         KeywordUtil.click(NitroXBotsPage.closebotdetailbtn,  " BOT Detail Closed");
         LogUtil.infoLog(thisClass, "Closed  the Bot Detail");
@@ -394,6 +401,14 @@ public class NitroXBotsAction {
     {
             waitForVisible(NitroXBotsPage.instrumenttype);
             inputText(NitroXBotsPage.instrumenttype,dataMap.get("Mode"),"Mode Selected");
+
+    }
+
+    public static void selectmodePairTradingBot(HashMap<String, String> dataMap)
+    {
+        waitForVisible(NitroXBotsPage.instrumenttype);
+        inputText(NitroXBotsPage.instrumenttype,dataMap.get("Mode"),"Mode Selected");
+        pressEnter(NitroXBotsPage.instrumenttype);
     }
     public static void inputTradingAccount(HashMap<String, String> dataMap) {
         try {
@@ -738,7 +753,7 @@ public class NitroXBotsAction {
 
     }
     public static void editLatestBot() {
-        click(NitroXBotsPage.editbotbtn, "Current Bot Stopped");
+        click(NitroXBotsPage.editbotbtn, "Current Bot Edited");
     }
     public static void duplicateLatestBot() {
         click(NitroXBotsPage.duplicatebotbtn, "Current Bot Stopped");
@@ -788,7 +803,7 @@ public class NitroXBotsAction {
                     scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                     NitroXBotsAction.clickStart();
                     NitroXBotsAction.waitforBotWindow();
-                    NitroXBotsAction.inputService(dataMap.get("Service"));
+                   // NitroXBotsAction.inputService(dataMap.get("Service"));
                     NitroXBotsAction.inputMethod(dataMap.get("Method"));
                     NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                     waitForVisible(NitroXBotsPage.orderdirection);
@@ -815,12 +830,12 @@ public class NitroXBotsAction {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
-                NitroXBotsAction.inputService(dataMap.get("Service"));
+                //NitroXBotsAction.inputService(dataMap.get("Service"));
                 NitroXBotsAction.inputMethod(dataMap.get("Method"));
                 NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                 NitroXBotsAction.inputTargetAccountPosition(dataMap);
                 NitroXBotsAction.clickSubmit();
-                delay(10000);
+                delay(15000);
                 NitroXBotsAction.selecttotalBots();
             } else {
                 NitroXBotsAction.selecttotalBots();
@@ -841,7 +856,7 @@ public class NitroXBotsAction {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
-                NitroXBotsAction.inputService(dataMap.get("Service"));
+               //NitroXBotsAction.inputService(dataMap.get("Service"));
                 NitroXBotsAction.inputMethod(dataMap.get("Method"));
                 NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                 NitroXBotsAction.inputTargetAccountPosition(dataMap);
@@ -866,7 +881,7 @@ public class NitroXBotsAction {
                 scrollingToElementofAPage(NitroXBotsPage.startbtn, "Scrolled to start element");
                 NitroXBotsAction.clickStart();
                 NitroXBotsAction.waitforBotWindow();
-                NitroXBotsAction.inputService(dataMap.get("Service"));
+               // NitroXBotsAction.inputService(dataMap.get("Service"));
                 NitroXBotsAction.inputMethod(dataMap.get("Method"));
                 NitroXBotsAction.inputBotQuantity(dataMap.get("Bot Quantity"));
                 waitForVisible(NitroXBotsPage.orderdirection);
@@ -913,5 +928,12 @@ public class NitroXBotsAction {
     public static void pressenter()
     {
         KeywordUtil.pressEnter(NitroXHomePage.tradingaccount);
+    }
+
+    public static void movetoListandStopBots() throws InterruptedException {
+        waitForVisible(NitroXBotsPage.allbots);
+        click(NitroXBotsPage.allbots,"Selected All Bots");
+        scrollingToElementofAPage(NitroXBotsPage.stopbots,"Scrolled to Stop All Bots ");
+        click(NitroXBotsPage.stopbots,"Stopped all Bots");
     }
 }

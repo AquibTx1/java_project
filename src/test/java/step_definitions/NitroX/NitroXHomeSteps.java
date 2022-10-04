@@ -303,6 +303,7 @@ public class NitroXHomeSteps {
         } else {
             try {
                 NitroXHome.ClearInputPrice();
+                delay(10000);
                 NitroXHome.InputOpenOrderBidPrice();
                 NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
@@ -442,6 +443,7 @@ public class NitroXHomeSteps {
                 waitForVisible(NitroXHomePage.price);
                 NitroXHome.scrollToAskPrices();
                 NitroXHome.ClearInputPrice();
+                delay(5000);
                 NitroXHome.InputthePrice(NitroXHome.getHighestAskPrice());
                 NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
@@ -483,7 +485,7 @@ public class NitroXHomeSteps {
                 NitroXHome.scrollToOrdersPlaced();
                 NitroXHome.waitForInvisibleOrderSubmittedMsg();
                 NitroXHome.clickDealtOrdersTab();
-                delay(5000);
+                delay(10000);
                 Assert.assertEquals(NitroXHome.getSideofNthDealtOrder(1), dataMap.get("Side").toUpperCase(Locale.ROOT));
                 //Assert.assertEquals(NitroXHome.getPriceofNthDealtOrder(1), NitroXHome.getOrderFormPrice());
                 Assert.assertEquals(NitroXHome.getQuantityofNthDealtOrder(1), NitroXHome.getOrderFormQuantity());
@@ -529,7 +531,8 @@ public class NitroXHomeSteps {
                 // get the highest bid price add some amount into the highest bid price and also store it in a variable to use later
                 NitroXHome.scrollToBidPrices();
                 NitroXHome.ClearInputPrice();
-                NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice() + generateRandomNumber20to40());
+                delay(10000);
+                NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice()+10000);
                 NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
             } catch (Throwable e) {
@@ -647,6 +650,7 @@ public class NitroXHomeSteps {
                 // get the highest bid price and also store it in a variable to use later
                 NitroXHome.scrollToBidPrices();
                 NitroXHome.ClearInputPrice();
+                delay(10000);
                 NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice());
                 NitroXHome.ClearOrderQuantity();
                 NitroXHome.InputCustomQuantity(dataMap);
@@ -673,13 +677,15 @@ public class NitroXHomeSteps {
                 // get the highest bid price add some amount into the highest bid price and also store it in a variable to use later
                 for (int i = 0; i < Integer.parseInt(arg0); i++) {
                     NitroXHome.ClearInputPrice();
+                    delay(8000);
                     double bidPrice = NitroXHome.getHighestBidPrice();
-                    if (NitroXHome.isPresentOrderListener()) {
-                        NitroXHome.closeBottomRightNotif();
-                    }
+//                    if (NitroXHome.isPresentOrderListener()) {
+//                        NitroXHome.closeBottomRightNotif();
+//                    }
                         waitForVisible(NitroXHomePage.price);
                         NitroXHome.InputthePrice(bidPrice + generateRandomNumber20to40());
                         NitroXHome.ClearOrderQuantity();
+                        delay(8000);
                         NitroXHome.InputCustomQuantity(dataMap);
                         NitroXHome.ClickSellButton();
 
@@ -713,6 +719,7 @@ public class NitroXHomeSteps {
                     NitroXHome.ClearInputPrice();
                     NitroXHome.InputthePrice(NitroXHome.getLowestAskPrice() - generateRandomNumber20to40());
                     NitroXHome.ClearOrderQuantity();
+                    delay(8000);
                     NitroXHome.InputCustomQuantity(dataMap);
                     NitroXHome.ClickBuyButton();
 
@@ -836,6 +843,7 @@ public class NitroXHomeSteps {
         } else {
             //execute the step when checkSkipExecutionFlags() returns false
             try {
+                delay(10000);
                 NitroXHome.InputthePrice(NitroXHome.getHighestBidPrice());
                 NitroXHome.InputQuantity(dataMap);
             } catch (Throwable e) {

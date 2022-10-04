@@ -124,8 +124,16 @@ public class NitroXBuySellFutureAction {
         return String.valueOf(a);
     }
 
+    public static String getLowestAskPriceFutureMode() {
+        waitForVisible(NitroXHomePage.Ordertableprice);
+        lastaskprice = getElementText(By.xpath("(//span[text()='Orderbook ']/following::table[1]/tbody//child::tr)[last()]/td[2]"));
+        lastaskprice = lastaskprice.replace(",", "");
+        double a = Double.parseDouble(lastaskprice) ;
+        LogUtil.infoLog(thisClass, "Ask price" + a);
+        return String.valueOf(a);
+    }
     public static void InputOpenOrderAskPrice() {
-        KeywordUtil.inputText(NitroXHomePage.price, getLowestAskPrice(), "Entered the Open Bid Price");
+        KeywordUtil.inputText(NitroXHomePage.price, getLowestAskPriceFutureMode(), "Entered the Open Bid Price");
     }
 
     public static void clickOpenState() {
