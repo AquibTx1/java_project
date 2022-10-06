@@ -3,7 +3,7 @@ Feature: Test Trade Documents
   Background: Login to XAlpha
     Given Login to XAlpha with valid login credentials
 
-  @TradeDocuments
+  @TradeDoc
   Scenario Outline: "<TestCaseID>"_Not Able to Complete Flow of Invoice for FX-Spot Deal
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -33,7 +33,7 @@ Feature: Test Trade Documents
       | SheetName   | TestCaseID                          | Direction | Status    |
       | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_101 | Buy       | Confirmed |
 
-  @TradeDocuments
+  @TradeDoc
   Scenario Outline: "<TestCaseID>"_Able to Complete Flow of Invoice for FX-Spot Deal
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -68,7 +68,7 @@ Feature: Test Trade Documents
       | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_102| Buy       | Confirmed |
       | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_103| Buy       | Confirmed |
 
-  @TradeDocuments
+  @TradeDoc
   Scenario Outline: "<TestCaseID>"Able to Complete Flow of Invoice for FX-Spot Deal With Add Instruction
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -108,7 +108,7 @@ Feature: Test Trade Documents
       | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_104| Buy       | Confirmed |
       | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_105| Buy       | Confirmed |
 
-  @TradeDocuments
+  @TradeDoc
   Scenario Outline: "<TestCaseID>"_Able to Complete Flow of Invoice and Confirmation for FX-Spot Deal and Cancel the Deal
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
@@ -151,7 +151,7 @@ Feature: Test Trade Documents
       | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_106| Buy       | Confirmed |
       | XAlphaDealsTradeDoc | QA_TestCase_Auto_XAlpha_107| Buy       | Confirmed |
 
-  @TradeDocuments
+  @TradeDoc
   Scenario Outline: "<TestCaseID>"Able to Complete Flow of Invoice for FX-Spot Deal With Add Instruction
     Given Read "XAlpha" and "<SheetName>" and "<TestCaseID>" from test data
     When Move to X-Alpha page
