@@ -1759,7 +1759,7 @@ Feature: Test CounterParty feature
 
 
 #  Counterparty Status Type Reference
-  @OptimusCounterPartyReference @debug
+  @OptimusCounterPartyReference
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Create Counterparty Status Type Reference
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -1797,7 +1797,7 @@ Feature: Test CounterParty feature
       | QA_TestCase_Auto_Optimus_2_4_14_1 | OptimusReferences | MO_CheckerAccount |
 
 
-  @OptimusCounterPartyReference @debug
+  @OptimusCounterPartyReference
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Edit Counterparty Status Type Reference
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
@@ -1837,7 +1837,7 @@ Feature: Test CounterParty feature
       | QA_TestCase_Auto_Optimus_2_4_14_2 | OptimusReferences | MO_CheckerAccount |
 
 
-  @OptimusCounterPartyReference @debug
+  @OptimusCounterPartyReference
   Scenario Outline: "<TestCaseID>" Able to Login to Optimus and Search Counterparty Status Type Reference
     Given Read "Optimus" and "<SheetName>" and "<TestCaseID>" from test data
     And Open CounterParty main tab
