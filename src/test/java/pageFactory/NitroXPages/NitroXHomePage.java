@@ -97,4 +97,26 @@ public class NitroXHomePage {
 
     public static By OTCRefrange=By.id("otc_price_form_ref_exchange");
 
+    //OPTION PRICER
+    public static By Optionpricertab= By.xpath("//a[text()='Option Pricer']");
+    public static By Optionpricer_Type= By.id("option_calculator_struct");
+    public static String Optionpricer_Typeoptions= "//div[@class='rc-virtual-list-holder-inner']//div[text()='%s']";
+    public static By Optionpricer_Symbol= By.id("option_calculator_symbol");
+    public static String Optionpricer_Symboloptions= "//div[@class='rc-virtual-list-holder-inner']//div[text()='%s']";
+    public static By Optionpricer_SpotRef= By.id("option_calculator_manual_spot_px");
+    public static By Optionpricer_CalculateBtn= By.xpath("//span[text()='Calculate']");
+    public static By Optionpricer_StrikeC= By.id("option_calculator_0_strike");
+    public static By Optionpricer_StrikeP= By.id("option_calculator_1_strike");
+    public static By Optionpricer_Notional1= By.id("option_calculator_0_notional");
+    public static By Optionpricer_Notional2= By.id("option_calculator_1_notional");
+    public static By Optionpricer_SpreadBid1= By.id("option_calculator_0_spread_pct_bid");
+    public static By Optionpricer_SpreadBid2= By.id("option_calculator_1_spread_pct_bid");
+    public static By Optionpricer_Manualvol1= By.id("option_calculator_0_manual_bid_vol");
+    public static By Optionpricer_Manualvol2= By.id("option_calculator_1_manual_bid_vol");
+    public static By Optionpricer_expirydate= By.id("option_calculator_0_expiry");
+
+    public static By Optionpricer_externalbidtable= By.xpath("//th[text()='Bid / Offer Vol']//following::tbody/tr/td");
+
+
+    public static By Optionpricer_BookDeal=By.xpath("//span[text()='Book Deal(s)']");
 }

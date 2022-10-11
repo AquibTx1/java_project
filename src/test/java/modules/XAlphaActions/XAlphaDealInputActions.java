@@ -228,6 +228,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     public static void dealInput_waitForDealInput_IncomingSettledYes() {
         waitForVisible(XAlphaDealInputPage.dealInput_IncomingSettledYes);
     }
+
     public static void dealInput_waitForDealInput_OutgoingSettledYes() {
         waitForVisible(XAlphaDealInputPage.dealInput_OutgoingSettledYes);
     }
@@ -259,11 +260,12 @@ public class XAlphaDealInputActions extends KeywordUtil {
     //execution deal > EndAssetAmount
 
     public static String getEndAssetAmount() {
-        int number  = KeywordUtil.generateRandomNumber200to500()+1000;
+        int number = KeywordUtil.generateRandomNumber200to500() + 1000;
         LogUtil.infoLog(thisClass, "Ask price" + number);
         return String.valueOf(number);
 
     }
+
     public static void dealInput_EndAssetAmount() throws InterruptedException {
         clearInputUsingKeys(XAlphaDealInputPage.dealInput_EndAssetAmount);
         delay(3000);
@@ -341,7 +343,20 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void clickSettled() {
-        click(XAlphaDealEnquiryPage.settlement_detail_Click,"Clicked to Settlement tab");
-        click(XAlphaDealEnquiryPage.settlement_detail_outgoing,"Clicked to Settlement tab");
+        click(XAlphaDealEnquiryPage.settlement_detail_Click, "Clicked to Settlement tab");
+        click(XAlphaDealEnquiryPage.settlement_detail_outgoing, "Clicked to Settlement tab");
+    }
+
+    public static void selectExchange(String exchange) {
+        inputText(XAlphaDealInputPage.dealInput_OptionsPrice_Exchange, exchange, "Select deal input Option Price Purpose=" + exchange);
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_OptionPrice_ExchangeOptions, exchange)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_OptionPrice_ExchangeOptions, exchange)), "Choose deal Input Option Exchange");
+
+    }
+    public static void selectExpiryPriceSource(String expiry_price_source) {
+        inputText(XAlphaDealInputPage.dealInput_OptionsPrice_Expiry, expiry_price_source, "Select deal input Option Price Purpose=" + expiry_price_source);
+        waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_OptionPrice_ExpiryPrice, expiry_price_source)));
+        click(By.xpath(String.format(XAlphaDealInputPage.dealInput_OptionPrice_ExpiryPrice, expiry_price_source)), "Choose deal Input Option Exchange");
+
     }
 }

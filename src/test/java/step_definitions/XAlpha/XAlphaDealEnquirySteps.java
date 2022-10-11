@@ -1778,5 +1778,46 @@ public class XAlphaDealEnquirySteps {
             }
         }
     }
+
+    @Then("Verify Option deal is created with correct details")
+    public void verifyOptionDealIsCreatedWithCorrectDetails() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealEnquiryActions.expandFirstDealDetail();
+
+
+                String counterpartyNameActual = XAlphaDealEnquiryActions.getFirstCounterpartyName();
+                String portfolioNumberActual = XAlphaDealEnquiryActions.getFirstPortfolioNumber();
+
+//                //expected values from test data
+//                String dealTypeExpected = dataMap.get("DealType");
+//                String processingStatusExpected = dataMap.get("ProcessingStatus");
+//                String directionExpected = dataMap.get("Direction");
+//                String purposeExpected = dataMap.get("CashflowPurpose");
+//                String assetAmountExpected = KeywordUtil.formatDecimalToStr(dataMap.get("Amount"));
+//                String assetNameExpected = dataMap.get("Asset").split(" | ")[0].trim();
+//                String tradeDateExpected = GlobalUtil.getCurrentDateTime_ddMMMyyyy(); //today's date
+//                String valueDateExpected = GlobalUtil.getCurrentDateTime_ddMMMyyyy(); //today's date
+                String counterpartyNameExpected = dataMap.get("CounterpartyName").split(" | ")[0].trim() + " " + dataMap.get("CounterpartyName").split(" | ")[1].trim();
+                String portfolioNumberExpected = dataMap.get("PortfolioNumber");
+
+
+                Assert.assertEquals(counterpartyNameActual, counterpartyNameExpected);
+                Assert.assertEquals(portfolioNumberActual, portfolioNumberExpected);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 }
 

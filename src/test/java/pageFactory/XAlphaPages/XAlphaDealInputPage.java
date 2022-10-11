@@ -71,6 +71,14 @@ public class XAlphaDealInputPage {
     public static By dealInput_CashFlow_AssetText = By.xpath("//input[@id='deal_type_data.asset']/../following-sibling::span");
     public static By dealInput_CashFlow_Amount = By.id("deal_type_data.amount");
     public static By dealInput_CashFlow_Purpose = By.id("deal_type_data.cashflow_purpose");
+
+    public static By dealInput_OptionsPrice_Exchange = By.id("deal_type_data.exchange");
+    public static String dealInput_OptionPrice_ExchangeOptions = "//div[@id='deal_type_data.exchange_list']/following-sibling::div//div[text()='%s']";
+
+    public static By dealInput_OptionsPrice_Expiry = By.id("deal_type_data.expiry_price_source");
+
+    public static String dealInput_OptionPrice_ExpiryPrice = "//div[@class='rc-virtual-list-holder-inner']//div[text()='%s']";
+
     public static String dealInput_CashFlow_PurposeOptions = "//div[@id='deal_type_data.cashflow_purpose_list']/following-sibling::div//div[text()='%s']";
     public static By dealInput_CashFlow_PurposeText = By.xpath("//input[@id='deal_type_data.cashflow_purpose']/../following-sibling::span");
 }

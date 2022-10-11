@@ -1,4 +1,4 @@
-Feature: Test Bots features on NitroX HomePage
+Feature: Test OTC PRICE features on NitroX HomePage
 
   Background: Login to application
     Given Login to NitroX app with valid login credentials
@@ -66,13 +66,7 @@ Feature: Test Bots features on NitroX HomePage
   @NitroXOTCPrice
   Scenario Outline: <TestCaseID>_Calculate OTC Price for Future Mode and Base with Reference as Spot
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
-    When Choose Mode, Trading Account and Instrument
-    And Select OTC Price
-    And Select Quote from OTC Window
-    And Select Base and Input Quantity ,DeliveryTime
-    And Input Participation and No Reference
-    And Click Calculate
-    And Verify the Ask and Bid Price displayed
+
 
     Examples:
       | SheetName  |  TestCaseID                     |

@@ -343,4 +343,51 @@ public class XAlphaDealInputSteps {
             }
         }
     }
+
+    @And("Input Exchange ,Expiry Price")
+    public void inputExchangeExpiryPrice() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.waitFordealInput_navbar();
+             XAlphaDealInputActions.selectExchange(dataMap.get("Exchange"));
+             XAlphaDealInputActions.selectExpiryPriceSource(dataMap.get("Expiry Price Source"));
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Input Deal Ref ,CounterParty and Portfolio Number")
+    public void inputDealRefCounterPartyAndPortfolioNumber() {
+        //check if this step needs to be skipped
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                XAlphaDealInputActions.dealInput_CounterpartyName(dataMap.get("CounterpartyName"));
+                XAlphaDealInputActions.dealInput_PortfolioNumber(dataMap.get("PortfolioNumber"));
+                XAlphaDealInputActions.dealInput_ProcessingStatus(dataMap.get("ProcessingStatus"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
 }

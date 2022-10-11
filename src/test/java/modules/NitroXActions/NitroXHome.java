@@ -4,9 +4,12 @@ import pageFactory.NitroXPages.NitroXBotsPage;
 import pageFactory.NitroXPages.NitroXHomePage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import pageFactory.OptimusPages.Account.OptimusAccountCreatePage;
+import pageFactory.XAlphaPages.XAlphaDealInputPage;
 import utilities.KeywordUtil;
 import utilities.LogUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static utilities.KeywordUtil.*;
@@ -82,7 +85,102 @@ public class NitroXHome {
         waitForPresent(NitroXHomePage.liveFrame);
     }
 
+    public static void selectType(String type) throws InterruptedException {
+        waitForClickable(NitroXHomePage.Optionpricer_Type);
+        inputText(NitroXHomePage.Optionpricer_Type, type, "Select Type of the  = " + type);
+        waitForPresent(By.xpath(String.format(NitroXHomePage.Optionpricer_Typeoptions, type)));
+        click(By.xpath(String.format(NitroXHomePage.Optionpricer_Typeoptions, type)), "Choose Type of options");
 
+    }
+
+    public static void selectOptionpricertab() {
+        click(NitroXHomePage.Optionpricertab, "Click Option Pricer");
+    }
+
+    public static void selectSymbol(String symbol) throws InterruptedException {
+        clearInputUsingKeys(NitroXHomePage.Optionpricer_Symbol);
+        inputText(NitroXHomePage.Optionpricer_Symbol, symbol, "Select Symbol is   = " + symbol);
+        waitForPresent(By.xpath(String.format(NitroXHomePage.Optionpricer_Symboloptions, symbol)));
+        click(By.xpath(String.format(NitroXHomePage.Optionpricer_Symboloptions, symbol)), "Choose Type of Symbol");
+
+    }
+    public static void selectSpotRef(String spotRef) {
+        inputText(NitroXHomePage.Optionpricer_SpotRef, spotRef, "Spot Ref Entered"+spotRef);
+    }
+
+    public static void selectStrike(String strikeup) {
+        inputText(NitroXHomePage.Optionpricer_StrikeC, strikeup, "Strike Up  Entered"+strikeup);
+    }
+
+    public static void selectStrikedown(String strikedown) {
+        inputText(NitroXHomePage.Optionpricer_StrikeP, strikedown, "Strike Up  Entered"+strikedown);
+    }
+
+    public static void selectNotionalup(String notionalup) throws InterruptedException {
+        clearInputUsingKeys(NitroXHomePage.Optionpricer_Notional1);
+        inputText(NitroXHomePage.Optionpricer_Notional1, notionalup, "Notional Up  Entered"+notionalup);
+    }
+
+    public static void selectNotionaldown(String notionaldown) throws InterruptedException {
+        clearInputUsingKeys(NitroXHomePage.Optionpricer_Notional2);
+        inputText(NitroXHomePage.Optionpricer_Notional2, notionaldown, "Notional down  Entered"+notionaldown);
+    }
+
+    public static void selectSpreadup(String spreadup) throws InterruptedException {
+        clearInputUsingKeys(NitroXHomePage.Optionpricer_SpreadBid1);
+        inputText(NitroXHomePage.Optionpricer_SpreadBid1, spreadup, "Spread Bid  Entered"+spreadup);
+    }
+
+    public static void selectSpreaddown(String spreaddown) throws InterruptedException {
+        clearInputUsingKeys(NitroXHomePage.Optionpricer_SpreadBid2);
+        inputText(NitroXHomePage.Optionpricer_SpreadBid2, spreaddown, "Spread Bid2  Entered"+spreaddown);
+    }
+
+    public static void selectManualVolup(String manualvolup) throws InterruptedException {
+        clearInputUsingKeys(NitroXHomePage.Optionpricer_Manualvol1);
+        inputText(NitroXHomePage.Optionpricer_Manualvol1, manualvolup, "Notional down  Entered"+manualvolup);
+
+    }
+
+    public static void selectManualVoldown(String manualvoldown) throws InterruptedException {
+        clearInputUsingKeys(NitroXHomePage.Optionpricer_Manualvol1);
+        inputText(NitroXHomePage.Optionpricer_Manualvol1, manualvoldown, "Notional down  Entered");
+
+    }
+
+    public static void selectExpirydate(String expdate) throws InterruptedException {
+
+        clearInputUsingKeys(NitroXHomePage.Optionpricer_expirydate);
+        click(NitroXHomePage.Optionpricer_expirydate, "Click Deal input ValueDate");
+        inputTextByCharacter(NitroXHomePage.Optionpricer_expirydate, expdate, "Deal input ValueDate=" + expdate);
+        pressEnter(NitroXHomePage.Optionpricer_expirydate);
+//        clearInputUsingKeys(NitroXHomePage.Optionpricer_expirydate);
+//        inputText(NitroXHomePage.Optionpricer_expirydate, expdate, "Expiry date Value Entered");
+//        delay(5000);
+//        pressEnter(NitroXHomePage.Optionpricer_expirydate);
+    }
+
+    public static void caluclateOptionPricer() {
+        click(NitroXHomePage.Optionpricer_CalculateBtn,"Calculate Button clicked");
+    }
+
+    public static void selectBooKDeal() {
+        clickJS(NitroXHomePage.Optionpricer_BookDeal,"Book Deal Button clicked");
+    }
+
+    public static void SwitchtoXAlpha() {
+        ArrayList<String> newTb = new ArrayList<String>(getDriver().getWindowHandles());
+        //switch to new tab
+
+        getDriver().switchTo().window(newTb.get(1));
+    }
+
+    public static void goBacktoMainWindow() throws InterruptedException {
+        ArrayList<String> newTb = new ArrayList<String>(getDriver().getWindowHandles());
+        //switch to new tab
+
+        getDriver().switchTo().window(newTb.get(0));
+    }
 
     public String getBaseCurrency() {
         return getElementText(NitroXHomePage.Basecurrency);
@@ -456,6 +554,13 @@ public class NitroXHome {
         isWebElementPresent(NitroXHomePage.OTCaskbidprice,"Ask Bid Price Values");
         String askprice=getElementText(NitroXHomePage.OTCaskbidprice);
         LogUtil.infoLog(thisClass, "Ask/Bid Price displayed ="+askprice);
+    }
+
+    public static void validateOptionPrice() {
+        waitForVisible(NitroXHomePage.Optionpricer_externalbidtable);
+        isWebElementPresent(NitroXHomePage.Optionpricer_externalbidtable,"Ask Bid Price Values");
+        String Strike=getElementText(NitroXHomePage.Optionpricer_externalbidtable);
+        LogUtil.infoLog(thisClass, "Strike Price displayed ="+Strike);
     }
 
     public static void selectQuote(String searchIndex) {

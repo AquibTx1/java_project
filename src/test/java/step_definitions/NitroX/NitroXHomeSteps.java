@@ -1026,4 +1026,159 @@ public class NitroXHomeSteps {
             BaseStepDefinitions.increaseCounter();
         }
     }
+
+    @And("Open Option Pricer")
+    public void openOptionPricer() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.selectOptionpricertab();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @And("Input Type ,Symbol and Spot Ref.")
+    public void inputTypeSymbolAndSpotRef() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.selectType(dataMap.get("Type"));
+                NitroXHome.selectSymbol(dataMap.get("Symbol"));
+                NitroXHome.selectSpotRef(dataMap.get("SpotRef"));
+
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @And("Input Strike,Notional and Spread Bid and Offer")
+    public void inputStrikeNotionalAndSpreadBidOffer() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.selectStrike(dataMap.get("Strikeup"));
+                NitroXHome.selectStrikedown(dataMap.get("Strikedown"));
+                NitroXHome.selectNotionalup(dataMap.get("Notionalup"));
+                NitroXHome.selectNotionaldown(dataMap.get("Notionaldown"));
+                NitroXHome.selectSpreadup(dataMap.get("Spreadup"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @And("Input Manual Vol,Expiry date and hour")
+    public void inputManualVolExpiryDateAndHour() {
+
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+
+                NitroXHome.selectSpreaddown(dataMap.get("Spreaddown"));
+                NitroXHome.selectManualVolup(dataMap.get("Manualvolup"));
+                //NitroXHome.selectManualVoldown(dataMap.get("Manualvoldown"));
+                NitroXHome.selectExpirydate(dataMap.get("Expdate"));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+    @And("Click calculate Option Price")
+    public void clickCalculateOptionPrice() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.caluclateOptionPricer();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
+
+    @Then("Verify the External and Internal Result")
+    public void verifyTheExternalAndInternalResult() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.validateOptionPrice();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+
+    }
+
+    @And("Select Book Deals")
+    public void selectBookDeals() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            //execute the step when checkSkipExecutionFlags() returns false
+            try {
+                NitroXHome.selectBooKDeal();
+                NitroXHome.SwitchtoXAlpha();
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+        }
+        if (BaseStepDefinitions.getSITflag()) {
+            BaseStepDefinitions.increaseCounter();
+        }
+    }
 }
