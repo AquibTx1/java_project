@@ -437,7 +437,7 @@ Feature: Test deal enquiry feature
       | SheetName | TestCaseID                  | loginCredentials  | FromStatus | ToStatus  |
       | CashFlow  | QA_TestCase_Auto_XAlpha_079 | MO_CheckerAccount | Settled    | Processed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_080 | MO_CheckerAccount | Processed  | Confirmed |
-      | CashFlow  | QA_TestCase_Auto_XAlpha_081 | MO_CheckerAccount | Settled    | Confirmed |
+#      | CashFlow  | QA_TestCase_Auto_XAlpha_081 | MO_CheckerAccount | Settled    | Confirmed |
       | CashFlow  | QA_TestCase_Auto_XAlpha_084 | MO_CheckerAccount | Processed  | Pending   |
       | CashFlow  | QA_TestCase_Auto_XAlpha_085 | MO_CheckerAccount | Settled    | Pending   |
       | CashFlow  | QA_TestCase_Auto_XAlpha_086 | MO_CheckerAccount | Pending    | Settled   |
