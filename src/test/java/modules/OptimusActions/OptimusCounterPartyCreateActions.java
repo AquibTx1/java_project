@@ -23,6 +23,7 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         waitForClickable(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab);
         click(OptimusCounterPartyCreatePage.counterParty_NewCounterPartyTab, "Click on Create New Counter Party Sub tab");
         XAlphaDealEnquiryActions.waitForLoadingIconToAppearAndDisappear();
+        delay(15000);
         waitForVisible(OptimusCounterPartyCreatePage.newCounterPartyPage_Ref);
         waitForClickable(OptimusCounterPartyCreatePage.newCounterPartyPage_SalesForceID);
     }
@@ -425,7 +426,8 @@ public class OptimusCounterPartyCreateActions extends KeywordUtil {
         return getElementText(OptimusCounterPartyTasksPage.tasks_SuccessMessage);
     }
 
-    public static void checkCounterPart_FirstResultListLoad() {
+    public static void checkCounterPart_FirstResultListLoad() throws InterruptedException {
+        delay(5000);
         waitForVisible(OptimusCounterPartyListPage.counterPartyList_NickNameInternal1);
     }
 

@@ -12,8 +12,9 @@ public class OptimusMainActions extends KeywordUtil {
 
     static Class<OptimusMainActions> thisClass = OptimusMainActions.class;
 
-    public static void openListTab() {
+    public static void openListTab() throws InterruptedException {
         click(OptimusCounterPartyListPage.counterParties_ListTab, "Click List tab");
+        delay(30000);
     }
     public static void searchForItem(String itemName) throws InterruptedException {
         waitForClickable(OptimusCounterPartyListPage.counterPartyList_SearchBox);

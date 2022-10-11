@@ -152,7 +152,7 @@ public class OptimusCounterPartySteps {
                 OptimusCounterPartyCreateActions.createCP_ParentAccount(dataMap.get("ParentAccount"));
 //Basic Details
                 OptimusCounterPartyCreateActions.createCP_FirstName(dataMap.get("FirstName"));
-                OptimusCounterPartyCreateActions.waitfor3seconds();
+                OptimusCounterPartyCreateActions.waitfor5seconds();
                 OptimusCounterPartyCreateActions.createCP_LastName(dataMap.get("LastName"));
                 OptimusCounterPartyCreateActions.createCP_IdentificationExpiryDate(dataMap.get("IdentificationExpiryDate"));
                 OptimusCounterPartyCreateActions.waitfor5seconds();

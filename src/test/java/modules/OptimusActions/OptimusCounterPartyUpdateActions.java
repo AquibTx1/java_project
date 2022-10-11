@@ -38,7 +38,8 @@ public class OptimusCounterPartyUpdateActions extends KeywordUtil {
         verifyTextContains(OptimusCounterPartyListPage.counterPartyList_NickNameInternal1, "TXA", "Nickname in search result list Text contains TXA");
     }
 
-    public static void waitForCounterPartyUpdatePageLoad() {
+    public static void waitForCounterPartyUpdatePageLoad() throws InterruptedException {
+        delay(20000);
         waitForVisible(OptimusCounterPartyUpdatePage.updateCounterPartyPage_cpRef);
     }
 
