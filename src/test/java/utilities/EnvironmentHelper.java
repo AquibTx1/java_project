@@ -7,7 +7,7 @@ import org.testng.Assert;
  */
 public class EnvironmentHelper {
     public static String url;
-    public static String env = "test";
+    public static String env = System.getProperty("env");
 
     /**
      * Append the environment and appName under scope
