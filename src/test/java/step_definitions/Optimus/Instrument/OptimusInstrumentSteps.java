@@ -3,6 +3,7 @@ package step_definitions.Optimus.Instrument;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import modules.OptimusActions.OptimusAccountActions;
+import modules.OptimusActions.OptimusCounterPartyCreateActions;
 import modules.OptimusActions.OptimusInstrumentActions;
 import modules.OptimusActions.OptimusSettlementActions;
 import org.testng.Assert;
@@ -189,8 +190,11 @@ public class OptimusInstrumentSteps {
         } else {
             try {
                 OptimusSettlementActions.selectApprovebtn();
-                OptimusSettlementActions.waitForSuccessMsgToAppear();
-                OptimusSettlementActions.waitForSuccessMsgToDisappear();
+                OptimusCounterPartyCreateActions.waitForSuccessMessage();
+                Assert.assertEquals(OptimusCounterPartyCreateActions.getSuccessMessageText(), "Success!", "Expected and Actual matching");
+
+//                OptimusSettlementActions.waitForSuccessMsgToAppear();
+//                OptimusSettlementActions.waitForSuccessMsgToDisappear();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -348,8 +352,11 @@ public class OptimusInstrumentSteps {
                 waitForVisible(InstrumentMainPage.refid);
                 refid_instrument = OptimusInstrumentActions.getInstrumentRefid();
                 OptimusInstrumentActions.deleteRecord();
-                OptimusSettlementActions.waitForSuccessMsgToAppear();
-                OptimusSettlementActions.waitForSuccessMsgToDisappear();
+                OptimusCounterPartyCreateActions.waitForSuccessMessage();
+                Assert.assertEquals(OptimusCounterPartyCreateActions.getSuccessMessageText(), "Success!", "Expected and Actual matching");
+
+//                OptimusSettlementActions.waitForSuccessMsgToAppear();
+//                OptimusSettlementActions.waitForSuccessMsgToDisappear();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 GlobalUtil.errorMsg = e.getMessage();
@@ -653,7 +660,10 @@ public class OptimusInstrumentSteps {
                 OptimusInstrumentActions.updateLotSize(dataMap.get("Lot Size"));
                 OptimusInstrumentActions.updateTickSize(dataMap.get("Tick Size"));
                 OptimusInstrumentActions.clickUpdateInstrument();
-                OptimusSettlementActions.waitForSuccessMsgToAppear();
+                OptimusCounterPartyCreateActions.waitForSuccessMessage();
+//                Assert.assertEquals(OptimusCounterPartyCreateActions.getSuccessMessageText(), "Success!", "Expected and Actual matching");
+
+//                OptimusSettlementActions.waitForSuccessMsgToAppear();
 //                OptimusInstrumentActions.createContarctSize(dataMap.get("Contract Size"));
 //                OptimusInstrumentActions.createContractAsset(dataMap.get("Contract Asset"));
 //                OptimusInstrumentActions.createSetAsset(dataMap.get("Settlement Asset"));
