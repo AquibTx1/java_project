@@ -4,6 +4,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import modules.NitroXActions.NitroXBotsAction;
+import modules.NitroXActions.NitroXHome;
 import modules.OptimusActions.OptimusPortfolioCreateActions;
 import modules.XAlphaActions.XAlphaDealInputActions;
 import modules.XAlphaActions.XAlphaDealEnquiryActions;
@@ -1807,6 +1808,46 @@ public class XAlphaDealEnquirySteps {
 
                 Assert.assertEquals(counterpartyNameActual, counterpartyNameExpected);
                 Assert.assertEquals(portfolioNumberActual, portfolioNumberExpected);
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Switch to XAlpha again")
+    public void switchToXAlphaAgain() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+                NitroXHome.goBacktoMainWindowIndex(Integer.parseInt(dataMap.get("Window")));
+            } catch (Throwable e) {
+                GlobalUtil.e = e;
+                e.printStackTrace();
+                GlobalUtil.errorMsg = e.getMessage();
+                Assert.fail(e.getMessage());
+            }
+            //increase the step counter by 1
+            if (BaseStepDefinitions.getSITflag()) {
+                BaseStepDefinitions.increaseCounter();
+            }
+        }
+    }
+
+    @And("Input Unit price")
+    public void inputUnitPrice() {
+        if (BaseStepDefinitions.checkSkipExecutionFlags()) {
+            BaseStepDefinitions.skipThisStep();
+        } else {
+            try {
+               XAlphaDealInputActions.dealOptionPrice();
             } catch (Throwable e) {
                 GlobalUtil.e = e;
                 e.printStackTrace();

@@ -73,6 +73,8 @@ public class XAlphaDealInputPage {
     public static By dealInput_CashFlow_Purpose = By.id("deal_type_data.cashflow_purpose");
 
     public static By dealInput_OptionsPrice_Exchange = By.id("deal_type_data.exchange");
+
+    public static By dealInput_OptionsPrice_UnitPrice = By.id("deal_type_data.unit_price");
     public static String dealInput_OptionPrice_ExchangeOptions = "//div[@id='deal_type_data.exchange_list']/following-sibling::div//div[text()='%s']";
 
     public static By dealInput_OptionsPrice_Expiry = By.id("deal_type_data.expiry_price_source");

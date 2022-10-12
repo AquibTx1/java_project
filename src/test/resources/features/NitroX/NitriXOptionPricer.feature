@@ -5,7 +5,7 @@ Feature: Test Option Pricer features on NitroX HomePage
     Given Login to NitroX app with valid login credentials
 
   @NitroXOptionPrice
-  Scenario Outline: <TestCaseID>_Calculate Option Pricer for CALL_RR
+  Scenario Outline: <TestCaseID>_Calculate Option Pricer for <Type>
     Given Read "NitroX" and "<SheetName>" and "<TestCaseID>" from test data
     And Open Option Pricer
     And Input Type ,Symbol and Spot Ref.
@@ -22,10 +22,21 @@ Feature: Test Option Pricer features on NitroX HomePage
     And Navigate to deal enquiry tab
     And Load a deal wrt deal reference id from deal input
     Then Verify Option deal is created with correct details
-
+    And Switch to XAlpha again
+    And Input Exchange ,Expiry Price
+    And Input Deal Ref ,CounterParty and Portfolio Number
+    And Input Unit price
+    And Click create deal button
+    Then Verify the deal success message
+    And Navigate to deal enquiry tab
+    And Load a deal wrt deal reference id from deal input
+    Then Verify Option deal is created with correct details
 
     Examples:
-      | SheetName  |  TestCaseID                    |SheetName2        |
-      | OptionPricer  | QA_TestCase_Auto_NitroX_148 |XAlphaOptionPricer|
-      | OptionPricer  | QA_TestCase_Auto_NitroX_150 |XAlphaOptionPricer|
-      | OptionPricer  | QA_TestCase_Auto_NitroX_152 |XAlphaOptionPricer|
+      | SheetName  |  TestCaseID                    |SheetName2        | Type|
+     | OptionPricer  | QA_TestCase_Auto_NitroX_148 |XAlphaOptionPricer| CALL_RR
+      | OptionPricer  | QA_TestCase_Auto_NitroX_150 |XAlphaOptionPricer|CALL_SPREAD|
+      | OptionPricer  | QA_TestCase_Auto_NitroX_152 |XAlphaOptionPricer|PUT_RR     |
+#      | OptionPricer  | QA_TestCase_Auto_NitroX_154 |XAlphaOptionPricer|
+#      | OptionPricer  | QA_TestCase_Auto_NitroX_156 |XAlphaOptionPricer|
+#      | OptionPricer  | QA_TestCase_Auto_NitroX_158 |XAlphaOptionPricer|

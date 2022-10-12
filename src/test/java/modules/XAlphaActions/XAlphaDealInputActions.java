@@ -348,6 +348,7 @@ public class XAlphaDealInputActions extends KeywordUtil {
     }
 
     public static void selectExchange(String exchange) {
+        waitForClickable(XAlphaDealInputPage.dealInput_OptionsPrice_Exchange);
         inputText(XAlphaDealInputPage.dealInput_OptionsPrice_Exchange, exchange, "Select deal input Option Price Purpose=" + exchange);
         waitForPresent(By.xpath(String.format(XAlphaDealInputPage.dealInput_OptionPrice_ExchangeOptions, exchange)));
         click(By.xpath(String.format(XAlphaDealInputPage.dealInput_OptionPrice_ExchangeOptions, exchange)), "Choose deal Input Option Exchange");
@@ -359,4 +360,10 @@ public class XAlphaDealInputActions extends KeywordUtil {
         click(By.xpath(String.format(XAlphaDealInputPage.dealInput_OptionPrice_ExpiryPrice, expiry_price_source)), "Choose deal Input Option Exchange");
 
     }
+
+    public static void dealOptionPrice() throws InterruptedException {
+        clearInputUsingKeys(XAlphaDealInputPage.dealInput_OptionsPrice_UnitPrice);
+        inputText(XAlphaDealInputPage.dealInput_OptionsPrice_UnitPrice, "2", "Unit Price is =2");
+         }
+
 }

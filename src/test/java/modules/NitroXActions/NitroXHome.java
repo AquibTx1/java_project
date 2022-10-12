@@ -173,6 +173,7 @@ public class NitroXHome {
         //switch to new tab
 
         getDriver().switchTo().window(newTb.get(1));
+
     }
 
     public static void goBacktoMainWindow() throws InterruptedException {
@@ -180,6 +181,13 @@ public class NitroXHome {
         //switch to new tab
 
         getDriver().switchTo().window(newTb.get(0));
+    }
+
+    public static void goBacktoMainWindowIndex(int i) throws InterruptedException {
+        ArrayList<String> newTb = new ArrayList<String>(getDriver().getWindowHandles());
+        //switch to new tab
+
+        getDriver().switchTo().window(newTb.get(i));
     }
 
     public String getBaseCurrency() {
