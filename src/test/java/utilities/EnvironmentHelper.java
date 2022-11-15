@@ -7,15 +7,20 @@ import org.testng.Assert;
  */
 public class EnvironmentHelper {
     public static String url;
-    public static String env = System.getProperty("env");
+    public static String env = "test"; //System.getProperty("env");
 
     /**
      * Append the environment and appName under scope
      *
      * @return Website URL
      */
+//    public static String getURL(String appName) {
+//        url = ("https://" + env + "-" + appName + ".altono.app/").toLowerCase();
+//        return url;
+//    }
+
     public static String getURL(String appName) {
-        url = ("https://" + env + "-" + appName + ".altono.app/").toLowerCase();
+        url = ("https://webapp-cp-pp-qa.azurewebsites.net").toLowerCase();
         return url;
     }
 }

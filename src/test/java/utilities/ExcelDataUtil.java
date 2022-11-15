@@ -22,6 +22,7 @@ public class ExcelDataUtil {
     private static String fileNamePath;
     private static final int columnToLookTestCaseID = Integer.parseInt(ConfigReader.getValue("columnToLookTestCaseID"));
     private static final String testDatafilePath = ConfigReader.getValue("testDataExcelPath");
+    private static final String testDatafilePath1 = ConfigReader.getValue("testDataExcelPath1");
     private static final String testDatafilePathNitroX = ConfigReader.getValue("testDataExcelPathNitroX");
     private static final String testDatafilePathXAlpha = ConfigReader.getValue("testDataExcelPathXAlpha");
     private static final String testDatafilePathOptimus = ConfigReader.getValue("testDataExcelPathOptimus");
@@ -154,6 +155,9 @@ public class ExcelDataUtil {
                 break;
             case "optimus":
                 fileNamePath = testDatafilePathOptimus;
+                break;
+            case "testdata1":
+                fileNamePath = testDatafilePath1;
                 break;
             default:
                 LogUtil.errorLog(ExcelDataUtil.class, "Please choose a valid test data file.");

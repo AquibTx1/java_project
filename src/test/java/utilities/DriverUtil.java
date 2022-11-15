@@ -358,8 +358,10 @@ public class DriverUtil {
                         WebDriverManager.chromedriver().setup();
                         //running headless
                         ChromeOptions options = new ChromeOptions();
-                        options.addArguments("--headless", "--window-size=1920,1080", "--disable-gpu", "--no-sandbox", "--remote-debugging-port=9222", "--disable-infobars", "--disable-dev-shm-usage", "--disable-browser-side-navigation", "--disable-features=VizDisplayCompositor");
+                        options.addArguments("--headed", "--window-size=1920,1080", "--disable-gpu", "--no-sandbox", "--remote-debugging-port=9222", "--disable-infobars", "--disable-dev-shm-usage", "--disable-browser-side-navigation", "--disable-features=VizDisplayCompositor");
                         browser = new ChromeDriver(options);
+//                        options.addArguments("force-device-scale-factor=0.8");
+//                        options.addArguments("high-dpi-support=0.8");
                         drivers.put("Chrome", browser);
                         exeEnv = REMOTE;
                     } // End if

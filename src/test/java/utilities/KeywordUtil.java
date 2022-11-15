@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 import step_definitions.RunCukesTest;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -17,6 +18,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -147,6 +149,23 @@ public class KeywordUtil extends GlobalUtil {
         RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));
         return true;
     }
+
+    /**
+     * Scrolling to elementof a page boolean.
+     *
+     * @param locator the locator
+     * @param logStep the log step
+     * @return the boolean
+     * @throws InterruptedException the interrupted exception
+     */
+    public static void scrollToTopOfAPage(String logStep) throws InterruptedException {
+        Thread.sleep(2000);
+        ((JavascriptExecutor) GlobalUtil.getDriver())
+                .executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+        RunCukesTest.logger.log(LogStatus.PASS, HTMLReportUtil.passStringGreenColor(logStep));
+    }
+
+
 
     /**
      * Take mobile screenshot byte [ ].

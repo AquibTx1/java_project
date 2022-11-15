@@ -1,11 +1,11 @@
 package step_definitions;
 
 import io.cucumber.java.en.When;
-import pageFactory.NitroXPages.NitroXLoginPage;
+//import pageFactory.NitroXPages.NitroXLoginPage;
 import io.cucumber.java.en.Given;
 import org.testng.Assert;
-import pageFactory.OptimusPages.OptimusLoginPage;
-import pageFactory.XAlphaPages.XAlphaLoginPage;
+//import pageFactory.OptimusPages.OptimusLoginPage;
+//import pageFactory.XAlphaPages.XAlphaLoginPage;
 import utilities.*;
 
 import java.util.HashMap;
@@ -123,57 +123,57 @@ public class BaseStepDefinitions extends KeywordUtil {
         LogUtil.infoLog(thisClass, "counterVar reset to 1");
     }
 
-    @Given("Login to NitroX app with valid login credentials")
-    public void loginToNitroXAppWithValidLoginCredentials() {
-        try {
-            navigateToUrl(EnvironmentHelper.getURL("nitrox"));
-            inputText(NitroXLoginPage.username, ConfigReader.getValue("nitroxUsername"), "Enter the username");
-            inputText(NitroXLoginPage.password, ConfigReader.getValue("nitroxPassword"), "Enter the password");
-            click(NitroXLoginPage.loginbtn, "Click on Sign on Button");
-            waitForVisible(NitroXLoginPage.homepage);
-            Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage), "Home");
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
-        }
-    }
-
-    @Given("Login to XAlpha with valid login credentials")
-    public void loginToXAlphaWithValidLoginCredentials() {
-        try {
-            navigateToUrl(EnvironmentHelper.getURL("xalpha"));
-            inputText(XAlphaLoginPage.username, ConfigReader.getValue("XAlphaUsername"), "Enter the username");
-            inputText(XAlphaLoginPage.password, ConfigReader.getValue("XAlphaPassword"), "Enter the password");
-            click(XAlphaLoginPage.loginBtn, "Click Login Button");
-            waitForVisible(XAlphaLoginPage.logoutbtn);
-            Assert.assertEquals(KeywordUtil.getElementText(XAlphaLoginPage.logoutbtn), "Logout");
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
-        }
-    }
-
-
-    @Given("Login to Optimus with Valid Credentials")
-    public void loginToOptimusWithValidCredentials()
-    {
-        try {
-            navigateToUrl(EnvironmentHelper.getURL("Optimus"));
-            inputText(XAlphaLoginPage.username, ConfigReader.getValue("OptimusUsername"), "Enter the username");
-            inputText(XAlphaLoginPage.password, ConfigReader.getValue("OptimusPassword"), "Enter the password");
-            click(OptimusLoginPage.loginBtn, "Click Login Button");
-            waitForVisible(OptimusLoginPage.logoutBtn);
-            Assert.assertEquals(KeywordUtil.getElementText(OptimusLoginPage.logoutBtn), "Logout");
-        } catch (Throwable e) {
-            GlobalUtil.e = e;
-            e.printStackTrace();
-            GlobalUtil.errorMsg = e.getMessage();
-            Assert.fail(e.getMessage());
-        }
-
-    }
+//    @Given("Login to NitroX app with valid login credentials")
+//    public void loginToNitroXAppWithValidLoginCredentials() {
+//        try {
+//            navigateToUrl(EnvironmentHelper.getURL("nitrox"));
+//            inputText(NitroXLoginPage.username, ConfigReader.getValue("nitroxUsername"), "Enter the username");
+//            inputText(NitroXLoginPage.password, ConfigReader.getValue("nitroxPassword"), "Enter the password");
+//            click(NitroXLoginPage.loginbtn, "Click on Sign on Button");
+//            waitForVisible(NitroXLoginPage.homepage);
+//            Assert.assertEquals(KeywordUtil.getElementText(NitroXLoginPage.homepage), "Home");
+//        } catch (Throwable e) {
+//            GlobalUtil.e = e;
+//            e.printStackTrace();
+//            GlobalUtil.errorMsg = e.getMessage();
+//            Assert.fail(e.getMessage());
+//        }
+//    }
+//
+//    @Given("Login to XAlpha with valid login credentials")
+//    public void loginToXAlphaWithValidLoginCredentials() {
+//        try {
+//            navigateToUrl(EnvironmentHelper.getURL("xalpha"));
+//            inputText(XAlphaLoginPage.username, ConfigReader.getValue("XAlphaUsername"), "Enter the username");
+//            inputText(XAlphaLoginPage.password, ConfigReader.getValue("XAlphaPassword"), "Enter the password");
+//            click(XAlphaLoginPage.loginBtn, "Click Login Button");
+//            waitForVisible(XAlphaLoginPage.logoutbtn);
+//            Assert.assertEquals(KeywordUtil.getElementText(XAlphaLoginPage.logoutbtn), "Logout");
+//        } catch (Throwable e) {
+//            GlobalUtil.e = e;
+//            e.printStackTrace();
+//            GlobalUtil.errorMsg = e.getMessage();
+//            Assert.fail(e.getMessage());
+//        }
+//    }
+//
+//
+//    @Given("Login to Optimus with Valid Credentials")
+//    public void loginToOptimusWithValidCredentials()
+//    {
+//        try {
+//            navigateToUrl(EnvironmentHelper.getURL("Optimus"));
+//            inputText(XAlphaLoginPage.username, ConfigReader.getValue("OptimusUsername"), "Enter the username");
+//            inputText(XAlphaLoginPage.password, ConfigReader.getValue("OptimusPassword"), "Enter the password");
+//            click(OptimusLoginPage.loginBtn, "Click Login Button");
+//            waitForVisible(OptimusLoginPage.logoutBtn);
+//            Assert.assertEquals(KeywordUtil.getElementText(OptimusLoginPage.logoutBtn), "Logout");
+//        } catch (Throwable e) {
+//            GlobalUtil.e = e;
+//            e.printStackTrace();
+//            GlobalUtil.errorMsg = e.getMessage();
+//            Assert.fail(e.getMessage());
+//        }
+//
+//    }
 }
